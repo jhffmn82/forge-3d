@@ -1,0 +1,1521 @@
+{
+  "version": 1,
+  "rows": {
+    "ironhide": {
+      "kind": "prayer",
+      "name": "Iron Hide",
+      "god": "grom",
+      "rank": 2,
+      "favor": 10,
+      "instant": true,
+      "cooldown": 18,
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "ironhide",
+          "turns": 12,
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "shield",
+          "pool": "hide",
+          "amount": {
+            "scaled": {
+              "base": 5,
+              "per": {
+                "rank": 2
+              },
+              "mult": [
+                "divine"
+              ],
+              "round": true
+            }
+          },
+          "turns": 12,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "log": "Iron Hide: armor and shield refreshed.",
+      "icon": "pr-ironhide",
+      "text": "prayer.ironhide",
+      "src": "js/content/data.js:707-713, :845; js/faith/gods.js:555"
+    },
+    "pummel": {
+      "kind": "prayer",
+      "name": "Pummel",
+      "god": "grom",
+      "rank": 4,
+      "favor": 25,
+      "instant": true,
+      "cooldown": 5,
+      "effects": [
+        {
+          "verb": "gain",
+          "resource": "pummel",
+          "amount": 3
+        }
+      ],
+      "log": "Pummel: next 3 unarmed hits.",
+      "icon": "pr-pummel",
+      "text": "prayer.pummel",
+      "src": "js/content/data.js:714-720, :845; js/faith/gods.js:556; js/engine/actions-adapter.js:311, :328-341"
+    },
+    "rampage": {
+      "kind": "prayer",
+      "name": "Rampage",
+      "god": "grumbok",
+      "rank": 2,
+      "favor": 10,
+      "instant": true,
+      "cooldown": 15,
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "rampage",
+          "turns": 10,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "icon": "pr-rampage",
+      "text": "prayer.rampage",
+      "src": "js/content/data.js:721-726, :846; js/faith/gods.js:561"
+    },
+    "trollblood": {
+      "kind": "prayer",
+      "name": "Trollblood",
+      "god": "grumbok",
+      "rank": 4,
+      "favor": 20,
+      "instant": false,
+      "cooldown": 20,
+      "effects": [
+        {
+          "verb": "heal",
+          "amount": {
+            "pct-of": {
+              "stat": "max-hp",
+              "pct": {
+                "scaled": {
+                  "base": 20,
+                  "per": {
+                    "rank": 5
+                  },
+                  "mult": [
+                    "divine"
+                  ]
+                }
+              }
+            }
+          },
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "remove-status",
+          "statuses": [
+            "burn",
+            "poison",
+            "chill",
+            "frozen",
+            "fear",
+            "blind",
+            "stun",
+            "root",
+            "corrupt",
+            "slow",
+            "web"
+          ],
+          "reason": "cleansed",
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "trollblood",
+          "turns": 6,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "icon": "pr-trollblood",
+      "text": "prayer.trollblood",
+      "src": "js/content/data.js:727-732, :846; js/faith/gods.js:176-179, :392, :568; js/engine/damage.js:67"
+    },
+    "consecrate": {
+      "kind": "prayer",
+      "name": "Consecrate",
+      "god": "glimmer",
+      "rank": 2,
+      "favor": 10,
+      "instant": true,
+      "cooldown": 8,
+      "effects": [
+        {
+          "verb": "remove-status",
+          "statuses": [
+            "burn",
+            "poison",
+            "chill",
+            "frozen",
+            "fear",
+            "blind",
+            "stun",
+            "root",
+            "corrupt",
+            "slow",
+            "web"
+          ],
+          "reason": "cleansed",
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "damage",
+          "type": "light",
+          "amount": {
+            "scaled": {
+              "base": 8,
+              "mult": [
+                "divine"
+              ],
+              "round": true
+            }
+          },
+          "tags": [
+            "area"
+          ],
+          "target": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 3,
+            "side": "foes"
+          },
+          "if": {
+            "any": [
+              {
+                "creature-flag": "undead"
+              },
+              {
+                "creature-flag": "shadowy"
+              }
+            ]
+          }
+        }
+      ],
+      "icon": "pr-consecrate",
+      "text": "prayer.consecrate",
+      "src": "js/content/data.js:733-738, :847; js/faith/gods.js:563-566"
+    },
+    "sanctuary": {
+      "kind": "prayer",
+      "name": "Holy Ground",
+      "god": "glimmer",
+      "rank": 4,
+      "favor": 25,
+      "instant": false,
+      "cooldown": 15,
+      "effects": [
+        {
+          "verb": "field",
+          "field": "holy-ground",
+          "shape": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 3
+          },
+          "turns": 10,
+          "side": "player"
+        },
+        {
+          "verb": "apply-status",
+          "status": "fear",
+          "turns": 4,
+          "target": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 3,
+            "side": "foes"
+          }
+        }
+      ],
+      "holyGround": {
+        "power": "divine",
+        "damage": {
+          "scaled": {
+            "base": 3,
+            "per": {
+              "affinity:light": 1
+            },
+            "mult": [
+              "number-scale",
+              "lethality",
+              "divine"
+            ],
+            "round": true,
+            "min": 1
+          }
+        },
+        "allyHealBonusPerPowerPct": 25
+      },
+      "icon": "pr-sanctuary",
+      "text": "prayer.sanctuary",
+      "src": "js/content/data.js:739-744, :847; js/faith/gods.js:567"
+    },
+    "laststand": {
+      "kind": "prayer",
+      "name": "Last Stand",
+      "god": "reginald",
+      "rank": 2,
+      "favor": 10,
+      "instant": true,
+      "cooldown": 15,
+      "notWhile": "laststand",
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "laststand",
+          "turns": 5,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "icon": "pr-laststand",
+      "text": "prayer.laststand",
+      "src": "js/content/data.js:745-751, :849; js/faith/gods.js:363, :557-560; js/engine/damage.js:68"
+    },
+    "rolldice2": {
+      "kind": "prayer",
+      "name": "Tempt Fate",
+      "god": "wobbles",
+      "rank": 4,
+      "favor": 40,
+      "instant": false,
+      "cooldown": 20,
+      "effects": [
+        {
+          "verb": "choose",
+          "by": "weight",
+          "options": [
+            {
+              "weight": {
+                "from-source": "rewardWeight"
+              },
+              "effects": [
+                {
+                  "verb": "choose",
+                  "by": "weight",
+                  "options": [
+                    {
+                      "weight": 35,
+                      "if": {
+                        "any": [
+                          {
+                            "hp-below-pct": 100
+                          },
+                          {
+                            "hp-below-pct": {
+                              "pct": 100,
+                              "stat": "mp"
+                            }
+                          }
+                        ]
+                      },
+                      "effects": [
+                        {
+                          "verb": "heal",
+                          "amount": {
+                            "pct-of": {
+                              "stat": "max-hp",
+                              "pct": 50
+                            }
+                          }
+                        },
+                        {
+                          "verb": "mana",
+                          "amount": {
+                            "pct-of": {
+                              "stat": "max-mp",
+                              "pct": 50
+                            }
+                          }
+                        },
+                        {
+                          "verb": "remove-status",
+                          "statuses": [
+                            "burn",
+                            "poison",
+                            "chill",
+                            "frozen",
+                            "fear",
+                            "blind",
+                            "stun",
+                            "root",
+                            "corrupt",
+                            "slow",
+                            "web"
+                          ],
+                          "reason": "cleansed"
+                        }
+                      ],
+                      "else": [
+                        {
+                          "verb": "create-item",
+                          "item": "wobbles-gift-greater",
+                          "spot": "beside-player"
+                        }
+                      ]
+                    },
+                    {
+                      "weight": 65,
+                      "effects": [
+                        {
+                          "verb": "create-item",
+                          "item": "wobbles-gift-greater",
+                          "spot": "beside-player"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "weight": {
+                "from-source": "prankWeight"
+              },
+              "effects": [
+                {
+                  "verb": "choose",
+                  "by": "weight",
+                  "options": [
+                    {
+                      "weight": 35,
+                      "effects": [
+                        {
+                          "verb": "summon",
+                          "side": "hostile",
+                          "creature": "copy-of-visible-common-foe",
+                          "count": 3,
+                          "placement": "near-source",
+                          "noLoot": true
+                        }
+                      ]
+                    },
+                    {
+                      "weight": 35,
+                      "effects": [
+                        {
+                          "verb": "set-hp",
+                          "pctMaxHp": 50,
+                          "atLeast": 1
+                        },
+                        {
+                          "verb": "apply-status",
+                          "status": "blind",
+                          "turns": 4
+                        }
+                      ]
+                    },
+                    {
+                      "weight": 25,
+                      "effects": [
+                        {
+                          "verb": "teleport",
+                          "who": "self",
+                          "to": "random-safe"
+                        }
+                      ]
+                    },
+                    {
+                      "weight": 5,
+                      "effects": [
+                        {
+                          "verb": "gain",
+                          "resource": "essence",
+                          "amount": {
+                            "pct-of": {
+                              "stat": "essence",
+                              "pct": -50
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "outcome": "wobbles-outcome",
+      "icon": "pr-rolldice2",
+      "text": "prayer.rolldice2",
+      "src": "js/content/data.js:758-763, :852; js/faith/religion.js:112-128; js/faith/gods.js:48"
+    },
+    "raisedead": {
+      "kind": "prayer",
+      "name": "Raise Dead",
+      "god": "murk",
+      "rank": 2,
+      "favor": 20,
+      "instant": false,
+      "cooldown": 20,
+      "notWhile": "servant-alive-or-lich-returning",
+      "effects": [
+        {
+          "verb": "summon",
+          "side": "ally",
+          "creature": "skeleton",
+          "count": 1,
+          "placement": "near-source",
+          "cap": 1,
+          "noXp": true,
+          "stats": {
+            "formByRank": [
+              {
+                "rank": 1,
+                "name": "Risen Skeleton",
+                "hp": 14,
+                "dmg": [
+                  3,
+                  6
+                ]
+              },
+              {
+                "rank": 5,
+                "name": "Lich",
+                "hp": 26,
+                "dmg": [
+                  5,
+                  9
+                ],
+                "caster": "shadowbolt",
+                "sprite": "m-lich",
+                "art": 1.22,
+                "moves": [{"id": "lich-bolt", "name": "Shadow Bolt", "range": [2, 6], "needs": "clear-shot", "cooldown": 2, "effects": [{"verb": "damage", "amount": {"from-source": "dmg"}, "type": "dark", "tags": ["spell", "ranged", "single-target"]}], "src": "js/combat/combat.js:510-523: a raised Lich throws shadow bolts from 2 to 6 tiles, every other turn"}]
+              }
+            ],
+            "hpPerLevel": 2,
+            "damagePerThreeLevels": 1,
+            "boost": {
+              "scaled": {
+                "base": 1,
+                "per": {
+                  "rank": 0.1
+                },
+                "mult": [
+                  "divine"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "servantLife": "until destroyed or the floor is left",
+      "log": "Mother Murk answers. A <b>{form}</b> claws its way up out of the floor.",
+      "icon": "pr-raisedead",
+      "text": "prayer.raisedead",
+      "src": "js/content/data.js:764-769, :848, :965-968; js/engine/progression-adapter.js:146-186"
+    },
+    "the-brood": {
+      "kind": "prayer",
+      "name": "The Brood",
+      "god": "sylla",
+      "rank": 2,
+      "favor": 20,
+      "instant": false,
+      "cooldown": 20,
+      "effects": [
+        {
+          "verb": "summon",
+          "side": "ally",
+          "creature": "spiderling",
+          "count": 3,
+          "placement": "near-source",
+          "cap": 3,
+          "noXp": true,
+          "life": 30,
+          "stats": {
+            "hp": {
+              "scaled": {
+                "base": 5,
+                "per": {
+                  "rank": 5
+                },
+                "mult": [
+                  "divine"
+                ],
+                "round": true
+              }
+            },
+            "dmg": [
+              {
+                "scaled": {
+                  "base": 2,
+                  "per": {
+                    "rank": 2
+                  },
+                  "mult": [
+                    "divine"
+                  ],
+                  "round": true
+                }
+              },
+              {
+                "scaled": {
+                  "base": 10,
+                  "per": {
+                    "rank": 2
+                  },
+                  "mult": [
+                    "divine"
+                  ],
+                  "round": true
+                }
+              }
+            ],
+            "armour": {
+              "scaled": {
+                "base": 2,
+                "per": {
+                  "rank": 2
+                }
+              }
+            },
+            "resistPct": {
+              "scaled": {
+                "base": 5,
+                "per": {
+                  "rank": 5
+                }
+              }
+            }
+          }
+        }
+      ],
+      "replacesOwnBrood": true,
+      "bite": [
+        {
+          "verb": "choose",
+          "by": "weight",
+          "options": [
+            {
+              "weight": 1,
+              "effects": [
+                {
+                  "verb": "apply-status",
+                  "status": "web",
+                  "turns": 1
+                },
+                {
+                  "verb": "apply-status",
+                  "status": "bleed",
+                  "turns": 3,
+                  "magnitude": {
+                    "scaled": {
+                      "base": 2,
+                      "per": {
+                        "rank": 1
+                      },
+                      "mult": [
+                        "divine"
+                      ],
+                      "round": true,
+                      "min": 1
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "weight": 1,
+              "effects": [
+                {
+                  "verb": "apply-status",
+                  "status": "poison",
+                  "turns": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "log": "<b>The Brood.</b> {n} spiderlings scuttle out of the dark.",
+      "noRoomLog": "There is no room for the brood.",
+      "icon": "pr-the-brood",
+      "text": "prayer.the-brood",
+      "src": "js/content/data.js:770-775, :853; js/faith/sylla.js:44-52, :112-161; the web bite's Bleed lands with its root, 2 + the caller's rank x divine, worked out at the call (sylla.js:77-84, :112-115; Justin 2026-10-18, item 167)"
+    },
+    "venom-burst": {
+      "kind": "prayer",
+      "name": "Venom Burst",
+      "god": "sylla",
+      "rank": 4,
+      "favor": 25,
+      "instant": false,
+      "cooldown": 8,
+      "effects": [
+        {
+          "verb": "spell-strike",
+          "type": "poison",
+          "amount": {
+            "scaled": {
+              "base": {
+                "roll": [
+                  0,
+                  6
+                ]
+              },
+              "per": {
+                "rank": 5
+              },
+              "mult": [
+                "divine"
+              ],
+              "round": true
+            }
+          },
+          "target": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 3,
+            "side": "foes"
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "poison",
+          "turns": 3,
+          "target": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 3,
+            "side": "foes"
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "blind",
+          "turns": 3,
+          "target": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 3,
+            "side": "foes"
+          }
+        }
+      ],
+      "icon": "pr-venom-burst",
+      "text": "prayer.venom-burst",
+      "src": "js/content/data.js:776-781, :853; js/faith/sylla.js:162-165"
+    },
+    "fieldsmelt": {
+      "kind": "prayer",
+      "name": "Field Smelt",
+      "god": "anvil",
+      "rank": 2,
+      "favor": 5,
+      "instant": true,
+      "cooldown": 20,
+      "notWhile": "in-combat",
+      "effects": [
+        {
+          "verb": "item-change",
+          "change": "recycle",
+          "which": "chosen",
+          "amount": {
+            "from-source": "fullRecycleValue"
+          }
+        }
+      ],
+      "icon": "pr-fieldsmelt",
+      "text": "prayer.fieldsmelt",
+      "src": "js/content/data.js:782-787, :850; js/faith/gods.js:362, :610-617"
+    },
+    "anviltoll": {
+      "kind": "prayer",
+      "name": "Anvil's Toll",
+      "god": "anvil",
+      "rank": 4,
+      "favor": 20,
+      "instant": false,
+      "cooldown": 8,
+      "effects": [
+        {
+          "verb": "weapon-attack",
+          "multiplier": {
+            "scaled": {
+              "base": 1,
+              "mult": [
+                "divine"
+              ]
+            }
+          },
+          "label": "Anvil's Toll",
+          "weapon": "main",
+          "target": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 2,
+            "side": "foes"
+          },
+          "then": [
+            {
+              "verb": "knockback",
+              "tiles": 2,
+              "from": "source",
+              "direction": "away"
+            },
+            {
+              "verb": "apply-status",
+              "status": "stun",
+              "turns": 1
+            }
+          ]
+        }
+      ],
+      "noHitLog": "Anvil's Toll: no hits.",
+      "icon": "pr-anviltoll",
+      "text": "prayer.anviltoll",
+      "src": "js/content/data.js:788-793, :850; js/faith/gods.js:576-584"
+    },
+    "lance": {
+      "kind": "prayer",
+      "name": "Lance",
+      "god": "reginald",
+      "rank": 4,
+      "favor": 20,
+      "instant": false,
+      "cooldown": 6,
+      "aim": {
+        "kind": "beam",
+        "range": 3,
+        "width": 3,
+        "needsSight": true
+      },
+      "effects": [
+        {
+          "verb": "weapon-attack",
+          "multiplier": {
+            "scaled": {
+              "base": 1,
+              "mult": [
+                "divine"
+              ]
+            }
+          },
+          "label": "Lance",
+          "weapon": "main",
+          "target": {
+            "selector": "beam",
+            "side": "foes"
+          }
+        }
+      ],
+      "noHitLog": "Lance: no targets.",
+      "sfx": "swing",
+      "icon": "pr-lance",
+      "text": "prayer.lance",
+      "src": "js/content/data.js:794-799, :849; js/engine/actions.js:8; js/runtime/recovery.js:6, :51-60"
+    },
+    "bonespear": {
+      "kind": "prayer",
+      "name": "Bone Spear",
+      "god": "murk",
+      "rank": 4,
+      "favor": 0,
+      "health": 5,
+      "instant": false,
+      "cooldown": 0,
+      "aim": {
+        "kind": "line",
+        "range": 6,
+        "piercing": true,
+        "needsSight": true
+      },
+      "effects": [
+        {
+          "verb": "pay-hp",
+          "amount": 5,
+          "nonLethal": true
+        },
+        {
+          "verb": "spell-strike",
+          "type": "dark",
+          "bolt": true,
+          "piercing": true,
+          "amount": {
+            "scaled": {
+              "base": {
+                "roll": [
+                  0,
+                  6
+                ]
+              },
+              "per": {
+                "rank": 5
+              },
+              "mult": [
+                "divine"
+              ],
+              "round": true
+            }
+          },
+          "target": {
+            "selector": "line",
+            "n": 6,
+            "piercing": true,
+            "side": "foes"
+          }
+        }
+      ],
+      "needsLog": "Bone Spear: needs 6 HP; costs 5.",
+      "sfx": "shadow-cast",
+      "icon": "pr-bonespear",
+      "text": "prayer.bonespear",
+      "src": "js/content/data.js:800-805, :848; js/faith/gods.js:357-371; js/runtime/recovery.js:27-35, :61-80"
+    },
+    "manaward": {
+      "kind": "prayer",
+      "name": "Mana Ward",
+      "god": "vellum",
+      "rank": 2,
+      "favor": 5,
+      "instant": true,
+      "cooldown": 12,
+      "manaPerHp": 1,
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "manaward",
+          "turns": 8,
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "shield",
+          "pool": "mana-ward",
+          "amount": {
+            "scaled": {
+              "base": 0,
+              "per": {
+                "rank": 5
+              },
+              "mult": [
+                "divine"
+              ],
+              "round": true
+            }
+          },
+          "turns": 8,
+          "onAbsorb": [
+            {
+              "verb": "mana",
+              "amount": {
+                "from-source": "manaPerHp"
+              }
+            }
+          ],
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "log": "Mana Ward: {n} HP.",
+      "icon": "ic-arcane-ward",
+      "text": "prayer.manaward",
+      "src": "js/content/data.js:806-815, :851; js/engine/costs.js:35-37; js/faith/gods.js:313, :554"
+    },
+    "luckystreak": {
+      "kind": "prayer",
+      "name": "Lucky Streak",
+      "god": "wobbles",
+      "rank": 2,
+      "favor": 10,
+      "instant": true,
+      "cooldown": 12,
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "luckystreak",
+          "turns": 8,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "icon": "pr-luckystreak",
+      "text": "prayer.luckystreak",
+      "src": "js/content/data.js:816-821, :852; js/faith/gods.js:562"
+    },
+    "arcaneblink": {
+      "kind": "prayer",
+      "name": "Blink",
+      "god": "vellum",
+      "rank": 4,
+      "favor": 20,
+      "instant": false,
+      "cooldown": 20,
+      "aim": {
+        "kind": "tile",
+        "range": 5
+      },
+      "effects": [
+        {
+          "verb": "teleport",
+          "who": "self",
+          "to": "target-tile",
+          "max": 5,
+          "rules": [
+            "visible",
+            "empty",
+            "walkable"
+          ]
+        }
+      ],
+      "log": "Blink.",
+      "icon": "pr-arcaneblink",
+      "text": "prayer.arcaneblink",
+      "src": "js/content/data.js:822-828, :851; js/faith/gods.js:314, :319-323, :589-609"
+    },
+    "ironbody": {
+      "kind": "invoke",
+      "name": "Iron Body",
+      "sfx": "earth-cast",
+      "god": "grom",
+      "mana": 8,
+      "instant": true,
+      "cooldown": 18,
+      "ability": "ironbody",
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "ironbody",
+          "turns": 12,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "log": "Iron Body active.",
+      "icon": "ic-iron-body",
+      "text": "invoke.ironbody",
+      "src": "js/content/data.js:448-457, :856; js/engine/casting-adapter.js:3"
+    },
+    "bellow": {
+      "kind": "invoke",
+      "name": "Bellow",
+      "sfx": "warchief-roar",
+      "god": "grumbok",
+      "mana": 8,
+      "technique": true,
+      "instant": true,
+      "cooldown": 0,
+      "ability": "bellow",
+      "heroClip": { "name": "melee", "straight": true, "src": "js/engine/casting-adapter.js:73 @3c8b312: a bellow is no weapon swing, so its row plays straight" },
+      "effects": [
+        {
+          "verb": "weapon-attack",
+          "weapon": "main",
+          "label": "Bellow",
+          "target": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 3,
+            "side": "foes"
+          },
+          "ruled": "Justin 2026-10-17: 'currently bellow heals minorly and stuns. Instead, let's have it make a mainhand weapon attack against everything in the AoE and stun 2 turns.'"
+        },
+        {
+          "verb": "apply-status",
+          "status": "stun",
+          "turns": 2,
+          "target": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 3,
+            "side": "foes"
+          }
+        }
+      ],
+      "log": "Bellow: Stun within 3 tiles.",
+      "icon": "ic-bellow",
+      "text": "invoke.bellow",
+      "src": "js/content/data.js:458-467, :856; js/engine/casting-adapter.js:10-20"
+    },
+    "heal": {
+      "kind": "invoke",
+      "name": "Heal",
+      "sfx": "heal",
+      "god": "glimmer",
+      "mana": 8,
+      "instant": false,
+      "cooldown": 0,
+      "ability": "heal",
+      "effects": [
+        {
+          "verb": "heal",
+          "amount": {
+            "pct-of": {
+              "stat": "max-hp",
+              "pct": {
+                "scaled": {
+                  "base": 10,
+                  "per": {
+                    "rank": 2
+                  },
+                  "mult": [
+                    "divine"
+                  ]
+                }
+              }
+            }
+          },
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "capPctMaxHpAfterBonuses": 40,
+      "log": "Heal: +{n} HP.",
+      "icon": "ic-heal",
+      "text": "invoke.heal",
+      "src": "js/content/data.js:468-476, :856; js/engine/casting-adapter.js:21-34"
+    },
+    "unholyaura": {
+      "kind": "invoke",
+      "name": "Unholy Aura",
+      "sfx": "shadow-cast",
+      "god": "murk",
+      "mana": 8,
+      "instant": false,
+      "cooldown": 12,
+      "ability": "unholyaura",
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "aura",
+          "turns": 8,
+          "magnitude": {
+            "scaled": {
+              "base": 0,
+              "per": {
+                "rank": 4
+              },
+              "mult": [
+                "divine"
+              ],
+              "round": true
+            }
+          },
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "log": "Unholy Aura active.",
+      "icon": "pr-unholyaura",
+      "text": "invoke.unholyaura",
+      "src": "js/content/data.js:673-681, :856; js/engine/casting-adapter.js:46-53; js/engine/effect-adapter.js:146-147"
+    },
+    "lunge": {
+      "kind": "invoke",
+      "name": "Lunge",
+      "god": "reginald",
+      "mana": 7,
+      "instant": false,
+      "cooldown": 0,
+      "ability": "lunge",
+      "aim": {
+        "kind": "foe",
+        "range": 4
+      },
+      "effects": [
+        {
+          "verb": "dash",
+          "range": 4,
+          "until": "beside-target",
+          "then": [
+            {
+              "verb": "weapon-attack",
+              "multiplier": {
+                "scaled": {
+                  "base": 1,
+                  "mult": [
+                    "divine"
+                  ]
+                }
+              },
+              "label": "Lunge",
+              "weapon": "main",
+              "then": [
+                {
+                  "verb": "apply-status",
+                  "status": "stun",
+                  "turns": 2
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "refusedWhen": [
+        "rooted",
+        "frozen",
+        "no clear straight line"
+      ],
+      "icon": "ic-challenge",
+      "sfx": "charge",
+      "text": "invoke.lunge",
+      "src": "js/content/data.js:501-512, :856; js/character/classes.js:98-129; js/engine/actions.js:7"
+    },
+    "temper": {
+      "kind": "invoke",
+      "name": "Temper",
+      "sfx": "forge-enchant",
+      "god": "anvil",
+      "mana": 8,
+      "instant": true,
+      "cooldown": 18,
+      "ability": "temper",
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "temper",
+          "turns": 12,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "log": "Temper: {weapon}.",
+      "icon": "ic-temper",
+      "text": "invoke.temper",
+      "src": "js/content/data.js:513-521, :856; js/engine/casting-adapter.js:35-42"
+    },
+    "arcanelance": {
+      "kind": "invoke",
+      "name": "Arcane Lance",
+      "god": "vellum",
+      "mana": 5,
+      "instant": false,
+      "cooldown": 0,
+      "ability": "arcanelance",
+      "aim": {
+        "kind": "foe",
+        "range": 5
+      },
+      "effects": [
+        {
+          "verb": "spell-strike",
+          "type": "magic",
+          "bolt": true,
+          "amount": {
+            "scaled": {
+              "base": 5,
+              "per": {
+                "rank": 5
+              },
+              "mult": [
+                "divine"
+              ],
+              "round": true,
+              "min": 0
+            }
+          }
+        }
+      ],
+      "icon": "pr-arcanelance",
+      "text": "invoke.arcanelance",
+      "src": "js/content/data.js:488-500, :856; js/engine/actions.js:45; js/faith/gods.js:309-312; js/combat/combat.js:86, :610"
+    },
+    "rolldice": {
+      "kind": "invoke",
+      "name": "Roll the Dice",
+      "sfx": "wobbles-giggle",
+      "god": "wobbles",
+      "mana": 8,
+      "instant": false,
+      "cooldown": 0,
+      "ability": "rolldice",
+      "outcome": "wobbles-outcome",
+      "effects": [
+        {
+          "verb": "choose",
+          "by": "weight",
+          "options": [
+            {
+              "weight": {
+                "from-source": "rewardWeight"
+              },
+              "effects": [
+                {
+                  "verb": "choose",
+                  "by": "weight",
+                  "options": [
+                    {
+                      "weight": 1,
+                      "log": "Wobbles: full healing.",
+                      "effects": [
+                        {
+                          "verb": "heal",
+                          "amount": "full",
+                          "sparkle": {
+                            "kind": "heal",
+                            "n": 40
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "weight": 2,
+                      "effects": [
+                        {
+                          "verb": "create-item",
+                          "item": "wobbles-gift-invoke",
+                          "spot": "beside-player"
+                        }
+                      ]
+                    },
+                    {
+                      "weight": 1,
+                      "log": "Wobbles: Rampage.",
+                      "effects": [
+                        {
+                          "verb": "apply-status",
+                          "status": "rampage",
+                          "turns": 10
+                        }
+                      ]
+                    },
+                    {
+                      "weight": 1,
+                      "if": {
+                        "foes-in-sight": {
+                          "min": 1,
+                          "notBoss": true
+                        }
+                      },
+                      "effects": [
+                        {
+                          "verb": "transform",
+                          "to": "rat",
+                          "notBoss": true,
+                          "sparkle": {
+                            "kind": "magic",
+                            "n": 30
+                          },
+                          "target": {
+                            "selector": "all-visible",
+                            "side": "foes"
+                          }
+                        }
+                      ],
+                      "else": [
+                        {
+                          "verb": "create-item",
+                          "item": "wobbles-gift-invoke",
+                          "spot": "beside-player"
+                        }
+                      ]
+                    },
+                    {
+                      "weight": 1,
+                      "if": {
+                        "foes-in-sight": {
+                          "min": 2
+                        }
+                      },
+                      "effects": [
+                        {
+                          "verb": "teleport",
+                          "who": "self",
+                          "to": "random-safe",
+                          "beyond": 15,
+                          "log": "Wobbles: teleported to safety.",
+                          "orElse": [
+                            {
+                              "verb": "create-item",
+                              "item": "wobbles-gift-invoke",
+                              "spot": "beside-player"
+                            }
+                          ]
+                        }
+                      ],
+                      "else": [
+                        {
+                          "verb": "create-item",
+                          "item": "wobbles-gift-invoke",
+                          "spot": "beside-player"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "weight": {
+                "from-source": "prankWeight"
+              },
+              "effects": [
+                {
+                  "verb": "choose",
+                  "by": "weight",
+                  "options": [
+                    {
+                      "weight": 1,
+                      "effects": [
+                        {
+                          "verb": "choose",
+                          "by": "weight",
+                          "options": [
+                            {
+                              "weight": 1,
+                              "log": "Wobbles: Blind for 3 turns.",
+                              "effects": [
+                                {
+                                  "verb": "apply-status",
+                                  "status": "blind",
+                                  "turns": 3
+                                }
+                              ]
+                            },
+                            {
+                              "weight": 1,
+                              "log": "Wobbles: Chilled for 3 turns.",
+                              "effects": [
+                                {
+                                  "verb": "apply-status",
+                                  "status": "chill",
+                                  "turns": 3
+                                }
+                              ]
+                            },
+                            {
+                              "weight": 1,
+                              "log": "Wobbles: Rooted for 3 turns.",
+                              "effects": [
+                                {
+                                  "verb": "apply-status",
+                                  "status": "root",
+                                  "turns": 3
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "weight": 1,
+                      "log": "Wobbles: rats summoned!",
+                      "effects": [
+                        {
+                          "verb": "summon",
+                          "side": "hostile",
+                          "creature": "rat",
+                          "count": 2,
+                          "placement": "near-source",
+                          "noLoot": true
+                        }
+                      ]
+                    },
+                    {
+                      "weight": 1,
+                      "effects": [
+                        {
+                          "verb": "teleport",
+                          "who": "self",
+                          "to": "random-safe",
+                          "log": "Wobbles: teleported!"
+                        }
+                      ]
+                    },
+                    {
+                      "weight": 1,
+                      "log": "Wobbles: half your Mana lost.",
+                      "effects": [
+                        {
+                          "verb": "mana",
+                          "amount": {
+                            "pct-of": {
+                              "stat": "mp",
+                              "pct": -50
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "verb": "set-hp",
+                  "atLeast": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "sheepName": "Very Confused Rat",
+      "icon": "ic-roll-dice",
+      "text": "invoke.rolldice",
+      "src": "js/content/data.js:522-530, :856; js/engine/casting-adapter.js:43-45; js/faith/gods.js:47, :141-170"
+    },
+    "intothedark": {
+      "kind": "invoke",
+      "name": "Into the Dark",
+      "sfx": "vanish",
+      "god": "sylla",
+      "mana": 8,
+      "instant": false,
+      "cooldown": 5,
+      "ability": "intothedark",
+      "effects": [
+        {
+          "verb": "hide",
+          "turns": 5,
+          "breakPursuit": true,
+          "ruled": "Justin 2026-10-16: Sylla's stealth lasts 5 turns (was 3; 'no make that 5, 6 is too long')"
+        },
+        {
+          "verb": "apply-status",
+          "status": "into-the-dark",
+          "turns": 5,
+          "magnitude": {
+            "scaled": {
+              "base": 0,
+              "per": {
+                "rank": 20
+              },
+              "mult": [
+                "divine"
+              ]
+            }
+          },
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "log": "Into the Dark: Hidden {n} turns; next hit +{pct}%.",
+      "icon": "ic-into-the-dark",
+      "text": "invoke.intothedark",
+      "src": "js/content/data.js:682-691, :856; js/engine/casting-adapter.js:54-69; js/engine/actions-adapter.js:99-100, :177-178; js/faith/sylla.js:40-41"
+    }
+  }
+}

@@ -1,0 +1,1313 @@
+{
+  "version": 1,
+  "rows": {
+    "groups": {
+      "kind": "rule",
+      "does": "Sigil groups, in the Forge's order. Opposite elements make no sigil. loot.json sigil-drop rolls these groups (singles 85, pairs except Rot 10, plus-and-triple 4, grand 1); quadruple (Nature's Bounty) is never found.",
+      "singles": [
+        "firestorm",
+        "identify",
+        "levitate",
+        "stoneskin",
+        "heal",
+        "vanish"
+      ],
+      "plus": [
+        "firestorm2",
+        "identify2",
+        "levitate2",
+        "haste",
+        "stoneskin2",
+        "heal2",
+        "vanish2"
+      ],
+      "pairs": [
+        "cinder",
+        "magma",
+        "sunburst",
+        "smoke",
+        "storm",
+        "mire",
+        "purify",
+        "mana",
+        "recall",
+        "blink",
+        "mapping",
+        "rot"
+      ],
+      "triple": [
+        "aegis"
+      ],
+      "quadruple": [
+        "naturesbounty"
+      ],
+      "grand": [
+        "ascension",
+        "transmutation",
+        "wisdom"
+      ],
+      "plus-and-triple": [
+        "firestorm2",
+        "identify2",
+        "levitate2",
+        "haste",
+        "stoneskin2",
+        "heal2",
+        "vanish2",
+        "aegis"
+      ],
+      "src": "js/elements/sigils.js:11-18, :53-57, :76-82"
+    },
+    "essence-cost": {
+      "kind": "rule",
+      "does": "Carving costs essence by grade unless the recipe names its own: one mote 100, two or more motes 200, Ascension 500, Wisdom 5000.",
+      "oneMote": 100,
+      "moreMotes": 200,
+      "byRecipe": {
+        "ascension": 500,
+        "wisdom": 5000
+      },
+      "src": "js/elements/sigils.js:59-69"
+    },
+    "use": {
+      "kind": "rule",
+      "does": "The 'use' command on a bag sigil: refused (nothing spent) if the hero's god forbids it (Grumbok every sigil; any other god a sigil carved with a mote of its forbidden element), if the hero is Feared, or by the sigil's own refusedWhen. Otherwise it takes one action, spends one sigil from the stack, plays the cast clip and the sigil sound, runs the effects, makes that sigil kind known for the run, and records it as the last sigil read (Amulet of Echoes). A sigil with a picker opens it first; choosing pays, 'Keep the sigil' cancels at no cost. Puzzle rooms near the reader react (world.md).",
+      "feedback": {
+        "sound": "each sigil plays its own cue (row sfx); a Greater sigil plays its base sigil cue; until a recording lands, fall back to sigil-use",
+        "notice": "the open window shows each new log line at the foot of its frame (97c4bb3)",
+        "ruled": "Justin 2026-10-16, \"1. C\" (a separate sound for every sigil)"
+      },
+      "cleanse": [
+        "burn",
+        "poison",
+        "chill",
+        "fear",
+        "blind",
+        "stun",
+        "root",
+        "frozen",
+        "wet",
+        "slow",
+        "rot",
+        "corrupt",
+        "hollow",
+        "bleed"
+      ],
+      "src": "js/engine/sigil-adapter.js:221-268; js/elements/sigils.js:88-101; js/faith/gods.js:19"
+    },
+    "firestorm": {
+      "kind": "sigil",
+      "group": "singles",
+      "name": "Sigil of the Firestorm",
+      "motes": [
+        "fire"
+      ],
+      "effects": [
+        {
+          "verb": "damage",
+          "type": "fire",
+          "amount": {
+            "scaled": {
+              "base": 8,
+              "per": {
+                "floor": 1
+              }
+            }
+          },
+          "target": {
+            "selector": "radius",
+            "side": "foes",
+            "centre": "self",
+            "n": 3
+          },
+          "then": [
+            {
+              "verb": "apply-status",
+              "status": "burn",
+              "turns": 3
+            }
+          ]
+        },
+        {
+          "verb": "field",
+          "field": "fire",
+          "shape": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 2,
+            "notSelf": true
+          },
+          "turns": 3,
+          "only": "flammable"
+        }
+      ],
+      "src": "js/content/data.js:862; js/engine/sigil-adapter.js:58-61",
+      "text": "sigil.firestorm",
+      "sfx": {
+        "cue": "sigil-firestorm",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Firestorm: ground ignited.",
+        "cls": "c-fire"
+      }
+    },
+    "identify": {
+      "kind": "sigil",
+      "group": "singles",
+      "name": "Sigil of Knowledge",
+      "motes": [
+        "water"
+      ],
+      "effects": [
+        {
+          "verb": "identify",
+          "which": "sigils"
+        },
+        {
+          "verb": "identify",
+          "which": "one-chosen"
+        },
+        {
+          "verb": "terrain",
+          "set": "extinguish",
+          "where": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 3
+          }
+        }
+      ],
+      "picker": "one unidentified worn or carried gear piece (none: nothing to choose; one: read at once)",
+      "src": "js/elements/sigils.js:45-48, :301-322; js/engine/sigil-adapter.js:89-95, :246",
+      "text": "sigil.identify",
+      "sfx": {
+        "cue": "sigil-identify",
+        "fallback": "sigil-use"
+      }
+    },
+    "levitate": {
+      "kind": "sigil",
+      "group": "singles",
+      "name": "Sigil of Floating",
+      "motes": [
+        "air"
+      ],
+      "effects": [
+        {
+          "verb": "remove-status",
+          "statuses": [
+            "root",
+            "web"
+          ],
+          "reason": "cleansed",
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "levitate",
+          "turns": 25,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "src": "js/content/data.js:864; js/engine/sigil-adapter.js:68-72",
+      "text": "sigil.levitate",
+      "sfx": {
+        "cue": "sigil-levitate",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Floating; roots and webs cleared.",
+        "cls": "c-good"
+      }
+    },
+    "stoneskin": {
+      "kind": "sigil",
+      "group": "singles",
+      "name": "Sigil of Stoneskin",
+      "motes": [
+        "earth"
+      ],
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "stone-skin",
+          "turns": 15,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "src": "js/content/data.js:865; js/engine/sigil-adapter.js:73-77",
+      "text": "sigil.stoneskin",
+      "sfx": {
+        "cue": "sigil-stoneskin",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Stone Skin; Poison and Stun cleared.",
+        "cls": "c-good"
+      }
+    },
+    "heal": {
+      "kind": "sigil",
+      "group": "singles",
+      "name": "Sigil of Mending",
+      "motes": [
+        "light"
+      ],
+      "effects": [
+        {
+          "verb": "heal",
+          "amount": {
+            "pct-of": {
+              "stat": "max-hp",
+              "pct": 35
+            }
+          },
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "afterglow",
+          "turns": 15,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "src": "js/content/data.js:866; js/engine/sigil-adapter.js:78-83",
+      "text": "sigil.heal",
+      "sfx": {
+        "cue": "sigil-heal",
+        "fallback": "sigil-use"
+      }
+    },
+    "vanish": {
+      "kind": "sigil",
+      "group": "singles",
+      "name": "Sigil of Vanishing",
+      "motes": [
+        "shadow"
+      ],
+      "effects": [
+        {
+          "verb": "hide",
+          "turns": 5,
+          "breakPursuit": true
+        }
+      ],
+      "src": "js/content/data.js:867; js/engine/sigil-adapter.js:84-88",
+      "text": "sigil.vanish",
+      "sfx": {
+        "cue": "sigil-vanish",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Hidden: {turns}.",
+        "cls": "c-good",
+        "status": "hidden"
+      }
+    },
+    "firestorm2": {
+      "kind": "sigil",
+      "group": "plus",
+      "name": "Greater Sigil of the Firestorm",
+      "motes": [
+        "fire",
+        "fire"
+      ],
+      "effects": [
+        {
+          "verb": "damage",
+          "type": "fire",
+          "amount": {
+            "scaled": {
+              "base": 14,
+              "per": {
+                "floor": 1
+              }
+            }
+          },
+          "target": {
+            "selector": "all-visible",
+            "side": "foes",
+            "within": 4
+          },
+          "then": [
+            {
+              "verb": "apply-status",
+              "status": "burn",
+              "turns": 4
+            }
+          ]
+        },
+        {
+          "verb": "field",
+          "field": "fire",
+          "shape": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 3,
+            "notSelf": true
+          },
+          "turns": 3,
+          "only": "flammable"
+        }
+      ],
+      "src": "js/elements/sigils.js:21; js/engine/sigil-adapter.js:113-116",
+      "text": "sigil.firestorm2",
+      "sfx": {
+        "cue": "sigil-firestorm",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Firestorm: ground ignited.",
+        "cls": "c-fire"
+      }
+    },
+    "identify2": {
+      "kind": "sigil",
+      "group": "plus",
+      "name": "Greater Sigil of Knowledge",
+      "motes": [
+        "water",
+        "water"
+      ],
+      "effects": [
+        {
+          "verb": "identify",
+          "which": "all-sigils"
+        },
+        {
+          "verb": "identify",
+          "which": "all"
+        },
+        {
+          "verb": "terrain",
+          "set": "extinguish",
+          "where": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 5
+          }
+        }
+      ],
+      "src": "js/elements/sigils.js:22; js/engine/sigil-adapter.js:117-125",
+      "text": "sigil.identify2",
+      "sfx": {
+        "cue": "sigil-identify",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "All sigils identified[; {gear} gear identified].",
+        "cls": "c-kill"
+      }
+    },
+    "levitate2": {
+      "kind": "sigil",
+      "group": "plus",
+      "name": "Greater Sigil of Floating",
+      "motes": [
+        "air",
+        "air"
+      ],
+      "effects": [
+        {
+          "verb": "remove-status",
+          "statuses": [
+            "root",
+            "web"
+          ],
+          "reason": "cleansed",
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "levitate",
+          "turns": 60,
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "haste",
+          "turns": 10,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "src": "js/elements/sigils.js:23; js/engine/sigil-adapter.js:126-130",
+      "text": "sigil.levitate2",
+      "sfx": {
+        "cue": "sigil-levitate",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Floating, Haste; roots and webs cleared.",
+        "cls": "c-good"
+      }
+    },
+    "haste": {
+      "kind": "sigil",
+      "group": "plus",
+      "name": "Sigil of Haste",
+      "motes": [
+        "air",
+        "air"
+      ],
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "haste",
+          "turns": 20,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "src": "js/elements/sigils.js:24; js/engine/sigil-adapter.js:131-136",
+      "text": "sigil.haste",
+      "sfx": {
+        "cue": "sigil-haste",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Haste: {turns}.",
+        "cls": "c-good",
+        "status": "haste"
+      }
+    },
+    "stoneskin2": {
+      "kind": "sigil",
+      "group": "plus",
+      "name": "Greater Sigil of Stoneskin",
+      "motes": [
+        "earth",
+        "earth"
+      ],
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "stone-skin",
+          "turns": 30,
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "shield",
+          "pool": "ward",
+          "amount": {
+            "pct-of": {
+              "stat": "max-hp",
+              "pct": 20
+            }
+          },
+          "turns": 30,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "src": "js/elements/sigils.js:25, :102; js/engine/sigil-adapter.js:137-142",
+      "text": "sigil.stoneskin2",
+      "sfx": {
+        "cue": "sigil-stoneskin",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Stone Skin, shield; Poison and Stun cleared.",
+        "cls": "c-good"
+      }
+    },
+    "heal2": {
+      "kind": "sigil",
+      "group": "plus",
+      "name": "Greater Sigil of Mending",
+      "motes": [
+        "light",
+        "light"
+      ],
+      "effects": [
+        {
+          "verb": "heal",
+          "amount": "full",
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "remove-status",
+          "statuses": [
+            "burn",
+            "poison",
+            "chill",
+            "fear",
+            "blind",
+            "stun",
+            "root",
+            "frozen",
+            "wet",
+            "slow",
+            "rot",
+            "corrupt",
+            "hollow",
+            "bleed"
+          ],
+          "reason": "cleansed",
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "src": "js/elements/sigils.js:26; js/engine/sigil-adapter.js:143-148",
+      "text": "sigil.heal2",
+      "sfx": {
+        "cue": "sigil-heal",
+        "fallback": "sigil-use"
+      }
+    },
+    "vanish2": {
+      "kind": "sigil",
+      "group": "plus",
+      "name": "Greater Sigil of Vanishing",
+      "motes": [
+        "shadow",
+        "shadow"
+      ],
+      "effects": [
+        {
+          "verb": "hide",
+          "turns": 10,
+          "breakPursuit": true
+        }
+      ],
+      "src": "js/elements/sigils.js:27, :44; js/engine/sigil-adapter.js:149-153",
+      "text": "sigil.vanish2",
+      "sfx": {
+        "cue": "sigil-vanish",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Hidden: {turns}.",
+        "cls": "c-good",
+        "status": "hidden"
+      }
+    },
+    "cinder": {
+      "kind": "sigil",
+      "group": "pairs",
+      "name": "Sigil of Cinder Stride",
+      "motes": [
+        "fire",
+        "air"
+      ],
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "cinder",
+          "turns": 10,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "src": "js/elements/sigils.js:28, :236-242; js/engine/sigil-adapter.js:154-158",
+      "text": "sigil.cinder",
+      "sfx": {
+        "cue": "sigil-cinder",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Cinder Stride: +50% speed; leave burning ground.",
+        "cls": "c-fire"
+      }
+    },
+    "magma": {
+      "kind": "sigil",
+      "group": "pairs",
+      "name": "Sigil of the Molten Ring",
+      "motes": [
+        "fire",
+        "earth"
+      ],
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "moltenring",
+          "turns": 5,
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "field",
+          "field": "fire",
+          "shape": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 2,
+            "notSelf": true,
+            "walkable": true
+          },
+          "turns": 5
+        },
+        {
+          "verb": "apply-status",
+          "status": "burn",
+          "turns": 3,
+          "target": {
+            "selector": "radius",
+            "side": "foes",
+            "centre": "self",
+            "n": 2
+          }
+        }
+      ],
+      "src": "js/elements/sigils.js:29; js/engine/sigil-adapter.js:159-163",
+      "text": "sigil.magma",
+      "sfx": {
+        "cue": "sigil-magma",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Molten Ring: {turns}.",
+        "cls": "c-fire",
+        "status": "moltenring"
+      }
+    },
+    "sunburst": {
+      "kind": "sigil",
+      "group": "pairs",
+      "name": "Sigil of Sunburst",
+      "motes": [
+        "fire",
+        "light"
+      ],
+      "effects": [
+        {
+          "verb": "damage",
+          "type": "light",
+          "amount": {
+            "scaled": {
+              "base": 6,
+              "per": {
+                "floor": 1
+              }
+            }
+          },
+          "target": {
+            "selector": "all-visible",
+            "side": "foes"
+          },
+          "then": [
+            {
+              "verb": "apply-status",
+              "status": "blind",
+              "turns": 3
+            }
+          ]
+        }
+      ],
+      "src": "js/elements/sigils.js:30; js/engine/sigil-adapter.js:171-180",
+      "text": "sigil.sunburst",
+      "sfx": {
+        "cue": "sigil-sunburst",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Sunburst: enemies Blinded.",
+        "cls": "c-good"
+      }
+    },
+    "smoke": {
+      "kind": "sigil",
+      "group": "pairs",
+      "name": "Sigil of Smoke",
+      "motes": [
+        "fire",
+        "shadow"
+      ],
+      "effects": [
+        {
+          "verb": "field",
+          "field": "smoke",
+          "shape": {
+            "selector": "room",
+            "orRadius": 4
+          },
+          "turns": 12
+        },
+        {
+          "verb": "lose-track",
+          "log": "Smoke deployed.",
+          "logLost": " Pursuit lost.",
+          "logCls": "c-good",
+          "who": {
+            "selector": "floor",
+            "side": "foes",
+            "if": {
+              "all": [
+                {
+                  "creature-flag": "hunting"
+                },
+                {
+                  "not": {
+                    "distance": {
+                      "max": 1
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "notes": "Sight into, inside and across smoke is 1 tile both ways; stealth counts it as a dark room; a foe that lost the hero in the smoke can be surprised while the smoke lasts. Only one smoke cloud per floor.",
+      "src": "js/elements/sigils.js:31, :258-298",
+      "text": "sigil.smoke",
+      "sfx": {
+        "cue": "sigil-smoke",
+        "fallback": "sigil-use"
+      }
+    },
+    "storm": {
+      "kind": "sigil",
+      "group": "pairs",
+      "name": "Sigil of the Storm",
+      "motes": [
+        "water",
+        "air"
+      ],
+      "effects": [
+        {
+          "verb": "damage",
+          "type": "lightning",
+          "amount": {
+            "scaled": {
+              "base": 10,
+              "per": {
+                "floor": 1
+              }
+            }
+          },
+          "target": {
+            "selector": "nearest",
+            "side": "foes",
+            "n": 3,
+            "visibleOnly": true
+          },
+          "then": [
+            {
+              "verb": "apply-status",
+              "status": "stun",
+              "turns": 1,
+              "chance": 50
+            }
+          ]
+        },
+        {
+          "verb": "apply-status",
+          "status": "wet",
+          "turns": 5,
+          "target": {
+            "selector": "all-visible",
+            "side": "foes"
+          }
+        }
+      ],
+      "src": "js/elements/sigils.js:32; js/engine/sigil-adapter.js:181-186",
+      "text": "sigil.storm",
+      "sfx": {
+        "cue": "sigil-storm",
+        "fallback": "sigil-use"
+      },
+      "notes": "Wet's own +50% lightning taken is the only Wet bonus (ruled 2026-10-16 Q22; 1.7 also multiplied by 1.5).",
+      "readLog": {
+        "words": "Storm: enemies Wet.",
+        "cls": "c-good"
+      }
+    },
+    "mire": {
+      "kind": "sigil",
+      "group": "pairs",
+      "name": "Sigil of the Mire",
+      "motes": [
+        "water",
+        "earth"
+      ],
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "root",
+          "turns": 3,
+          "target": {
+            "selector": "radius",
+            "side": "foes",
+            "centre": "self",
+            "n": 3
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "wet",
+          "turns": 6,
+          "target": {
+            "selector": "radius",
+            "side": "foes",
+            "centre": "self",
+            "n": 3
+          }
+        }
+      ],
+      "src": "js/elements/sigils.js:33; js/engine/sigil-adapter.js:187-191",
+      "text": "sigil.mire",
+      "sfx": {
+        "cue": "sigil-mire",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Mire: enemies Rooted, Wet.",
+        "cls": "c-good"
+      }
+    },
+    "purify": {
+      "kind": "sigil",
+      "group": "pairs",
+      "name": "Sigil of Purity",
+      "motes": [
+        "water",
+        "light"
+      ],
+      "effects": [
+        {
+          "verb": "remove-status",
+          "statuses": [
+            "burn",
+            "poison",
+            "chill",
+            "fear",
+            "blind",
+            "stun",
+            "root",
+            "frozen",
+            "wet",
+            "slow",
+            "rot",
+            "corrupt",
+            "hollow",
+            "bleed"
+          ],
+          "reason": "cleansed",
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "heal",
+          "amount": {
+            "pct-of": {
+              "stat": "max-hp",
+              "pct": 20
+            }
+          },
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "item-change",
+          "change": "uncurse",
+          "which": "worn"
+        }
+      ],
+      "src": "js/elements/sigils.js:34; js/engine/sigil-adapter.js:192-198",
+      "text": "sigil.purify",
+      "sfx": {
+        "cue": "sigil-purify",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Cleansed[; {curses} removed].",
+        "cls": "c-good"
+      }
+    },
+    "mana": {
+      "kind": "sigil",
+      "group": "pairs",
+      "name": "Sigil of the Deep Well",
+      "motes": [
+        "water",
+        "shadow"
+      ],
+      "effects": [
+        {
+          "verb": "mana",
+          "amount": {
+            "pct-of": {
+              "stat": "max-mp",
+              "pct": 50
+            }
+          },
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "manaflow",
+          "turns": 20,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "src": "js/elements/sigils.js:49-50; js/engine/sigil-adapter.js:62-67",
+      "text": "sigil.mana",
+      "sfx": {
+        "cue": "sigil-mana",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Deep Well: +{mp} Mana.",
+        "cls": "c-good"
+      }
+    },
+    "recall": {
+      "kind": "sigil",
+      "group": "pairs",
+      "name": "Sigil of Homeward Wind",
+      "motes": [
+        "air",
+        "light"
+      ],
+      "effects": [
+        {
+          "verb": "teleport",
+          "who": {
+            "selector": "self"
+          },
+          "to": "landmark",
+          "landmark": "stairs-or-open-exit",
+          "fallback": "beside-target",
+          "max": 2
+        }
+      ],
+      "refusedWhen": [
+        "no-way-out"
+      ],
+      "src": "js/elements/sigils.js:36; js/engine/sigil-adapter.js:199-204, :238-241",
+      "text": "sigil.recall",
+      "sfx": {
+        "cue": "sigil-recall",
+        "fallback": "sigil-use"
+      },
+      "refusal": "There are no stairs or open exit on this floor.",
+      "refusalNote": "no stairs and no open exit on the floor",
+      "readLog": {
+        "words": "Returned to the exit.",
+        "cls": "c-good"
+      }
+    },
+    "blink": {
+      "kind": "sigil",
+      "group": "pairs",
+      "name": "Sigil of Blinking",
+      "motes": [
+        "air",
+        "shadow"
+      ],
+      "effects": [
+        {
+          "verb": "teleport",
+          "who": {
+            "selector": "self"
+          },
+          "to": "distance-band",
+          "min": 3,
+          "max": 6,
+          "rules": [
+            "visible",
+            "empty",
+            "walkable"
+          ]
+        }
+      ],
+      "refusedWhen": [
+        "no-blink-tile"
+      ],
+      "src": "js/content/data.js:870; js/engine/sigil-adapter.js:101-105, :229-234",
+      "text": "sigil.blink",
+      "sfx": {
+        "cue": "sigil-blink",
+        "fallback": "sigil-use"
+      },
+      "refusal": "There is no free tile in sight to blink to.",
+      "refusalNote": "no visible free tile 3 to 6 away (ruled 2026-10-12)",
+      "readLog": {
+        "words": "You blink away.",
+        "cls": "c-good"
+      }
+    },
+    "mapping": {
+      "kind": "sigil",
+      "group": "pairs",
+      "name": "Sigil of the Deep Map",
+      "motes": [
+        "light",
+        "earth"
+      ],
+      "effects": [
+        {
+          "verb": "reveal",
+          "what": "map",
+          "where": "floor"
+        }
+      ],
+      "src": "js/elements/sigils.js:51; js/engine/sigil-adapter.js:96-100",
+      "text": "sigil.mapping",
+      "sfx": {
+        "cue": "sigil-mapping",
+        "fallback": "sigil-use"
+      }
+    },
+    "rot": {
+      "kind": "sigil",
+      "group": "pairs",
+      "name": "Sigil of Rot",
+      "motes": [
+        "shadow",
+        "earth"
+      ],
+      "effects": [
+        {
+          "verb": "item-change",
+          "change": "destroy",
+          "which": "chosen",
+          "from": "worn, known cursed",
+          "log": "<b>{item}</b> destroyed; curse removed.",
+          "logCls": "c-kill"
+        }
+      ],
+      "picker": "worn gear; only a known cursed piece can be chosen; destroyed armour leaves Rags (a Robe +0)",
+      "refusedWhen": [
+        "no-known-curse"
+      ],
+      "src": "js/elements/sigils.js:35, :323-346; js/engine/sigil-adapter.js:167-170, :237",
+      "text": "sigil.rot",
+      "sfx": {
+        "cue": "sigil-rot",
+        "fallback": "sigil-use"
+      },
+      "refusal": "You wear nothing with a known curse.",
+      "refusalNote": "no worn item with a known curse"
+    },
+    "aegis": {
+      "kind": "sigil",
+      "group": "triple",
+      "name": "Sigil of the Aegis",
+      "motes": [
+        "earth",
+        "earth",
+        "light"
+      ],
+      "essence": 200,
+      "effects": [
+        {
+          "verb": "shield",
+          "pool": "ward",
+          "amount": {
+            "pct-of": {
+              "stat": "max-hp",
+              "pct": 50
+            }
+          },
+          "turns": 15,
+          "target": {
+            "selector": "self"
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "stone-skin",
+          "turns": 15,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "src": "js/elements/sigils.js:37; js/engine/sigil-adapter.js:205-210",
+      "text": "sigil.aegis",
+      "sfx": {
+        "cue": "sigil-aegis",
+        "fallback": "sigil-use"
+      },
+      "readLog": {
+        "words": "Aegis: {ward} ward.",
+        "cls": "c-good",
+        "status": "arcaneward"
+      }
+    },
+    "naturesbounty": {
+      "kind": "sigil",
+      "group": "quadruple",
+      "name": "Nature's Bounty",
+      "motes": [
+        "fire",
+        "water",
+        "air",
+        "earth"
+      ],
+      "essence": 300,
+      "effects": [
+        {
+          "verb": "create-item",
+          "item": "honeycake",
+          "count": 1,
+          "spot": "near"
+        },
+        {
+          "verb": "create-item",
+          "item": "skewer",
+          "count": 1,
+          "spot": "near"
+        },
+        {
+          "verb": "create-item",
+          "item": "moontart",
+          "count": 1,
+          "spot": "near"
+        }
+      ],
+      "spots": "the first 3 empty, unburning tiles found walking up to 3 steps (4 ways) from the reader",
+      "refusedWhen": [
+        "no-room"
+      ],
+      "src": "js/elements/sigils.js:39, :105-119; js/engine/sigil-adapter.js:106-112, :228",
+      "text": "sigil.naturesbounty",
+      "sfx": {
+        "cue": "sigil-naturesbounty",
+        "fallback": "sigil-use"
+      },
+      "refusal": "There is no room here.",
+      "refusalNote": "fewer than 3 such tiles",
+      "roomNeeded": {
+        "radius": 2,
+        "tiles": 3
+      },
+      "readLog": {
+        "words": "Nature's Bounty: Honeycake, Mushroom Skewer, Moonberry Tart.",
+        "cls": "c-good"
+      }
+    },
+    "ascension": {
+      "kind": "sigil",
+      "group": "grand",
+      "name": "Sigil of Ascension",
+      "motes": [
+        "fire",
+        "water",
+        "air",
+        "earth",
+        "light",
+        "shadow"
+      ],
+      "essence": 500,
+      "effects": [
+        {
+          "verb": "item-change",
+          "change": "upgrade",
+          "which": "chosen"
+        }
+      ],
+      "picker": "any gear the Forge could upgrade now; a cursed piece is cleansed instead (as a Forge upgrade, paid by the sigil)",
+      "refusedWhen": [
+        "nothing-to-upgrade"
+      ],
+      "src": "js/elements/sigils.js:38, :214-231; js/engine/sigil-adapter.js:216-219, :235",
+      "text": "sigil.ascension",
+      "sfx": {
+        "cue": "sigil-ascension",
+        "fallback": "sigil-use"
+      },
+      "refusal": "Nothing can be upgraded.",
+      "refusalNote": "nothing can be upgraded"
+    },
+    "transmutation": {
+      "kind": "sigil",
+      "group": "grand",
+      "name": "Sigil of Transmutation",
+      "motes": [
+        "fire",
+        "water",
+        "air",
+        "earth",
+        "light",
+        "shadow"
+      ],
+      "essence": 1000,
+      "effects": [
+        {
+          "verb": "item-change",
+          "change": "transmute",
+          "which": "chosen"
+        }
+      ],
+      "picker": "worn or carried gear; the result is a random other kind of the same slot keeping tier, plus, enchant, curse and identification (items.md I58); if it no longer fits the slot it goes to the bag (refused when the bag cannot take it). No time passes until the choice is made.",
+      "src": "js/elements/sigils.js:40, :122-203",
+      "text": "sigil.transmutation",
+      "sfx": {
+        "cue": "sigil-transmutation",
+        "fallback": "sigil-use"
+      }
+    },
+    "wisdom": {
+      "kind": "sigil",
+      "group": "grand",
+      "name": "Sigil of Wisdom",
+      "motes": [
+        "fire",
+        "water",
+        "air",
+        "earth",
+        "light",
+        "shadow"
+      ],
+      "essence": 5000,
+      "effects": [
+        {
+          "verb": "gain",
+          "resource": "level",
+          "amount": 1
+        }
+      ],
+      "refusedWhen": [
+        "level-cap"
+      ],
+      "src": "js/elements/sigils.js:41; js/engine/sigil-adapter.js:211-215, :236",
+      "text": "sigil.wisdom",
+      "sfx": {
+        "cue": "sigil-wisdom",
+        "fallback": "sigil-use"
+      },
+      "notes": "Grants one level directly, keeping XP progress (ruled 2026-10-16 Q23; 1.7 gave XP, divided by 1.25 for a Tourist).",
+      "refusal": "You are already level {cap}.",
+      "refusalNote": "level 20",
+      "readLog": {
+        "words": "Level gained.",
+        "cls": "c-kill"
+      }
+    }
+  }
+}

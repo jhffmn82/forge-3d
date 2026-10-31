@@ -1,0 +1,1594 @@
+{
+  "version": 1,
+  "rows": {
+    "cost-rule": {
+      "kind": "rule",
+      "does": "Mana cost of an ability: max(1, round(mana x the race's spell cost-mod (races.json passive: Elf 0.85) x (1 - wand thrift) x number-scale)). Elf and wand only for spells (not techniques, not invokes).",
+      "wandThrift": "items.md (wand row, offhands.json/weapons.json)",
+      "min": 1,
+      "src": "js/combat/combat.js:62-67"
+    },
+    "range-rule": {
+      "kind": "rule",
+      "does": "Aim range: a spell (rangeRule spell) is range + the race range bonus (Elf +1) + 1 with a staff; a technique (rangeRule technique) is range + the race bonus; fixed is the number as written; explored reaches any explored tile.",
+      "src": "js/combat/combat.js:84-89; js/engine/casting-adapter.js:255-266"
+    },
+    "bar-order": {
+      "kind": "rule",
+      "does": "The hero's ability list: the class's first ability (the Cleric's god invoke), then Charge (Fighter) or Shadowstep (Scoundrel) second, then each held element's spells by rank 2, 4, 5 in the order the elements were gained.",
+      "grantRanks": [
+        2,
+        4,
+        5
+      ],
+      "src": "js/engine/stats.js:62-73; js/elements/elements.js:10-17",
+      "keepLayout": "New abilities go into the first empty slots; the player's arrangement stays (ruled 2026-10-16 Q28)"
+    },
+    "invoke": {
+      "kind": "slot",
+      "class": "cleric",
+      "name": "Invoke",
+      "does": "The Cleric's first slot holds the invoke of the hero's god: gods.json `invoke` names a prayers.json row of kind invoke (faith.md, ruled 2026-10-15 Q29). With no god the slot is empty.",
+      "from": "gods.json invoke",
+      "src": "js/engine/stats.js:64; js/content/data.js:693-703"
+    },
+    "double": {
+      "noTargetWords": "No foe within reach.",
+      "kind": "technique",
+      "class": "fighter",
+      "name": "Double Strike",
+      "mana": 7,
+      "tech": true,
+      "cooldown": 0,
+      "instant": false,
+      "aim": {
+        "kind": "foe",
+        "range": 1,
+        "rangeRule": "fixed",
+        "ruled": "Justin 2026-10-16 Q4: \"add targeting 1 space around you\""
+      },
+      "effects": [
+        {
+          "verb": "weapon-attack",
+          "multiplier": 1,
+          "label": "Double Strike",
+          "weapon": "main",
+          "target": {
+            "selector": "target",
+            "side": "foes"
+          }
+        },
+        {
+          "verb": "weapon-attack",
+          "multiplier": 1,
+          "label": "Double Strike",
+          "weapon": "main",
+          "target": {
+            "selector": "target",
+            "side": "foes"
+          }
+        }
+      ],
+      "refusedWhen": [
+        "no foe within 1",
+        "feared"
+      ],
+      "turnsToFoe": true,
+      "icon": "ic-double-strike",
+      "sfx": "double-strike",
+      "text": "ability.double",
+      "src": "js/content/data.js:307-315; js/engine/casting-adapter.js:239-250"
+    },
+    "charge": {
+      "kind": "technique",
+      "class": "fighter",
+      "name": "Charge",
+      "mana": 0,
+      "tech": true,
+      "cooldown": 20,
+      "instant": false,
+      "aim": {
+        "kind": "foe-or-empty-tile",
+        "range": 6,
+        "rangeRule": "fixed",
+        "emptyTileMax": 5,
+        "lane": "clear straight line"
+      },
+      "effects": [
+        {
+          "verb": "dash",
+          "range": 6,
+          "until": "beside-target",
+          "then": [
+            {
+              "verb": "weapon-attack",
+              "multiplier": 1,
+              "label": "Charge",
+              "weapon": "main",
+              "sureHit": true,
+              "if": {
+                "target-is": "creature"
+              }
+            },
+            {
+              "verb": "apply-status",
+              "status": "stun",
+              "turns": 2,
+              "target": {
+                "selector": "adjacent",
+                "side": "foes"
+              }
+            }
+          ]
+        },
+        {
+          "verb": "remove-status",
+          "statuses": [
+            "hidden"
+          ],
+          "reason": "expired",
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "refusedWhen": [
+        "rooted",
+        "frozen",
+        "no clear straight run",
+        "on cooldown"
+      ],
+      "icon": "ic-charge",
+      "sfx": "charge",
+      "stunLog": "Charge: {n} stunned.",
+      "text": "ability.charge",
+      "src": "js/content/data.js:540-549; js/character/classes.js:172-194; js/engine/casting-adapter.js:224-227"
+    },
+    "missile": {
+      "kind": "spell",
+      "class": "mage",
+      "name": "Magic Missile",
+      "mana": 6,
+      "cooldown": 0,
+      "element": null,
+      "type": "magic",
+      "aim": {
+        "kind": "foe",
+        "range": 6,
+        "rangeRule": "spell"
+      },
+      "effects": [
+        {
+          "verb": "spell-strike",
+          "bolt": true,
+          "sureHit": true,
+          "type": "magic",
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      7,
+                      10
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "per": {
+                "total-affinity": 1
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          }
+        }
+      ],
+      "icon": "ic-magic-missile",
+      "sfx": {
+        "cast": "spell-missile-cast",
+        "castFallback": "magic-missile",
+        "hit": "spell-missile-hit"
+      },
+      "text": "ability.missile",
+      "src": "js/content/data.js:316-331; js/combat/combat.js:605, :611"
+    },
+    "sap": {
+      "kind": "technique",
+      "class": "scoundrel",
+      "name": "Sap",
+      "mana": 7,
+      "tech": true,
+      "cooldown": 8,
+      "type": "phys",
+      "aim": {
+        "kind": "foe",
+        "range": 2,
+        "rangeRule": "fixed"
+      },
+      "effects": [
+        {
+          "verb": "spell-strike",
+          "bolt": true,
+          "type": "phys",
+          "amount": {
+            "scaled": {
+              "base": {
+                "roll": [
+                  2,
+                  4
+                ]
+              },
+              "per": {
+                "weapon-damage-sum": 0.25
+              },
+              "round": "down"
+            }
+          }
+        },
+        {
+          "verb": "choose",
+          "by": "weight",
+          "options": [
+            {
+              "weight": 1,
+              "if": {
+                "any": [
+                  {
+                    "in-state": {
+                      "state": "asleep"
+                    }
+                  },
+                  {
+                    "off-guard": true
+                  }
+                ]
+              },
+              "effects": [
+                {
+                  "verb": "apply-status",
+                  "status": "stun",
+                  "turns": 6
+                }
+              ],
+              "else": [
+                {
+                  "verb": "apply-status",
+                  "status": "stun",
+                  "turns": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "verb": "apply-status",
+          "status": "sapped",
+          "turns": 0,
+          "permanent": true,
+          "if": {
+            "has-status": "stun"
+          }
+        },
+        {
+          "verb": "alert",
+          "who": {
+            "selector": "target"
+          },
+          "toward": "player"
+        }
+      ],
+      "notes": "A Sapped creature cannot be stunned again by anything; the first damage after the Sap ends its stun (combat.md C32 has its crit rule).",
+      "icon": "ic-sap",
+      "sfx": "sap",
+      "text": "ability.sap",
+      "src": "js/content/data.js:332-349; js/combat/combat.js:609, :613, :626, :633, :636; js/engine/damage-adapter.js:233"
+    },
+    "shadowstep": {
+      "kind": "technique",
+      "class": "scoundrel",
+      "name": "Shadowstep",
+      "log": "Shadowstep: hidden.",
+      "logCls": "c-good",
+      "mana": 0,
+      "tech": true,
+      "cooldown": 15,
+      "instant": false,
+      "aim": {
+        "kind": "self"
+      },
+      "effects": [
+        {
+          "verb": "hide",
+          "turns": 5,
+          "breakPursuit": true,
+          "ruled": "Justin 2026-10-16: scoundrel stealth lasts 5 turns (was 4; 'no make that 5, 6 is too long')"
+        }
+      ],
+      "refusedWhen": [
+        "a foe adjacent",
+        "on cooldown"
+      ],
+      "icon": "ic-shadowstep",
+      "sfx": "vanish",
+      "text": "ability.shadowstep",
+      "src": "js/content/data.js:531-539; js/engine/casting-adapter.js:202-211"
+    },
+    "firebolt": {
+      "kind": "spell",
+      "element": "fire",
+      "rank": 2,
+      "name": "Firebolt",
+      "mana": 20,
+      "cooldown": 0,
+      "type": "fire",
+      "aim": {
+        "kind": "foe",
+        "range": 6,
+        "rangeRule": "spell",
+        "alsoHits": "terrain the type affects (combat world rules)"
+      },
+      "effects": [
+        {
+          "verb": "spell-strike",
+          "bolt": true,
+          "type": "fire",
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      14,
+                      22
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "burn",
+          "turns": 3
+        }
+      ],
+      "icon": "ic-firebolt",
+      "text": "ability.firebolt",
+      "src": "js/content/data.js:350-366; js/combat/combat.js:580-640",
+      "sfx": {
+        "cast": "spell-firebolt-cast",
+        "castFallback": "fire-cast",
+        "hit": "spell-firebolt-hit"
+      }
+    },
+    "frostshard": {
+      "kind": "spell",
+      "element": "water",
+      "rank": 2,
+      "name": "Frost Shard",
+      "mana": 20,
+      "cooldown": 0,
+      "type": "ice",
+      "aim": {
+        "kind": "foe",
+        "range": 6,
+        "rangeRule": "spell",
+        "alsoHits": "terrain the type affects (combat world rules)"
+      },
+      "effects": [
+        {
+          "verb": "spell-strike",
+          "bolt": true,
+          "type": "ice",
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      14,
+                      22
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          }
+        },
+        {
+          "verb": "add-stack",
+          "status": "chill",
+          "n": 1
+        }
+      ],
+      "icon": "ic-frost-shard",
+      "text": "ability.frostshard",
+      "src": "js/content/data.js:367-383; js/combat/combat.js:580-640",
+      "sfx": {
+        "cast": "spell-frostshard-cast",
+        "castFallback": "ice-cast",
+        "hit": "spell-frostshard-hit"
+      }
+    },
+    "spark": {
+      "kind": "spell",
+      "element": "air",
+      "rank": 2,
+      "name": "Spark",
+      "mana": 20,
+      "cooldown": 0,
+      "type": "lightning",
+      "aim": {
+        "kind": "foe",
+        "range": 6,
+        "rangeRule": "spell",
+        "alsoHits": "terrain the type affects (combat world rules)"
+      },
+      "effects": [
+        {
+          "verb": "spell-strike",
+          "bolt": true,
+          "type": "lightning",
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      14,
+                      22
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "stun",
+          "turns": 1,
+          "chance": {
+            "scaled": {
+              "base": 0,
+              "per": {
+                "affinity:air": 5
+              }
+            }
+          }
+        }
+      ],
+      "icon": "ic-spark",
+      "text": "ability.spark",
+      "src": "js/content/data.js:384-398; js/combat/combat.js:580-640",
+      "sfx": {
+        "cast": "spell-spark-cast",
+        "castFallback": "lightning-cast",
+        "hit": "spell-spark-hit"
+      }
+    },
+    "root": {
+      "kind": "spell",
+      "element": "earth",
+      "rank": 2,
+      "name": "Earth Root",
+      "mana": 20,
+      "cooldown": 0,
+      "type": "phys",
+      "aim": {
+        "kind": "foe",
+        "range": 4,
+        "rangeRule": "spell",
+        "alsoHits": "terrain the type affects (combat world rules)"
+      },
+      "effects": [
+        {
+          "verb": "spell-strike",
+          "bolt": true,
+          "type": "phys",
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      14,
+                      22
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "root",
+          "turns": 2
+        }
+      ],
+      "icon": "ic-earth-root",
+      "text": "ability.root",
+      "src": "js/content/data.js:399-415; js/combat/combat.js:580-640",
+      "sfx": {
+        "cast": "spell-root-cast",
+        "castFallback": "earth-cast",
+        "hit": "spell-root-hit"
+      }
+    },
+    "smite": {
+      "kind": "spell",
+      "element": "light",
+      "rank": 2,
+      "name": "Lightfall",
+      "mana": 20,
+      "cooldown": 0,
+      "type": "light",
+      "aim": {
+        "kind": "foe",
+        "range": 4,
+        "rangeRule": "spell",
+        "alsoHits": "terrain the type affects (combat world rules)"
+      },
+      "effects": [
+        {
+          "verb": "spell-strike",
+          "bolt": true,
+          "type": "light",
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      14,
+                      22
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "blind",
+          "turns": 2,
+          "chance": {
+            "scaled": {
+              "base": 0,
+              "per": {
+                "affinity:light": 10
+              }
+            }
+          }
+        }
+      ],
+      "icon": "ic-smite",
+      "text": "ability.smite",
+      "src": "js/content/data.js:416-430; js/combat/combat.js:580-640",
+      "notes": "Blind 10% per Light point. Light x1.5 against undead and shadowy is one combat rule for every light spell (ruled 2026-10-16 Q9); Guiding Light raises the Smite proc, not this (Q1).",
+      "sfx": {
+        "cast": "spell-smite-cast",
+        "castFallback": "light-cast",
+        "hit": "spell-smite-hit"
+      }
+    },
+    "shadowbolt": {
+      "kind": "spell",
+      "element": "shadow",
+      "rank": 2,
+      "name": "Shadow Bolt",
+      "mana": 20,
+      "cooldown": 0,
+      "type": "dark",
+      "aim": {
+        "kind": "foe",
+        "range": 6,
+        "rangeRule": "spell",
+        "alsoHits": "terrain the type affects (combat world rules)"
+      },
+      "effects": [
+        {
+          "verb": "spell-strike",
+          "bolt": true,
+          "type": "dark",
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      14,
+                      22
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "fear",
+          "turns": 2
+        }
+      ],
+      "icon": "ic-shadow-bolt",
+      "text": "ability.shadowbolt",
+      "src": "js/content/data.js:431-447; js/combat/combat.js:580-640",
+      "sfx": {
+        "cast": "spell-shadowbolt-cast",
+        "castFallback": "shadow-cast",
+        "hit": "spell-shadowbolt-hit"
+      }
+    },
+    "fireball": {
+      "kind": "spell",
+      "rank": 4,
+      "mana": 70,
+      "cooldown": 0,
+      "element": "fire",
+      "name": "Fireball",
+      "type": "fire",
+      "aim": {
+        "kind": "visible-tile",
+        "range": 6,
+        "rangeRule": "spell"
+      },
+      "effects": [
+        {
+          "verb": "damage",
+          "type": "fire",
+          "tags": [
+            "spell",
+            "area"
+          ],
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      14,
+                      22
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          },
+          "target": {
+            "selector": "radius",
+            "side": "foes",
+            "centre": "point",
+            "n": 2
+          },
+          "then": [
+            {
+              "verb": "apply-status",
+              "status": "burn",
+              "turns": 3
+            }
+          ]
+        },
+        {
+          "verb": "field",
+          "field": "fire",
+          "shape": {
+            "selector": "radius",
+            "centre": "point",
+            "n": 2
+          },
+          "turns": 3,
+          "only": "flammable"
+        }
+      ],
+      "icon": "ic-fireball",
+      "src": "js/content/data.js:550-560; js/elements/elements.js:313-319",
+      "text": "ability.fireball",
+      "sfx": {
+        "cast": "spell-fireball-cast",
+        "castFallback": "fire-cast",
+        "hit": "spell-fireball-hit"
+      }
+    },
+    "frostcone": {
+      "kind": "spell",
+      "rank": 4,
+      "mana": 70,
+      "cooldown": 0,
+      "element": "water",
+      "name": "Frost Cone",
+      "type": "ice",
+      "aim": {
+        "kind": "direction",
+        "range": 6,
+        "rangeRule": "fixed"
+      },
+      "effects": [
+        {
+          "verb": "damage",
+          "type": "ice",
+          "tags": [
+            "spell",
+            "area"
+          ],
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      14,
+                      22
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          },
+          "target": {
+            "selector": "cone",
+            "side": "foes",
+            "n": 6,
+            "visibleOnly": true
+          },
+          "then": [
+            {
+              "verb": "add-stack",
+              "status": "chill",
+              "n": 1
+            },
+            {
+              "verb": "knockback",
+              "tiles": 1,
+              "from": "source",
+              "if": {
+                "not": {
+                  "creature-flag": "boss"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "icon": "ic-tidal-surge",
+      "src": "js/content/data.js:561-570; js/elements/elements.js:321-331; js/world/biomes/dungeon/beta-world.js:46",
+      "text": "ability.frostcone",
+      "sfx": {
+        "cast": "spell-frostcone-cast",
+        "castFallback": "ice-cast",
+        "hit": "spell-frostcone-hit"
+      }
+    },
+    "chainbolt": {
+      "kind": "spell",
+      "rank": 4,
+      "mana": 70,
+      "cooldown": 0,
+      "element": "air",
+      "name": "Chain Lightning",
+      "type": "lightning",
+      "aim": {
+        "kind": "foe-or-breakable-prop",
+        "range": 6,
+        "rangeRule": "spell"
+      },
+      "effects": [
+        {
+          "verb": "damage",
+          "type": "lightning",
+          "tags": [
+            "spell"
+          ],
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      14,
+                      22
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          },
+          "target": {
+            "selector": "chain",
+            "side": "foes",
+            "jumps": 4,
+            "range": 4,
+            "visibleOnly": true
+          }
+        }
+      ],
+      "notes": "5 bodies in all (the target and 4 jumps), each the nearest unhit visible foe within 4 of the last; every jump deals the full amount (multiplier 1).",
+      "icon": "ic-chain-lightning",
+      "src": "js/content/data.js:571-580; js/elements/elements.js:333-350; js/engine/damage.js:59",
+      "text": "ability.chainbolt",
+      "sfx": {
+        "cast": "spell-chainbolt-cast",
+        "castFallback": "lightning-cast",
+        "hit": "spell-chainbolt-hit"
+      }
+    },
+    "earthquake": {
+      "kind": "spell",
+      "rank": 4,
+      "mana": 70,
+      "cooldown": 0,
+      "element": "earth",
+      "name": "Earthquake",
+      "type": "phys",
+      "aim": {
+        "kind": "self"
+      },
+      "effects": [
+        {
+          "verb": "damage",
+          "type": "phys",
+          "tags": [
+            "spell",
+            "area"
+          ],
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      14,
+                      22
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          },
+          "target": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 5,
+            "side": "foes"
+          }
+        }
+      ],
+      "notes": "Foes only: area spells never hurt the hero's allies (ruled 2026-10-16 Q10).",
+      "icon": "ic-earthquake",
+      "src": "js/content/data.js:581-590; js/engine/casting-adapter.js:142-157",
+      "text": "ability.earthquake",
+      "sfx": {
+        "cast": "spell-earthquake-cast",
+        "castFallback": "earth-cast"
+      }
+    },
+    "radiantbeam": {
+      "kind": "spell",
+      "rank": 4,
+      "mana": 70,
+      "cooldown": 0,
+      "element": "light",
+      "name": "Radiant Beam",
+      "type": "light",
+      "aim": {
+        "kind": "direction",
+        "range": 6,
+        "rangeRule": "spell"
+      },
+      "effects": [
+        {
+          "verb": "damage",
+          "type": "light",
+          "tags": [
+            "spell",
+            "area"
+          ],
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      14,
+                      22
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          },
+          "target": {
+            "selector": "beam",
+            "side": "foes",
+            "width": 3
+          },
+          "then": [
+            {
+              "verb": "apply-status",
+              "status": "blind",
+              "turns": 2,
+              "chance": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "affinity:light": 5
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "icon": "ic-radiant-lance",
+      "src": "js/content/data.js:591-600; js/elements/elements.js:351-367",
+      "text": "ability.radiantbeam",
+      "sfx": {
+        "cast": "spell-radiantbeam-cast",
+        "castFallback": "light-cast",
+        "hit": "spell-radiantbeam-hit"
+      }
+    },
+    "shadowswarm": {
+      "kind": "spell",
+      "rank": 4,
+      "mana": 70,
+      "cooldown": 0,
+      "element": "shadow",
+      "name": "Shadow Swarm",
+      "type": "dark",
+      "aim": {
+        "kind": "visible-tile",
+        "range": 6,
+        "rangeRule": "spell"
+      },
+      "effects": [
+        {
+          "verb": "dismiss",
+          "who": {
+            "selector": "own-summons",
+            "kind": "shade-swarm"
+          }
+        },
+        {
+          "verb": "summon",
+          "side": "ally",
+          "creature": "shade-swarm",
+          "placement": "near-target",
+          "within": 1,
+          "count": 9,
+          "stats": {
+            "hp": {
+              "scaled": {
+                "base": 10,
+                "mult": [
+                  "spell-power"
+                ],
+                "round": true,
+                "min": 1
+              }
+            },
+            "damage": {
+              "scaled": {
+                "base": 10,
+                "mult": [
+                  "spell-power"
+                ],
+                "round": true,
+                "min": 1
+              }
+            }
+          },
+          "life": {
+            "scaled": {
+              "base": 5,
+              "mult": [
+                "spell-power"
+              ],
+              "round": true,
+              "min": 1
+            }
+          },
+          "noXp": true,
+          "noLoot": true
+        }
+      ],
+      "refusedWhen": [
+        "no free tile in the 3 x 3"
+      ],
+      "log": "Shadow Swarm: {n} summoned.",
+      "logCls": "c-good",
+      "icon": "ic-shadow-swarm",
+      "src": "js/content/data.js:601-611; js/elements/elements.js:42-45, :368-378",
+      "text": "ability.shadowswarm",
+      "sfx": {
+        "cast": "spell-shadowswarm-cast",
+        "castFallback": "shadow-cast",
+        "hit": "spell-shadowswarm-hit"
+      },
+      "notes": "Life scales with spell power, as 1.7 (ruled 2026-10-16 Q27). Shades are monsters.json shade-swarm (Q7)."
+    },
+    "livingflame": {
+      "kind": "spell",
+      "rank": 5,
+      "mana": 100,
+      "cooldown": 0,
+      "element": "fire",
+      "name": "Living Flame",
+      "type": "fire",
+      "aim": {
+        "kind": "empty-tile",
+        "range": 6,
+        "rangeRule": "spell"
+      },
+      "effects": [
+        {
+          "verb": "summon",
+          "side": "ally",
+          "creature": "living-flame",
+          "placement": "near-target",
+          "within": 0,
+          "count": 1,
+          "cap": 2,
+          "capCounts": [
+            "living-flame",
+            "undead-servant"
+          ],
+          "stats": {
+            "hp": {
+              "scaled": {
+                "base": 28,
+                "mult": [
+                  "spell-power"
+                ],
+                "round": true
+              }
+            },
+            "damageMin": {
+              "scaled": {
+                "base": 5,
+                "mult": [
+                  "spell-power"
+                ],
+                "round": true
+              }
+            },
+            "damageMax": {
+              "scaled": {
+                "base": 9,
+                "mult": [
+                  "spell-power"
+                ],
+                "round": true
+              }
+            }
+          },
+          "life": 30,
+          "noXp": true
+        },
+        {
+          "verb": "damage",
+          "type": "fire",
+          "tags": [
+            "spell",
+            "area"
+          ],
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      14,
+                      22
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          },
+          "target": {
+            "selector": "radius",
+            "side": "foes",
+            "centre": "point",
+            "n": 1
+          }
+        }
+      ],
+      "refusedWhen": [
+        "tile not empty",
+        "two summons already (Living Flames and the undead servant)"
+      ],
+      "log": "Living Flame summoned.",
+      "logCls": "c-fire",
+      "icon": "ic-living-flame",
+      "src": "js/content/data.js:612-621; js/elements/elements.js:182, :190-206, :379-391",
+      "text": "ability.livingflame",
+      "sfx": {
+        "cast": "spell-livingflame-cast",
+        "castFallback": "fire-cast",
+        "hit": "spell-livingflame-hit"
+      },
+      "notes": "The Living Flame is monsters.json living-flame (ruled 2026-10-16 Q7)."
+    },
+    "glacialtomb": {
+      "kind": "spell",
+      "rank": 5,
+      "mana": 100,
+      "cooldown": 0,
+      "element": "water",
+      "name": "Glacial Tomb",
+      "type": "ice",
+      "aim": {
+        "kind": "foe-or-self",
+        "range": 6,
+        "rangeRule": "spell"
+      },
+      "effects": [
+        {
+          "verb": "choose",
+          "by": "weight",
+          "options": [
+            {
+              "weight": 1,
+              "if": {
+                "target-is": "player"
+              },
+              "log": "You: Glacial Tomb.",
+              "logCls": "c-good",
+              "elseLog": "{name}: entombed {tomb} turns.",
+              "elseLogCls": "c-good",
+              "effects": [
+                {
+                  "verb": "apply-status",
+                  "status": "tomb",
+                  "turns": 3,
+                  "target": {
+                    "selector": "self"
+                  }
+                }
+              ],
+              "else": [
+                {
+                  "verb": "remove-status",
+                  "statuses": [
+                    "burn",
+                    "poison",
+                    "chill",
+                    "frozen"
+                  ],
+                  "reason": "shattered"
+                },
+                {
+                  "verb": "apply-status",
+                  "status": "tomb",
+                  "turns": 10
+                },
+                {
+                  "verb": "damage",
+                  "type": "ice",
+                  "tags": [
+                    "spell",
+                    "area"
+                  ],
+                  "amount": {
+                    "scaled": {
+                      "base": {
+                        "scaled": {
+                          "base": {
+                            "roll": [
+                              32,
+                              48
+                            ]
+                          },
+                          "mult": [
+                            "number-scale",
+                            "lethality"
+                          ],
+                          "round": true,
+                          "min": 1
+                        }
+                      },
+                      "mult": [
+                        "spell-power"
+                      ],
+                      "round": true
+                    }
+                  },
+                  "target": {
+                    "selector": "radius",
+                    "side": "foes",
+                    "centre": "target",
+                    "n": 1,
+                    "notTarget": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": "Tomb: 10 game turns, elites 6, bosses 2; on the hero 3 game turns, statuses paused, then heal 25% and mana 25% (ruled 2026-10-16 Q8).",
+      "icon": "ic-glacial-tomb",
+      "src": "js/content/data.js:622-633; js/elements/elements.js:392-431; js/world/biomes/dungeon/beta-world.js:25-30",
+      "text": "ability.glacialtomb",
+      "sfx": {
+        "cast": "spell-glacialtomb-cast",
+        "castFallback": "ice-cast",
+        "hit": "spell-glacialtomb-hit"
+      }
+    },
+    "stormform": {
+      "kind": "spell",
+      "rank": 5,
+      "mana": 100,
+      "cooldown": 0,
+      "element": "air",
+      "name": "Storm Form",
+      "log": "Storm Form: double speed.",
+      "logCls": "c-good",
+      "type": "lightning",
+      "instant": true,
+      "aim": {
+        "kind": "self"
+      },
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "stormform",
+          "turns": 6
+        }
+      ],
+      "notes": "Costs no time. Lengthened by the holy symbol's divine-duration bonus, as 1.7 (ruled 2026-10-16 Q26).",
+      "icon": "ic-storm-form",
+      "src": "js/content/data.js:634-642; js/engine/casting-adapter.js:158-181; js/faith/gods.js:290",
+      "text": "ability.stormform",
+      "sfx": {
+        "cast": "spell-stormform-cast",
+        "castFallback": "lightning-cast"
+      }
+    },
+    "upheaval": {
+      "kind": "spell",
+      "rank": 5,
+      "mana": 100,
+      "cooldown": 0,
+      "element": "earth",
+      "name": "Upheaval",
+      "type": "phys",
+      "aim": {
+        "kind": "tile",
+        "range": 7,
+        "rangeRule": "fixed"
+      },
+      "effects": [
+        {
+          "verb": "terrain",
+          "set": "pillar",
+          "where": {
+            "selector": "wall-across",
+            "length": 7,
+            "centre": "point",
+            "canRaise": "floor, no body, item or prop"
+          },
+          "turns": 20
+        },
+        {
+          "verb": "damage",
+          "type": "phys",
+          "tags": [
+            "spell",
+            "area"
+          ],
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      24,
+                      36
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          },
+          "target": {
+            "selector": "radius",
+            "of": "the raised rocks",
+            "n": 2,
+            "side": "foes"
+          },
+          "then": [
+            {
+              "verb": "apply-status",
+              "status": "root",
+              "turns": 2
+            }
+          ]
+        }
+      ],
+      "refusedWhen": [
+        "no open floor to raise"
+      ],
+      "notes": "Rock blocks movement and sight. Foes only (ruled 2026-10-16 Q10).",
+      "icon": "ic-upheaval",
+      "src": "js/content/data.js:643-653; js/elements/elements.js:432-466; js/world/biomes/dungeon/beta-world.js:31-41",
+      "text": "ability.upheaval",
+      "sfx": {
+        "cast": "spell-upheaval-cast",
+        "castFallback": "earth-cast",
+        "hit": "spell-upheaval-hit"
+      }
+    },
+    "dawn": {
+      "kind": "spell",
+      "rank": 5,
+      "mana": 100,
+      "cooldown": 0,
+      "element": "light",
+      "name": "Dawn",
+      "log": "Dawn: enemies revealed.",
+      "logCls": "c-good",
+      "type": "light",
+      "aim": {
+        "kind": "self"
+      },
+      "effects": [
+        {
+          "verb": "damage",
+          "type": "light",
+          "tags": [
+            "spell",
+            "area"
+          ],
+          "amount": {
+            "scaled": {
+              "base": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      24,
+                      36
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "mult": [
+                "spell-power"
+              ],
+              "round": true
+            }
+          },
+          "target": {
+            "selector": "all-visible",
+            "side": "foes"
+          },
+          "then": [
+            {
+              "verb": "apply-status",
+              "status": "blind",
+              "turns": 3
+            }
+          ]
+        },
+        {
+          "verb": "apply-status",
+          "status": "dawn",
+          "turns": 20,
+          "target": {
+            "selector": "self"
+          }
+        }
+      ],
+      "icon": "ic-dawn",
+      "src": "js/content/data.js:654-663; js/engine/casting-adapter.js:182-199; js/engine/geometry-adapter.js:66-71",
+      "text": "ability.dawn",
+      "sfx": {
+        "cast": "spell-dawn-cast",
+        "castFallback": "light-cast"
+      }
+    },
+    "umbral": {
+      "kind": "spell",
+      "rank": 5,
+      "mana": 100,
+      "cooldown": 0,
+      "element": "shadow",
+      "name": "Umbral Passage",
+      "type": "dark",
+      "aim": {
+        "kind": "explored-tile",
+        "rangeRule": "explored"
+      },
+      "effects": [
+        {
+          "verb": "clone-self",
+          "ratio": 1,
+          "at": "departure",
+          "ruled": "Justin 2026-10-16 Q12: lasts until killed"
+        },
+        {
+          "verb": "teleport",
+          "who": {
+            "selector": "self"
+          },
+          "to": "target-tile",
+          "rules": [
+            "empty",
+            "walkable",
+            "no-adjacent-foe"
+          ]
+        },
+        {
+          "verb": "hide",
+          "turns": 3,
+          "breakPursuit": true
+        }
+      ],
+      "refusedWhen": [
+        "tile not empty or not walkable",
+        "a foe beside the tile"
+      ],
+      "notes": "The hide is closed as a plain action so the cast does not clear it (ruled 2026-10-12); its time is a plain action too.",
+      "log": "Umbral Passage: shadow summoned.",
+      "logCls": "c-good",
+      "icon": "ic-umbral-passage",
+      "src": "js/content/data.js:664-672; js/elements/elements.js:467-482",
+      "text": "ability.umbral",
+      "sfx": {
+        "cast": "spell-umbral-cast",
+        "castFallback": "shadow-cast"
+      }
+    }
+  }
+}

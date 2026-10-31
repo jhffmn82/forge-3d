@@ -1,0 +1,227 @@
+{
+  "version": 1,
+  "rows": {
+    "fighter": {
+      "name": "Fighter",
+      "icon": "cls-fighter",
+      "mods": {
+        "mig": 2,
+        "agi": 0,
+        "vit": 2,
+        "foc": 0
+      },
+      "abilities": [
+        "double",
+        "charge"
+      ],
+      "kit": {
+        "main": "sword",
+        "bag": [
+          "longsword"
+        ],
+        "armour": "chain",
+        "off": "kite"
+      },
+      "rations": 1,
+      "passiveName": "Guard",
+      "passive": [
+        {
+          "verb": "shield",
+          "pool": "guard",
+          "amount": {
+            "scaled": {
+              "base": {
+                "pct-of": {
+                  "stat": "max-hp",
+                  "pct": 12
+                }
+              },
+              "round": true,
+              "min": 3
+            }
+          },
+          "cap": {
+            "scaled": {
+              "base": {
+                "pct-of": {
+                  "stat": "max-hp",
+                  "pct": 12
+                }
+              },
+              "round": true,
+              "min": 3
+            }
+          }
+        }
+      ],
+      "recovery": "guard-refill",
+      "text": "class.fighter",
+      "src": "js/content/data.js:82-86; js/character/classes.js:13, :137-145; js/engine/stats.js:144"
+    },
+    "cleric": {
+      "godBound": true,
+      "name": "Cleric",
+      "icon": "cls-cleric",
+      "mods": {
+        "mig": 0,
+        "agi": 0,
+        "vit": 2,
+        "foc": 2
+      },
+      "abilities": [
+        "invoke"
+      ],
+      "kitFrom": "god",
+      "kitByGod": {
+        "grom": {
+          "main": null,
+          "armour": null,
+          "off": "holy"
+        },
+        "grumbok": {
+          "main": "mace",
+          "armour": "leather",
+          "off": "holy"
+        },
+        "glimmer": {
+          "main": "sword",
+          "armour": "leather",
+          "off": "censer"
+        },
+        "murk": {
+          "main": "sword",
+          "armour": "robe",
+          "off": "censer"
+        },
+        "reginald": {
+          "main": "mace",
+          "armour": "leather",
+          "off": "holy"
+        },
+        "anvil": {
+          "main": "mace",
+          "armour": "chain",
+          "off": "holy"
+        },
+        "vellum": {
+          "main": "mace",
+          "armour": "robe",
+          "off": "holy"
+        },
+        "wobbles": {
+          "main": "sword",
+          "armour": "leather",
+          "off": "censer"
+        },
+        "sylla": {
+          "main": "sword",
+          "armour": "leather",
+          "off": "censer"
+        }
+      },
+      "rations": 1,
+      "startingGod": "chosen",
+      "startingPiety": 20,
+      "startingFavor": 10,
+      "passiveName": "Devout",
+      "passive": [
+        {
+          "verb": "modify-stat",
+          "stat": "piety-gain",
+          "pct": 25
+        }
+      ],
+      "text": "class.cleric",
+      "src": "js/content/data.js:87-91; js/character/create.js:54-64, :744-745; js/faith/gods.js:13; js/engine/progression.js:4"
+    },
+    "mage": {
+      "name": "Mage",
+      "icon": "cls-mage",
+      "mods": {
+        "mig": 0,
+        "agi": 0,
+        "vit": 1,
+        "foc": 3
+      },
+      "abilities": [
+        "missile"
+      ],
+      "kit": {
+        "main": "staff",
+        "armour": "robe",
+        "off": null
+      },
+      "rations": 1,
+      "passiveName": "Deep Reserves",
+      "passive": [
+        {
+          "verb": "modify-stat",
+          "stat": "max-mp",
+          "pct": 30
+        }
+      ],
+      "text": "class.mage",
+      "src": "js/content/data.js:92-96; js/character/classes.js:15-17; js/engine/stats.js:100"
+    },
+    "scoundrel": {
+      "searchBonusPct": 12,
+      "name": "Scoundrel",
+      "icon": "cls-scoundrel",
+      "mods": {
+        "mig": 0,
+        "agi": 4,
+        "vit": 0,
+        "foc": 0
+      },
+      "abilities": [
+        "sap",
+        "shadowstep"
+      ],
+      "kit": {
+        "main": "dagger",
+        "armour": "leather",
+        "off": "dagger",
+        "ranged": "bow"
+      },
+      "rations": 1,
+      "passiveName": "Sneaky",
+      "surpriseMult": 2,
+      "noticeMult": 0.5,
+      "noticeBandCut": 2,
+      "stealthBonusPct": 25,
+      "text": "class.scoundrel",
+      "src": "js/content/data.js:97-101; js/character/classes.js:18-31, :164-169; js/engine/actions-adapter.js:334; js/enemies/enemy-perception.js:167; js/engine/geometry.js:130; js/combat/systems.js:668"
+    },
+    "tourist": {
+      "lookSuffix": "-tourist",
+      "name": "Tourist",
+      "icon": "cls-tourist",
+      "mods": {
+        "mig": 0,
+        "agi": 0,
+        "vit": 0,
+        "foc": 0
+      },
+      "abilities": [],
+      "kit": {
+        "main": "dagger",
+        "armour": "shirt",
+        "off": "camera"
+      },
+      "rations": 3,
+      "startingEssence": 30,
+      "startingStatPoints": 1,
+      "statPointEvery": 2,
+      "passiveName": "Well-Traveled",
+      "passive": [
+        {
+          "verb": "modify-stat",
+          "stat": "xp-gain",
+          "pct": 25
+        }
+      ],
+      "text": "class.tourist",
+      "src": "js/content/data.js:102-106; js/character/classes.js:20; js/character/create.js:740-741, :767; js/engine/progression.js:14-15"
+    }
+  }
+}

@@ -1,0 +1,362 @@
+{
+  "version": 1,
+  "rows": {
+    "ranks": {
+      "thresholds": [
+        0,
+        100,
+        390,
+        1099,
+        2636
+      ],
+      "rankOnJoining": 1,
+      "maxRank": 5,
+      "unlocks": {
+        "1": "first boon",
+        "2": "first prayer",
+        "3": "second boon",
+        "4": "second prayer",
+        "5": "third boon"
+      },
+      "rankUpLog": "<b>{god} is pleased.</b> Piety rank {rank}.",
+      "boonLog": "Boon: {boon}",
+      "prayerLog": "New ability: <b>{prayer}</b>. {text} Find it in the Faith tab (P).",
+      "rankUpSfx": "piety-rank",
+      "src": "js/content/data.js:299-303; js/engine/stats.js:5-10; js/engine/progression-adapter.js:80-90"
+    },
+    "devotion": {
+      "lovedRacePct": 25,
+      "adds": true,
+      "src": "js/engine/progression.js:4"
+    },
+    "depth": {
+      "perBiomeMult": 1.3,
+      "lateBiomeMult": {
+        "3": 2,
+        "4": 4
+      },
+      "lateBiome4NotOnPlanes": true,
+      "src": "js/engine/progression.js:5-13"
+    },
+    "favor": {
+      "cap": 100,
+      "onJoiningPctOfStartPiety": 50,
+      "onShrinePrayer": 100,
+      "src": "js/engine/progression.js:13; js/engine/progression-adapter.js:44, :79, :103; js/faith/gods.js:212"
+    },
+    "floor-descent": {
+      "base": 5,
+      "perFloor": 1,
+      "effects": [
+        {
+          "verb": "gain",
+          "resource": "piety",
+          "amount": {
+            "scaled": {
+              "base": 5,
+              "per": {
+                "floor": 1
+              }
+            }
+          }
+        },
+        {
+          "verb": "gain",
+          "resource": "favor",
+          "amount": {
+            "scaled": {
+              "base": 5,
+              "per": {
+                "floor": 1
+              }
+            }
+          }
+        }
+      ],
+      "src": "js/combat/systems.js:796-799"
+    },
+    "shrine": {
+      "swearStartPiety": 20,
+      "prayPiety": {
+        "cleric": 25,
+        "other": 10
+      },
+      "prayLog": "Shrine: Favor restored.",
+      "titheEssence": 20,
+      "titheEffects": [
+        {
+          "verb": "apply-status",
+          "status": "rally",
+          "turns": 250
+        }
+      ],
+      "blessedTurns": 250,
+      "titheLog": "The shrine blesses you: +10% damage for 250 turns.",
+      "blessingEndLog": "The shrine's blessing fades.",
+      "src": "js/faith/gods.js:40, :193-223"
+    },
+    "conversion": {
+      "abandonLog": "<b>{old}</b> feels betrayed. Their wrath follows you for a while.",
+      "amusementOnJoining": 50,
+      "src": "js/engine/progression-adapter.js:35-49; js/faith/gods.js:13",
+      "wrath": "wrath"
+    },
+    "wrath": {
+      "clock": "game-turn",
+      "chancePct": 2,
+      "effects": [
+        {
+          "verb": "damage",
+          "type": "dark",
+          "amount": {
+            "pct-of": {
+              "stat": "max-hp",
+              "pct": 8,
+              "min": 1
+            }
+          },
+          "premitigated": true,
+          "bypassShields": true,
+          "tags": [
+            "environment"
+          ]
+        },
+        {
+          "verb": "set-hp",
+          "atLeast": 1
+        },
+        {
+          "verb": "choose",
+          "by": "weight",
+          "options": [
+            {
+              "weight": 1,
+              "effects": [
+                {
+                  "verb": "apply-status",
+                  "status": "blind",
+                  "turns": 5
+                }
+              ]
+            },
+            {
+              "weight": 1,
+              "effects": [
+                {
+                  "verb": "apply-status",
+                  "status": "chill",
+                  "turns": 5
+                }
+              ]
+            },
+            {
+              "weight": 1,
+              "effects": [
+                {
+                  "verb": "apply-status",
+                  "status": "root",
+                  "turns": 5
+                }
+              ]
+            },
+            {
+              "weight": 1,
+              "effects": [
+                {
+                  "verb": "apply-status",
+                  "status": "fear",
+                  "turns": 5
+                }
+              ]
+            },
+            {
+              "weight": 1,
+              "effects": [
+                {
+                  "verb": "apply-status",
+                  "status": "poison",
+                  "turns": 5
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "log": "The wrath of <b>{god}</b> finds you.",
+      "sfx": "wrath",
+      "endLog": "The wrath of {god} passes.",
+      "src": "js/faith/gods.js:33-39; ruled 2026-10-15: 250 game turns, statuses 5 turns, Fear and Poison added",
+      "turns": 250
+    },
+    "god-deal": {
+      "dealt": 4,
+      "src": "js/world/world.js:100, :113-123, :139-215"
+    },
+    "wobbles-outcome": {
+      "invokeBaseReward": 0.6,
+      "invokeDivideByDivine": true,
+      "temptBaseReward": 0.65,
+      "prankToRewardPerRankPct": 5,
+      "prankToRewardFromRank": 3,
+      "prankToRewardCapPct": 100,
+      "favoriteToyLog": "Favorite Toy: prank became a reward.",
+      "src": "js/engine/progression.js:16-23; js/faith/gods.js:47-53"
+    },
+    "wobbles-amusement": {
+      "start": 50,
+      "max": 100,
+      "gainPerGameTurnDealing": 1,
+      "gainPerGameTurnTaking": 1,
+      "lossPerUnitsOutOfCombat": 1000,
+      "resetAfterEvent": 50,
+      "odds": {
+        "floor": 0.0001,
+        "peak": 0.02,
+        "tenth": 0.002,
+        "prankPivot": 10,
+        "rewardPivot": 90,
+        "spread": 30
+      },
+      "rewardHpMpBelowPct": 80,
+      "restorePct": 50,
+      "prankFloat": "Prank!",
+      "giftFloat": "Gift!",
+      "pranks": [
+        {
+          "weight": 5,
+          "needs": "food",
+          "effects": [
+            {
+              "verb": "item-change",
+              "change": "destroy",
+              "which": "random",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "weight": 5,
+          "needs": "sigil",
+          "effects": [
+            {
+              "verb": "item-change",
+              "change": "transmute",
+              "which": "random",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "weight": 40,
+          "needs": "teleport-spot",
+          "effects": [
+            {
+              "verb": "teleport",
+              "who": "self",
+              "to": "distance-band",
+              "min": 8,
+              "rules": [
+                "walkable",
+                "empty",
+                "same-region"
+              ]
+            }
+          ]
+        },
+        {
+          "weight": 40,
+          "needs": "summon-spot",
+          "effects": [
+            {
+              "verb": "summon",
+              "side": "hostile",
+              "creature": "floor-roster",
+              "count": 1,
+              "placement": "near-source",
+              "noLoot": true
+            }
+          ]
+        },
+        {
+          "weight": 4,
+          "effects": [
+            {
+              "verb": "apply-status",
+              "status": "blind",
+              "turns": 6
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "effects": [
+            {
+              "verb": "apply-status",
+              "status": "chill",
+              "turns": 6
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "effects": [
+            {
+              "verb": "apply-status",
+              "status": "root",
+              "turns": 6
+            }
+          ]
+        }
+      ],
+      "rewards": [
+        {
+          "order": 1,
+          "chance": "1 - hp / max hp, if hp below 80%",
+          "effects": [
+            {
+              "verb": "heal",
+              "amount": {
+                "pct-of": {
+                  "stat": "max-hp",
+                  "pct": 50
+                }
+              }
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "chance": "1 - mana / max mana, if mana below 80%",
+          "effects": [
+            {
+              "verb": "mana",
+              "amount": {
+                "pct-of": {
+                  "stat": "max-mp",
+                  "pct": 50
+                }
+              }
+            }
+          ]
+        },
+        {
+          "order": 3,
+          "chance": "otherwise",
+          "effects": [
+            {
+              "verb": "create-item",
+              "item": "wobbles-gift-passive",
+              "spot": "beside-player"
+            }
+          ]
+        }
+      ],
+      "src": "js/faith/gods.js:87-140, :660-705; js/engine/progression.js:25-41"
+    },
+    "wobbles-gifts": {
+      "landing": "first empty, reachable, unburning neighbour in fixed order, else the player's tile; draws nothing",
+      "src": "js/engine/progression.js:25-28; js/faith/gods.js:54-86",
+      "pools": "loot.json rows wobbles-gift-passive, wobbles-gift-greater, wobbles-gift-invoke (packet C)"
+    }
+  }
+}

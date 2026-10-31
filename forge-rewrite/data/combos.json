@@ -1,0 +1,928 @@
+{
+  "version": 1,
+  "rows": {
+    "combo-rule": {
+      "kind": "rule",
+      "does": "A combo a/b is held while affinity a is at least 3 and b at least 2. 3/3 holds both orders. Opposites cannot combine (they cannot both be held).",
+      "first": 3,
+      "second": 2,
+      "src": "js/elements/combos.js:34"
+    },
+    "fire-earth": {
+      "kind": "combo",
+      "first": "fire",
+      "second": "earth",
+      "name": "Magma Answer",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-damaged",
+          "filters": {},
+          "if": {
+            "all": [
+              {
+                "combo": [
+                  "fire",
+                  "earth"
+                ]
+              },
+              {
+                "hit-was": [
+                  "ranged",
+                  "spell"
+                ]
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "apply-status",
+              "status": "root",
+              "turns": 3,
+              "target": {
+                "selector": "source"
+              }
+            },
+            {
+              "verb": "apply-status",
+              "status": "burn",
+              "turns": 3,
+              "target": {
+                "selector": "source"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "combo.fire-earth",
+      "src": "js/elements/combos.js:9; js/engine/damage-adapter.js:410"
+    },
+    "fire-air": {
+      "kind": "combo",
+      "first": "fire",
+      "second": "air",
+      "name": "Fanned Flames",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-crit",
+          "filters": {},
+          "effects": [
+            {
+              "verb": "apply-status",
+              "status": "burn",
+              "turns": 3
+            }
+          ],
+          "if": {
+            "combo": [
+              "fire",
+              "air"
+            ]
+          }
+        }
+      ],
+      "text": "combo.fire-air",
+      "src": "js/elements/combos.js:10, :38"
+    },
+    "fire-light": {
+      "kind": "combo",
+      "first": "fire",
+      "second": "light",
+      "name": "Purging Flame",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-status-applied",
+          "filters": { "applied": "burn" },
+          "if": {
+            "all": [
+              {
+                "combo": [
+                  "fire",
+                  "light"
+                ]
+              },
+              {
+                "has-status": "burn"
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "apply-status",
+              "status": "blind",
+              "turns": {
+                "from-status": "turns"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "combo.fire-light",
+      "src": "js/elements/combos.js:11; js/engine/effect-adapter.js:79-80"
+    },
+    "fire-shadow": {
+      "kind": "combo",
+      "first": "fire",
+      "second": "shadow",
+      "name": "Black Flame",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-surprise-hit",
+          "filters": {},
+          "effects": [
+            {
+              "verb": "apply-status",
+              "status": "burn",
+              "turns": 3
+            },
+            {
+              "verb": "apply-status",
+              "status": "corrupt",
+              "turns": 3
+            }
+          ],
+          "if": {
+            "combo": [
+              "fire",
+              "shadow"
+            ]
+          }
+        }
+      ],
+      "text": "combo.fire-shadow",
+      "src": "js/elements/combos.js:12"
+    },
+    "water-air": {
+      "kind": "combo",
+      "first": "water",
+      "second": "air",
+      "name": "Chill Arc",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-status-applied",
+          "filters": { "applied": "chill" },
+          "if": {
+            "all": [
+              {
+                "combo": [
+                  "water",
+                  "air"
+                ]
+              },
+              {
+                "all": [
+                  {
+                    "has-status": "chill"
+                  },
+                  {
+                    "hit-was": "primary"
+                  }
+                ]
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "damage-from-packet",
+              "packet": "dealt",
+              "ratio": 0.5,
+              "type": "lightning",
+              "tags": [
+                "arc",
+                "proc"
+              ],
+              "to": {
+                "selector": "nearest",
+                "side": "foes",
+                "n": 2,
+                "range": 4,
+                "of": "target",
+                "notTarget": true,
+                "visibleOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "text": "combo.water-air",
+      "src": "js/elements/combos.js:13; js/engine/damage.js:54-57"
+    },
+    "water-earth": {
+      "kind": "combo",
+      "first": "water",
+      "second": "earth",
+      "name": "Permafrost",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-action",
+          "filters": {},
+          "effects": [
+            {
+              "verb": "add-stack",
+              "status": "chill",
+              "n": 1,
+              "proc": "ice",
+              "target": {
+                "selector": "floor",
+                "side": "foes",
+                "if": {
+                  "has-status": "root"
+                }
+              }
+            }
+          ],
+          "if": {
+            "combo": [
+              "water",
+              "earth"
+            ]
+          }
+        }
+      ],
+      "text": "combo.water-earth",
+      "src": "js/elements/combos.js:14, :104"
+    },
+    "water-light": {
+      "kind": "combo",
+      "first": "water",
+      "second": "light",
+      "name": "Clear Waters",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-hit",
+          "filters": {},
+          "if": {
+            "all": [
+              {
+                "combo": [
+                  "water",
+                  "light"
+                ]
+              },
+              {
+                "has-status": {
+                  "status": "frozen",
+                  "beforeThisHit": true
+                }
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "damage-from-packet",
+              "packet": "dealt",
+              "ratio": 0.25,
+              "type": "light",
+              "tags": [
+                "proc"
+              ]
+            }
+          ]
+        }
+      ],
+      "text": "combo.water-light",
+      "src": "js/elements/combos.js:15; js/engine/damage.js:63"
+    },
+    "water-shadow": {
+      "kind": "combo",
+      "first": "water",
+      "second": "shadow",
+      "name": "Numbing Dark",
+      "effects": [
+        {
+          "verb": "hit-rule",
+          "surprise": {
+            "has-status": "chill"
+          },
+          "if": {
+            "combo": [
+              "water",
+              "shadow"
+            ]
+          }
+        }
+      ],
+      "text": "combo.water-shadow",
+      "src": "js/elements/combos.js:16, :57"
+    },
+    "air-fire": {
+      "kind": "combo",
+      "first": "air",
+      "second": "fire",
+      "name": "Friction",
+      "effects": [
+        {
+          "verb": "crit-rule",
+          "force": {
+            "has-status": "burn"
+          },
+          "primaryOnly": true,
+          "if": {
+            "combo": [
+              "air",
+              "fire"
+            ]
+          }
+        }
+      ],
+      "text": "combo.air-fire",
+      "src": "js/elements/combos.js:17; js/engine/actions.js:9-13"
+    },
+    "air-shadow": {
+      "kind": "combo",
+      "first": "air",
+      "second": "shadow",
+      "name": "Storm Ambush",
+      "effects": [
+        {
+          "verb": "crit-rule",
+          "force": {
+            "has-status": "stun"
+          },
+          "primaryOnly": true,
+          "if": {
+            "combo": [
+              "air",
+              "shadow"
+            ]
+          }
+        }
+      ],
+      "text": "combo.air-shadow",
+      "src": "js/elements/combos.js:18; js/engine/actions.js:9-13"
+    },
+    "air-water": {
+      "kind": "combo",
+      "first": "air",
+      "second": "water",
+      "name": "Frozen Current",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-damage-dealt",
+          "filters": {},
+          "if": {
+            "all": [
+              {
+                "combo": [
+                  "air",
+                  "water"
+                ]
+              },
+              {
+                "has-tag": "arc"
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "field",
+              "field": "ice",
+              "shape": {
+                "selector": "tile"
+              },
+              "turns": 3
+            }
+          ]
+        }
+      ],
+      "text": "combo.air-water",
+      "src": "js/elements/combos.js:19; js/engine/damage.js:58; js/engine/damage-adapter.js:225-226"
+    },
+    "air-light": {
+      "kind": "combo",
+      "first": "air",
+      "second": "light",
+      "name": "Glint",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-crit",
+          "filters": {},
+          "if": {
+            "all": [
+              {
+                "combo": [
+                  "air",
+                  "light"
+                ]
+              },
+              {
+                "hit-was": "single-target"
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "apply-status",
+              "status": "blind",
+              "turns": 2
+            }
+          ]
+        }
+      ],
+      "text": "combo.air-light",
+      "src": "js/elements/combos.js:20; js/engine/damage.js:66"
+    },
+    "earth-fire": {
+      "kind": "combo",
+      "first": "earth",
+      "second": "fire",
+      "name": "Forge Heat",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-hit",
+          "filters": {},
+          "if": {
+            "all": [
+              {
+                "combo": [
+                  "earth",
+                  "fire"
+                ]
+              },
+              {
+                "hit-was": "single-target"
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "add-stack",
+              "status": "forge-heat",
+              "n": 1,
+              "proc": "fire",
+              "cap": 5,
+              "turns": 3,
+              "target": {
+                "selector": "self"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "combo.earth-fire",
+      "src": "js/elements/combos.js:21, :75-106",
+      "notes": "each stack +2 damage and +2 armour; all stacks cool 3 paid actions after the last landed blow (\"The forge heat fades.\")"
+    },
+    "earth-light": {
+      "kind": "combo",
+      "first": "earth",
+      "second": "light",
+      "name": "Radiant Roots",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-status-applied",
+          "filters": { "applied": "root" },
+          "if": {
+            "all": [
+              {
+                "combo": [
+                  "earth",
+                  "light"
+                ]
+              },
+              {
+                "has-status": "root"
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "apply-status",
+              "status": "blind",
+              "turns": {
+                "from-status": "turns"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "combo.earth-light",
+      "src": "js/elements/combos.js:22"
+    },
+    "earth-shadow": {
+      "kind": "combo",
+      "first": "earth",
+      "second": "shadow",
+      "name": "Blight",
+      "effects": [
+        {
+          "verb": "damage-mod",
+          "direction": "taken",
+          "mult": 0.8,
+          "if": {
+            "all": [
+              {
+                "combo": [
+                  "earth",
+                  "shadow"
+                ]
+              },
+              {
+                "has-status": {
+                  "status": "poison",
+                  "body": "source"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "text": "combo.earth-shadow",
+      "src": "js/elements/combos.js:23; js/engine/damage-adapter.js:97"
+    },
+    "earth-water": {
+      "kind": "combo",
+      "first": "earth",
+      "second": "water",
+      "name": "Silt Shield",
+      "effects": [
+        {
+          "verb": "shield",
+          "pool": "ice-armor",
+          "cap": {
+            "scaled": {
+              "base": 0,
+              "per": {
+                "affinity:earth": 3
+              }
+            }
+          },
+          "if": {
+            "combo": [
+              "earth",
+              "water"
+            ]
+          }
+        },
+        {
+          "verb": "on-event",
+          "trigger": "on-hit",
+          "filters": {},
+          "if": {
+            "all": [
+              {
+                "combo": [
+                  "earth",
+                  "water"
+                ]
+              },
+              {
+                "hit-was": [
+                  "primary",
+                  "melee"
+                ]
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "shield",
+              "pool": "ice-armor",
+              "amount": 9,
+              "target": {
+                "selector": "self"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "combo.earth-water",
+      "src": "js/elements/combos.js:24; js/engine/damage.js:62; js/engine/stats.js:118"
+    },
+    "light-fire": {
+      "kind": "combo",
+      "first": "light",
+      "second": "fire",
+      "name": "Searing Light",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-damage-dealt",
+          "filters": {},
+          "if": {
+            "all": [
+              {
+                "combo": [
+                  "light",
+                  "fire"
+                ]
+              },
+              {
+                "has-tag": "smite"
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "apply-status",
+              "status": "burn",
+              "turns": 3
+            }
+          ]
+        }
+      ],
+      "text": "combo.light-fire",
+      "src": "js/elements/combos.js:25, :66"
+    },
+    "light-water": {
+      "kind": "combo",
+      "first": "light",
+      "second": "water",
+      "name": "Holy Water",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-heal",
+          "filters": {},
+          "effects": [
+            {
+              "verb": "shield",
+              "pool": "ice-armor",
+              "amount": {
+                "pct-of": {
+                  "stat": "overheal",
+                  "pct": 100
+                }
+              },
+              "target": {
+                "selector": "self"
+              }
+            }
+          ],
+          "if": {
+            "combo": [
+              "light",
+              "water"
+            ]
+          }
+        }
+      ],
+      "text": "combo.light-water",
+      "src": "js/elements/combos.js:26, :107-109"
+    },
+    "light-air": {
+      "kind": "combo",
+      "first": "light",
+      "second": "air",
+      "name": "Swift Judgment",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-damage-dealt",
+          "filters": {},
+          "if": {
+            "all": [
+              {
+                "combo": [
+                  "light",
+                  "air"
+                ]
+              },
+              {
+                "all": [
+                  {
+                    "has-tag": "smite"
+                  },
+                  {
+                    "not": {
+                      "has-tag": "smite-again"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "damage",
+              "type": "light",
+              "tags": [
+                "proc",
+                "smite",
+                "smite-again"
+              ],
+              "proc": "smite",
+              "amount": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      3,
+                      6
+                    ]
+                  },
+                  "per": {
+                    "affinity:light": 1
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "text": "combo.light-air",
+      "src": "js/elements/combos.js:27, :68"
+    },
+    "light-earth": {
+      "kind": "combo",
+      "first": "light",
+      "second": "earth",
+      "name": "Beacon Root",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-damage-dealt",
+          "filters": {},
+          "if": {
+            "all": [
+              {
+                "combo": [
+                  "light",
+                  "earth"
+                ]
+              },
+              {
+                "all": [
+                  {
+                    "has-tag": "smite"
+                  },
+                  {
+                    "creature-flag": [
+                      "ranged",
+                      "caster",
+                      "spellcaster"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "apply-status",
+              "status": "root",
+              "turns": 2
+            }
+          ]
+        }
+      ],
+      "text": "combo.light-earth",
+      "src": "js/elements/combos.js:28, :67; js/engine/effects.js:59"
+    },
+    "shadow-fire": {
+      "kind": "combo",
+      "first": "shadow",
+      "second": "fire",
+      "name": "Smoke",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "filters": {
+            "victimStatus": "burn"
+          },
+          "effects": [
+            {
+              "verb": "hide",
+              "turns": 3
+            }
+          ],
+          "if": {
+            "combo": [
+              "shadow",
+              "fire"
+            ]
+          }
+        }
+      ],
+      "text": "combo.shadow-fire",
+      "src": "js/elements/combos.js:29; js/engine/death-adapter.js:145"
+    },
+    "shadow-water": {
+      "kind": "combo",
+      "first": "shadow",
+      "second": "water",
+      "name": "Frostshade",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-surprise-hit",
+          "filters": {},
+          "effects": [
+            {
+              "verb": "choose",
+              "by": "weight",
+              "options": [
+                {
+                  "weight": 1,
+                  "if": {
+                    "creature-flag": "boss"
+                  },
+                  "effects": [
+                    {
+                      "verb": "add-stack",
+                      "status": "chill",
+                      "n": 2,
+                      "proc": "ice"
+                    }
+                  ],
+                  "else": [
+                    {
+                      "verb": "apply-status",
+                      "status": "frozen",
+                      "turns": 2,
+                      "proc": "ice"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "if": {
+            "combo": [
+              "shadow",
+              "water"
+            ]
+          }
+        }
+      ],
+      "text": "combo.shadow-water",
+      "src": "js/elements/combos.js:30, :49-55"
+    },
+    "shadow-air": {
+      "kind": "combo",
+      "first": "shadow",
+      "second": "air",
+      "name": "Shadow Shock",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-surprise-hit",
+          "filters": {},
+          "effects": [
+            {
+              "verb": "apply-status",
+              "status": "stun",
+              "turns": 2
+            }
+          ],
+          "if": {
+            "combo": [
+              "shadow",
+              "air"
+            ]
+          }
+        }
+      ],
+      "text": "combo.shadow-air",
+      "src": "js/elements/combos.js:31; js/engine/damage.js:65"
+    },
+    "shadow-earth": {
+      "kind": "combo",
+      "first": "shadow",
+      "second": "earth",
+      "name": "Venom Strike",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-surprise-hit",
+          "filters": {},
+          "effects": [
+            {
+              "verb": "damage-from-packet",
+              "packet": "dealt",
+              "ratio": 0.25,
+              "type": "poison",
+              "tags": [
+                "proc"
+              ]
+            },
+            {
+              "verb": "apply-status",
+              "status": "poison",
+              "turns": 3,
+              "scale": 1
+            }
+          ],
+          "if": {
+            "combo": [
+              "shadow",
+              "earth"
+            ]
+          }
+        }
+      ],
+      "text": "combo.shadow-earth",
+      "src": "js/elements/combos.js:32; js/engine/damage.js:64; js/engine/damage-adapter.js:372"
+    }
+  }
+}

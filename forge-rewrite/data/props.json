@@ -1,0 +1,2583 @@
+{
+  "version": 1,
+  "cards": [
+    {"when":"cleansingShrine","title":"Cleansing Shrine","hint":"Interact to remove every curse from carried and equipped items.","used":"used","usedHint":"Its blessing is spent."},
+    {"when":"offeringBowl","title":"Offering bowl","hint":"Interact to read the inscription. Stand beside the bowl and drop five pieces of gear or sigils at its feet to receive a sigil."},
+    {"when":"portcullis","title":"Portcullis lever","hint":"Pull to open the guarded equipment cache.","used":"used","usedHint":"Its work is done."},
+    {"when":"bell","title":"Crypt funeral bell","hint":"Ring for an offering. Acolytes will answer.","used":"bell.rung","usedHint":"Its work is done."},
+    {"when":"resonance","title":"Resonating crystal","hint":"Touch to restore Mana and release an elemental mote. The sound attracts nearby enemies.","used":"used","usedHint":"Its work is done."},
+    {"when":"silk","title":"Silk-wrapped survivor","hint":"Free the traveler for two special foods and a mapping sigil. Escort him to the upstairs for a ring or amulet. Beware the surrounding webs.","used":"used","usedHint":"Its work is done."},
+    {"live":"lever"},
+    {"live":"guardian"},
+    {"when":"row.curtain","title":"Web curtain","hint":"Blocks the way. One blow cuts it; fire burns it away."},
+    {"when":"breakReward","hint":"A blade is embedded in the moss-covered stone."},
+    {"when":"merchant","hint":"Browse the merchant stock. Purchases cost essence."},
+    {"live":"ritual"},
+    {"when":"row.explodes","hint":"Explodes when broken or burned."},
+    {"when":"row.breakable","hint":"Breakable. Might hold something."},
+    {"when":"tablet","hint":"A broken tablet. Read it."},
+    {"when":"row.altar","hint":"Offer blood for rewards."},
+    {"when":"prisoner","hint":"Someone is locked inside. Let them out and hope they are grateful."},
+    {"live":"lock"},
+    {"when":"row.drinkable","unless":"drunk","hint":"Drink from it."},
+    {"when":"row.bush","hint":"Cut it down. Sometimes a heart is tucked underneath."}
+  ],
+  "cardsNote": "The map card for a prop (1.7 inspectTargetHTML, map-hover.js propCard; consolidation H5, ui-16): the first entry whose when holds (a flag on the prop, or row. a flag of its row, unless the unless flag is set) gives the title (else the row name, else the id in words) and the hint, usedHint once its used flag is set; live entries are cards with live numbers, drawn in map-hover.js.",
+  "rows": {
+    "stalagmite-tall-1": {
+      "blocks": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns"
+    },
+    "stalagmite-tall-2": {
+      "blocks": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns"
+    },
+    "stalagmite-tall-3": {
+      "blocks": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns"
+    },
+    "stalagmite-group-1": {
+      "blocks": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "footprint": {
+        "w": 2,
+        "h": 1
+      }
+    },
+    "stalagmite-group-2": {
+      "blocks": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "footprint": {
+        "w": 2,
+        "h": 1
+      }
+    },
+    "giant-mushroom-1": {
+      "blocks": true,
+      "light": {
+        "color": "#4FE0D0",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "burnable": true,
+      "fit": {
+        "cave": 0.65,
+        "realm": {
+          "scale": 0.5
+        }
+      }
+    },
+    "giant-mushroom-2": {
+      "blocks": true,
+      "light": {
+        "color": "#A070FF",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "burnable": true,
+      "fit": {
+        "cave": 0.65,
+        "realm": {
+          "scale": 0.5
+        }
+      }
+    },
+    "giant-mushroom-3": {
+      "blocks": true,
+      "light": {
+        "color": "#FFB050",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "burnable": true,
+      "fit": {
+        "cave": 0.65,
+        "realm": {
+          "scale": 0.5
+        }
+      }
+    },
+    "mushroom-pair-1": {
+      "blocks": true,
+      "light": {
+        "color": "#E8C070",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "footprint": {
+        "w": 2,
+        "h": 1
+      },
+      "burnable": true,
+      "fit": {
+        "cave": 0.65,
+        "realm": {
+          "scale": 0.5
+        }
+      }
+    },
+    "mushroom-pair-2": {
+      "blocks": true,
+      "light": {
+        "color": "#60E0D0",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "footprint": {
+        "w": 2,
+        "h": 1
+      },
+      "burnable": true,
+      "fit": {
+        "cave": 0.65,
+        "realm": {
+          "scale": 0.5
+        }
+      }
+    },
+    "geode-1": {
+      "blocks": true,
+      "light": {
+        "color": "#40D0E0",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "footprint": {
+        "w": 2,
+        "h": 1
+      }
+    },
+    "geode-2": {
+      "blocks": true,
+      "light": {
+        "color": "#9A70FF",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "footprint": {
+        "w": 2,
+        "h": 1
+      }
+    },
+    "pylon-1": {
+      "blocks": true,
+      "light": {
+        "color": "#B090FF",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "fit": {
+        "cave": 0.55
+      }
+    },
+    "pylon-2": {
+      "blocks": true,
+      "light": {
+        "color": "#9FE8FF",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "fit": {
+        "cave": 0.55
+      }
+    },
+    "mine-cart": {
+      "blocks": true,
+      "breakable": true,
+      "lootPct": 35,
+      "sfx": "crate-break",
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "breakSfx": "crate-break"
+    },
+    "mine-support": {
+      "blocks": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "footprint": {
+        "w": 2,
+        "h": 1
+      }
+    },
+    "worm-burrow-closed": {
+      "blocks": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "footprint": {
+        "w": 2,
+        "h": 2
+      }
+    },
+    "worm-burrow-open": {
+      "blocks": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "footprint": {
+        "w": 2,
+        "h": 2
+      }
+    },
+    "kobold-campfire": {
+      "lightFamily": "campfire",
+      "blocks": true,
+      "light": {
+        "color": "#FF9A40",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns"
+    },
+    "kobold-crate": {
+      "blocks": true,
+      "breakable": true,
+      "lootPct": 40,
+      "sfx": "crate-break",
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "burnable": true,
+      "breakSfx": "crate-break"
+    },
+    "kobold-bedroll-1": {
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "burnable": true,
+      "flat": true
+    },
+    "kobold-bedroll-2": {
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "burnable": true,
+      "flat": true
+    },
+    "kobold-pickaxe": {
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-small-mushrooms-1": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#70D0C0",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "burnable": true,
+      "flat": true,
+      "fit": {
+        "cave": 1.5,
+        "realm": {
+          "scale": 0.5
+        }
+      }
+    },
+    "cl-small-mushrooms-2": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#A080F0",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "burnable": true,
+      "flat": true,
+      "fit": {
+        "cave": 1.5,
+        "realm": {
+          "scale": 0.5
+        }
+      }
+    },
+    "cl-small-mushrooms-3": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#FFB060",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "burnable": true,
+      "flat": true,
+      "fit": {
+        "cave": 1.5,
+        "realm": {
+          "scale": 0.5
+        }
+      }
+    },
+    "cl-small-mushrooms-4": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#80D8B8",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "burnable": true,
+      "flat": true,
+      "fit": {
+        "cave": 1.5,
+        "realm": {
+          "scale": 0.5
+        }
+      }
+    },
+    "cl-glow-moss-1": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#50D8B0",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-glow-moss-2": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#50D8B0",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-glow-moss-3": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#50D8B0",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-glow-moss-4": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#50D8B0",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-crystal-shards-1": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#60D8F0",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true,
+      "fit": {
+        "cave": 0.5
+      }
+    },
+    "cl-crystal-shards-2": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#A070F0",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true,
+      "fit": {
+        "cave": 0.5
+      }
+    },
+    "cl-crystal-shards-3": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#60D0F0",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true,
+      "fit": {
+        "cave": 0.5
+      }
+    },
+    "cl-crystal-shards-4": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#9080F0",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true,
+      "fit": {
+        "cave": 0.5
+      }
+    },
+    "cl-rubble-1": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-rubble-2": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-rubble-3": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-rubble-4": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-lost-miner-1": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-lost-miner-2": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-lost-miner-3": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-lost-miner-4": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-cave-pearls-1": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-cave-pearls-2": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-cave-pearls-3": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "cl-cave-pearls-4": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/caverns/caverns.js:18; js/world/biomes/caverns/caverns.js:18-38",
+      "set": "caverns",
+      "flat": true
+    },
+    "blood-font": {
+      "blocks": true,
+      "light": {
+        "color": "#C02030",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark"
+    },
+    "candelabra-tall": {
+      "blocks": true,
+      "light": {
+        "color": "#FF6A3A",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark"
+    },
+    "cocoon-large-1": {
+      "blocks": true,
+      "hatches": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark"
+    },
+    "cocoon-large-2": {
+      "blocks": true,
+      "hatches": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark"
+    },
+    "egg-sac-cluster": {
+      "blocks": true,
+      "hatches": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark"
+    },
+    "drow-altar": {
+      "blocks": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "footprint": {
+        "w": 2,
+        "h": 1
+      }
+    },
+    "drow-altar-blood": {
+      "name": "sacrifice altar",
+      "blocks": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "footprint": {
+        "w": 2,
+        "h": 1
+      }
+    },
+    "drow-obelisk": {
+      "blocks": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark"
+    },
+    "drow-pillar": {
+      "blocks": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark"
+    },
+    "drow-pillar-broken": {
+      "blocks": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark"
+    },
+    "spider-idol": {
+      "blocks": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark"
+    },
+    "lava-forge": {
+      "blocks": true,
+      "light": {
+        "color": "#FF7A30",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "footprint": {
+        "w": 2,
+        "h": 1
+      }
+    },
+    "ritual-circle": {
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "footprint": {
+        "w": 2,
+        "h": 2
+      },
+      "flat": true
+    },
+    "ritual-circle-active": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#FF3040",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "footprint": {
+        "w": 2,
+        "h": 2
+      },
+      "flat": true
+    },
+    "stairs-down-drow": {
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "footprint": {
+        "w": 2,
+        "h": 2
+      },
+      "flat": true
+    },
+    "web-curtain-h": {
+      "blocks": true,
+      "breakable": true,
+      "web": true,
+      "curtain": true,
+      "sfx": "step-grass",
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "burnable": true,
+      "breakSfx": "step-grass"
+    },
+    "web-curtain-v": {
+      "blocks": true,
+      "breakable": true,
+      "web": true,
+      "curtain": true,
+      "sfx": "step-grass",
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "burnable": true,
+      "breakSfx": "step-grass"
+    },
+    "silk-banner-1": {
+      "blocks": true,
+      "wall": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "wallMounted": true,
+      "fit": {
+        "frameMs": 140
+      }
+    },
+    "silk-banner-2": {
+      "blocks": true,
+      "wall": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "wallMounted": true,
+      "fit": {
+        "frameMs": 140
+      }
+    },
+    "web-corner-1": {
+      "blocks": true,
+      "wall": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "wallMounted": true
+    },
+    "web-corner-2": {
+      "blocks": true,
+      "wall": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "wallMounted": true
+    },
+    "basalt-embers-1": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#FF6A20",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true
+    },
+    "basalt-embers-2": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#FF6A20",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true
+    },
+    "basalt-embers-3": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#FF6A20",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true
+    },
+    "basalt-embers-4": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#FF6A20",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true
+    },
+    "candles-scarlet-1": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#FF5A30",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true
+    },
+    "candles-scarlet-2": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#FF5A30",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true
+    },
+    "candles-scarlet-3": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#FF5A30",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true
+    },
+    "candles-scarlet-4": {
+      "blocks": false,
+      "walkable": true,
+      "light": {
+        "color": "#FF5A30",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true
+    },
+    "cocoons-small-1": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true,
+      "hatches": true,
+      "hatchCount": [
+        2,
+        3
+      ],
+      "ruling": "ruled 2026-10-15: small clusters hatch"
+    },
+    "cocoons-small-2": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true,
+      "hatches": true,
+      "hatchCount": [
+        2,
+        3
+      ],
+      "ruling": "ruled 2026-10-15: small clusters hatch"
+    },
+    "cocoons-small-3": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true,
+      "hatches": true,
+      "hatchCount": [
+        2,
+        3
+      ],
+      "ruling": "ruled 2026-10-15: small clusters hatch"
+    },
+    "cocoons-small-4": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true,
+      "hatches": true,
+      "hatchCount": [
+        2,
+        3
+      ],
+      "ruling": "ruled 2026-10-15: small clusters hatch"
+    },
+    "obsidian-shards-1": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true
+    },
+    "obsidian-shards-2": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true
+    },
+    "obsidian-shards-3": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true
+    },
+    "obsidian-shards-4": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "flat": true
+    },
+    "web-floor-1": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "web": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "burnable": true,
+      "flat": true
+    },
+    "web-floor-2": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "web": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "burnable": true,
+      "flat": true
+    },
+    "web-floor-3": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "web": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "burnable": true,
+      "flat": true
+    },
+    "web-floor-4": {
+      "blocks": false,
+      "walkable": true,
+      "cluster": true,
+      "web": true,
+      "src": "js/world/biomes/underdark/deep.js:51; js/world/biomes/underdark/deep.js:51-67",
+      "set": "underdark",
+      "burnable": true,
+      "flat": true
+    },
+    "sarcophagus": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/crypt.js:43; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "fit": {
+        "size": 1.08
+      }
+    },
+    "sarcophagus-open": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/crypt.js:43; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "fit": {
+        "size": 1.08
+      }
+    },
+    "urn": {
+      "blocks": true,
+      "breakable": true,
+      "src": "js/world/biomes/crypt/crypt.js:43; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "fit": {
+        "size": 1.08,
+        "scale": 0.8,
+        "anchor": 0.5
+      }
+    },
+    "urn-broken": {
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/crypt/crypt.js:43; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true,
+      "fit": {
+        "size": 1.08,
+        "scale": 0.8,
+        "anchor": 0.5
+      }
+    },
+    "soul-brazier": {
+      "lightFamily": "brazier",
+      "blocks": true,
+      "light": {
+        "color": "#7CFFA0",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/crypt/crypt.js:43; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "fit": {
+        "scale": 0.8,
+        "anchor": 0.5
+      }
+    },
+    "grave-pillar": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/crypt.js:43; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt"
+    },
+    "skeleton-niche": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/crypt.js:43; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt"
+    },
+    "bone-pile": {
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/crypt/crypt.js:43; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true,
+      "fit": {
+        "size": 0.7
+      }
+    },
+    "coffin": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/crypt.js:43; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "fit": {
+        "size": 1.08
+      }
+    },
+    "candelabra": {
+      "lightFamily": "candle",
+      "blocks": true,
+      "light": {
+        "color": "#9CFFB8",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "src": "js/world/biomes/crypt/crypt.js:43; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt"
+    },
+    "crypt-recess": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/cryptrooms.js:14; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt"
+    },
+    "grave-slab": {
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/crypt/cryptrooms.js:14; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true
+    },
+    "urn-tall": {
+      "name": "urn",
+      "blocks": true,
+      "breakable": true,
+      "lootPct": 30,
+      "sfx": "pot-break",
+      "src": "js/world/biomes/crypt/cryptrooms.js:14; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "breakSfx": "pot-break",
+      "fit": {
+        "size": 1.08,
+        "scale": 0.8,
+        "anchor": 0.5
+      }
+    },
+    "urn-squat": {
+      "name": "urn",
+      "blocks": true,
+      "breakable": true,
+      "lootPct": 30,
+      "sfx": "pot-break",
+      "src": "js/world/biomes/crypt/cryptrooms.js:14; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "breakSfx": "pot-break",
+      "fit": {
+        "size": 1.08,
+        "scale": 0.8,
+        "anchor": 0.5
+      }
+    },
+    "urn-ornate": {
+      "name": "urn",
+      "blocks": true,
+      "breakable": true,
+      "lootPct": 30,
+      "sfx": "pot-break",
+      "src": "js/world/biomes/crypt/cryptrooms.js:14; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "breakSfx": "pot-break",
+      "fit": {
+        "size": 1.08,
+        "scale": 0.8,
+        "anchor": 0.5
+      }
+    },
+    "urn-shattered": {
+      "name": "broken urn",
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/crypt/cryptrooms.js:14; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true,
+      "fit": {
+        "size": 1.08,
+        "scale": 0.8,
+        "anchor": 0.5
+      }
+    },
+    "urn-group": {
+      "name": "urns",
+      "blocks": true,
+      "breakable": true,
+      "lootPct": 40,
+      "sfx": "pot-break",
+      "src": "js/world/biomes/crypt/cryptrooms.js:243; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "breakSfx": "pot-break",
+      "fit": {
+        "size": 1.08,
+        "scale": 0.8,
+        "anchor": 0.5
+      }
+    },
+    "sarc": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/cryptprops.js:219; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt"
+    },
+    "pedestal": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/cryptprops.js:219; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt"
+    },
+    "grave-post": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/cryptset.js:390; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt"
+    },
+    "wall-plaque": {
+      "blocks": true,
+      "wall": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt"
+    },
+    "wall-niche": {
+      "blocks": true,
+      "wall": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt"
+    },
+    "wall-cobweb": {
+      "blocks": false,
+      "walkable": true,
+      "wall": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true
+    },
+    "candles-1": {
+      "lightFamily": "candle",
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true
+    },
+    "grave-flowers-moss-1": {
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true
+    },
+    "candles-2": {
+      "lightFamily": "candle",
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true
+    },
+    "grave-flowers-moss-2": {
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true
+    },
+    "candles-3": {
+      "lightFamily": "candle",
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true
+    },
+    "grave-flowers-moss-3": {
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true
+    },
+    "candles-4": {
+      "lightFamily": "candle",
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true
+    },
+    "grave-flowers-moss-4": {
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true
+    },
+    "crypt-shelf-fungus-1": {
+      "blocks": false,
+      "walkable": true,
+      "wall": true,
+      "src": "js/world/biomes/crypt/cryptset.js:583; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true,
+      "fit": {
+        "scale": 0.5,
+        "anchor": 0.47
+      }
+    },
+    "crypt-roots-1": {
+      "blocks": false,
+      "walkable": true,
+      "wall": true,
+      "src": "js/world/biomes/crypt/cryptset.js:583; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true,
+      "fit": {
+        "scale": 0.9,
+        "anchor": 0.92
+      }
+    },
+    "crypt-shelf-fungus-2": {
+      "blocks": false,
+      "walkable": true,
+      "wall": true,
+      "src": "js/world/biomes/crypt/cryptset.js:583; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true,
+      "fit": {
+        "scale": 0.5,
+        "anchor": 0.47
+      }
+    },
+    "crypt-roots-2": {
+      "blocks": false,
+      "walkable": true,
+      "wall": true,
+      "src": "js/world/biomes/crypt/cryptset.js:583; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true,
+      "fit": {
+        "scale": 0.9,
+        "anchor": 0.92
+      }
+    },
+    "crypt-shelf-fungus-3": {
+      "blocks": false,
+      "walkable": true,
+      "wall": true,
+      "src": "js/world/biomes/crypt/cryptset.js:583; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true,
+      "fit": {
+        "scale": 0.5,
+        "anchor": 0.47
+      }
+    },
+    "crypt-roots-3": {
+      "blocks": false,
+      "walkable": true,
+      "wall": true,
+      "src": "js/world/biomes/crypt/cryptset.js:583; js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "flat": true,
+      "fit": {
+        "scale": 0.9,
+        "anchor": 0.92
+      }
+    },
+    "tomb-v": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "footprint": {
+        "w": 1,
+        "h": 2
+      },
+      "fit": {
+        "size": 1.08
+      }
+    },
+    "tomb-rune": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "footprint": {
+        "w": 1,
+        "h": 2
+      },
+      "fit": {
+        "size": 1.08
+      }
+    },
+    "tomb-crumbled-v": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "footprint": {
+        "w": 1,
+        "h": 2
+      },
+      "fit": {
+        "size": 1.08
+      }
+    },
+    "tomb-h": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "footprint": {
+        "w": 2,
+        "h": 1
+      },
+      "fit": {
+        "size": 1.08
+      }
+    },
+    "tomb-crumbled-h": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "footprint": {
+        "w": 2,
+        "h": 1
+      },
+      "fit": {
+        "size": 1.08
+      }
+    },
+    "tomb-open-h": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "footprint": {
+        "w": 2,
+        "h": 1
+      },
+      "fit": {
+        "size": 1.08
+      }
+    },
+    "grave-monument": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "footprint": {
+        "w": 2,
+        "h": 2
+      }
+    },
+    "dais-sarcophagus": {
+      "blocks": true,
+      "src": "js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "footprint": {
+        "w": 3,
+        "h": 4
+      }
+    },
+    "stairs-wide": {
+      "blocks": false,
+      "walkable": true,
+      "src": "js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "footprint": {
+        "w": 2,
+        "h": 2
+      }
+    },
+    "soul-urn": {
+      "blocks": true,
+      "light": {
+        "color": "#7CFFA0"
+      },
+      "src": "js/world/biomes/crypt/crypt.js:43-52; cryptrooms.js:14-17, :243; cryptpack.js:40-43; cryptset.js:283-295, :583-584; cryptprops.js:219-220",
+      "set": "crypt",
+      "fit": {
+        "scale": 0.8,
+        "anchor": 0.5
+      }
+    },
+    "barrel": {
+      "blocks": true,
+      "breakable": true,
+      "burnable": true,
+      "lootPct": 35,
+      "breakSfx": "crate-break",
+      "src": "js/content/data.js:898"
+    },
+    "crate": {
+      "blocks": true,
+      "breakable": true,
+      "burnable": true,
+      "lootPct": 40,
+      "breakSfx": "crate-break",
+      "src": "js/content/data.js:898"
+    },
+    "pot": {
+      "blocks": true,
+      "breakable": true,
+      "lootPct": 45,
+      "breakSfx": "pot-break",
+      "src": "js/content/data.js:898"
+    },
+    "bush": {
+      "blocks": true,
+      "breakable": true,
+      "burnable": true,
+      "lootPct": 25,
+      "breakSfx": "step-grass",
+      "bush": true,
+      "onBreak": "see rule-bush",
+      "src": "js/content/data.js:898"
+    },
+    "barrel-explosive": {
+      "name": "powder barrel",
+      "blocks": true,
+      "breakable": true,
+      "burnable": true,
+      "explodes": true,
+      "onBreak": [
+        {
+          "verb": "damage",
+          "amount": {
+            "scaled": {
+              "base": {
+                "roll": [
+                  8,
+                  14
+                ]
+              },
+              "per": {
+                "floor": 1
+              }
+            }
+          },
+          "type": "fire",
+          "target": {
+            "selector": "square",
+            "n": 3,
+            "centre": "self",
+            "side": "any"
+          },
+          "tags": [
+            "area",
+            "environment"
+          ]
+        },
+        {
+          "verb": "apply-status",
+          "status": "burn",
+          "turns": 3,
+          "magnitude": {
+            "scaled": {
+              "base": 2,
+              "mult": [
+                "number-scale",
+                "lethality"
+              ],
+              "round": true,
+              "min": 1
+            }
+          },
+          "target": {
+            "selector": "square",
+            "n": 3,
+            "centre": "self",
+            "side": "any"
+          }
+        },
+        {
+          "verb": "terrain",
+          "set": "scorch",
+          "where": {
+            "selector": "square",
+            "n": 3,
+            "centre": "self"
+          },
+          "note": "only bare floor"
+        },
+        {
+          "verb": "field",
+          "field": "fire",
+          "shape": {
+            "selector": "square",
+            "n": 3,
+            "centre": "self"
+          },
+          "turns": 3,
+          "clock": "game-turn",
+          "note": "puzzles read this fire ground on their tiles (effects.md G4)"
+        },
+        {
+          "verb": "prop-break",
+          "where": {
+            "selector": "square",
+            "n": 3,
+            "centre": "self"
+          },
+          "props": "explosive"
+        },
+        {
+          "verb": "prop-break",
+          "where": {
+            "selector": "square",
+            "n": 3,
+            "centre": "self"
+          },
+          "props": "fluid"
+        },
+        {
+          "verb": "prop-break",
+          "where": {
+            "selector": "square",
+            "n": 3,
+            "centre": "self"
+          },
+          "props": [
+            "breakable",
+            "burnable"
+          ],
+          "result": "ash",
+          "note": "every other breakable or burnable prop on the 9 tiles"
+        }
+      ],
+      "log": "<b>BOOM!</b> The powder barrel explodes.",
+      "sfx": "explosion",
+      "src": "js/content/data.js:898"
+    },
+    "barrel-poison": {
+      "blocks": true,
+      "breakable": true,
+      "burnable": true,
+      "fluid": "poison",
+      "onBreak": [
+        {
+          "verb": "field",
+          "field": "poison-trail",
+          "shape": {
+            "selector": "radius",
+            "centre": "target",
+            "n": 1,
+            "walkable": true,
+            "if": {
+              "all": [
+                {
+                  "not": {
+                    "room-aisle": true
+                  }
+                },
+                {
+                  "not": {
+                    "near-feature": {
+                      "features": [
+                        "stairs",
+                        "upstairs",
+                        "exit",
+                        "portal",
+                        "forge",
+                        "shrine"
+                      ],
+                      "within": 3
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "permanent": true,
+          "note": "grave ooze in the 3 by 3 around the broken barrel"
+        }
+      ],
+      "log": "The barrel spills a poison pool.",
+      "src": "js/content/data.js:898"
+    },
+    "barrel-water": {
+      "blocks": true,
+      "breakable": true,
+      "burnable": true,
+      "fluid": "water",
+      "onBreak": [
+        {
+          "verb": "terrain",
+          "set": "water",
+          "where": {
+            "selector": "square",
+            "n": 3,
+            "centre": "self"
+          },
+          "note": "only floor or water cells of the same room; clears fire and grave ooze"
+        }
+      ],
+      "log": "The barrel spills a water pool.",
+      "src": "js/content/data.js:898"
+    },
+    "brazier-lit": {
+      "lightFamily": "brazier",
+      "blocks": true,
+      "light": {
+        "color": "#FF9A40",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "src": "js/content/data.js:898",
+      "fit": {
+        "scale": 0.8,
+        "anchor": 0.5,
+        "realm": {
+          "scale": 1
+        }
+      }
+    },
+    "brazier-unlit": {
+      "blocks": true,
+      "src": "js/content/data.js:898",
+      "offeringFlame": {
+        "artSize": [104, 82],
+        "rim": [52, 26],
+        "height": 56,
+        "wide": 1.2,
+        "palette": ["#275F32", "#4EB85B", "#89E77B", "#D9FFAB"],
+        "spark": "#D9FFAB"
+      },
+      "fit": {
+        "scale": 0.8,
+        "anchor": 0.5,
+        "realm": {
+          "scale": 1
+        }
+      }
+    },
+    "torch-stand": {
+      "lightFamily": "torch",
+      "blocks": true,
+      "light": {
+        "color": "#FFB050",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "src": "js/content/data.js:898"
+    },
+    "bones": {
+      "flat": true,
+      "src": "js/content/data.js:898",
+      "fit": {
+        "size": 0.7
+      }
+    },
+    "weapon-rack": {
+      "front": true,
+      "blocks": true,
+      "breakable": true,
+      "lootPct": 40,
+      "breakSfx": "crate-break",
+      "src": "js/content/data.js:898"
+    },
+    "bookshelf": {
+      "front": true,
+      "blocks": true,
+      "burnable": true,
+      "src": "js/content/data.js:898",
+      "fit": {
+        "size": 0.98,
+        "flatSize": 0.98,
+        "tall": true,
+        "feet": true,
+        "base": 0.97,
+        "crisp": true,
+        "realm": {
+          "size": 1.12,
+          "flatSize": 0.82,
+          "tall": false,
+          "base": 0.96,
+          "crisp": false
+        }
+      }
+    },
+    "cage": {
+      "blocks": true,
+      "src": "js/content/data.js:898"
+    },
+    "statue": {
+      "blocks": true,
+      "src": "js/content/data.js:898",
+      "fit": {
+        "size": 1.12
+      }
+    },
+    "statue-broken": {
+      "blocks": true,
+      "src": "js/content/data.js:898"
+    },
+    "mushrooms": {
+      "flat": true,
+      "burnable": true,
+      "light": {
+        "color": "#6FB7FF",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "src": "js/content/data.js:898",
+      "fit": {
+        "scale": 0.5
+      }
+    },
+    "vines": {
+      "flat": true,
+      "burnable": true,
+      "src": "js/content/data.js:898"
+    },
+    "ice-block": {
+      "blocks": true,
+      "breakable": true,
+      "src": "js/content/data.js:898"
+    },
+    "altar-spikes": {
+      "name": "sacrifice altar",
+      "blocks": true,
+      "altar": true,
+      "src": "js/content/data.js:898"
+    },
+    "alchemy-table": {
+      "blocks": true,
+      "src": "js/content/data.js:898"
+    },
+    "fountain": { "healPct": 10,
+      "blocks": true,
+      "drinkable": true,
+      "src": "js/content/data.js:898"
+    },
+    "bed-straw": {
+      "flat": true,
+      "burnable": true,
+      "src": "js/content/data.js:898",
+      "fit": {
+        "size": 0.98
+      }
+    },
+    "table-candle": {
+      "lightFamily": "candle",
+      "blocks": true,
+      "light": {
+        "color": "#FFC870",
+        "radius": 2.8,
+        "strength": 0.55,
+        "note": "presentation only"
+      },
+      "src": "js/content/data.js:898",
+      "fit": {
+        "frameMs": 110
+      }
+    },
+    "cart": {
+      "blocks": true,
+      "breakable": true,
+      "burnable": true,
+      "src": "js/content/data.js:898"
+    },
+    "chains": {
+      "flat": true,
+      "src": "js/content/data.js:898",
+      "fit": {
+        "size": 0.98,
+        "flatSize": 0.98,
+        "scale": 0.5,
+        "anchor": 0.5,
+        "feet": false,
+        "realm": {
+          "paint": true
+        }
+      }
+    },
+    "rubble": {
+      "flat": true,
+      "src": "js/content/data.js:898",
+      "fit": {
+        "size": 1.05,
+        "anchor": 0.5,
+        "feet": false
+      }
+    },
+    "reeds-and-rubble": {
+      "src": "Justin's first-biome props (art-incoming/first-biome-props/reeds-and-rubble.png; tools/assets/vendor/dungeon-props): carved masonry fragments with damp reeds and moss, items 206 and 233",
+      "fit": {
+        "size": 0.95
+      }
+    },
+    "mossy-drain": {
+      "blocks": true,
+      "src": "Justin's first-biome props, animated by the animation thread (art-incoming/first-biome-props/anim/mossy-drain-anim.png, 8 frames at 100 ms; tools/assets/vendor/dungeon-props): a sandstone wall drain with its catch basin, backed against a north wall in a damp room (item 233)",
+      "fit": {
+        "size": 0.95,
+        "frameMs": 100
+      }
+    },
+    "broken-shrine": {
+      "blocks": true,
+      "lightFamily": "candle",
+      "light": {
+        "color": "#FFC870",
+        "radius": 2.6,
+        "strength": 0.5,
+        "note": "presentation only: its candle"
+      },
+      "src": "Justin's first-biome props, the candle lit and animated by the animation thread (art-incoming/first-biome-props/anim/broken-shrine-lit.png and broken-shrine-anim.png, 8 frames at 110 ms; tools/assets/vendor/dungeon-props): a hooded guardian shrine, the shrine nook's centrepiece (item 233)",
+      "fit": {
+        "size": 0.95,
+        "frameMs": 110
+      }
+    },
+    "desk": {
+      "front": true,
+      "blocks": true,
+      "src": "a writing desk with a book, a scroll and an ink pot (the study's), made through the PixelLab API for the room templates (art-incoming/dungeon-props-generated; tools/assets/vendor/dungeon-props), item 233",
+      "fit": {
+        "size": 0.95
+      }
+    },
+    "rug": {
+      "flat": true,
+      "footprint": {
+        "w": 2,
+        "h": 1
+      },
+      "src": "a worn woven rug, laid in the middle of a study, made through the PixelLab API for the room templates (art-incoming/dungeon-props-generated; tools/assets/vendor/dungeon-props), item 233",
+      "fit": {
+        "size": 0.98,
+        "feet": false,
+        "lies": true
+      }
+    },
+    "long-table": {
+      "blocks": true,
+      "footprint": {
+        "w": 2,
+        "h": 1
+      },
+      "src": "a long trestle table with plates and a tankard (the hall's centrepiece), made through the PixelLab API for the room templates (art-incoming/dungeon-props-generated; tools/assets/vendor/dungeon-props), item 233",
+      "fit": {
+        "size": 0.95
+      }
+    },
+    "chair": {
+      "src": "a wooden chair, beside a table, made through the PixelLab API for the room templates (art-incoming/dungeon-props-generated; tools/assets/vendor/dungeon-props), item 233",
+      "fit": {
+        "size": 0.85
+      }
+    },
+    "sacks": {
+      "blocks": true,
+      "breakable": true,
+      "burnable": true,
+      "lootPct": 25,
+      "breakSfx": "crate-break",
+      "src": "tied grain sacks leaning together (the storeroom's), made through the PixelLab API for the room templates (art-incoming/dungeon-props-generated; tools/assets/vendor/dungeon-props), item 233",
+      "fit": {
+        "size": 0.9
+      }
+    },
+    "broken-crate": {
+      "src": "a smashed crate, splintered planks (a storeroom's or a ruin's), made through the PixelLab API for the room templates (art-incoming/dungeon-props-generated; tools/assets/vendor/dungeon-props), item 233",
+      "fit": {
+        "size": 0.9
+      }
+    },
+    "debris": {
+      "flat": true,
+      "src": "broken stone and plaster on the floor (a ruin's), made through the PixelLab API for the room templates (art-incoming/dungeon-props-generated; tools/assets/vendor/dungeon-props), item 233",
+      "fit": {
+        "size": 0.9,
+        "feet": false,
+        "lies": true
+      }
+    },
+    "bedroll": {
+      "flat": true,
+      "src": "a soldier's bedroll with its blanket (the guardroom's), made through the PixelLab API for the room templates (art-incoming/dungeon-props-generated; tools/assets/vendor/dungeon-props), item 233",
+      "fit": {
+        "size": 0.95,
+        "feet": false,
+        "lies": true
+      }
+    },
+    "candelabra-floor": {
+      "blocks": true,
+      "lightFamily": "candle",
+      "light": {
+        "color": "#FFC870",
+        "radius": 3,
+        "strength": 0.6,
+        "note": "presentation only: its three candles"
+      },
+      "src": "a tall iron floor candelabrum with three lit candles (beside a study's desk, the hall, the shrine nook), made through the PixelLab API for the room templates (art-incoming/dungeon-props-generated; tools/assets/vendor/dungeon-props), item 233",
+      "fit": {
+        "size": 0.95,
+        "frameMs": 110
+      }
+    },
+    "book-pile": {
+      "flat": true,
+      "src": "a pile of old books and an open one on the floor (the study's), made through the PixelLab API for the room templates (art-incoming/dungeon-props-generated; tools/assets/vendor/dungeon-props), item 233",
+      "fit": {
+        "size": 0.85,
+        "feet": false,
+        "lies": true
+      }
+    },
+    "web": {
+      "flat": true,
+      "burnable": true,
+      "web": true,
+      "src": "js/content/data.js:898"
+    },
+    "banner-stand": {
+      "front": true,
+      "blocks": true,
+      "burnable": true,
+      "src": "js/content/data.js:898",
+      "fit": {
+        "frameMs": 140
+      }
+    },
+    "shrine": {
+      "blocks": true,
+      "src": "js/content/data.js:898"
+    },
+    "pillar": {
+      "blocks": true,
+      "src": "js/content/data.js:898"
+    },
+    "elemental-lock": {
+      "blocks": true,
+      "src": "js/content/data.js:898",
+      "orb": {
+        "artSize": [124, 106],
+        "sockets": {
+          "fire": [62, 12],
+          "water": [97, 26],
+          "air": [98, 48],
+          "earth": [62, 61],
+          "light": [26, 48],
+          "shadow": [28, 26]
+        }
+      }
+    },
+    "lever-up": {
+      "blocks": true,
+      "src": "js/content/data.js:898"
+    },
+    "lever-down": {
+      "blocks": true,
+      "src": "js/content/data.js:898"
+    },
+    "boss-throne": {
+      "blocks": true,
+      "src": "js/content/data.js:898",
+      "fit": {
+        "size": 1.12
+      }
+    },
+    "crypt-funeral-bell": {
+      "blocks": true,
+      "src": "js/content/data.js:898",
+      "fit": {
+        "frameMs": 140
+      }
+    },
+    "resonance-crystal": {
+      "blocks": true,
+      "src": "js/content/data.js:898"
+    },
+    "silk-wrapped-traveler": {
+      "blocks": true,
+      "src": "js/content/data.js:898"
+    },
+    "portcullis-closed": {
+      "blocks": true,
+      "src": "js/content/data.js:898"
+    },
+    "stack-group": {
+      "blocks": true,
+      "breakable": true,
+      "burnable": true,
+      "lootPct": 45,
+      "breakSfx": "crate-break",
+      "src": "js/world/biomes/crypt/cryptrooms.js:243",
+      "fit": {
+        "size": 0.78,
+        "family": {
+          "barrel": 0.9
+        }
+      }
+    },
+    "crystal-gold": {
+      "flat": true,
+      "src": "js/world/planes/portals.js:68",
+      "fit": {
+        "scale": 0.7,
+        "anchor": 0.96
+      }
+    },
+    "crystal-gold-small": {
+      "flat": true,
+      "src": "js/world/planes/portals.js:68",
+      "fit": {
+        "scale": 0.7,
+        "anchor": 0.96,
+        "realm": {
+          "size": 0.98,
+          "paint": true
+        }
+      }
+    },
+    "stalagmite-light": {
+      "flat": true,
+      "src": "js/world/planes/portals.js:68"
+    },
+    "crystal-violet": {
+      "flat": true,
+      "src": "js/world/planes/portals.js:68",
+      "fit": {
+        "scale": 0.7,
+        "anchor": 0.96
+      }
+    },
+    "stalagmite-shadow": {
+      "flat": true,
+      "src": "js/world/planes/portals.js:68"
+    },
+    "fern": {
+      "flat": true,
+      "src": "js/world/planes/portals.js:68"
+    },
+    "root-tangle": {
+      "flat": true,
+      "src": "js/world/planes/portals.js:68"
+    },
+    "glow-mushrooms": {
+      "flat": true,
+      "burnable": true,
+      "src": "js/world/planes/portals.js:68",
+      "fit": {
+        "scale": 0.5
+      }
+    },
+    "stepping-stone": {
+      "flat": true,
+      "src": "js/world/planes/portals.js:68"
+    },
+    "sun-dais": {
+      "blocks": true,
+      "footprint": {
+        "w": 2,
+        "h": 2
+      },
+      "note": "a standing 2x2 set piece (Justin 2026-10-14: \"Block the sun dais too, it should be solid like the others\"); 1.7's own row still said flat",
+      "src": "js/world/planes/portals.js:68, :182-188"
+    },
+    "crystal-amber": {
+      "flat": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41",
+      "fit": {
+        "scale": 0.7,
+        "anchor": 0.96
+      }
+    },
+    "crystal-amber-small": {
+      "flat": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41",
+      "fit": {
+        "scale": 0.7,
+        "anchor": 0.96,
+        "realm": {
+          "size": 0.98,
+          "paint": true
+        }
+      }
+    },
+    "crystal-violet-small": {
+      "flat": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41",
+      "fit": {
+        "scale": 0.7,
+        "anchor": 0.96,
+        "realm": {
+          "size": 0.98,
+          "paint": true
+        }
+      }
+    },
+    "stalagmite-earth": {
+      "flat": true,
+      "src": "js/world/biomes/crypt/cryptpack.js:41"
+    },
+    "rune-stone-fire": {
+      "blocks": true,
+      "src": "js/world/planes/planesfwa.js:56"
+    },
+    "rune-stone-water": {
+      "blocks": true,
+      "src": "js/world/planes/planesfwa.js:56"
+    },
+    "rune-stone-earth": {
+      "blocks": true,
+      "src": "js/world/planes/portals.js:70"
+    },
+    "rune-stone-light": {
+      "blocks": true,
+      "src": "js/world/planes/portals.js:70"
+    },
+    "rune-stone-shadow": {
+      "blocks": true,
+      "src": "js/world/planes/portals.js:70"
+    },
+    "mossy-boulder": {
+      "blocks": true,
+      "src": "js/world/planes/portals.js:70"
+    },
+    "sword-in-stone": {
+      "blocks": true,
+      "breakable": true,
+      "burnable": false,
+      "note": "S23: breaking it drops its breakReward, the Masterwork +3 Light sword",
+      "src": "js/world/world.js:1077",
+      "fit": {
+        "size": 0.98
+      }
+    },
+    "rune-stone-air": {
+      "blocks": true,
+      "src": "js/world/planes/planesfwa.js:56"
+    },
+    "crystal-fire": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:56",
+      "fit": {
+        "scale": 0.7,
+        "anchor": 0.96
+      }
+    },
+    "crystal-fire-small": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:56",
+      "fit": {
+        "scale": 0.7,
+        "anchor": 0.96,
+        "realm": {
+          "size": 0.98,
+          "paint": true
+        }
+      }
+    },
+    "stalagmite-fire": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:56"
+    },
+    "crystal-water": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:56",
+      "fit": {
+        "scale": 0.7,
+        "anchor": 0.96
+      }
+    },
+    "crystal-water-small": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:56",
+      "fit": {
+        "scale": 0.7,
+        "anchor": 0.96,
+        "realm": {
+          "size": 0.98,
+          "paint": true
+        }
+      }
+    },
+    "stalagmite-water": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:56"
+    },
+    "crystal-air": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:56",
+      "fit": {
+        "scale": 0.7,
+        "anchor": 0.96
+      }
+    },
+    "crystal-air-small": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:56",
+      "fit": {
+        "scale": 0.7,
+        "anchor": 0.96,
+        "realm": {
+          "size": 0.98,
+          "paint": true
+        }
+      }
+    },
+    "stalagmite-air": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:56"
+    },
+    "lava-fountain": {
+      "blocks": true,
+      "light": {
+        "color": "#FF7A26",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "footprint": {
+        "w": 2,
+        "h": 2
+      },
+      "src": "js/world/planes/planesfwa.js:61"
+    },
+    "signature-water": {
+      "blocks": true,
+      "light": {
+        "color": "#7CC8FF",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "footprint": {
+        "w": 2,
+        "h": 2
+      },
+      "src": "js/world/planes/planesfwa.js:61"
+    },
+    "signature-air": {
+      "blocks": true,
+      "light": {
+        "color": "#E8F4FF",
+        "radius": 4.8,
+        "strength": 1,
+        "note": "presentation only"
+      },
+      "footprint": {
+        "w": 2,
+        "h": 2
+      },
+      "src": "js/world/planes/planesfwa.js:61"
+    },
+    "embers-slag-1": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:61",
+      "fit": {
+        "scale": 0.5
+      }
+    },
+    "embers-slag-2": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:61",
+      "fit": {
+        "scale": 0.5
+      }
+    },
+    "embers-slag-3": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:61",
+      "fit": {
+        "scale": 0.5
+      }
+    },
+    "embers-slag-4": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:61",
+      "fit": {
+        "scale": 0.5
+      }
+    },
+    "scatter-water-1": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:61",
+      "fit": {
+        "scale": 0.5
+      }
+    },
+    "scatter-water-2": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:61",
+      "fit": {
+        "scale": 0.5
+      }
+    },
+    "scatter-water-3": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:61",
+      "fit": {
+        "scale": 0.5
+      }
+    },
+    "scatter-water-4": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:61",
+      "fit": {
+        "scale": 0.5
+      }
+    },
+    "scatter-air-1": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:61",
+      "fit": {
+        "scale": 0.5
+      }
+    },
+    "scatter-air-2": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:61",
+      "fit": {
+        "scale": 0.5
+      }
+    },
+    "scatter-air-3": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:61",
+      "fit": {
+        "scale": 0.5
+      }
+    },
+    "scatter-air-4": {
+      "flat": true,
+      "src": "js/world/planes/planesfwa.js:61",
+      "fit": {
+        "scale": 0.5
+      }
+    },
+    "rule-break-loot": { "nothingBelow": 0.74, "nothingPct": 50, "essence": {"roll": [4, 10], "mult": 1.5}, "foodBelow": 0.78, "food": "ration",
+      "kind": "rule",
+      "does": "A breakable prop with lootPct is removed when hit (sound breakSfx, else crate-break); then lootPct% chance of loot: roll r; r<0.74: a further 50% chance of nothing, else essence round((4-10 + floor) x 1.5); r<0.78: one random food; else one random mote. \"Something rolls out of the pieces.\"",
+      "ruling": "2026-10-14 loot pass: half as many essence piles, each 1.5x; no sigils from props",
+      "src": "js/combat/systems.js:460"
+    },
+    "rule-dungeon-break": {"kind": "rule", "does": "Dungeon floors 1-5 (not planes), Justin 2026-10-16 sandbox item 9: a weapon rack drops a weapon 10% of the time; otherwise a crate or rack rolls its lootPct, then crate: heart 30, globe 30, essence 30, slime 10; rack: heart, globe and essence evenly (the roll scaled to 0.9).", "lastFloor": 5, "rackWeaponPct": 10, "rackScale": 0.9, "heartBelow": 0.3, "globeBelow": 0.6, "essenceBelow": 0.9, "src": "src/rules/props.js dungeonBreak (sandbox item 9)"},
+    "rule-bush": { "heartPct": 60, "essence": [2, 5],
+      "kind": "rule",
+      "does": "Bush: blocks, hit to cut; cut by fire leaves ash and no loot; otherwise 25% loot: 60% a heart, else essence 2-5 + floor (\"A heart was tucked under the bush.\" / \"Something glints among the cut leaves.\"). sfx step-grass at half volume. Regrows 150 actions later out of sight.",
+      "src": "js/presentation/render/vegart.js:244"
+    },
+    "rule-fire": {
+      "kind": "rule",
+      "does": "Burning tiles count down each action; a burnable prop on a tile whose fire runs out is removed (fluid barrels spill), grass/web/bare ground becomes ash (bare: scorch); each burning tile spreads to each orthogonal neighbour: tall grass 45%, short grass 18%, burnable prop 25%. A tile catches with grass 5 actions, otherwise 3; water never burns. Fire touching an explosive barrel blows it 250 ms later; web props and ice blocks are removed.",
+      "owner": "D (A2), recorded for props",
+      "src": "js/combat/systems.js:517; js/combat/systems.js:548"
+    },
+    "rule-mushroom-trample": {
+      "kind": "rule",
+      "does": "A non-blocking mushroom, shroom or fungus prop is removed when a non-flying body steps on it and the tile gets short grass.",
+      "src": "js/combat/systems.js:98"
+    },
+    "rule-gen-commit": {
+      "kind": "rule",
+      "does": "After all builders: no prop on an object tile (chest, stairs, door, Forge); a prop never shares a tile with a trap (traps under props are dropped).",
+      "src": "js/world/world.js:252; js/world/puzzles.js:522"
+    },
+    "placement-dungeon-plain-room": {
+      "kind": "placement",
+      "biome": "dungeon (also Crypt rooms, which then add their own crypt dressing)",
+      "edgeLights": {
+        "chancePct": 35,
+        "sets": [
+          [
+            "torch-stand"
+          ],
+          [
+            "brazier-lit"
+          ],
+          [
+            "brazier-unlit",
+            "torch-stand"
+          ]
+        ],
+        "count": [
+          1,
+          2
+        ],
+        "where": "shuffled edge cells, names cycled"
+      },
+      "inner": {
+        "count": [
+          0,
+          3
+        ],
+        "table": [
+          "rubble",
+          "bones",
+          "rubble",
+          "chains",
+          "barrel",
+          "crate",
+          "pot",
+          "mushrooms"
+        ],
+        "rule": "flat pieces on shuffled interior cells; a blocking piece is skipped if its interior cell is beside a door, else it goes on a random edge cell instead"
+      },
+      "src": "js/world/world.js:600"
+    },
+    "placement-vegetation": {
+      "kind": "placement",
+      "biome": "dungeon and caverns (underdark has its own; crypt keeps its own ground cover; planes none)",
+      "moods": {
+        "weights": {
+          "overgrown": 12,
+          "lush": 26,
+          "some": 37,
+          "bare": 25
+        },
+        "damp": {
+          "overgrown": 0.5,
+          "lush": 0.22,
+          "some": 0.06,
+          "bare": 0
+        },
+        "shortAt": {
+          "overgrown": 0.1,
+          "lush": 0.3,
+          "some": 0.5,
+          "bare": 0.8
+        },
+        "tallAt": {
+          "overgrown": 0.62,
+          "lush": 0.62,
+          "some": 0.82,
+          "bare": "never"
+        },
+        "spotAt": {
+          "overgrown": 0.35,
+          "lush": 0.5,
+          "some": 0.7,
+          "bare": "never"
+        },
+        "overrides": [
+          "start room: lush or overgrown becomes some",
+          "boss room: bare",
+          "caverns: overgrown becomes lush",
+          "garden: lush (Dungeon gardens keep their own planting and are skipped)"
+        ]
+      },
+      "moisture": "max(water term, wall term) + noise patch + 0.1 if both terms > 0 + room damp; water term = 1 - 0.22 x (orthogonal steps to water or puddle, out to 4); wall term = 0.42 with 5+ wall neighbours (8-way), 0.34 with 3+, 0.22 with 1+; patch = (noise(x/3,y/3) - 0.5) x 0.55 + (noise(0.9x,0.9y) - 0.5) x 0.2",
+      "cells": "free: plain floor, no ground (caverns: moss allowed), no prop, more than 1 from the player start; caverns: only cells of that cave room",
+      "growth": [
+        "moisture >= tallAt: tall grass (caverns: only within 2 of water, else falls through)",
+        "moisture >= shortAt: short grass",
+        "else within 1 of water, or 2 with noise(0.8x,0.8y) > 0.4: short grass",
+        "plant spot when moisture >= spotAt and (a wall neighbour or overgrown) and hash < 18% caverns / 22% overgrown / 35% otherwise"
+      ],
+      "corners": "Dungeon, mood not bare: 1-3 random corner cells (wall on a vertical and a horizontal side); the corner 60% tall else short; each of the 8 neighbours 70% short; 50% a plant spot at the corner; skipped within 1 of the player",
+      "corridors": "outside rooms, free, beside a wall: noise(x/2,y/2) > 0.72 and hash < 0.6: short grass",
+      "bushes": "Dungeon only: each plant spot becomes a bush with 70% (lush) or 30% (other) if: plain floor, no prop, not within 1 of a door, stairs or chest, not in a gap (at most 2 open orthogonal neighbours), more than 2 from the player; then a row of 0-2 more bushes along the wall direction; a bush on tall grass turns it short",
+      "spots": "one spot per tile; spots on props are dropped and grass under a spot is cleared; spots feed the art (bushes, ferns, flowers)",
+      "ruling": "2026-09-19 Justin: vegetation generous, in clusters, around water, never dotted at random; 2026-09-20 \"mushrooms and other vegetation shouldn't spawn on top of the other vegetation\"",
+      "src": "js/world/terrain/vegetation.js:11"
+    },
+    "rule-regrowth": {
+      "kind": "rule",
+      "phase": "A25 (per action)",
+      "timers": {
+        "bushActions": 150,
+        "trampledTallActions": 100,
+        "burntActions": 200
+      },
+      "bush": "a cut bush is queued with due action = now + 150; from then it reappears the first action its tile is out of sight, empty (no creature, item, player), plain floor, no prop",
+      "grass": "every 10th action: each tile that was grass at generation and is now short (from tall), ash, scorch or bare notes the action it changed; after 100 actions (trampled) or 200 (ash or scorch) and while out of sight and empty it grows back one step: ash/scorch/bare return as short grass first, then short returns to tall if it was tall",
+      "sets": "regrowth runs where a vegetation set exists: Dungeon, Caverns, Crypt (mushroom set), Underdark, Earth plane",
+      "trample": "the player or a non-flying creature stepping onto tall grass makes it short (player sound step-grass at 0.15 volume)",
+      "ruling": "2026-09-19 Justin: the food clock stops anyone farming it forever",
+      "src": "js/presentation/render/vegart.js:258; js/combat/systems.js:64"
+    }
+  }
+}

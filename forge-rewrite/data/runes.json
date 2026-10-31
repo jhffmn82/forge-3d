@@ -1,0 +1,937 @@
+{
+  "version": 1,
+  "rows": {
+    "assignment": {
+      "kind": "rule",
+      "does": "Every run gives each sigil kind a rune look: the 24 futhark runes and the 3 bind-runes are each shuffled (Fisher-Yates, futhark first) from a stream seeded world seed ^ 0x1234567; sigils are taken in the Forge's order (sigils.json groups); the rare sigils take bind-runes in turn, the rest futhark runes in turn (wrapping when they run out). An unknown sigil is called '<Rune> rune' ('Fehu rune', 'Star-bound rune'); once read, carved or identified, its real name for the rest of the run.",
+      "seedXor": "0x1234567",
+      "rare": [
+        "aegis",
+        "ascension",
+        "wisdom",
+        "transmutation"
+      ],
+      "src": "js/elements/runes.js:40-44, :101-113, :128"
+    },
+    "look": {
+      "kind": "rule",
+      "does": "A rune is a glyph of light on a faint wash, drawn from its polylines on a 10 x 14 grid in three passes (haze, body, core). A rune lying on the floor gives a soft light of radius 2.4.",
+      "glow": {
+        "futhark": "#6FC4FF",
+        "bind": "#B9A2FF"
+      },
+      "lightRadius": 2.4,
+      "lightStrength": 0.6,
+      "src": "js/elements/runes.js:48-88, :132-140"
+    },
+    "fehu": {
+      "kind": "futhark",
+      "name": "Fehu rune",
+      "glyph": [
+        [
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            13
+          ]
+        ],
+        [
+          [
+            3,
+            5
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            8
+          ],
+          [
+            7,
+            4
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "uruz": {
+      "kind": "futhark",
+      "name": "Uruz rune",
+      "glyph": [
+        [
+          [
+            3,
+            13
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            13
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "thurisaz": {
+      "kind": "futhark",
+      "name": "Thurisaz rune",
+      "glyph": [
+        [
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            13
+          ]
+        ],
+        [
+          [
+            3,
+            4
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            3,
+            10
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "ansuz": {
+      "kind": "futhark",
+      "name": "Ansuz rune",
+      "glyph": [
+        [
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            13
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            8,
+            4
+          ]
+        ],
+        [
+          [
+            4,
+            5
+          ],
+          [
+            8,
+            8
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "raidho": {
+      "kind": "futhark",
+      "name": "Raidho rune",
+      "glyph": [
+        [
+          [
+            3,
+            13
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            7,
+            13
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "kenaz": {
+      "kind": "futhark",
+      "name": "Kenaz rune",
+      "glyph": [
+        [
+          [
+            7,
+            2
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            7,
+            12
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "gebo": {
+      "kind": "futhark",
+      "name": "Gebo rune",
+      "glyph": [
+        [
+          [
+            2,
+            2
+          ],
+          [
+            8,
+            12
+          ]
+        ],
+        [
+          [
+            8,
+            2
+          ],
+          [
+            2,
+            12
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "wunjo": {
+      "kind": "futhark",
+      "name": "Wunjo rune",
+      "glyph": [
+        [
+          [
+            3,
+            13
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            3,
+            7
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "hagalaz": {
+      "kind": "futhark",
+      "name": "Hagalaz rune",
+      "glyph": [
+        [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            13
+          ]
+        ],
+        [
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            13
+          ]
+        ],
+        [
+          [
+            2,
+            5
+          ],
+          [
+            8,
+            9
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "nauthiz": {
+      "kind": "futhark",
+      "name": "Nauthiz rune",
+      "glyph": [
+        [
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            13
+          ]
+        ],
+        [
+          [
+            2,
+            5
+          ],
+          [
+            8,
+            9
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "isa": {
+      "kind": "futhark",
+      "name": "Isa rune",
+      "glyph": [
+        [
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            13
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "jera": {
+      "kind": "futhark",
+      "name": "Jera rune",
+      "glyph": [
+        [
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            5,
+            7
+          ]
+        ],
+        [
+          [
+            5,
+            7
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            5,
+            13
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "eihwaz": {
+      "kind": "futhark",
+      "name": "Eihwaz rune",
+      "glyph": [
+        [
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            13
+          ]
+        ],
+        [
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            4
+          ]
+        ],
+        [
+          [
+            5,
+            13
+          ],
+          [
+            2,
+            10
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "perthro": {
+      "kind": "futhark",
+      "name": "Perthro rune",
+      "glyph": [
+        [
+          [
+            8,
+            2
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            13
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            8,
+            12
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "elhaz": {
+      "kind": "futhark",
+      "name": "Elhaz rune",
+      "glyph": [
+        [
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            13
+          ]
+        ],
+        [
+          [
+            5,
+            6
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        [
+          [
+            5,
+            6
+          ],
+          [
+            8,
+            2
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "sowilo": {
+      "kind": "futhark",
+      "name": "Sowilo rune",
+      "glyph": [
+        [
+          [
+            7,
+            1
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            3,
+            13
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "tiwaz": {
+      "kind": "futhark",
+      "name": "Tiwaz rune",
+      "glyph": [
+        [
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            13
+          ]
+        ],
+        [
+          [
+            5,
+            1
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        [
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            5
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "berkana": {
+      "kind": "futhark",
+      "name": "Berkana rune",
+      "glyph": [
+        [
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            13
+          ]
+        ],
+        [
+          [
+            3,
+            1
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            7,
+            10
+          ],
+          [
+            3,
+            13
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "ehwaz": {
+      "kind": "futhark",
+      "name": "Ehwaz rune",
+      "glyph": [
+        [
+          [
+            2,
+            13
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            13
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "mannaz": {
+      "kind": "futhark",
+      "name": "Mannaz rune",
+      "glyph": [
+        [
+          [
+            2,
+            13
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            8,
+            7
+          ]
+        ],
+        [
+          [
+            8,
+            13
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            2,
+            7
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "laguz": {
+      "kind": "futhark",
+      "name": "Laguz rune",
+      "glyph": [
+        [
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            13
+          ]
+        ],
+        [
+          [
+            3,
+            1
+          ],
+          [
+            7,
+            5
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "ingwaz": {
+      "kind": "futhark",
+      "name": "Ingwaz rune",
+      "glyph": [
+        [
+          [
+            3,
+            1
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            7,
+            13
+          ]
+        ],
+        [
+          [
+            7,
+            1
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            3,
+            13
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "dagaz": {
+      "kind": "futhark",
+      "name": "Dagaz rune",
+      "glyph": [
+        [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            12
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            8,
+            12
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "othala": {
+      "kind": "futhark",
+      "name": "Othala rune",
+      "glyph": [
+        [
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            2,
+            13
+          ]
+        ],
+        [
+          [
+            5,
+            1
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            8,
+            13
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:11-34"
+    },
+    "starbind": {
+      "kind": "bind-rune",
+      "name": "Star-bound rune",
+      "glyph": [
+        [
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            13
+          ]
+        ],
+        [
+          [
+            5,
+            1
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        [
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            4
+          ]
+        ],
+        [
+          [
+            8,
+            6
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            8,
+            12
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:36-38, :42"
+    },
+    "crossbind": {
+      "kind": "bind-rune",
+      "name": "Cross-bound rune",
+      "glyph": [
+        [
+          [
+            2,
+            2
+          ],
+          [
+            8,
+            12
+          ]
+        ],
+        [
+          [
+            8,
+            2
+          ],
+          [
+            2,
+            12
+          ]
+        ],
+        [
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            13
+          ]
+        ],
+        [
+          [
+            2,
+            7
+          ],
+          [
+            8,
+            7
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:36-38, :42"
+    },
+    "rootbind": {
+      "kind": "bind-rune",
+      "name": "Root-bound rune",
+      "glyph": [
+        [
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            13
+          ]
+        ],
+        [
+          [
+            5,
+            5
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            5
+          ],
+          [
+            8,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            9
+          ],
+          [
+            2,
+            13
+          ]
+        ],
+        [
+          [
+            5,
+            9
+          ],
+          [
+            8,
+            13
+          ]
+        ]
+      ],
+      "src": "js/elements/runes.js:36-38, :42"
+    }
+  }
+}

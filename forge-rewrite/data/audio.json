@@ -1,0 +1,341 @@
+{
+ "version": 1,
+ "levels": {
+  "cues": {
+   "bat-death": 0.36,
+   "brute-attack": 0.47,
+   "goblin-alert": 0.31,
+   "goblin-death": 0.17,
+   "rat-attack": 0.7,
+   "rat-death": 0.58,
+   "slime-death": 0.52,
+   "warchief-death": 0.35,
+   "warchief-roar": 0.29,
+   "trap-alarm": 0.4,
+   "trap-frost": 0.49,
+   "trap-gas": 0.64,
+   "trap-pit": 0.28,
+   "trap-spark": 0.44,
+   "trap-teleport": 0.63,
+   "status-burn": 0.88,
+   "status-fear": 0.28,
+   "status-poison": 0.54,
+   "fire-hit": 0.97,
+   "forge-enchant": 0.79,
+   "heal": 0.87,
+   "piety-rank": 0.39,
+   "shrine-convert": 0.69,
+   "shrine-open": 0.46,
+   "wobbles-giggle": 0.45,
+   "identify": 0.32,
+   "level-up": 0.14,
+   "new-ability": 0.94,
+   "pickup-mote": 0.42,
+   "puzzle-solved": 0.93,
+   "stat-point": 0.94,
+   "status-stun": 0.89,
+   "victory": 0.26,
+   "inventory-full": 0.47,
+   "no-mana": 0.77,
+   "ui-error": 0.67,
+   "eat": 0.79,
+   "pickup-key": 0.59,
+   "step-stone": 0.66,
+   "night-warden-attack": 0.45,
+   "radiant-warden-attack": 0.42
+  },
+  "src": "1.7 js/platform/audio.js SFX_LEVEL (Justin 2026-09-29, \"sound effects overall are too loud\"): every effect louder than the median weapon sound (-24.51 dBFS) brought down to it, with his extra halvings (goblin-death, magic-missile, pickup-essence, level-up, identify). A cue not listed plays at 1. The sounds Justin replaced on 2026-10-16 are not listed: their files carry the level he approved on the mix page (Justin 2026-10-18: \"the replaced sounds should play at the level I approved on the mix page. Drop the old 1.7 multipliers for them.\"); the wardens' attacks keep their 1.7 recordings and levels."
+ },
+ "aliases": {
+  "cues": {
+   "pickup-food": "eat",
+   "shaman-alert": "goblin-alert",
+   "warchief-attack": "brute-attack",
+   "warchief-alert": "warchief-roar",
+   "rat-alert": "rat-attack",
+   "emberlord-attack": "brute-attack",
+   "leviathan-attack": "brute-attack"
+  },
+  "src": "1.7 SFX_ALIASES: names 1.7 played through another file keep that file's level unless listed in levels."
+ },
+ "distanceBands": {
+  "bands": [[5, 1], [8, 0.7], [12, 0.3]],
+  "src": "A2 (1.7 sfxDistanceGain, Justin 2026-09-28): \"near (within 5 spaces), 70% between 5-8, 30% between 8-12, and after that you don't hear it.\" [up to spaces, gain]; beyond the last, silent."
+ },
+ "steps": {
+  "stone": 0.8,
+  "trample": 0.15,
+  "src": "CB31 (1.7 systems.js:64-65) a stone or water step at 0.8; props.json rule-regrowth: the grass rustle at 0.15 for the hero"
+ },
+ "mix": {
+  "voices": 24,
+  "alertGain": 0.55,
+  "repeatMs": {
+   "default": 40,
+   "creature-alert": 350,
+   "ui-feedback": 70
+  },
+  "staleMs": 500,
+  "echo": {
+   "seconds": 0.65,
+   "decay": 3.2,
+   "gain": 0.08
+  },
+  "limiter": {
+   "threshold": -3,
+   "knee": 3,
+   "ratio": 12,
+   "attack": 0.003,
+   "release": 0.15
+  },
+  "echoCues": "^(fire|ice|lightning|earth|light|shadow|magic|shrine|pray|heal|forge|wrath)",
+  "src": "A4 (1.7 sfx): repeats within 40 ms play once (alerts one group over 350 ms, the interface's clicks one over 70 ms) unless nearer; alerts at 0.55; at most 24 voices. A15: nothing older than 0.5 s. A5 (1.7 audioInit): a -3 dB limiter (ratio 12) and a 0.65 s stone-room echo at 0.08 on spells, prayers, shrines, heals and the Forge."
+ },
+ "music": {
+  "restMs": 5000,
+  "retryMs": {
+   "first": 5000,
+   "max": 30000
+  },
+  "tracksKept": {
+   "touch": 1,
+   "desktop": 3
+  },
+  "endsSilentSeconds": 0.5,
+  "endsPeak": 0.01,
+  "filters": {
+   "title": [{"type": "notch", "f": 14072, "q": 18}],
+   "amb-dungeon": [{"type": "lowpass", "f": 2800, "q": 0.707}, {"type": "lowpass", "f": 2800, "q": 0.707}],
+   "plane-water": [{"type": "peaking", "f": 3600, "q": 1.1, "gain": -14}],
+   "src": "Item 229 (Justin 2026-10-19: \"a really high pitched whistling in the music that is kinda irritating\"), measured: the title has a steady 14.07 kHz tone (-64 dBFS, 23 dB over its neighbours), notched 28 dB; the Dungeon ambience carries a comb of pure tones at every 200 Hz from 3.6 to 12 kHz (up to 27 dB over its neighbours), so it takes a 24 dB per octave low-pass at 2.8 kHz (the tones 12 to 45 dB down, its drone below 2 kHz untouched). The other tracks have no audible tone. Item 253 (Justin 2026-10-20: \"lots of high pirched chirping in water plane music if we could filter out\"), measured by bursts (third-octave bands, frames 12 dB over the band's median): the Plane of Water's score chirps 2.4 to 4.6 kHz, about 82 bursts a minute, peaks -32 dB at 3.2 and 4 kHz against a -30 dB body, each a narrow tone that sweeps, so a broad cut, not a notch: peaking 3.6 kHz, Q 1.1, -14 dB takes the chirps' peaks 12 to 13 dB down at 3.2 and 4 kHz and 9 dB at 2.5 kHz, the body (100 Hz to 2 kHz) unchanged. Of the other planes, Fire has dense broadband crackle bursts rising to 16 kHz (likely its own fire), Earth mild bursts at 2.5 kHz with its notes, Air, Light and Shadow none; none filtered."
+  },
+  "src": "A11 (1.7 musicEnds, playMusic): a song whose last half second is silent rests 5 s between plays. A13 (1.7 audioRetryDelay): a failed track is asked for again after 5 s, doubling to 30 s. A12 (1.7 AUDIO_MUSIC_LRU, 2026-10-14): a tablet keeps one decoded track, a desktop three."
+ },
+ "events": {
+  "hitByType": {
+   "types": {
+    "phys": "arrow-hit",
+    "fire": "fire-hit",
+    "ice": "ice-hit",
+    "lightning": "lightning-hit",
+    "poison": "earth-hit",
+    "earth": "earth-hit",
+    "light": "light-hit",
+    "dark": "shadow-hit",
+    "magic": "magic-missile-hit"
+   },
+   "src": "FX5 (1.7 fx.js hitSfxFor): a landing bolt or arrow sounds its element; anything else hit-flesh"
+  },
+  "refusals": {
+   "reasons": {
+    "no-mana": "no-mana",
+    "cooldown": "ui-error",
+    "out-of-range": "ui-error",
+    "unseen": "ui-error",
+    "forbidden": "ui-error",
+    "foe-adjacent": "ui-error",
+    "rooted": "ui-error",
+    "cannot-attack": "ui-error",
+    "no-charge": "ui-error",
+    "cannot-echo": "ui-error",
+    "cannot-echo-yet": "ui-error"
+   },
+   "src": "1.7 casting-adapter.js useAbility: short of mana the no-mana sound, any other refusal the error buzz; EQ11 (1.7 amulets.js:65, :76-77) an amulet with no charge or nothing to echo"
+  },
+  "amulets": {
+   "kinds": {
+    "tide": "step-water",
+    "pillar": "crate-break"
+   },
+   "src": "EQ11 (1.7 amulets.js:208, :240): the Tide splashes where it lands, a raised Pillar breaks stone"
+  },
+  "ownSfx": ["ignited", "corpse-destroyed", "knock-blocked", "move-used", "bolt", "spawned", "telegraph", "float", "hatched", "cocoon-burned", "alert", "field", "sigil", "fused", "enchanted", "carved", "recycled", "identified", "victory"],
+  "ownSfxSrc": "events whose own sfx (a name, or names of which the first recorded one plays) is the whole cue, at the event's volume: creature casts and calls, bolts, risings, wind-ups, the Forge's work, sigils, identifying, the run's victory (audit A1 CV19 UD3 CB27 EP18 E22 G28; item 289: realm.js's victory sfx had no rule)",
+  "plain": {
+   "trap": {
+    "unless": "heard"
+   },
+   "trap-found": {},
+   "door": {
+    "needsSfx": true
+   },
+   "forge": {
+    "needsSfx": true
+   },
+   "shrine": {
+    "needsSfx": true
+   },
+   "pickup": {},
+   "chest": {},
+   "log": {
+    "needsSfx": true
+   },
+   "refused": {
+    "needsSfx": true
+   },
+   "floor": {
+    "needsSfx": true
+   },
+   "boss-move": {
+    "needsSfx": true
+   },
+   "prop-broken": {
+    "needsSfx": true,
+    "volume": true
+   },
+   "explosion": {
+    "needsSfx": true,
+    "volume": true
+   },
+   "ground": {
+    "needsSfx": true,
+    "volume": true
+   }
+  },
+  "plainSrc": "events that play their own sfx where they happen (G38 the stairs; a seen body crushing mushrooms, caverns.js trample); volume: at the event's volume",
+  "unplaced": ["ability", "level", "refused", "log", "pickup", "boss", "identified", "fused", "enchanted", "carved", "recycled", "sigil"],
+  "unplacedSrc": "the hero's own events and stingers: no place, full volume"
+ },
+ "synth": {
+  "elements": {
+   "fire": {
+    "cast": [
+     { "noise": [0.35, 0.35, "bandpass", 600, 2400, 1.2] }
+    ],
+    "hit": [
+     { "noise": [0.45, 0.35, "bandpass", 1800, 300, 1.2] },
+     { "tone": ["sawtooth", 120, 50, 0.3, 0.12] }
+    ]
+   },
+   "ice": {
+    "cast": [
+     { "tone": ["sine", 1400, 2400, 0.25, 0.15] },
+     { "tone": ["triangle", 2100, 0, 0.2, 0.08], "at": 0.03 }
+    ],
+    "hit": [
+     { "tone": ["sine", 1800, 900, 0.25, 0.15] },
+     { "tone": ["triangle", 2600, 0, 0.2, 0.08], "at": 0.03 },
+     { "noise": [0.25, 0.2, "highpass", 4000, 6000, 0.8] }
+    ]
+   },
+   "lightning": {
+    "cast": [
+     { "noise": [0.2, 0.4, "highpass", 2500, 8000, 2] },
+     { "tone": ["square", 220, 40, 0.15, 0.1] }
+    ],
+    "hit": [
+     { "noise": [0.3, 0.4, "highpass", 2500, 8000, 2] },
+     { "tone": ["square", 90, 40, 0.15, 0.1] }
+    ]
+   },
+   "earth": {
+    "cast": [
+     { "noise": [0.4, 0.45, "lowpass", 400, 80, 0.8] },
+     { "tone": ["sine", 80, 40, 0.3, 0.25] }
+    ],
+    "hit": [
+     { "noise": [0.4, 0.45, "lowpass", 400, 80, 0.8] },
+     { "tone": ["sine", 80, 40, 0.3, 0.25] }
+    ]
+   },
+   "light": {
+    "cast": [
+     { "tone": ["sine", 880, 0, 0.6, 0.14] },
+     { "tone": ["sine", 1320, 0, 0.5, 0.08] }
+    ],
+    "hit": [
+     { "tone": ["sine", 1320, 0, 0.6, 0.14] },
+     { "tone": ["sine", 1980, 0, 0.5, 0.08] }
+    ]
+   },
+   "dark": {
+    "cast": [
+     { "tone": ["sawtooth", 160, 90, 0.5, 0.1] },
+     { "noise": [0.5, 0.18, "bandpass", 300, 150, 4] }
+    ],
+    "hit": [
+     { "tone": ["sawtooth", 110, 55, 0.5, 0.1] },
+     { "noise": [0.5, 0.18, "bandpass", 300, 150, 4] }
+    ]
+   },
+   "magic": {
+    "cast": [
+     { "tone": ["square", 900, 1800, 0.18, 0.1] },
+     { "tone": ["sine", 1350, 0, 0.15, 0.08], "at": 0.02 }
+    ],
+    "hit": [
+     { "tone": ["square", 660, 330, 0.18, 0.1] },
+     { "tone": ["sine", 990, 0, 0.15, 0.08], "at": 0.02 }
+    ]
+   }
+  },
+  "elementOf": [["fire", "fire"], ["ice", "ice"], ["lightning", "lightning"], ["earth", "earth"], ["light", "light"], ["shadow", "dark"]],
+  "elementDefault": "magic",
+  "recipes": [
+   { "re": "^step-grass", "layers": [{ "noise": [0.18, 0.12, "highpass", 2500, 5000, 0.8] }] },
+   { "re": "^step-water", "layers": [{ "noise": [0.22, 0.18, "bandpass", 900, 400, 2] }] },
+   { "re": "^step", "layers": [{ "noise": [0.06, 0.06, "lowpass", 700, 200, 0.8] }] },
+   { "re": "^swing$", "layers": [{ "noise": [0.16, 0.18, "bandpass", 900, 2500, 1.5] }] },
+   { "re": "^miss$", "layers": [{ "noise": [0.14, 0.12, "bandpass", 1500, 3000, 1.2] }] },
+   { "re": "^(hit-flesh|sap)$", "layers": [{ "noise": [0.12, 0.4, "lowpass", 900, 150, 0.8] }, { "tone": ["sine", 140, 60, 0.12, 0.25] }] },
+   { "re": "^(hit-armor|parry|block)$", "layers": [{ "tone": ["triangle", 1200, 900, 0.18, 0.15] }, { "noise": [0.1, 0.25, "highpass", 2000, 4000, 0.8] }] },
+   { "re": "^hit-crit$", "layers": [{ "noise": [0.2, 0.5, "lowpass", 1400, 120, 0.8] }, { "tone": ["sawtooth", 180, 50, 0.2, 0.2] }] },
+   { "re": "^double-strike$", "layers": [{ "noise": [0.12, 0.2, "bandpass", 1200, 2800, 0.8] }, { "noise": [0.12, 0.2, "bandpass", 1200, 2800, 0.8], "at": 0.12 }] },
+   { "re": "^bow-shot$", "layers": [{ "tone": ["triangle", 420, 180, 0.14, 0.2] }] },
+   { "re": "^arrow-hit$", "layers": [{ "noise": [0.08, 0.3, "lowpass", 1500, 300, 0.8] }] },
+   { "re": "^player-hurt$", "layers": [{ "tone": ["sawtooth", 220, 140, 0.18, 0.12] }, { "noise": [0.12, 0.25, "lowpass", 800, 200, 0.8] }] },
+   { "re": "^player-death$", "layers": [{ "tone": ["sawtooth", 220, 55, 1.2, 0.18] }, { "tone": ["sine", 110, 40, 1.2, 0.2], "at": 0.2 }] },
+   { "re": "^level-up$", "layers": [{ "arp": [[523, 659, 784, 1046, 1318], 0.09, "triangle", 0.16] }], "levelled": true },
+   { "re": "^(new-ability|puzzle-solved|identify)$", "layers": [{ "arp": [[784, 988, 1175, 1568], 0.08, "sine", 0.14] }] },
+   { "re": "^pickup-mote", "layers": [{ "arp": [[440, 660, 880, 1320], 0.06, "sine", 0.12] }] },
+   { "re": "^pickup-essence", "layers": [{ "arp": [[1320, 1760], 0.05, "sine", 0.08] }] },
+   { "re": "^pickup-key", "layers": [{ "tone": ["triangle", 2400, 0, 0.08, 0.08] }, { "tone": ["triangle", 2900, 0, 0.08, 0.08], "at": 0.06 }] },
+   { "re": "^pickup|equip", "layers": [{ "noise": [0.08, 0.15, "bandpass", 2000, 1200, 2] }, { "tone": ["triangle", 1100, 0, 0.08, 0.08], "at": 0.03 }] },
+   { "re": "^eat$", "layers": [{ "noise": [0.07, 0.15, "bandpass", 1400, 900, 3], "repeat": [3, 0.11] }] },
+   { "re": "^door-close$", "layers": [{ "tone": ["sawtooth", 140, 60, 0.25, 0.05] }, { "noise": [0.18, 0.14, "lowpass", 400, 120, 0.8] }] },
+   { "re": "^door-open$", "layers": [{ "tone": ["sawtooth", 180, 90, 0.5, 0.05] }, { "noise": [0.3, 0.1, "lowpass", 500, 200, 0.8] }] },
+   { "re": "^(door-locked|ui-error|no-mana|inventory-full)$", "layers": [{ "tone": ["square", 140, 90, 0.15, 0.08] }] },
+   { "re": "^door-unlock$", "layers": [{ "noise": [0.12, 0.2, "bandpass", 2200, 1800, 4] }, { "tone": ["square", 300, 200, 0.1, 0.1], "at": 0.12 }] },
+   { "re": "^door-secret$", "layers": [{ "noise": [0.8, 0.3, "lowpass", 300, 90, 0.8] }] },
+   { "re": "^stairs$", "layers": [{ "noise": [0.07, 0.12, "lowpass", 600, 200, 0.8], "repeat": [5, 0.16] }] },
+   { "re": "^chest-open$", "layers": [{ "tone": ["sawtooth", 160, 260, 0.3, 0.05] }, { "arp": [[660, 880], 0.07, "sine", 0.08], "at": 0.25 }] },
+   { "re": "^crate-break$", "layers": [{ "noise": [0.3, 0.4, "bandpass", 900, 300, 1] }] },
+   { "re": "^pot-break$", "layers": [{ "noise": [0.3, 0.4, "bandpass", 2400, 300, 1] }] },
+   { "re": "^explosion$", "layers": [{ "noise": [1, 0.8, "lowpass", 1600, 40, 0.8] }, { "tone": ["sine", 70, 30, 0.8, 0.5] }] },
+   { "re": "^fire-ignite$", "layers": [{ "noise": [0.5, 0.3, "bandpass", 500, 2500, 0.8] }] },
+   { "re": "^lever$", "layers": [{ "tone": ["square", 220, 180, 0.08, 0.08] }, { "noise": [0.2, 0.2, "lowpass", 500, 200, 0.8], "at": 0.05 }] },
+   { "re": "^ice-melt$", "layers": [{ "noise": [0.6, 0.25, "highpass", 3000, 1200, 0.8] }, { "tone": ["sine", 1800, 600, 0.5, 0.06] }] },
+   { "re": "^thorns-burn$", "layers": [{ "noise": [0.7, 0.3, "bandpass", 1200, 400, 1] }] },
+   { "re": "cast|missile|fire|ice|lightning|earth|light|shadow", "element": true },
+   { "re": "^(heal|pray)$", "layers": [{ "arp": [[523, 659, 784], 0.12, "sine", 0.1] }] },
+   { "re": "^vanish$", "layers": [{ "tone": ["sine", 600, 120, 0.5, 0.1] }] },
+   { "re": "^forge", "layers": [{ "tone": ["triangle", 880, 860, 0.8, 0.18] }, { "tone": ["sine", 1760, 0, 0.6, 0.08] }, { "noise": [0.3, 0.2, "bandpass", 3000, 1500, 3] }] },
+   { "re": "^shrine|piety|convert", "layers": [{ "arp": [[392, 494, 587, 784], 0.18, "sine", 0.12] }] },
+   { "re": "^wrath$", "layers": [{ "noise": [1.2, 0.5, "lowpass", 400, 40, 0.8] }] },
+   { "re": "^wobbles-giggle$", "layers": [{ "arp": [[880, 1175, 988, 1320, 1046], 0.07, "square", 0.06] }] },
+   { "re": "^trap-spot", "layers": [{ "tone": ["sine", 1200, 1600, 0.12, 0.08] }] },
+   { "re": "^trap-alarm", "layers": [{ "tone": ["square", 1600, 0, 0.08, 0.08], "repeat": [6, 0.12] }] },
+   { "re": "^trap-teleport", "layers": [{ "tone": ["sine", 300, 1800, 0.5, 0.12] }] },
+   { "re": "^trap-pit", "layers": [{ "tone": ["sine", 600, 80, 1, 0.12] }] },
+   { "re": "^trap", "layers": [{ "noise": [0.25, 0.3, "bandpass", 1400, 500, 1.5] }] },
+   { "re": "status-burn", "layers": [{ "noise": [0.3, 0.15, "highpass", 3000, 5000, 0.8] }] },
+   { "re": "status", "layers": [{ "tone": ["sine", 500, 300, 0.3, 0.06] }] },
+   { "re": "^rat", "layers": [{ "tone": ["square", 1800, 2400, 0.1, 0.05] }] },
+   { "re": "^bat", "layers": [{ "tone": ["sine", 3200, 2600, 0.15, 0.05] }] },
+   { "re": "^goblin|^shaman", "layers": [{ "tone": ["sawtooth", 320, 200, 0.18, 0.08] }] },
+   { "re": "^brute|^warchief", "layers": [{ "tone": ["sawtooth", 110, 60, 0.5, 0.15] }, { "noise": [0.4, 0.3, "lowpass", 500, 80, 0.8] }] },
+   { "re": "^slime", "layers": [{ "tone": ["sine", 200, 90, 0.25, 0.15] }] },
+   { "re": "^elementaling", "layers": [{ "arp": [[1320, 1760, 2093], 0.05, "sine", 0.07] }] },
+   { "re": "^mimic|^skeleton", "layers": [{ "noise": [0.3, 0.25, "bandpass", 800, 400, 4] }] },
+   { "re": "^ui-click$", "layers": [{ "tone": ["sine", 900, 0, 0.04, 0.05] }] },
+   { "re": "^ui-open$", "layers": [{ "noise": [0.18, 0.08, "bandpass", 2500, 1200, 2] }] },
+   { "re": "^ui-close$", "layers": [{ "noise": [0.14, 0.07, "bandpass", 1200, 2500, 2] }] },
+   { "re": "^stat-point$", "layers": [{ "tone": ["sine", 1320, 0, 0.2, 0.1] }] },
+   { "re": "^victory$", "layers": [{ "arp": [[523, 659, 784, 1046, 784, 1046, 1318, 1568], 0.14, "triangle", 0.16] }], "levelled": true }
+  ],
+  "fallback": [
+   { "tone": ["sine", 660, 0, 0.08, 0.05] }
+  ],
+  "src": "A14 (1.7 synth, js/platform/audio.js:227-323): a cue with no recording still makes a small sound from tones and filtered noise. The first recipe whose re matches the cue plays. tone: [wave, from Hz, to Hz (0 holds), seconds, peak]; noise: [seconds, peak, filter, from Hz, to Hz, Q]; arp: [notes Hz, step seconds, wave, peak]; at: seconds after the start; repeat: [count, every seconds]; levelled: the peak times the cue's level. element: the spell sound of the first element named in the cue (elementOf), its hit when the cue says hit."
+ }
+}

@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "stage": {
+    "L": {
+      "w": 1280,
+      "h": 800,
+      "minW": 1024,
+      "maxW": 1920,
+      "minH": 480,
+      "maxH": 800,
+      "touchFloor": 0.8
+    },
+    "P": {
+      "w": 390,
+      "h": 844,
+      "minW": 360,
+      "maxW": 720,
+      "minH": 640,
+      "maxH": 1100
+    },
+    "touchTextBump": 2,
+    "phoneBelow": 600,
+    "shortBelow": 600,
+    "narrowBelow": 600,
+    "maxResolution": 2
+  },
+  "text": {
+    "10": 10,
+    "12": 12,
+    "14": 14,
+    "16": 16,
+    "20": 20,
+    "26": 26,
+    "32": 32,
+    "40": 40
+  },
+  "space": {
+    "inRow": 4,
+    "betweenRows": 8,
+    "betweenSections": 16
+  },
+  "touchTarget": {
+    "touch": 48,
+    "mouse": 32
+  },
+  "fonts": {
+    "display": "Grenze Gotisch",
+    "body": "Spectral",
+    "mono": "IBM Plex Mono"
+  },
+  "theme": {
+    "obsidian": {
+      "bg": "#080b11",
+      "panel": "#101521",
+      "log": "#0b101b",
+      "edge": "#505776",
+      "raised": "#303850",
+      "ink": "#efecfa",
+      "ash": "#bdc2d8",
+      "dim": "#9ca5c2",
+      "accent": "#f4f7fb",
+      "hp": "#b04a42",
+      "mana": "#3f6f8f",
+      "xp": "#6f8f3f",
+      "shield": "#5aa8e8",
+      "rest": "#959ca5"
+    },
+    "note": "accent is silver for selected, hovered and primary; rest is grey for words at rest (Justin 2026-10-14: \"just grey for the non selects and silver for the select\"; never blue, gold or amber as the UI accent)"
+  },
+  "tier": {
+    "worn": "#9A958F",
+    "plain": "#EDE6DA",
+    "fine": "#6FA8FF",
+    "masterwork": "#E8B44A",
+    "note": "gear quality colours, the tokens tier.worn to tier.masterwork in tiers.json (spec/items.md I1; 1.7 tiers.js:11 TIER_COL): the item's name, its pip and its chip's rim"
+  },
+  "effectTrails": {"phys": {"col": ["#D8CFC0", "#8A7F74"], "size": 1.6, "rate": 0.6, "life": 260, "drift": 0}, "fire": {"col": ["#FFD36A", "#FF7A30", "#C0391B"], "size": 3.2, "rate": 2.2, "life": 420, "drift": -0.012, "glow": "#FF7A30"}, "ice": {"col": ["#E8F8FF", "#8FD3FF", "#4FA0E0"], "size": 2.4, "rate": 1.6, "life": 520, "drift": 0.002, "glow": "#8FD3FF"}, "lightning": {"col": ["#FFFFFF", "#FFE45C", "#FFF1A0"], "size": 2.0, "rate": 1.4, "life": 180, "drift": 0, "glow": "#FFE45C", "jag": true}, "poison": {"col": ["#B7E07A", "#6FA040", "#4E7A2A"], "size": 2.6, "rate": 1.4, "life": 520, "drift": 0.01, "glow": "#8FC45A"}, "earth": {"col": ["#A8865A", "#6E5A3E", "#C0A070"], "size": 2.8, "rate": 1.2, "life": 480, "drift": 0.03}, "light": {"col": ["#FFFFFF", "#FFF1B8", "#FFD86A"], "size": 2.6, "rate": 2.0, "life": 460, "drift": -0.006, "glow": "#FFF1B8"}, "dark": {"col": ["#D0A8FF", "#8A5AC8", "#3A2060"], "size": 3.0, "rate": 2.0, "life": 560, "drift": -0.004, "glow": "#B58BFF"}, "magic": {"col": ["#FFFFFF", "#D9B8FF", "#9A6AF0"], "size": 2.4, "rate": 2.2, "life": 420, "drift": -0.004, "glow": "#D9B8FF"}, "heal": {"col": ["#DFFFE0", "#7FD08A"], "size": 2.2, "rate": 1, "life": 700, "drift": -0.02, "glow": "#7FD08A"}, "blood": {"col": ["#E0404A", "#9A1A2A", "#5A0A18"], "size": 2.6, "rate": 1.6, "life": 520, "drift": 0.02}, "web": {"col": ["#F2F0E8", "#C8C4BC", "#8A8680"], "size": 2.0, "rate": 1.4, "life": 480, "drift": 0.01}, "src": "1.7 fx.js:25-36, content/data.js:8-11; blood and web from render/fx-layer.js (consolidation C9, render-01, render-11)"},
+  "moveFx": {"src": "1.7 crypt.js:204, deepmobs.js:203-570, portals.js:335-390, planesfwa.js:329-523 (moved from render/event-fx.js branches, consolidation C14, render-05); at: target, self or tiles; seen: false draws out of sight too; if: hit; kind: the body's kind; chance a tile", "move-used": {"darkness": [{"op": "burst", "kind": "dark", "n": 40, "spread": 0.08, "at": "target"}], "web-shot": [{"op": "burst", "kind": "web", "n": 22, "spread": 0.05, "at": "target", "if": "hit"}], "blood-heal": [{"op": "sparkle", "kind": "blood", "n": 20, "at": "target"}], "blood-ward": [{"op": "ring", "colour": "#C0203A", "r": 1, "at": "target"}, {"op": "sparkle", "kind": "blood", "n": 16, "at": "target"}], "ritual": [{"op": "ring", "colour": "#D0203A", "r": 2, "at": "self", "seen": false}], "gust": [{"op": "burst", "kind": "lightning", "n": 10, "spread": 0.04, "at": "target"}], "cyclone": [{"op": "burst", "kind": "lightning", "n": 24, "spread": 0.06, "at": "target"}], "mend": [{"op": "sparkle", "kind": "light", "n": 16, "at": "target"}], "stone-spikes": [{"op": "burst", "kind": "earth", "n": 20, "spread": 0.06, "at": "target"}], "siren-song": [{"op": "sparkle", "kind": "magic", "n": 20, "at": "target"}]}, "boss-move": {"channel": [{"op": "burst", "kind": "blood", "n": 12, "spread": 0.05, "at": "self"}], "shriek": [{"op": "ring", "colour": "#8A1A3A", "r": 4, "at": "self", "seen": false}], "venom-rain": [{"op": "burst", "kind": "poison", "n": 10, "spread": 0.05, "at": "tiles", "chance": 0.6}], "eruption": [{"op": "burst", "kind": "fire", "n": 18, "spread": 0.06, "at": "tiles"}], "emerge": [{"op": "burst", "kind": "ice", "n": 30, "spread": 0.07, "at": "self", "kind_of": "leviathaneel"}], "dive": [{"op": "burst", "kind": "ice", "n": 20, "spread": 0.05, "at": "self", "kind_of": "leviathaneel"}]}},
+  "eventBursts": {"planeHazard": {"light": ["light", 8], "earth": ["earth", 8], "fire": ["fire", 10], "water": ["ice", 10], "air": ["lightning", 10]}, "trap": {"fire": ["fire", 24, 0.05], "frost": ["ice", 24, 0.05], "spark": ["lightning", 18, 0.06], "gas": ["poison", 40, 0.05]}, "src": "1.7 portals.js:277, planesfwa.js:343 (plane hazards); traps.js trap bursts (moved from render/fx-layer.js, consolidation C9, render-22)"},
+  "airMotes": {"opacity": 0.5, "dustShare": 0.2, "src": "item 210 (render/air-motes.js): how strong the shaft dust and the water mist draw; Justin 2026-10-19: \"the white particals you added should be reduced to 50% opacity to be a little more subtle\". dustShare (item 235, Justin 2026-10-19: \"the dust particles need to show up like 1/5 of the sunbeams not every one\"): the share of sunbeams with dust, the same ones every time by their place"},
+  "warningColours": {"warn.emberlord.eruption": "#FF5A10", "plane-light-flare-warning": "#FFD84A", "plane-falling-rocks-warning": "#B08A5A", "plane-burning-rocks-warning": "#FF7A2A", "plane-surge-warning": "#5CC8FF", "plane-gale-warning": "#DCEEFF", "warn.matron.ritual": "#D0203A", "warn.matron.venom": "#FF3A2A", "warn.morty.nova": "#8CFF6A", "warn.morty.grasp": "#B070FF", "warn.storm-charge": "#7FD8FF", "warn.shock-eel": "#7FD8FF", "warn.spore-field": "#96B75F", "src": "1.7 cavernmobs.js:263, :397; sporecaller.js:164"},
+  "tones": { "bad": "#D0605A", "good": "#9FC08A", "unid": "#C9A8FF", "food": "#D6A45F", "trinket": "#B9A5D5", "martial": "#9FB0C0", "sigilRim": "#83D8FF", "bindRim": "#C5A0FF", "invokeRim": "#A98AD6", "src": "1.7 card colours (gear-cards.js) and hotbarIconPresentation rims; sigilRim and the rune blue 6FC4FF differ, held for Justin (plan 5a #7)" },
+  "elementPalettes": {
+    "highlight": { "fire": "#F08A52", "water": "#7CC0EA", "air": "#EFD98A", "earth": "#9CC074", "light": "#FBEFC4", "shadow": "#A98AD6" },
+    "enchant": { "fire": "#E2622B", "water": "#62A8D8", "air": "#E8B44A", "earth": "#7FA05A", "light": "#F2E8DC", "shadow": "#8A6FB0" },
+    "end": { "fire": "#F57A40", "water": "#7AC9F4", "air": "#BCB2FA", "earth": "#ACB573", "light": "#FFE298", "shadow": "#B286CE" },
+    "src": "highlight: 1.7 painted-ui.css --aff-hi; enchant: 1.7 runtime/game.js AFF_COL (air and light differ from elements.json, held for Justin, plan 5a #7); end: 1.7 run-events.js:118"
+  },
+  "iconElement": { "flame-step": "fire" },
+  "input": { "mapHoldMs": 420, "mapSlopPx": 12, "tapSwallowMs": 400, "hotbarHoldMs": 450, "dragHoldMs": 350, "dragSlopPx": 10, "dragMouseStartPx": 6, "buzzMs": 12, "src": "T42 and 1.7 mobile.js; the three hold times stay apart until Justin unifies them (plan 5a #8)" },
+  "bossBar": {"dazed": "#E8D27A", "ritual": "#FF5A6A", "windup": "#FF7A5A", "src": "1.7 ui.js:378-380 bossBar: the warning beside the boss's name (no countdowns: the Matron's break counter and the Pulse's beat stay)"},
+  "timing": { "noticeMs": 3500, "forgeReceiptMs": 6000, "hotbarInfoMs": 2500, "readyFlashMs": 160, "offlineBadgeMs": 6000 },
+  "damageColours": {
+    "phys": "#F2E8DC",
+    "fire": "#FF7A38",
+    "ice": "#8FD3FF",
+    "lightning": "#FFE45C",
+    "poison": "#8FC45A",
+    "dark": "#B58BFF",
+    "light": "#FFF1B8",
+    "magic": "#D9B8FF", "web": "#F2F0E8", "blood": "#E0404A",
+    "heal": "#7FD08A",
+    "miss": "#8A7F74", "xp": "#E8B44A",
+    "src": "spec/combat.md C4"
+  },
+  "motion": {
+    "moveMs": 200,
+    "clipMs": {
+      "idle": 130,
+      "walk": 60,
+      "cast": 65,
+      "ranged": 65,
+      "melee": 55,
+      "attack": 60,
+      "hurt": 75,
+      "death": 95,
+      "emerge": 140
+    },
+    "hit": { "ms": 220, "flash": 0.85, "shakeFreq": 38, "shakeTiles": 0.06, "src": "1.7 js/runtime/game.js:270-272 hitP, flashOf, shakeOf: a white flash and a sideways shake on every body that takes damage" },
+    "strike": { "atMs": 250, "untilMs": 400, "src": "Review 4 (Justin 2026-10-19): a foe's blow shows at 170 ms wind-up + 0.55 of its 230 ms lunge (render/playback.js), about 297 ms; a creature's strike frame (look.clips.strike) is up from atMs to untilMs, the lunge's return" },
+    "src": "1.7 js/runtime/game.js:195 MOVE_MS; js/presentation/render/render.js:711 CLIP_MS (attack 60 for creature attack clips); js/enemies/ghoul.js:9 CLIP_MS.emerge 140"
+  },
+  "actorSize": {
+    "heroStandTiles": 1.08,
+    "creatureWidthWeight": 0.8,
+    "defaultArt": 0.9,
+    "src": "1.7 js/presentation/render/render.js:1164, :1198-1200"
+  },
+  "audio": {
+    "musicFadeMs": {
+      "title": 6000,
+      "menu": 6000,
+      "default": 2000
+    },
+    "ambienceGain": 0.16,
+    "sfxVolume": 0.5,
+    "musicVolume": 0.5,
+    "src": "1.7 js/platform/audio.js (fades, ambience 0.16, volumes 0.5); Justin 2026-10-15: music streams and fades in when it arrives (assets/README.md)"
+  }
+}

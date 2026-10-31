@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "rows": {
+    "hook": {
+      "kind": "amulet",
+      "name": "Amulet of the Hook",
+      "text": "item.amulet.hook",
+      "killsPerCharge": 10,
+      "aim": true,
+      "takesTime": true,
+      "values": {"range": {"byLevel": [5, 6, 7]}},
+      "effects": [{"verb": "pull", "tiles": "adjacent", "target": {"selector": "target", "side": "foes"}, "if": {"all": [{"target-is": "creature"}, {"not": {"creature-flag": "boss"}}]}}, {"verb": "apply-status", "status": "stun", "turns": 1, "target": {"selector": "target", "side": "foes"}, "if": {"all": [{"target-is": "creature"}, {"not": {"creature-flag": "boss"}}]}}, {"verb": "dash", "range": {"from-source": "range"}, "until": "wall", "if": {"target-is": "anchor"}}],
+      "src": "js/equipment/amulets.js:9, :125-172"
+    },
+    "swap": {
+      "kind": "amulet",
+      "name": "Amulet of Exchange",
+      "text": "item.amulet.swap",
+      "killsPerCharge": 8,
+      "aim": true,
+      "takesTime": false,
+      "values": {"range": {"byLevel": [4, 5, 6]}},
+      "effects": [{"verb": "swap", "range": {"from-source": "range"}, "notBoss": true}, {"verb": "action-economy", "free": 100}],
+      "src": "js/equipment/amulets.js:10, :173-193, :278"
+    },
+    "tide": {
+      "kind": "amulet",
+      "name": "Amulet of the Tide",
+      "text": "item.amulet.tide",
+      "killsPerCharge": 8,
+      "aim": true,
+      "takesTime": false,
+      "values": {"range": 6, "push": {"byLevel": [1, 1, 2]}},
+      "effects": [{"verb": "terrain", "set": "water", "where": {"selector": "square", "n": 3, "centre": "target", "side": "any"}, "turns": 20}, {"verb": "remove-status", "statuses": ["burn"], "reason": "extinguished", "target": {"selector": "square", "n": 3, "centre": "target", "side": "any"}}, {"verb": "apply-status", "status": "wet", "turns": 6, "target": {"selector": "square", "n": 3, "centre": "target", "side": "any"}}, {"verb": "knockback", "tiles": {"from-source": "push"}, "from": "point", "direction": "away", "target": {"selector": "square", "n": 3, "centre": "target", "side": "foes"}, "if": {"not": {"creature-flag": "boss"}}}, {"verb": "trigger-traps", "target": {"selector": "room", "centre": "target"}}, {"verb": "action-economy", "free": 100}],
+      "src": "js/equipment/amulets.js:11, :194-221, :249-257, :278"
+    },
+    "seeking": {
+      "kind": "amulet",
+      "name": "Amulet of Seeking",
+      "text": "item.amulet.seeking",
+      "killsPerCharge": 6,
+      "aim": false,
+      "takesTime": true,
+      "values": {"radius": {"byLevel": [8, 12, 16]}},
+      "effects": [{"verb": "reveal", "what": "map", "where": {"selector": "radius", "centre": "self", "n": {"from-source": "radius"}}}, {"verb": "reveal", "what": "traps", "where": {"selector": "radius", "centre": "self", "n": {"from-source": "radius"}}}, {"verb": "reveal", "what": "secret-doors", "where": {"selector": "radius", "centre": "self", "n": {"from-source": "radius"}}}],
+      "src": "js/equipment/amulets.js:12, :222-235"
+    },
+    "pillar": {
+      "kind": "amulet",
+      "name": "Amulet of the Pillar",
+      "text": "item.amulet.pillar",
+      "killsPerCharge": 6,
+      "aim": true,
+      "takesTime": true,
+      "values": {"range": 5, "turns": {"byLevel": [5, 10, 15]}},
+      "effects": [{"verb": "terrain", "set": "pillar", "where": {"selector": "target"}, "turns": {"from-source": "turns"}}],
+      "src": "js/equipment/amulets.js:13, :236-243, :255"
+    },
+    "stillness": {
+      "kind": "amulet",
+      "name": "Amulet of Stillness",
+      "text": "item.amulet.stillness",
+      "killsPerCharge": 10,
+      "aim": false,
+      "takesTime": false,
+      "values": {"steps": {"byLevel": [3, 4, 5]}},
+      "effects": [{"verb": "movement-mode", "mode": "stillness", "turns": {"from-source": "steps"}}],
+      "src": "js/equipment/amulets.js:14, :90-94"
+    },
+    "echo": {
+      "kind": "amulet",
+      "name": "Amulet of Echoes",
+      "text": "item.amulet.echo",
+      "killsPerCharge": 10,
+      "aim": false,
+      "takesTime": true,
+      "values": {"maxMotes": {"byLevel": [1, 2, 99]}},
+      "effects": [{"verb": "repeat-sigil", "maxMotes": {"from-source": "maxMotes"}, "never": ["ascension", "wisdom"]}],
+      "src": "js/equipment/amulets.js:15, :25, :75-84, :95-98"
+    },
+    "thorns": {
+      "kind": "amulet",
+      "name": "Amulet of Thorns",
+      "text": "item.amulet.thorns",
+      "killsPerCharge": 8,
+      "aim": false,
+      "takesTime": true,
+      "values": {"wardPct": {"byLevel": [35, 45, 55]}},
+      "effects": [{"verb": "apply-status", "status": "root", "turns": 5, "target": {"selector": "self"}}, {"verb": "apply-status", "status": "thorns", "turns": 5, "target": {"selector": "self"}}, {"verb": "apply-status", "status": "arcaneward", "turns": 5, "target": {"selector": "self"}}, {"verb": "shield", "pool": "ward", "atLeast": {"pct-of": {"stat": "max-hp", "pct": {"from-source": "wardPct"}}}}],
+      "src": "js/equipment/amulets.js:16, :37, :102-110"
+    },
+    "plenty": {
+      "kind": "amulet",
+      "name": "Amulet of Plenty",
+      "text": "item.amulet.plenty",
+      "killsPerCharge": 12,
+      "aim": false,
+      "takesTime": true,
+      "values": {"specialPct": {"byLevel": [33.333333, 66.666667, 100]}},
+      "effects": [{"verb": "create-item", "item": "amulet-plenty", "count": 1, "spot": "here"}],
+      "src": "js/equipment/amulets.js:17, :23, :99"
+    },
+    "looks": {
+      "kind": "rule",
+      "looks": ["sun", "fang", "eye", "feather", "skull", "tear", "star", "knot", "wheat"],
+      "shuffled": "once per run, side stream world seed ^ 0x5eed77",
+      "src": "js/equipment/amulets.js:19; js/equipment/gear.js:34-41"
+    },
+    "charges": {
+      "kind": "rule",
+      "capacityByLevel": [1, 2, 3],
+      "startCharges": 1,
+      "killsCursedMult": 1.3,
+      "killsMinimum": 2,
+      "eliteOrBossKillCounts": 3,
+      "fullDropsProgress": true,
+      "levelAtUses": [5, 15],
+      "ruled": "2026-10-13",
+      "src": "js/engine/gear.js:7-13; js/engine/death-adapter.js:98-109; js/equipment/upgrade.js:31; js/engine/gear-adapter.js:122-133"
+    },
+    "cursed-use": {
+      "kind": "rule",
+      "identifies": true,
+      "effects": [{"verb": "choose", "by": "weight", "options": [{"weight": 1, "effects": [{"verb": "trigger-trap", "trap": "dart", "target": {"selector": "self"}}]}, {"weight": 1, "effects": [{"verb": "trigger-trap", "trap": "fire", "target": {"selector": "self"}}]}, {"weight": 1, "effects": [{"verb": "trigger-trap", "trap": "frost", "target": {"selector": "self"}}]}, {"weight": 1, "effects": [{"verb": "trigger-trap", "trap": "spark", "target": {"selector": "self"}}]}, {"weight": 1, "effects": [{"verb": "trigger-trap", "trap": "gas", "target": {"selector": "self"}}]}, {"weight": 1, "effects": [{"verb": "trigger-trap", "trap": "web", "target": {"selector": "self"}}]}, {"weight": 1, "effects": [{"verb": "trigger-trap", "trap": "alarm", "target": {"selector": "self"}}]}]}],
+      "src": "js/equipment/amulets.js:45-57"
+    },
+    "make": {
+      "kind": "rule",
+      "preferUnseen": true,
+      "plus": 0,
+      "level": 1,
+      "unidentified": true,
+      "src": "js/engine/gear-adapter.js:13-23"
+    }
+  }
+}

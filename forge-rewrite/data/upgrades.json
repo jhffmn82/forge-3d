@@ -1,0 +1,352 @@
+{
+  "version": 1,
+  "rows": {
+    "gear-costs": {
+      "kind": "rule",
+      "toPlus": [300, 800, 1800],
+      "tierMult": "tiers.json upgradeCostMult",
+      "maxPlus": 3,
+      "ruled": "2026-09-20, 2026-09-22",
+      "src": "js/equipment/upgrade.js:15-19, :51-64"
+    },
+    "ring-costs": {
+      "kind": "rule",
+      "toPlus": [500, 1000, 2000],
+      "maxPlus": 3,
+      "ruled": "2026-09-18",
+      "src": "js/equipment/upgrade.js:20, :61"
+    },
+    "cleanse": {
+      "kind": "rule",
+      "result": {"ring": "plus 0", "other": "plus at least 0"},
+      "identifies": true,
+      "src": "js/equipment/upgrade.js:59-61; js/engine/inventory.js:59; js/engine/forge-adapter.js:51-65"
+    },
+    "upgrade-targets": {
+      "kind": "rule",
+      "kinds": ["weapon", "armour", "offhand", "ring"],
+      "never": ["unarmed", "keepsake", "unidentified", "amulet"],
+      "shown": "worn only (2026-10-15 board round 2)",
+      "src": "js/equipment/upgrade.js:67-76, :79-90"
+    },
+    "upgrade-discounts": {
+      "kind": "rule",
+      "dwarfRound": "before the divine discount",
+      "anvilCapstoneFourthRank": {"gear": 3000, "ring": 2000},
+      "owners": {"dwarf": "packet A races.json", "anvil": "packet E gods.json"},
+      "src": "js/equipment/upgrade.js:52-64"
+    },
+    "essence-biome-mult": {
+      "kind": "rule",
+      "byBiome": [1, 2.5, 4.5, 6, 8],
+      "appliedWhen": "a floor pile is stepped on (entry stage, before pickup), rounded",
+      "src": "js/equipment/upgrade.js:21-22, :129-132; js/engine/transition-adapter.js:92"
+    },
+    "enchant-power": {
+      "kind": "rule",
+      "mastery": "the owner affinity in the enchant element",
+      "value": "(base + perAffinity x mastery), then min, then x enchant god bonus unless fixed, then max, then round",
+      "godBonus": "gear bonus (Vellum rank 5: x 1.25) x (1 + 0.10 x Anvil rank)",
+      "src": "js/engine/enchantments.js:51-69; js/combat/combat.js:1-6"
+    },
+    "enchant-slots": {
+      "kind": "rule",
+      "weapon": "any weapon, the bow and a light weapon in the off hand (each its own enchant)",
+      "armour": "body armour",
+      "shield": "buckler and kite shield only (the Holy Symbol blocks but takes only the holy enchant, ruled 2026-10-15)",
+      "ruled": "2026-10-15",
+      "orb": "orb",
+      "tome": "tome",
+      "holy": "holy symbol",
+      "src": "js/engine/gear-adapter.js:173-179; js/equipment/shieldench.js:12-16"
+    },
+    "enchant-weapon-fire": {
+      "kind": "enchant",
+      "slot": "weapon",
+      "element": "fire",
+      "values": {"extraRatio": {"base": 0.1, "perAffinity": 0.03}, "burnPct": {"base": 0, "perAffinity": 5}},
+      "effects": [{"verb": "on-event", "trigger": "on-hit", "effects": [{"verb": "damage-from-packet", "packet": "raw", "ratio": {"from-source": "extraRatio"}, "type": "fire"}, {"verb": "apply-status", "status": "burn", "turns": 3, "chance": {"from-source": "burnPct"}}]}],
+      "src": "js/engine/enchantments.js:13, :72"
+    },
+    "enchant-weapon-water": {
+      "kind": "enchant",
+      "slot": "weapon",
+      "element": "water",
+      "values": {"chillPct": {"base": 15, "perAffinity": 5}},
+      "effects": [{"verb": "on-event", "trigger": "on-hit", "effects": [{"verb": "add-stack", "status": "chill", "n": 1, "chance": {"from-source": "chillPct"}}]}],
+      "src": "js/engine/enchantments.js:14, :73"
+    },
+    "enchant-weapon-air": {
+      "kind": "enchant",
+      "slot": "weapon",
+      "element": "air",
+      "values": {"repeatPct": {"base": 10, "perAffinity": 5}},
+      "effects": [{"verb": "on-event", "trigger": "on-hit", "effects": [{"verb": "weapon-attack", "weapon": "main", "label": "Twice", "chance": {"from-source": "repeatPct"}}]}],
+      "src": "js/engine/enchantments.js:15, :75"
+    },
+    "enchant-weapon-earth": {
+      "kind": "enchant",
+      "slot": "weapon",
+      "element": "earth",
+      "values": {"rootPct": {"base": 15, "perAffinity": 4.5}},
+      "effects": [{"verb": "on-event", "trigger": "on-hit", "effects": [{"verb": "apply-status", "status": "root", "turns": 2, "chance": {"from-source": "rootPct"}}]}],
+      "src": "js/engine/enchantments.js:16, :74"
+    },
+    "enchant-weapon-light": {
+      "kind": "enchant",
+      "slot": "weapon",
+      "element": "light",
+      "values": {"heal": {"base": 0, "perAffinity": 1, "min": 1, "round": true}},
+      "effects": [{"verb": "on-event", "trigger": "on-hit", "effects": [{"verb": "heal", "amount": {"from-source": "heal"}, "target": {"selector": "self"}}]}],
+      "src": "js/engine/enchantments.js:17, :76"
+    },
+    "enchant-weapon-shadow": {
+      "kind": "enchant",
+      "slot": "weapon",
+      "element": "shadow",
+      "values": {"procPct": {"base": 10, "perAffinity": 5}, "extraRatio": {"base": 0.25, "perAffinity": 0}},
+      "effects": [{"verb": "on-event", "trigger": "on-hit", "effects": [{"verb": "damage", "amount": 2, "type": "dark", "if": {"has-status": "corrupt"}}]}, {"verb": "on-event", "trigger": "on-hit", "chance": {"from-source": "procPct"}, "effects": [{"verb": "damage-from-packet", "packet": "raw", "ratio": {"from-source": "extraRatio"}, "type": "dark"}, {"verb": "apply-status", "status": "corrupt", "turns": 3}]}],
+      "src": "js/engine/enchantments.js:18, :77"
+    },
+    "enchant-armour-fire": {
+      "kind": "enchant",
+      "slot": "armour",
+      "element": "fire",
+      "values": {"resistPct": {"base": -10, "perAffinity": -5}, "maxHpPct": {"base": 5, "perAffinity": 3}},
+      "effects": [{"verb": "resist", "type": "fire", "add": {"from-source": "resistPct"}}, {"verb": "modify-stat", "stat": "max-hp", "pct": {"from-source": "maxHpPct"}}],
+      "src": "js/engine/enchantments.js:21, :50"
+    },
+    "enchant-armour-water": {
+      "kind": "enchant",
+      "slot": "armour",
+      "element": "water",
+      "values": {"resistPct": {"base": -10, "perAffinity": -5}, "evasion": {"base": 8, "perAffinity": 2.4, "round": true}},
+      "effects": [{"verb": "resist", "type": "ice", "add": {"from-source": "resistPct"}}, {"verb": "modify-stat", "stat": "evasion", "add": {"from-source": "evasion"}}],
+      "src": "js/engine/enchantments.js:21, :50"
+    },
+    "enchant-armour-air": {
+      "kind": "enchant",
+      "slot": "armour",
+      "element": "air",
+      "values": {"resistPct": {"base": -10, "perAffinity": -5}, "deflectPct": {"base": 5, "perAffinity": 3}},
+      "effects": [{"verb": "resist", "type": "lightning", "add": {"from-source": "resistPct"}}, {"verb": "hit-rule", "deflectPct": {"from-source": "deflectPct"}}],
+      "src": "js/engine/enchantments.js:22, :50"
+    },
+    "enchant-armour-earth": {
+      "kind": "enchant",
+      "slot": "armour",
+      "element": "earth",
+      "values": {"resistPct": {"base": -10, "perAffinity": -5}, "armour": {"base": 1, "perAffinity": 0.5, "round": true}},
+      "effects": [{"verb": "resist", "type": "poison", "add": {"from-source": "resistPct"}}, {"verb": "modify-stat", "stat": "armour", "add": {"from-source": "armour"}}],
+      "src": "js/engine/enchantments.js:22, :50"
+    },
+    "enchant-armour-light": {
+      "kind": "enchant",
+      "slot": "armour",
+      "element": "light",
+      "values": {"resistPct": {"base": -10, "perAffinity": -5}, "hpRegenPct": {"base": 50, "perAffinity": 15}},
+      "effects": [{"verb": "resist", "type": "light", "add": {"from-source": "resistPct"}}, {"verb": "modify-stat", "stat": "hp-regen", "pct": {"from-source": "hpRegenPct"}}],
+      "src": "js/engine/enchantments.js:23, :50"
+    },
+    "enchant-armour-shadow": {
+      "kind": "enchant",
+      "slot": "armour",
+      "element": "shadow",
+      "values": {"resistPct": {"base": -10, "perAffinity": -5}, "stealthPct": {"base": 0, "perAffinity": 5, "min": 5}},
+      "effects": [{"verb": "resist", "type": "dark", "add": {"from-source": "resistPct"}}, {"verb": "modify-stat", "stat": "stealth", "pct": {"from-source": "stealthPct"}}],
+      "src": "js/engine/enchantments.js:23, :50"
+    },
+    "enchant-shield-fire": {
+      "kind": "enchant",
+      "slot": "shield",
+      "element": "fire",
+      "values": {"throwRatio": {"base": 0.25, "perAffinity": 0.08}, "burnPct": {"base": 15, "perAffinity": 5}},
+      "effects": [{"verb": "on-event", "trigger": "on-block", "log": "Your shield throws the blow back as <b>{dealt}</b> fire damage.", "effects": [{"verb": "damage-from-packet", "packet": "raw", "ratio": {"from-source": "throwRatio"}, "type": "fire", "to": {"selector": "source", "side": "foes"}}, {"verb": "apply-status", "status": "burn", "turns": 2, "chance": {"from-source": "burnPct"}, "target": {"selector": "source", "side": "foes"}}]}],
+      "src": "js/engine/enchantments.js:26; js/equipment/shieldench.js:18-26"
+    },
+    "enchant-shield-water": {
+      "kind": "enchant",
+      "slot": "shield",
+      "element": "water",
+      "values": {"chillPct": {"base": 25, "perAffinity": 10, "max": 100}},
+      "effects": [{"verb": "on-event", "trigger": "on-block", "log": "The blocked attacker is chilled.", "effects": [{"verb": "add-stack", "status": "chill", "n": 1, "target": {"selector": "source", "side": "foes"}}], "chance": {"from-source": "chillPct"}}],
+      "src": "js/engine/enchantments.js:27; js/equipment/shieldench.js:27"
+    },
+    "enchant-shield-air": {
+      "kind": "enchant",
+      "slot": "shield",
+      "element": "air",
+      "values": {"stunPct": {"base": 10, "perAffinity": 5, "max": 100}},
+      "effects": [{"verb": "on-event", "trigger": "on-block", "log": "A thunderclap off your shield staggers it.", "effects": [{"verb": "apply-status", "status": "stun", "turns": 1, "target": {"selector": "source", "side": "foes"}}, {"verb": "knockback", "tiles": 1, "from": "source", "direction": "away", "target": {"selector": "source", "side": "foes"}}], "chance": {"from-source": "stunPct"}}],
+      "src": "js/engine/enchantments.js:28; js/equipment/shieldench.js:28-33"
+    },
+    "enchant-shield-earth": {
+      "kind": "enchant",
+      "slot": "shield",
+      "element": "earth",
+      "values": {"blockPct": {"base": 5, "perAffinity": 3}, "blockCapPct": {"base": 75, "perAffinity": 0, "fixed": true}},
+      "effects": [{"verb": "modify-stat", "stat": "block", "add": {"from-source": "blockPct"}}],
+      "src": "js/engine/enchantments.js:29; js/engine/stats.js:138"
+    },
+    "enchant-shield-light": {
+      "kind": "enchant",
+      "slot": "shield",
+      "element": "light",
+      "values": {"heal": {"base": 1, "perAffinity": 1, "round": true}},
+      "effects": [{"verb": "on-event", "trigger": "on-block", "effects": [{"verb": "heal", "amount": {"from-source": "heal"}, "target": {"selector": "self"}}]}],
+      "src": "js/engine/enchantments.js:30; js/equipment/shieldench.js:34-39"
+    },
+    "enchant-shield-shadow": {
+      "kind": "enchant",
+      "slot": "shield",
+      "element": "shadow",
+      "values": {"corruptPct": {"base": 15, "perAffinity": 5, "max": 100}},
+      "effects": [{"verb": "on-event", "trigger": "on-block", "log": "The blocked attacker is corrupted.", "effects": [{"verb": "apply-status", "status": "corrupt", "turns": 3, "target": {"selector": "source", "side": "foes"}}], "chance": {"from-source": "corruptPct"}}],
+      "src": "js/engine/enchantments.js:30; js/equipment/shieldench.js:40"
+    },
+    "enchant-orb-fire": {
+      "kind": "enchant",
+      "slot": "orb",
+      "element": "fire",
+      "values": {},
+      "effects": [{"verb": "on-event", "trigger": "on-crit", "effects": [{"verb": "field", "field": "fire", "shape": {"selector": "tile"}, "turns": 2, "proc": "fire-burst"}, {"verb": "apply-status", "status": "burn", "turns": 2}]}],
+      "src": "js/engine/enchantments.js:33"
+    },
+    "enchant-orb-water": {
+      "kind": "enchant",
+      "slot": "orb",
+      "element": "water",
+      "values": {"iceArmour": {"base": 1, "perAffinity": 1, "round": true}},
+      "effects": [{"verb": "on-event", "trigger": "on-crit", "effects": [{"verb": "shield", "pool": "ice-armor", "amount": {"from-source": "iceArmour"}, "target": {"selector": "self"}, "proc": "ice"}]}],
+      "src": "js/engine/enchantments.js:34"
+    },
+    "enchant-orb-air": {
+      "kind": "enchant",
+      "slot": "orb",
+      "element": "air",
+      "values": {},
+      "effects": [{"verb": "on-event", "trigger": "on-crit", "effects": [{"verb": "apply-status", "status": "stun", "turns": 1, "proc": "lightning"}]}],
+      "src": "js/engine/enchantments.js:34"
+    },
+    "enchant-orb-earth": {
+      "kind": "enchant",
+      "slot": "orb",
+      "element": "earth",
+      "values": {"critPct": {"base": 5, "perAffinity": 3}},
+      "effects": [{"verb": "modify-stat", "stat": "crit", "add": {"from-source": "critPct"}, "if": {"has-status": {"any": ["root", "web"]}}}],
+      "src": "js/engine/enchantments.js:35; js/engine/actions-adapter.js:46 actionRootCrit (a root-tagged status: Rooted or Webbed)"
+    },
+    "enchant-orb-light": {
+      "kind": "enchant",
+      "slot": "orb",
+      "element": "light",
+      "values": {"mana": {"base": 3, "perAffinity": 0.9, "round": true}},
+      "effects": [{"verb": "on-event", "trigger": "on-crit", "effects": [{"verb": "mana", "amount": {"from-source": "mana"}, "target": {"selector": "self"}, "proc": "magic"}]}],
+      "src": "js/engine/enchantments.js:35"
+    },
+    "enchant-orb-shadow": {
+      "kind": "enchant",
+      "slot": "orb",
+      "element": "shadow",
+      "values": {"critMult": {"base": 10, "perAffinity": 5}},
+      "effects": [{"verb": "modify-stat", "stat": "crit-mult", "add": {"from-source": "critMult"}}],
+      "src": "js/engine/enchantments.js:36"
+    },
+    "enchant-tome-fire": {
+      "kind": "enchant",
+      "slot": "tome",
+      "element": "fire",
+      "values": {"spellPct": {"base": 5, "perAffinity": 3}},
+      "effects": [{"verb": "modify-stat", "stat": "spell-power", "pct": {"from-source": "spellPct"}}],
+      "src": "js/engine/enchantments.js:39; js/engine/stats.js:36"
+    },
+    "enchant-tome-water": {
+      "kind": "enchant",
+      "slot": "tome",
+      "element": "water",
+      "values": {"evasion": {"base": 5, "perAffinity": 2, "round": true}},
+      "effects": [{"verb": "modify-stat", "stat": "evasion", "add": {"from-source": "evasion"}}],
+      "src": "js/engine/enchantments.js:39; js/engine/stats.js:140"
+    },
+    "enchant-tome-air": {
+      "kind": "enchant",
+      "slot": "tome",
+      "element": "air",
+      "values": {"castTimeMult": {"base": 5, "perAffinity": 2, "asMult": "less"}},
+      "effects": [{"verb": "cost-mod", "cost": "cast-time", "mult": {"from-source": "castTimeMult"}, "for": "spells"}],
+      "src": "js/engine/enchantments.js:40"
+    },
+    "enchant-tome-earth": {
+      "kind": "enchant",
+      "slot": "tome",
+      "element": "earth",
+      "values": {"resistPct": {"base": -2, "perAffinity": -1}},
+      "effects": [{"verb": "resist", "type": "elemental", "add": {"from-source": "resistPct"}}],
+      "src": "js/engine/enchantments.js:40"
+    },
+    "enchant-tome-light": {
+      "kind": "enchant",
+      "slot": "tome",
+      "element": "light",
+      "values": {"shieldPct": {"base": 10, "perAffinity": 5}},
+      "effects": [{"verb": "on-event", "trigger": "on-pay-mana", "effects": [{"verb": "shield", "pool": "tome-ward", "amount": {"pct-of": {"stat": "mana-paid", "pct": {"from-source": "shieldPct"}}}, "cap": {"pct-of": {"stat": "max-hp", "pct": 30}}, "target": {"selector": "self"}}]}],
+      "src": "js/engine/enchantments.js:41"
+    },
+    "enchant-tome-shadow": {
+      "kind": "enchant",
+      "slot": "tome",
+      "element": "shadow",
+      "values": {"killHealPct": {"base": 0, "perAffinity": 1, "min": 1}},
+      "effects": [{"verb": "on-event", "trigger": "on-kill", "filters": {"by": "spell"}, "effects": [{"verb": "heal", "amount": {"pct-of": {"stat": "max-hp", "pct": {"from-source": "killHealPct"}, "min": 1}}, "target": {"selector": "self"}, "proc": "dark", "procOn": "victim"}]}],
+      "src": "js/engine/enchantments.js:42"
+    },
+    "enchant-holy-fire": {
+      "kind": "enchant",
+      "slot": "holy",
+      "element": "fire",
+      "values": {"damageMult": {"base": 8, "perAffinity": 2.4, "asMult": "more"}},
+      "effects": [{"verb": "damage-mod", "direction": "dealt", "mult": {"from-source": "damageMult"}}],
+      "src": "js/engine/enchantments.js:45"
+    },
+    "enchant-holy-water": {
+      "kind": "enchant",
+      "slot": "holy",
+      "element": "water",
+      "values": {"mpRegenPct": {"base": 15, "perAffinity": 4.5}},
+      "effects": [{"verb": "modify-stat", "stat": "mp-regen", "pct": {"from-source": "mpRegenPct"}}],
+      "src": "js/engine/enchantments.js:45; js/engine/turns.js:60"
+    },
+    "enchant-holy-air": {
+      "kind": "enchant",
+      "slot": "holy",
+      "element": "air",
+      "values": {"actionTimeMult": {"base": 5, "perAffinity": 1.5, "asMult": "less"}},
+      "effects": [{"verb": "cost-mod", "cost": "action-time", "mult": {"from-source": "actionTimeMult"}, "for": "all"}],
+      "src": "js/engine/enchantments.js:46"
+    },
+    "enchant-holy-earth": {
+      "kind": "enchant",
+      "slot": "holy",
+      "element": "earth",
+      "values": {"reducePct": {"base": 5, "perAffinity": 1.5, "max": 50}},
+      "effects": [{"verb": "damage-mod", "direction": "taken", "reducePct": {"from-source": "reducePct"}}],
+      "src": "js/engine/enchantments.js:46"
+    },
+    "enchant-holy-light": {
+      "kind": "enchant",
+      "slot": "holy",
+      "element": "light",
+      "values": {"healPct": {"base": 3, "perAffinity": 0.9}},
+      "effects": [{"verb": "on-event", "trigger": "on-cast", "if": {"all": [{"has-tag": ["invoke", "prayer"]}, {"not": {"race-flag": "noHolyRadiance"}}]}, "effects": [{"verb": "heal", "amount": {"pct-of": {"stat": "max-hp", "pct": {"from-source": "healPct"}, "min": 1}}, "target": {"selector": "self"}}]}],
+      "src": "js/engine/enchantments.js:47; js/faith/holy.js:69-72 (prayers and invokes only, never a Gloomling)"
+    },
+    "enchant-holy-shadow": {
+      "kind": "enchant",
+      "slot": "holy",
+      "element": "shadow",
+      "values": {"critPct": {"base": 3, "perAffinity": 0.9}},
+      "effects": [{"verb": "modify-stat", "stat": "crit", "add": {"from-source": "critPct"}}],
+      "src": "js/engine/enchantments.js:47"
+    }
+  }
+}

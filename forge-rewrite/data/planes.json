@@ -1,0 +1,2916 @@
+{
+  "version": 1,
+  "rows": {
+    "plane-light": {
+      "name": "the Plane of Light",
+      "themeName": "Radiant Sanctum",
+      "element": "light",
+      "portalColour": "#FFE08A",
+      "roster": {
+        "regulars": [
+          "dawnsentinel",
+          "halowisp",
+          "prismscarab"
+        ],
+        "elite": "radiantwarden"
+      },
+      "centrepiece": {
+        "layout": "dais",
+        "prop": "sun-dais",
+        "size": [
+          2,
+          2
+        ],
+        "blocks": true,
+        "light": {
+          "dx": 0.5,
+          "dy": 0.5,
+          "col": "#FFF4DC",
+          "r": 6,
+          "s": 0.9
+        }
+      },
+      "kit": {
+        "decor": [
+          "crystal-gold-small",
+          "stalagmite-light",
+          "crystal-gold-small"
+        ],
+        "lightProp": "crystal-gold",
+        "lightCol": "#FFE08A",
+        "rune": "rune-stone-light",
+        "center": "sun-dais",
+        "stone": null,
+        "clusterArt": [
+          "crystal-gold",
+          "crystal-gold-small",
+          "stalagmite-light"
+        ]
+      },
+      "hazards": [
+        "plane-hazard-light-flare"
+      ],
+      "dressing": null,
+      "arrivalText": "Gold light pulses through the cave: when the stones around you start to glow, step off them before the flare.",
+      "layout": "plane-layout",
+      "features": "plane-terrain-features",
+      "creatures": "plane-creature-placement",
+      "chest": "plane-rune-chest",
+      "drops": {
+        "regular": "plane-drops-regular",
+        "elite": "plane-drops-regular"
+      },
+      "presentation": {
+        "terrainPalette": {
+          "floor": [
+            234,
+            230,
+            220
+          ],
+          "floorLav": [
+            216,
+            214,
+            226
+          ],
+          "joint": 0.4,
+          "grain": 0.016,
+          "occ": [
+            176,
+            170,
+            178
+          ],
+          "mineralCool": [
+            200,
+            200,
+            218
+          ],
+          "pearl": [
+            244,
+            242,
+            238
+          ],
+          "band": [
+            226,
+            224,
+            230
+          ],
+          "top": [
+            222,
+            218,
+            210
+          ],
+          "topHi": [
+            242,
+            240,
+            234
+          ],
+          "topLo": [
+            186,
+            182,
+            186
+          ],
+          "topLav": [
+            206,
+            204,
+            220
+          ],
+          "edge": [
+            122,
+            116,
+            124
+          ],
+          "face": [
+            204,
+            198,
+            192
+          ],
+          "faceLo": [
+            152,
+            146,
+            152
+          ],
+          "faceH": 0.8,
+          "lip": [
+            248,
+            246,
+            240
+          ],
+          "void": [
+            6,
+            7,
+            11
+          ],
+          "voidEdge": [
+            34,
+            34,
+            44
+          ],
+          "vein": [
+            216,
+            176,
+            88
+          ],
+          "veinHot": [
+            255,
+            246,
+            214
+          ],
+          "inlay": [
+            240,
+            238,
+            232
+          ],
+          "inlayJoint": [
+            196,
+            192,
+            194
+          ],
+          "polish": [
+            242,
+            240,
+            236
+          ],
+          "pool": [
+            78,
+            178,
+            204
+          ],
+          "poolEdge": [
+            128,
+            222,
+            214
+          ],
+          "poolRim": [
+            236,
+            252,
+            248
+          ],
+          "poolShelf": [
+            196,
+            222,
+            222
+          ],
+          "poolShallow": [
+            176,
+            232,
+            224
+          ],
+          "poolShelfDry": [
+            222,
+            218,
+            214
+          ],
+          "poolWet": [
+            196,
+            200,
+            212
+          ],
+          "poolLight": "#B8F0FF",
+          "crystal": [
+            "#FFFFFF",
+            "#EEF2F8",
+            "#C9CCE0",
+            "#9FDDEA"
+          ],
+          "crystalLight": "#F4F0FF",
+          "fill": "#FFF6E4",
+          "rockHi": "#EEEAE4",
+          "rockLo": "#AAA4AC",
+          "motif": "sun",
+          "poolMotion": "sparkle"
+        }
+      },
+      "src": "js/world/planes/portals.js:11-12, :63-67, :126-130, :237-241"
+    },
+    "plane-shadow": {
+      "name": "the Plane of Shadow",
+      "themeName": "Umbral Reach",
+      "element": "shadow",
+      "portalColour": "#B98CFF",
+      "roster": {
+        "regulars": [
+          "stalker",
+          "gloommoth",
+          "umbralhound"
+        ],
+        "elite": "nightwarden"
+      },
+      "centrepiece": {
+        "layout": "voidpool",
+        "prop": null,
+        "size": null,
+        "blocks": false,
+        "light": {
+          "dx": 0,
+          "dy": 0,
+          "col": "#7A4FE0",
+          "r": 5,
+          "s": 0.9
+        }
+      },
+      "kit": {
+        "decor": [
+          "crystal-violet",
+          "stalagmite-shadow",
+          "stalagmite-shadow"
+        ],
+        "lightProp": "crystal-violet",
+        "lightCol": "#B98CFF",
+        "rune": "rune-stone-shadow",
+        "center": null,
+        "stone": "stepping-stone",
+        "clusterArt": [
+          "crystal-violet",
+          "crystal-violet-small",
+          "stalagmite-shadow"
+        ]
+      },
+      "hazards": [
+        "plane-hazard-shadow-darkness"
+      ],
+      "dressing": null,
+      "arrivalText": "Darkness presses in: you see only a short way here, and farther when you stand in the violet glow of the crystals.",
+      "layout": "plane-layout",
+      "features": "plane-terrain-features",
+      "creatures": "plane-creature-placement",
+      "chest": "plane-rune-chest",
+      "drops": {
+        "regular": "plane-drops-regular",
+        "elite": "plane-drops-regular"
+      },
+      "presentation": {
+        "terrainPalette": {
+          "floor": [
+            52,
+            45,
+            66
+          ],
+          "floorLav": [
+            44,
+            38,
+            58
+          ],
+          "joint": 0.45,
+          "grain": 0.02,
+          "occ": [
+            26,
+            22,
+            35
+          ],
+          "mineralCool": [
+            62,
+            53,
+            82
+          ],
+          "pearl": [
+            76,
+            66,
+            98
+          ],
+          "band": [
+            64,
+            56,
+            84
+          ],
+          "top": [
+            48,
+            41,
+            62
+          ],
+          "topHi": [
+            74,
+            65,
+            92
+          ],
+          "topLo": [
+            32,
+            28,
+            43
+          ],
+          "topLav": [
+            60,
+            51,
+            80
+          ],
+          "edge": [
+            16,
+            13,
+            22
+          ],
+          "face": [
+            43,
+            37,
+            55
+          ],
+          "faceLo": [
+            25,
+            21,
+            32
+          ],
+          "faceH": 0.8,
+          "lip": [
+            92,
+            81,
+            114
+          ],
+          "void": [
+            6,
+            5,
+            10
+          ],
+          "voidEdge": [
+            26,
+            22,
+            34
+          ],
+          "vein": [
+            168,
+            120,
+            232
+          ],
+          "veinHot": [
+            236,
+            214,
+            255
+          ],
+          "inlay": [
+            96,
+            84,
+            124
+          ],
+          "inlayJoint": [
+            56,
+            48,
+            72
+          ],
+          "polish": [
+            104,
+            92,
+            132
+          ],
+          "pool": [
+            40,
+            22,
+            84
+          ],
+          "poolEdge": [
+            86,
+            56,
+            150
+          ],
+          "poolShallow": [
+            74,
+            48,
+            130
+          ],
+          "poolRim": [
+            196,
+            168,
+            255
+          ],
+          "poolShelf": [
+            70,
+            60,
+            90
+          ],
+          "poolShelfDry": [
+            84,
+            74,
+            106
+          ],
+          "poolWet": [
+            56,
+            48,
+            74
+          ],
+          "poolLight": "#B98CFF",
+          "crystal": [
+            "#F0E2FF",
+            "#D2B4FF",
+            "#9E7AD8",
+            "#7A4FE0"
+          ],
+          "crystalLight": "#C9B2FF",
+          "fill": "#A48CE0",
+          "rockHi": "#8C7CA8",
+          "rockLo": "#463C5C",
+          "motif": "moon",
+          "poolMotion": "bubble"
+        }
+      },
+      "src": "js/world/planes/portals.js:11-12, :63-67, :126-130, :237-241"
+    },
+    "plane-earth": {
+      "name": "the Plane of Earth",
+      "themeName": "Stonebound Deep",
+      "element": "earth",
+      "portalColour": "#9FD86A",
+      "roster": {
+        "regulars": [
+          "burrower",
+          "crystalgolem",
+          "mosstroll"
+        ],
+        "elite": "mountainheart"
+      },
+      "centrepiece": {
+        "layout": "mound",
+        "prop": null,
+        "size": null,
+        "blocks": false,
+        "light": null
+      },
+      "kit": {
+        "decor": [
+          "fern",
+          "root-tangle",
+          "glow-mushrooms",
+          "fern"
+        ],
+        "lightProp": "glow-mushrooms",
+        "lightCol": "#D8F0A0",
+        "rune": "rune-stone-earth",
+        "center": null,
+        "stone": "mossy-boulder",
+        "clusterArt": [
+          "crystal-amber",
+          "crystal-amber-small",
+          "stalagmite-earth"
+        ]
+      },
+      "hazards": [
+        "plane-hazard-falling-rocks"
+      ],
+      "dressing": null,
+      "arrivalText": "The cave groans: when dust starts to trickle, step off the marked stones before the rocks fall.",
+      "layout": "plane-layout",
+      "features": "plane-terrain-features",
+      "creatures": "plane-creature-placement",
+      "chest": "plane-rune-chest",
+      "drops": {
+        "regular": "plane-drops-regular",
+        "elite": "plane-drops-regular"
+      },
+      "presentation": {
+        "terrainPalette": {
+          "floor": [
+            150,
+            128,
+            96
+          ],
+          "floorLav": [
+            136,
+            120,
+            96
+          ],
+          "joint": 0.5,
+          "grain": 0.026,
+          "occ": [
+            90,
+            76,
+            56
+          ],
+          "mineralCool": [
+            132,
+            126,
+            98
+          ],
+          "pearl": [
+            168,
+            150,
+            114
+          ],
+          "band": [
+            146,
+            132,
+            100
+          ],
+          "top": [
+            118,
+            100,
+            72
+          ],
+          "topHi": [
+            156,
+            136,
+            100
+          ],
+          "topLo": [
+            86,
+            72,
+            52
+          ],
+          "topLav": [
+            120,
+            112,
+            84
+          ],
+          "edge": [
+            46,
+            38,
+            26
+          ],
+          "face": [
+            108,
+            92,
+            66
+          ],
+          "faceLo": [
+            70,
+            58,
+            42
+          ],
+          "faceH": 0.8,
+          "lip": [
+            176,
+            156,
+            118
+          ],
+          "void": [
+            9,
+            8,
+            6
+          ],
+          "voidEdge": [
+            34,
+            30,
+            22
+          ],
+          "vein": [
+            120,
+            158,
+            70
+          ],
+          "veinHot": [
+            212,
+            240,
+            168
+          ],
+          "inlay": [
+            160,
+            144,
+            112
+          ],
+          "inlayJoint": [
+            96,
+            84,
+            62
+          ],
+          "polish": [
+            168,
+            152,
+            118
+          ],
+          "pool": [
+            46,
+            96,
+            84
+          ],
+          "poolEdge": [
+            96,
+            152,
+            116
+          ],
+          "poolShallow": [
+            120,
+            168,
+            128
+          ],
+          "poolRim": [
+            196,
+            226,
+            186
+          ],
+          "poolShelf": [
+            124,
+            112,
+            86
+          ],
+          "poolShelfDry": [
+            140,
+            126,
+            96
+          ],
+          "poolWet": [
+            96,
+            86,
+            66
+          ],
+          "poolLight": "#BFEE8A",
+          "crystal": [
+            "#E8F2C8",
+            "#C6DC94",
+            "#94AE62",
+            "#6E8C46"
+          ],
+          "crystalLight": "#D8F0A0",
+          "fill": "#D8C79A",
+          "moss": [
+            [
+              70,
+              104,
+              44
+            ],
+            [
+              92,
+              126,
+              54
+            ],
+            [
+              54,
+              84,
+              38
+            ],
+            [
+              112,
+              142,
+              68
+            ]
+          ],
+          "rockHi": "#C8B48C",
+          "rockLo": "#7A6648",
+          "motif": "leaf",
+          "poolMotion": "bubble"
+        }
+      },
+      "src": "js/world/planes/portals.js:11-12, :63-67, :126-130, :237-241"
+    },
+    "plane-fire": {
+      "name": "the Plane of Fire",
+      "themeName": "Cinder Reach",
+      "element": "fire",
+      "portalColour": "#FF8A3A",
+      "roster": {
+        "regulars": [
+          "cinderimp",
+          "magmacrawler",
+          "flamedancer"
+        ],
+        "elite": "emberlord"
+      },
+      "centrepiece": {
+        "layout": "dais",
+        "prop": "lava-fountain",
+        "size": [
+          2,
+          2
+        ],
+        "blocks": true,
+        "light": null
+      },
+      "kit": {
+        "decor": [
+          "crystal-fire-small",
+          "stalagmite-fire",
+          "crystal-fire-small"
+        ],
+        "lightProp": "crystal-fire",
+        "lightCol": "#FF8A3A",
+        "rune": "rune-stone-fire",
+        "center": "lava-fountain",
+        "stone": null,
+        "clusterArt": [
+          "crystal-fire",
+          "crystal-fire-small",
+          "stalagmite-fire"
+        ],
+        "scatter": [
+          "embers-slag-1",
+          "embers-slag-2",
+          "embers-slag-3",
+          "embers-slag-4"
+        ]
+      },
+      "hazards": [
+        "plane-hazard-lava-standing",
+        "plane-hazard-burning-rocks"
+      ],
+      "dressing": "plane-dress-fire",
+      "arrivalText": "The basalt is split with molten rock: it cannot be crossed, and standing beside it scorches you. When the roof glows, get out from under it.",
+      "layout": "plane-layout",
+      "features": "plane-terrain-features",
+      "creatures": "plane-creature-placement",
+      "chest": "plane-rune-chest",
+      "drops": {
+        "regular": "plane-drops-regular",
+        "elite": "plane-drops-elite-fwa"
+      },
+      "presentation": {
+        "terrainPalette": {
+          "floor": [
+            62,
+            54,
+            54
+          ],
+          "floorLav": [
+            52,
+            45,
+            46
+          ],
+          "joint": 0.52,
+          "grain": 0.03,
+          "occ": [
+            26,
+            21,
+            22
+          ],
+          "mineralCool": [
+            78,
+            68,
+            64
+          ],
+          "pearl": [
+            120,
+            108,
+            100
+          ],
+          "band": [
+            86,
+            74,
+            68
+          ],
+          "top": [
+            58,
+            50,
+            51
+          ],
+          "topHi": [
+            110,
+            97,
+            90
+          ],
+          "topLo": [
+            33,
+            28,
+            30
+          ],
+          "topLav": [
+            70,
+            56,
+            52
+          ],
+          "edge": [
+            14,
+            12,
+            14
+          ],
+          "face": [
+            52,
+            44,
+            45
+          ],
+          "faceLo": [
+            26,
+            22,
+            24
+          ],
+          "faceH": 0.8,
+          "lip": [
+            126,
+            110,
+            100
+          ],
+          "void": [
+            6,
+            3,
+            3
+          ],
+          "voidEdge": [
+            30,
+            15,
+            10
+          ],
+          "vein": [
+            255,
+            118,
+            38
+          ],
+          "veinHot": [
+            255,
+            234,
+            166
+          ],
+          "inlay": [
+            92,
+            82,
+            78
+          ],
+          "inlayJoint": [
+            42,
+            36,
+            34
+          ],
+          "polish": [
+            98,
+            86,
+            80
+          ],
+          "pool": [
+            198,
+            48,
+            10
+          ],
+          "poolEdge": [
+            255,
+            138,
+            38
+          ],
+          "poolRim": [
+            255,
+            240,
+            184
+          ],
+          "poolShelf": [
+            72,
+            58,
+            52
+          ],
+          "poolShallow": [
+            255,
+            188,
+            78
+          ],
+          "poolShelfDry": [
+            88,
+            76,
+            70
+          ],
+          "poolWet": [
+            40,
+            34,
+            34
+          ],
+          "poolLight": "#FF8A3A",
+          "crystal": [
+            "#FFE2A8",
+            "#FFA24A",
+            "#D8541E",
+            "#7A2A12"
+          ],
+          "crystalLight": "#FFB066",
+          "fill": "#FF9A50",
+          "rockHi": "#6E625E",
+          "rockLo": "#2C2628",
+          "motif": "sun",
+          "jag": 0.8,
+          "poolMotion": "bubble"
+        }
+      },
+      "src": "js/world/planes/planesfwa.js:44-84"
+    },
+    "plane-water": {
+      "name": "the Plane of Water",
+      "themeName": "Sunken Deep",
+      "element": "water",
+      "portalColour": "#7CC8FF",
+      "roster": {
+        "regulars": [
+          "tidecrab",
+          "siren",
+          "drownedone"
+        ],
+        "elite": "leviathaneel"
+      },
+      "centrepiece": {
+        "layout": "voidpool",
+        "prop": "signature-water",
+        "size": [
+          2,
+          2
+        ],
+        "blocks": true,
+        "light": null
+      },
+      "kit": {
+        "decor": [
+          "crystal-water-small",
+          "stalagmite-water",
+          "crystal-water-small"
+        ],
+        "lightProp": "crystal-water",
+        "lightCol": "#7CC8FF",
+        "rune": "rune-stone-water",
+        "center": "signature-water",
+        "stone": "stepping-stone",
+        "clusterArt": [
+          "crystal-water",
+          "crystal-water-small",
+          "stalagmite-water"
+        ],
+        "scatter": [
+          "scatter-water-1",
+          "scatter-water-2",
+          "scatter-water-3",
+          "scatter-water-4"
+        ]
+      },
+      "hazards": [
+        "plane-hazard-deep-water",
+        "plane-hazard-surge"
+      ],
+      "dressing": "plane-dress-water",
+      "arrivalText": "The deep water drags you down: cross it only if you must. When the water starts to draw back, a surge is coming.",
+      "layout": "plane-layout",
+      "features": "plane-terrain-features",
+      "creatures": "plane-creature-placement",
+      "chest": "plane-rune-chest",
+      "drops": {
+        "regular": "plane-drops-regular",
+        "elite": "plane-drops-elite-fwa"
+      },
+      "presentation": {
+        "terrainPalette": {
+          "floor": [
+            98,
+            118,
+            134
+          ],
+          "floorLav": [
+            87,
+            107,
+            127
+          ],
+          "joint": 0.46,
+          "grain": 0.02,
+          "occ": [
+            48,
+            64,
+            80
+          ],
+          "mineralCool": [
+            112,
+            136,
+            152
+          ],
+          "pearl": [
+            166,
+            192,
+            202
+          ],
+          "band": [
+            106,
+            128,
+            146
+          ],
+          "top": [
+            86,
+            106,
+            124
+          ],
+          "topHi": [
+            136,
+            160,
+            176
+          ],
+          "topLo": [
+            54,
+            70,
+            88
+          ],
+          "topLav": [
+            94,
+            110,
+            136
+          ],
+          "edge": [
+            20,
+            30,
+            44
+          ],
+          "face": [
+            76,
+            96,
+            114
+          ],
+          "faceLo": [
+            40,
+            54,
+            70
+          ],
+          "faceH": 0.8,
+          "lip": [
+            170,
+            198,
+            210
+          ],
+          "void": [
+            3,
+            7,
+            14
+          ],
+          "voidEdge": [
+            16,
+            30,
+            48
+          ],
+          "vein": [
+            80,
+            226,
+            218
+          ],
+          "veinHot": [
+            226,
+            255,
+            252
+          ],
+          "inlay": [
+            150,
+            176,
+            186
+          ],
+          "inlayJoint": [
+            70,
+            88,
+            102
+          ],
+          "polish": [
+            162,
+            188,
+            198
+          ],
+          "pool": [
+            16,
+            52,
+            110
+          ],
+          "poolEdge": [
+            40,
+            120,
+            180
+          ],
+          "poolShallow": [
+            92,
+            186,
+            210
+          ],
+          "poolRim": [
+            236,
+            252,
+            255
+          ],
+          "poolShelf": [
+            88,
+            106,
+            122
+          ],
+          "poolShelfDry": [
+            106,
+            124,
+            138
+          ],
+          "poolWet": [
+            64,
+            82,
+            98
+          ],
+          "poolLight": "#7CC8FF",
+          "crystal": [
+            "#EAFFFF",
+            "#A8F0EC",
+            "#5CC8D8",
+            "#2E86A8"
+          ],
+          "crystalLight": "#9FF0E8",
+          "fill": "#7CC8FF",
+          "moss": [
+            [
+              150,
+              86,
+              96
+            ],
+            [
+              178,
+              112,
+              118
+            ],
+            [
+              108,
+              58,
+              72
+            ],
+            [
+              214,
+              150,
+              150
+            ]
+          ],
+          "rockHi": "#A8BECC",
+          "rockLo": "#4E667C",
+          "motif": "moon",
+          "poolMotion": "bubble"
+        }
+      },
+      "src": "js/world/planes/planesfwa.js:44-84"
+    },
+    "plane-air": {
+      "name": "the Plane of Air",
+      "themeName": "Skyvault",
+      "element": "air",
+      "portalColour": "#E8F4FF",
+      "roster": {
+        "regulars": [
+          "stormhawk",
+          "thundertotem",
+          "windwisp"
+        ],
+        "elite": "tempestdjinn"
+      },
+      "centrepiece": {
+        "layout": "dais",
+        "prop": "signature-air",
+        "size": [
+          2,
+          2
+        ],
+        "blocks": true,
+        "light": null
+      },
+      "kit": {
+        "decor": [
+          "crystal-air-small",
+          "stalagmite-air",
+          "crystal-air-small"
+        ],
+        "lightProp": "crystal-air",
+        "lightCol": "#E8F4FF",
+        "rune": "rune-stone-air",
+        "center": "signature-air",
+        "stone": null,
+        "clusterArt": [
+          "crystal-air",
+          "crystal-air-small",
+          "stalagmite-air"
+        ],
+        "scatter": [
+          "scatter-air-1",
+          "scatter-air-2",
+          "scatter-air-3",
+          "scatter-air-4"
+        ]
+      },
+      "hazards": [
+        "plane-hazard-updraft-vent",
+        "plane-hazard-gale"
+      ],
+      "dressing": "plane-dress-air",
+      "arrivalText": "Updraft vents throw you off your feet, and the gales here come with a warning. Watch where you are standing.",
+      "layout": "plane-layout",
+      "features": "plane-terrain-features",
+      "creatures": "plane-creature-placement",
+      "chest": "plane-rune-chest",
+      "drops": {
+        "regular": "plane-drops-regular",
+        "elite": "plane-drops-elite-fwa"
+      },
+      "presentation": {
+        "terrainPalette": {
+          "floor": [
+            206,
+            215,
+            229
+          ],
+          "floorLav": [
+            190,
+            202,
+            224
+          ],
+          "joint": 0.36,
+          "grain": 0.014,
+          "occ": [
+            150,
+            164,
+            188
+          ],
+          "mineralCool": [
+            180,
+            196,
+            224
+          ],
+          "pearl": [
+            238,
+            242,
+            251
+          ],
+          "band": [
+            196,
+            208,
+            228
+          ],
+          "top": [
+            198,
+            208,
+            224
+          ],
+          "topHi": [
+            238,
+            244,
+            252
+          ],
+          "topLo": [
+            156,
+            170,
+            194
+          ],
+          "topLav": [
+            184,
+            198,
+            226
+          ],
+          "edge": [
+            104,
+            120,
+            148
+          ],
+          "face": [
+            182,
+            194,
+            214
+          ],
+          "faceLo": [
+            132,
+            148,
+            174
+          ],
+          "faceH": 0.7,
+          "lip": [
+            246,
+            249,
+            254
+          ],
+          "void": [
+            10,
+            14,
+            24
+          ],
+          "voidEdge": [
+            46,
+            58,
+            82
+          ],
+          "vein": [
+            226,
+            190,
+            96
+          ],
+          "veinHot": [
+            255,
+            246,
+            206
+          ],
+          "inlay": [
+            236,
+            240,
+            248
+          ],
+          "inlayJoint": [
+            190,
+            200,
+            216
+          ],
+          "polish": [
+            246,
+            249,
+            255
+          ],
+          "pool": [
+            96,
+            172,
+            232
+          ],
+          "poolEdge": [
+            150,
+            206,
+            246
+          ],
+          "poolShallow": [
+            192,
+            228,
+            250
+          ],
+          "poolRim": [
+            255,
+            255,
+            255
+          ],
+          "poolShelf": [
+            198,
+            210,
+            228
+          ],
+          "poolShelfDry": [
+            220,
+            228,
+            240
+          ],
+          "poolWet": [
+            190,
+            202,
+            220
+          ],
+          "poolLight": "#BFE4FF",
+          "crystal": [
+            "#FFFFFF",
+            "#E6F2FF",
+            "#B8CCE8",
+            "#8FC8F0"
+          ],
+          "crystalLight": "#E8F4FF",
+          "fill": "#E8F4FF",
+          "rockHi": "#F2F6FC",
+          "rockLo": "#A6B4CA",
+          "motif": "sun",
+          "poolMotion": "bubble"
+        }
+      },
+      "src": "js/world/planes/planesfwa.js:44-84"
+    },
+    "portal-rule-biome-1": {
+      "biome": "crypt",
+      "planes": [
+        "light",
+        "shadow",
+        "earth"
+      ],
+      "planeChoice": "uniform among planes with a roster",
+      "portalFloor": "uniform over base+1..base+4, rerolled until it is not the Forge floor (base+3 or base+4, 50% each)",
+      "floors": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "stream": "mulberry32((run seed or 1) ^ (0x51ed27 x (biome+1)))",
+      "placement": "portal-placement-room",
+      "repair": null,
+      "src": "js/world/world.js:74-100"
+    },
+    "portal-rule-biome-3": {
+      "biome": "underdark",
+      "planes": [
+        "fire",
+        "water",
+        "air"
+      ],
+      "planeChoice": "uniform among planes with a roster",
+      "floors": [
+        16,
+        17,
+        18,
+        19
+      ],
+      "stream": "mulberry32((run seed or 1) ^ (0x51ed27 x 4))",
+      "placement": "portal-placement-room",
+      "repair": "portal-placement-underdark-repair",
+      "src": "js/world/world.js:74-100"
+    },
+    "portal-rule-no-portal": {
+      "biomes": [
+        "dungeon",
+        "caverns",
+        "chaos"
+      ],
+      "portal": false,
+      "src": "js/world/world.js:74, :79"
+    },
+    "portal-placement-room": {
+      "when": "host floor has a portal and is not a boss floor",
+      "stage": "after Crypt ooze and wall vegetation, before the Caverns finish",
+      "candidates": {
+        "minW": 4,
+        "minH": 4
+      },
+      "order": "Manhattan distance from room centre to the arrival cell, farthest first",
+      "cell": "(room cx, room top + 1)",
+      "onFail": "no portal (the plane is lost for the run)",
+      "src": "js/world/planes/portals.js:607-620; js/engine/generation-adapter.js:77",
+      "ruling": "ruled 2026-10-15: one rule for both portal biomes: the farthest qualifying room from arrival, then the reachable-from-stairs repair; a portal floor never loses its plane"
+    },
+    "portal-placement-underdark-repair": {
+      "biome": "underdark",
+      "notBoss": true,
+      "stage": "after the Underdark is regionalized",
+      "from": "first STAIRS cell in scan order; BFS over generation route cells",
+      "keepIf": "portal exists and is reachable",
+      "choose": "greatest walking distance from the stairs, first in row-major order on ties",
+      "onMove": "old portal tile to FLOOR; room role portal if unset; note added unless one already mentions \"portal to\"",
+      "onFail": "leave as is",
+      "src": "js/world/planes/planesfwa.js:148-155, :722-745; js/engine/generation-adapter.js:90"
+    },
+    "plane-portal-tile": {
+      "walkable": true,
+      "light": {
+        "r": 4.2,
+        "s": 1,
+        "pulse": "1 + 0.1 sin(now/300)"
+      },
+      "src": "js/world/planes/portals.js:17-45; js/engine/geometry.js:19; js/world/travel.js:148; js/presentation/ui/ui.js:714"
+    },
+    "plane-entry": {
+      "confirm": {
+        "title": "Step through the portal?",
+        "button": "Step through"
+      },
+      "noRosterLog": "The portal flickers and will not hold. Nothing lies beyond it yet.",
+      "failLog": "The plane could not be prepared. You remain on floor {floor}. Try the portal again.",
+      "steps": [
+        "close modal",
+        "remember player cell",
+        "mark host portal used",
+        "stash host floor (creatures minus player and allies, keys, action counter, clock)",
+        "record plane visited",
+        "build plane with seed S"
+      ],
+      "arrival": {
+        "sfx": "stairs",
+        "shake": 6,
+        "log": "You step through the portal into <b>{planeTitle}</b>.",
+        "then": "plane arrivalText (info)",
+        "journal": "location",
+        "autosave": "plane",
+        "music": "boss",
+        "playerCell": "entry cell + inward direction, else the portal"
+      },
+      "floorNumber": "the host floor for travel and loot; combat amounts are fixed per creature and hazard",
+      "visits": 1,
+      "effects": [
+        {
+          "verb": "travel",
+          "to": "plane",
+          "plane": "portal",
+          "arrival": "entry cell + inward direction, else the portal"
+        }
+      ],
+      "src": "js/engine/transition-adapter.js:58-70"
+    },
+    "plane-exit": {
+      "confirm": {
+        "title": "Leave {planeTitle}?",
+        "button": "Return"
+      },
+      "log": "You step back into the {biomeName}. Behind you the portal gutters and goes dark.",
+      "noStashLog": "The portal flickers but nothing happens.",
+      "arrival": "the host portal cell",
+      "autosave": "floor {floor}",
+      "stairsDownLog": "There are no stairs in {planeTitle}. The portal is the way home.",
+      "hostClocks": "paused while away (rebased on return); restored creatures take the player clock",
+      "eliteDeathLog": "The guardian of {planeTitle} falls. Its treasure waits in the grotto.",
+      "src": "js/engine/transition-adapter.js:28-29, :47, :71-76; js/engine/transitions.js:37-79; js/engine/death-adapter.js:43",
+      "ruling": "ruled 2026-10-15: the leave prompt also says when the rune chest is still unopened"
+    },
+    "plane-seeds": {
+      "plane": "(floor world seed ^ 0x7A11E5 ^ (floor x 131)) >>> 0",
+      "layoutStream": "mulberry32((S >>> 0) ^ 0x9E3779B9)",
+      "dressStream": "mulberry32((S ^ 0x2B8F5C1) >>> 0)",
+      "floorWorldSeed": "(previous x 1664525 + 1013904223) >>> 0 per new floor",
+      "src": "js/engine/transition-adapter.js:68; js/combat/systems.js:796; js/world/planes/planes.js:24; js/world/planes/portals.js:139; js/world/planes/planesfwa.js:181"
+    },
+    "plane-layout": {
+      "size": [
+        56,
+        34
+      ],
+      "margin": 2,
+      "codes": {
+        "ROCK": 0,
+        "FLOOR": 1,
+        "WATER": 2,
+        "CENTER": 3,
+        "DECOR": 4,
+        "TREASURE": 5,
+        "RUNE": 6,
+        "ENTRY": 7,
+        "LIGHT": 8,
+        "BLOCK": 9
+      },
+      "passes": [
+        {
+          "pass": "fill",
+          "box": "x 2..53, y 2..31",
+          "floorPct": 42
+        },
+        {
+          "pass": "smooth",
+          "iterations": 5,
+          "neighbours": 8,
+          "rockIfRockAtLeast": 5,
+          "floorIfRockAtMost": 3
+        },
+        {
+          "pass": "entrance",
+          "side": "uniform of 4",
+          "bottom": {
+            "x": [
+              19,
+              36
+            ],
+            "y": 31,
+            "dir": [
+              0,
+              -1
+            ]
+          },
+          "top": {
+            "x": [
+              19,
+              36
+            ],
+            "y": 2,
+            "dir": [
+              0,
+              1
+            ]
+          },
+          "left": {
+            "x": 2,
+            "y": [
+              11,
+              22
+            ],
+            "dir": [
+              1,
+              0
+            ]
+          },
+          "right": {
+            "x": 53,
+            "y": [
+              11,
+              22
+            ],
+            "dir": [
+              -1,
+              0
+            ]
+          }
+        },
+        {
+          "pass": "chamber-centre",
+          "cx": "28 + uniform(-5..5) - 3 x dir.x",
+          "cy": "17 + uniform(-2..2) - 2 x dir.y"
+        },
+        {
+          "pass": "grotto-corners",
+          "corners": [
+            [
+              9,
+              7
+            ],
+            [
+              46,
+              7
+            ],
+            [
+              9,
+              26
+            ],
+            [
+              46,
+              26
+            ]
+          ],
+          "jitter": {
+            "x": 2,
+            "y": 1
+          },
+          "sort": "Manhattan from entrance, farthest first",
+          "treasure": "first",
+          "pool": "second",
+          "swapPct": 50,
+          "forceRockRadius": {
+            "treasure": 8,
+            "pool": 7
+          }
+        },
+        {
+          "pass": "chamber",
+          "blob": {
+            "rx": [
+              8,
+              10
+            ],
+            "ry": [
+              5,
+              6
+            ],
+            "round": false
+          }
+        },
+        {
+          "pass": "hallway",
+          "length": [
+            5,
+            7
+          ]
+        },
+        {
+          "pass": "tunnel",
+          "from": "hallway inner end",
+          "to": "chamber centre",
+          "width": 2
+        },
+        {
+          "pass": "grottos",
+          "treasure": {
+            "r": [
+              3,
+              4
+            ],
+            "rx": "r",
+            "ry": "r-1",
+            "round": true
+          },
+          "pool": {
+            "r": [
+              3,
+              4
+            ],
+            "rx": "r+1",
+            "ry": "r",
+            "round": true
+          }
+        },
+        {
+          "pass": "tunnel",
+          "from": "treasure centre",
+          "to": "(cx + 4 x sign(tx - cx), cy)",
+          "width": 1,
+          "note": "dead end"
+        },
+        {
+          "pass": "tunnel",
+          "from": "pool centre",
+          "to": "chamber centre",
+          "width": 2
+        },
+        {
+          "pass": "side-pockets",
+          "count": [
+            1,
+            2
+          ],
+          "x": {
+            "either": [
+              [
+                5,
+                12
+              ],
+              [
+                43,
+                50
+              ]
+            ],
+            "pct": 50
+          },
+          "y": [
+            11,
+            22
+          ],
+          "blob": {
+            "rx": [
+              2,
+              3
+            ],
+            "ry": 2,
+            "round": false
+          }
+        },
+        {
+          "pass": "keep-reachable",
+          "from": "entrance",
+          "neighbours": 4,
+          "margin": 1
+        },
+        {
+          "pass": "centrepiece",
+          "voidpool": {
+            "blob": [
+              4,
+              2
+            ],
+            "cell": "WATER",
+            "centre": "CENTER"
+          },
+          "mound": {
+            "blob": [
+              2,
+              1
+            ],
+            "cell": "BLOCK",
+            "extra": [
+              [
+                -3,
+                -1
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                -2,
+                2
+              ],
+              [
+                2,
+                -2
+              ]
+            ]
+          },
+          "dais": {
+            "blob": [
+              2,
+              2
+            ],
+            "cell": "CENTER"
+          }
+        },
+        {
+          "pass": "pool-water",
+          "blob": {
+            "rx": "max(1, pr-1)",
+            "ry": "max(1, pr-2)"
+          },
+          "cell": "WATER"
+        },
+        {
+          "pass": "treasure",
+          "runeCell": "(tx - sign(cx - tx), ty - sign(cy - ty))"
+        },
+        {
+          "pass": "decor-scan",
+          "box": "x 3..52, y 3..30",
+          "only": "FLOOR",
+          "decor": {
+            "rockIn3x3AtLeast": 3,
+            "pct": 10
+          },
+          "light": {
+            "rockIn3x3": 0,
+            "pct": 1.2
+          }
+        }
+      ],
+      "blobRule": "cells within (rx+2, ry+2), inside margin 2; a = atan2(y-cy, x-cx); wob = round ? 1 + 0.06 sin(4a + cx) : 1 + 0.18 sin(3a + cx) + 0.12 sin(5a + cy); inside when ((x-cx)/(rx wob))^2 + ((y-cy)/(ry wob))^2 <= 1",
+      "tunnelRule": "carve a width x width square at the cell; up to 400 steps: 72% along the larger remaining axis, else 50/50 x or y toward the target (random -1..1 if aligned); clamp 2..53 x 2..31; carve after each step",
+      "build": {
+        "rock": "WALL",
+        "water": "WATER",
+        "other": "FLOOR",
+        "entry": "PORTAL",
+        "treasure": {
+          "tile": "CHEST",
+          "kind": "chest-plane"
+        },
+        "rune": {
+          "size": [
+            2,
+            2
+          ],
+          "searchRings": 3,
+          "fallback": "1 cell",
+          "blocks": true,
+          "light": {
+            "r": 3.2,
+            "s": 0.75,
+            "col": "kit lightCol"
+          }
+        },
+        "earthDecor": {
+          "pct": 50,
+          "cycle": "kit.decor"
+        },
+        "earthLight": {
+          "prop": "glow-mushrooms",
+          "light": {
+            "col": "#D8F0A0",
+            "r": 3.4,
+            "s": 0.8
+          }
+        },
+        "block": "kit.stone",
+        "secondSeal": "4-way from the cell inside the portal",
+        "shadowStepStones": {
+          "box": "cx-4..cx+4, cy-2..cy+2",
+          "beside": "WATER orthogonally",
+          "pct": 50,
+          "prop": "stepping-stone"
+        }
+      },
+      "src": "js/world/planes/planes.js:10-125; js/world/planes/portals.js:131-198"
+    },
+    "plane-terrain-features": {
+      "stream": "build",
+      "P": "(cx+1, cy+1)",
+      "spring": {
+        "when": "any WATER",
+        "light": {
+          "col": "kit pool light",
+          "r": 4.4,
+          "s": 0.9,
+          "at": "water centroid"
+        }
+      },
+      "outcrop": {
+        "prop": "pt-outcrop",
+        "size": [
+          3,
+          2
+        ],
+        "blocks": true,
+        "search": {
+          "y": "Py-10..Py",
+          "x": "Px+1..Px+11"
+        },
+        "wallsAboveAtLeast": 2,
+        "frontFloorAtLeast": 4,
+        "maxDistance": 9,
+        "score": "(x - Px) + 1.2 (Py - y) - 1.5 |d - 6|, d = distance from P to (x+1.5, y+1)",
+        "light": {
+          "r": 4.2,
+          "s": 0.85,
+          "at": "(x+1.5, y+0.8)"
+        }
+      },
+      "decorativePool": {
+        "search": {
+          "y": "Py-9..Py-1",
+          "x": "Px-11..Px-2"
+        },
+        "score": "-(|x+1-(Px-5)| + |y+0.5-(Py-4)|)",
+        "cells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "alwaysFirst": 4,
+        "otherPct": 60,
+        "gameplay": "none (stays FLOOR)",
+        "light": {
+          "r": 3.6,
+          "s": 0.8,
+          "at": "(x+1.2, y+0.6)"
+        }
+      },
+      "wallFormations": {
+        "max": 7,
+        "from": "DECOR anchors, Fisher-Yates shuffled",
+        "rules": [
+          "prop-free floor",
+          "not a chokepoint (open orthogonal sides only opposite, or <= 4 open of 8)",
+          "cell below open",
+          ">= 5 from P",
+          ">= 9 Manhattan from other formations",
+          "not in pool field"
+        ],
+        "big": {
+          "prop": "pt-cluster",
+          "size": 1,
+          "blocks": true,
+          "facing": "up, left or right wall",
+          "light": {
+            "r": 3,
+            "s": 0.6
+          }
+        },
+        "small": {
+          "count": "1 + 50%",
+          "dx": "+-(1..2)",
+          "dy": "-1..1",
+          "needs": [
+            "prop-free floor",
+            "wall orthogonally beside",
+            "cell below open"
+          ],
+          "sizes": [
+            0.6,
+            0.35
+          ],
+          "blocks": false
+        }
+      },
+      "reachabilityFix": {
+        "passes": 10,
+        "from": "first walkable cell in scan order",
+        "rings": [
+          2,
+          7
+        ],
+        "else": "remove"
+      },
+      "src": "js/world/planes/planeterrain.js:846-988; js/world/biomes/crypt/cryptpack.js:120-127, :292-299, :408-420"
+    },
+    "plane-dress-fire": {
+      "exclude": "not FLOOR, prop, item, or Manhattan <= 2 of portal or chest",
+      "pourShape": "hypot(x-x0, 1.35 (y-y0)) <= rad (1 + w sin(3a + x0) + 0.6 w sin(5a + y0)), cells within rad+1",
+      "pourCheck": "undo the whole pour if any walkable cell becomes unreachable from the player",
+      "lake": {
+        "at": "(cx +-5 (50%), cy - 3)",
+        "rad": [
+          2,
+          3
+        ],
+        "wobble": 0.22
+      },
+      "seams": {
+        "tries": 70,
+        "until": {
+          "pours": 8,
+          "cells": 10
+        },
+        "area": "2..53 x 2..31",
+        "minFromCentre": 4,
+        "wobble": 0.3
+      },
+      "grottoPool": {
+        "cells": "old water cells with 4 water neighbours, free",
+        "light": {
+          "col": "#FF7A2A",
+          "r": 4.5
+        }
+      },
+      "pourLight": {
+        "col": "#FF7A2A",
+        "r": "max(3.5, rad x 1.8)",
+        "s": 1
+      },
+      "blockedMoveLog": "Molten rock. You cannot cross it.",
+      "scatter": {
+        "streaks": 5,
+        "length": [
+          3,
+          4
+        ],
+        "direction": "rightward",
+        "needs": "prop-free FLOOR with a wall orthogonally beside",
+        "props": "kit.scatter uniform"
+      },
+      "src": "js/world/planes/planesfwa.js:172-230, :749-767, :776-780",
+      "ruling": "ruled 2026-10-15: no decorative lava pool on the Fire plane"
+    },
+    "plane-dress-water": {
+      "lagoon": {
+        "box": "cx-7..cx+7, cy-4..cy+4",
+        "ellipse": {
+          "rx": 6.5,
+          "ry": 3.4
+        },
+        "wobble": "1 + 0.18 sin(3a + cx) + 0.1 sin(5a + cy)"
+      },
+      "deep": "WATER (x 1..54, y 1..32) with 4 orthogonal WATER neighbours (walkable)",
+      "deepLight": {
+        "col": "#4FA8E8",
+        "r": 5.5,
+        "s": 0.7,
+        "at": "chamber centre"
+      },
+      "coral": {
+        "ground": "moss",
+        "chance": "min(75%, 9% x WATER cells in 5x5)"
+      },
+      "scatter": {
+        "streaks": 5,
+        "length": [
+          3,
+          4
+        ],
+        "props": "kit.scatter uniform"
+      },
+      "src": "js/world/planes/planesfwa.js:231-257, :749-767"
+    },
+    "plane-dress-air": {
+      "vents": {
+        "target": 7,
+        "tries": 900,
+        "area": "2..53 x 2..31",
+        "unoccupied": true,
+        "minManhattanApart": 7,
+        "prop": "updraft-vent",
+        "light": {
+          "col": "#CFE8FF",
+          "r": 2.6,
+          "s": 0.5
+        }
+      },
+      "scatter": {
+        "streaks": 5,
+        "length": [
+          3,
+          4
+        ],
+        "props": "kit.scatter uniform"
+      },
+      "src": "js/world/planes/planesfwa.js:258-271, :749-767"
+    },
+    "plane-creature-placement": {
+      "cells": [
+        "walkable",
+        "no prop",
+        "not the portal",
+        "Manhattan > 9 from arrival"
+      ],
+      "regulars": "12 + 2 x host floor position in biome (1..4): 14, 16, 18, 20",
+      "kind": "uniform of 3",
+      "cell": "uniform of remaining free",
+      "asleepPct": 60,
+      "otherwise": "wander",
+      "umbralHoundCompanion": {
+        "radius": 2,
+        "counted": false
+      },
+      "elite": {
+        "count": 1,
+        "at": "random free cell within 3 of (cx, cy+2), else the centre",
+        "state": "asleep"
+      },
+      "mountainHeart": {
+        "limbs": {
+          "offsets": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "kind": "crystalnode",
+          "hp": 9999,
+          "noXp": true,
+          "state": "hunt"
+        },
+        "nodes": {
+          "count": 3,
+          "tries": 400,
+          "radius": "3 + floor(try/50)",
+          "spotRadius": 2,
+          "reachable": true
+        }
+      },
+      "src": "js/world/planes/portals.js:199-213, :543-574; js/combat/combat.js:95, :105; js/combat/systems.js:175, :811; js/faith/gods.js:113",
+      "ruling": "ruled 2026-10-15: hazards spare bodies flagged plane-native (creature-flag), set on each roster kind, the elite and the Heart of the Mountain's limbs and nodes"
+    },
+    "plane-rune-chest": {
+      "kind": "chest-plane",
+      "locked": false,
+      "sfx": "chest-open",
+      "sparkle": 40,
+      "gear": {
+        "count": 2,
+        "uncursed": true,
+        "minPlus": 0,
+        "plusAdd": 1,
+        "plusCap": 3,
+        "enchant": "plane element (weapons and armour)"
+      },
+      "motes": {
+        "count": "2 + 50% for a third",
+        "element": "plane"
+      },
+      "essence": {
+        "base": "round((80 + 40 x rnd) x biome essence multiplier)",
+        "multipliers": [
+          1,
+          2.5,
+          4.5,
+          6,
+          8
+        ],
+        "ruling": "scaled once, at pickup (planes.md answer 6, packet C items.md question 8)"
+      },
+      "spot": "random free cell within 2 of the chest",
+      "log": "The rune chest opens: treasure of {planeTitle}.",
+      "cores": 0,
+      "effects": [
+        {
+          "verb": "create-item",
+          "item": "gear",
+          "count": 2,
+          "spot": "near",
+          "cursed": false,
+          "plusAdd": 1,
+          "plusCap": 3,
+          "enchant": "plane"
+        },
+        {
+          "verb": "create-item",
+          "item": "mote",
+          "count": {
+            "roll": [
+              2,
+              3
+            ]
+          },
+          "spot": "near"
+        },
+        {
+          "verb": "create-item",
+          "item": "essence",
+          "count": {
+            "roll": [
+              80,
+              120
+            ]
+          },
+          "spot": "near",
+          "note": "the biome essence multiplier applies once, at pickup (planes.md answer 6)"
+        }
+      ],
+      "src": "js/world/planes/portals.js:220-231; js/combat/systems.js:683; js/equipment/tiers.js:79-82; js/equipment/upgrade.js:21-22"
+    },
+    "plane-drops-regular": {
+      "chancePct": 30,
+      "weights": {
+        "essence": 8,
+        "sigil": 2,
+        "gear": 3
+      },
+      "appliesTo": "every plane creature without its own table, including the light, shadow and earth elites",
+      "src": "js/world/planes/portals.js:264; js/world/planes/planesfwa.js:139"
+    },
+    "plane-drops-elite-fwa": {
+      "chancePct": 60,
+      "weights": {
+        "essence": 6,
+        "gear": 8,
+        "sigil": 2
+      },
+      "src": "js/world/planes/planesfwa.js:139",
+      "ruling": "ruled 2026-10-15: all six guardians use this table (60%: essence 6, gear 8, sigil 2)"
+    },
+    "plane-hazard-light-flare": {
+      "plane": "light",
+      "phase": "A19",
+      "clock": "game-turn",
+      "delay": 2,
+      "warning": "<b>Light flare:</b> leave marked ground!",
+      "burst": "light",
+      "cells": {
+        "blotches": 3,
+        "centre": "player + (uniform -5..5, uniform -4..4)",
+        "size": [
+          5,
+          3
+        ],
+        "cellPct": 80,
+        "shade": "no orthogonal neighbour prop named crystal, stalagmite, rune or dais"
+      },
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-world-pulse",
+          "every": 4,
+          "effects": [
+            {
+              "verb": "telegraph",
+              "tiles": {
+                "selector": "blotch",
+                "count": 3,
+                "centre": "self",
+                "jitter": [
+                  5,
+                  4
+                ],
+                "size": [
+                  5,
+                  3
+                ],
+                "cellPct": 80,
+                "ownCellPct": 60,
+                "exclude": {
+                  "adjacent-terrain": {
+                    "prop": [
+                      "crystal",
+                      "stalagmite",
+                      "rune",
+                      "dais"
+                    ],
+                    "ways": 4
+                  }
+                }
+              },
+              "delay": 2,
+              "clock": "game-turn",
+              "warning": "plane-light-flare-warning",
+              "then": [
+                {
+                  "verb": "damage",
+                  "amount": {
+                    "roll": [
+                      6,
+                      9
+                    ]
+                  },
+                  "type": "light",
+                  "tags": [
+                    "environment",
+                    "area"
+                  ],
+                  "if": {
+                    "not": {
+                      "creature-flag": "plane-native"
+                    }
+                  }
+                },
+                {
+                  "verb": "apply-status",
+                  "status": "blind",
+                  "turns": 2,
+                  "if": {
+                    "not": {
+                      "creature-flag": "plane-native"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "src": "js/world/planes/portals.js:268-304"
+    },
+    "plane-hazard-falling-rocks": {
+      "plane": "earth",
+      "phase": "A19",
+      "clock": "game-turn",
+      "delay": 2,
+      "warning": "<b>Falling rocks:</b> leave marked ground!",
+      "shake": 7,
+      "burst": "earth",
+      "cells": {
+        "picks": 7,
+        "area": "player +-3 square",
+        "walkable": true
+      },
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-world-pulse",
+          "every": 6,
+          "effects": [
+            {
+              "verb": "telegraph",
+              "tiles": {
+                "selector": "blotch",
+                "count": 7,
+                "centre": "self",
+                "jitter": [
+                  3,
+                  3
+                ],
+                "size": [
+                  1,
+                  1
+                ],
+                "cellPct": 100,
+                "walkable": true
+              },
+              "delay": 2,
+              "clock": "game-turn",
+              "warning": "plane-falling-rocks-warning",
+              "then": [
+                {
+                  "verb": "damage",
+                  "amount": {
+                    "roll": [
+                      8,
+                      11
+                    ]
+                  },
+                  "type": "phys",
+                  "tags": [
+                    "environment",
+                    "area"
+                  ],
+                  "if": {
+                    "not": {
+                      "creature-flag": "plane-native"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "src": "js/world/planes/portals.js:268-304"
+    },
+    "plane-hazard-shadow-darkness": {
+      "plane": "shadow",
+      "phase": "sight",
+      "sight": {
+        "base": 5,
+        "litByPlaneLight": 8,
+        "snuffed": 2
+      },
+      "litTest": "within 2 (Chebyshev, fractional) of any plane light",
+      "effects": [
+        {
+          "verb": "light-radius",
+          "set": 2,
+          "if": {
+            "has-status": "snuffed"
+          }
+        },
+        {
+          "verb": "light-radius",
+          "set": 8,
+          "if": {
+            "all": [
+              {
+                "not": {
+                  "has-status": "snuffed"
+                }
+              },
+              {
+                "lit-by": {
+                  "light": "plane",
+                  "within": 2
+                }
+              }
+            ]
+          }
+        },
+        {
+          "verb": "light-radius",
+          "set": 5,
+          "if": {
+            "all": [
+              {
+                "not": {
+                  "has-status": "snuffed"
+                }
+              },
+              {
+                "not": {
+                  "lit-by": {
+                    "light": "plane",
+                    "within": 2
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "src": "js/engine/geometry.js:30-31; js/engine/geometry-adapter.js:15-17"
+    },
+    "plane-hazard-snuffed": {
+      "phase": "A20",
+      "clock": "game-turn",
+      "setBy": "Gloom Moth hit (packet F): 5",
+      "tick": -1,
+      "endLog": "Your light steadies.",
+      "offPlane": "caps sight at 2 but does not count down off a plane",
+      "statusIcon": {
+        "name": "Light Snuffed",
+        "desc": "Light radius reduced to 2 tiles."
+      },
+      "effects": [
+        {
+          "verb": "light-radius",
+          "set": 2,
+          "turns": 5,
+          "clock": "game-turn"
+        }
+      ],
+      "src": "js/world/planes/portals.js:318; js/engine/damage-adapter.js:277; js/presentation/ui/statusicons.js:64"
+    },
+    "plane-hazard-regeneration": {
+      "phase": "A20",
+      "clock": "game-turn",
+      "appliesTo": "creatures flagged regenerates (Moss Troll)",
+      "heal": 4,
+      "trigger": "on-world-pulse",
+      "effects": [
+        {
+          "verb": "heal",
+          "amount": {
+            "fixed": 4
+          },
+          "natural": true,
+          "regen": true,
+          "if": {
+            "all": [
+              {
+                "not": {
+                  "burned-within": {
+                    "turns": 5
+                  }
+                }
+              },
+              {
+                "hp-below-pct": {
+                  "pct": 100,
+                  "body": "self"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "src": "js/world/planes/portals.js:319-322; js/engine/damage-adapter.js:67"
+    },
+    "plane-hazard-lava-standing": {
+      "plane": "fire",
+      "phase": "A30",
+      "clock": "game-turn",
+      "player": {
+        "log": "Lava: {n}."
+      },
+      "creatures": {},
+      "trigger": "on-world-pulse",
+      "effects": [
+        {
+          "verb": "damage",
+          "amount": 11,
+          "type": "fire",
+          "tags": [
+            "environment"
+          ],
+          "target": {
+            "selector": "floor",
+            "side": "any"
+          },
+          "if": {
+            "all": [
+              {
+                "adjacent-terrain": {
+                  "terrain": "lava",
+                  "ways": 4
+                }
+              },
+              {
+                "not": {
+                  "creature-flag": "airborne"
+                }
+              },
+              {
+                "not": {
+                  "creature-flag": "plane-native"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "src": "js/world/planes/planesfwa.js:310-318",
+      "ruling": "ruled 2026-10-15: every body takes the same damage; levitating and flying bodies are exempt"
+    },
+    "plane-hazard-deep-water": {
+      "plane": "water",
+      "phase": "A30",
+      "clock": "game-turn",
+      "player": {
+        "log": "Deep water: {n}.",
+        "chill": true
+      },
+      "creatures": {
+        "chill": false
+      },
+      "trigger": "on-world-pulse",
+      "effects": [
+        {
+          "verb": "damage",
+          "amount": 11,
+          "type": "ice",
+          "tags": [
+            "environment"
+          ],
+          "target": {
+            "selector": "floor",
+            "side": "any"
+          },
+          "if": {
+            "all": [
+              {
+                "standing-on": "deep-water"
+              },
+              {
+                "not": {
+                  "creature-flag": "airborne"
+                }
+              },
+              {
+                "not": {
+                  "creature-flag": "plane-native"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "verb": "apply-status",
+          "status": "chill",
+          "turns": 1,
+          "only": "player",
+          "if": {
+            "all": [
+              {
+                "standing-on": "deep-water"
+              },
+              {
+                "not": {
+                  "creature-flag": "airborne"
+                }
+              },
+              {
+                "not": {
+                  "creature-flag": "plane-native"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "src": "js/world/planes/planesfwa.js:319-325",
+      "ruling": "Fixed ice damage; levitating, flying and plane-native bodies are exempt."
+    },
+    "plane-hazard-updraft-vent": {
+      "plane": "air",
+      "phase": "A30",
+      "clock": "game-turn",
+      "player": {
+        "tiles": 1,
+        "direction": "(sign cos a, sign sin a), a uniform angle (always diagonal)",
+        "log": "Air vent: pushed.",
+        "sfx": "trap-spark",
+        "burst": "lightning"
+      },
+      "creatures": "unaffected",
+      "trigger": "on-world-pulse",
+      "effects": [
+        {
+          "verb": "knockback",
+          "tiles": 1,
+          "direction": "random-8",
+          "only": "player",
+          "if": {
+            "all": [
+              {
+                "standing-on": {
+                  "prop": "updraft-vent"
+                }
+              },
+              {
+                "not": {
+                  "has-status": "root"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "src": "js/world/planes/planesfwa.js:281-292, :326-330",
+      "ruling": "ruled 2026-10-15: a vent pushes toward a uniformly chosen one of the 8 neighbours"
+    },
+    "plane-hazard-burning-rocks": {
+      "plane": "fire",
+      "phase": "A30",
+      "clock": "game-turn",
+      "delay": 2,
+      "shake": 5,
+      "warning": "<b>Burning rocks:</b> leave marked ground!",
+      "burst": "fire",
+      "cells": {
+        "blotches": 3,
+        "centre": "player + (uniform -4..4, uniform -3..3)",
+        "size": [
+          3,
+          3
+        ],
+        "cellPct": 70
+      },
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-world-pulse",
+          "every": 5,
+          "effects": [
+            {
+              "verb": "telegraph",
+              "tiles": {
+                "selector": "blotch",
+                "count": 3,
+                "centre": "self",
+                "jitter": [
+                  4,
+                  3
+                ],
+                "size": [
+                  3,
+                  3
+                ],
+                "cellPct": 70,
+                "ownCellPct": 60
+              },
+              "delay": 2,
+              "clock": "game-turn",
+              "warning": "plane-burning-rocks-warning",
+              "then": [
+                {
+                  "verb": "damage",
+                  "amount": {
+                    "roll": [
+                      19,
+                      24
+                    ]
+                  },
+                  "type": "fire",
+                  "tags": [
+                    "environment",
+                    "area"
+                  ],
+                  "if": {
+                    "not": {
+                      "creature-flag": "plane-native"
+                    }
+                  }
+                },
+                {
+                  "verb": "apply-status",
+                  "status": "burn",
+                  "turns": 3,
+                  "magnitude": 3,
+                  "if": {
+                    "not": {
+                      "creature-flag": "plane-native"
+                    }
+                  }
+                },
+                {
+                  "verb": "field",
+                  "field": "fire",
+                  "shape": {
+                    "selector": "tile"
+                  },
+                  "turns": 3,
+                  "clock": "game-turn",
+                  "chance": 40
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "src": "js/world/planes/planesfwa.js:333-378"
+    },
+    "plane-hazard-surge": {
+      "plane": "water",
+      "phase": "A30",
+      "clock": "game-turn",
+      "delay": 2,
+      "warning": "<b>Surge:</b> leave marked water!",
+      "burst": "ice",
+      "cells": {
+        "band": {
+          "halfLength": 4,
+          "depth": 1,
+          "offset": [
+            -1,
+            1
+          ],
+          "direction": "uniform of 4"
+        }
+      },
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-world-pulse",
+          "every": 6,
+          "effects": [
+            {
+              "verb": "telegraph",
+              "tiles": {
+                "selector": "wave-band",
+                "centre": "self",
+                "halfLength": 4,
+                "depth": 1,
+                "offset": [
+                  -1,
+                  1
+                ]
+              },
+              "delay": 2,
+              "clock": "game-turn",
+              "warning": "plane-surge-warning",
+              "then": [
+                {
+                  "verb": "damage",
+                  "amount": {
+                    "roll": [
+                      18,
+                      23
+                    ]
+                  },
+                  "type": "ice",
+                  "tags": [
+                    "environment",
+                    "area"
+                  ],
+                  "if": {
+                    "not": {
+                      "creature-flag": "plane-native"
+                    }
+                  }
+                },
+                {
+                  "verb": "knockback",
+                  "tiles": 1,
+                  "direction": "wave",
+                  "if": {
+                    "not": {
+                      "creature-flag": "plane-native"
+                    }
+                  }
+                },
+                {
+                  "verb": "apply-status",
+                  "status": "chill",
+                  "turns": 1,
+                  "only": "player"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "src": "js/world/planes/planesfwa.js:333-378"
+    },
+    "plane-hazard-gale": {
+      "plane": "air",
+      "phase": "A30",
+      "clock": "game-turn",
+      "delay": 2,
+      "shake": 6,
+      "warning": "<b>Gale:</b> leave its path!",
+      "burst": "lightning",
+      "cells": {
+        "band": {
+          "halfLength": 3,
+          "depth": 1,
+          "offset": [
+            -1,
+            1
+          ],
+          "direction": "uniform of 4"
+        }
+      },
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-world-pulse",
+          "every": 5,
+          "effects": [
+            {
+              "verb": "telegraph",
+              "tiles": {
+                "selector": "wave-band",
+                "centre": "self",
+                "halfLength": 3,
+                "depth": 1,
+                "offset": [
+                  -1,
+                  1
+                ]
+              },
+              "delay": 2,
+              "clock": "game-turn",
+              "warning": "plane-gale-warning",
+              "then": [
+                {
+                  "verb": "damage",
+                  "amount": {
+                    "roll": [
+                      17,
+                      21
+                    ]
+                  },
+                  "type": "phys",
+                  "tags": [
+                    "environment",
+                    "area"
+                  ],
+                  "if": {
+                    "not": {
+                      "creature-flag": "plane-native"
+                    }
+                  }
+                },
+                {
+                  "verb": "knockback",
+                  "tiles": 2,
+                  "direction": "wave",
+                  "if": {
+                    "not": {
+                      "creature-flag": "plane-native"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "src": "js/world/planes/planesfwa.js:333-378"
+    },
+    "plane-terrain-test-room": {
+      "size": [
+        28,
+        19
+      ],
+      "placement": "centred: ox = floor((56-28)/2) = 14, oy = floor((34-19)/2) = 7; everything outside is WALL",
+      "player": [
+        9,
+        8
+      ],
+      "playerFrame": "room coordinates (ox+9, oy+8)",
+      "rows": [
+        "############################",
+        "############################",
+        "######.........#############",
+        "#####...........############",
+        "####.............###....####",
+        "####..............#......###",
+        "###...............#......###",
+        "###...........##.........###",
+        "####..........##.........###",
+        "#####.........#####.....####",
+        "######.......#######...#####",
+        "#######.....#########.######",
+        "########...##########.######",
+        "#########.###########.######",
+        "#########.###########...####",
+        "#########.#############.####",
+        "#########...............####",
+        "############################",
+        "############################"
+      ],
+      "src": "js/world/planes/planeterrain.js:695-727"
+    }
+  }
+}

@@ -1,0 +1,370 @@
+{
+  "version": 1,
+  "rows": {
+    "rule-plan": {
+      "kind": "rule",
+      "floors": "per biome b (floors 5b+1..5b+5): the three floors 5b+2, 5b+3, 5b+4, shuffled by a per-run stream (seed ^ (0x9a221e + 977 b)); the first two get one sigil room each, the third gets a crystal vault (50%) or an elemental treasury (50%)",
+      "kinds": "all PUZZLE_KINDS except everburn, and library only in biomes 0-1; first kind uniform; second kind uniform among kinds of a different element than the first (rerolled until different)",
+      "pocket": "carvePocket: a random host room (not start, not boss), random side, size within the given ranges, 2 tiles clear of the map edge, solid rock ring around it, one door tile shared with the host; the host cell inside the door must be floor with no prop and not beside an explosive or poison barrel; up to 260 tries",
+      "roomCells": "puzzle cells = interior cells (not the centre tile) + edge cells (not the centre, not beside a door or corridor mouth, no prop): the room centre and door-side edge cells are never used",
+      "note": "every puzzle adds the floor note id puzzle.<kind>; its words are strings.json floor-note.puzzle.<kind> (U9, ui-28)",
+      "mastery": "holding 3 affinity in the room element solves it on entry for darktraps, sentinels (while not hidden), sentries, chasm (once across), spikes, drowned and baths",
+      "solveLog": "<b>Name:</b> <how>, class c-kill; sfx puzzle-solved; sight recomputed",
+      "src": "js/world/puzzles.js:34; js/world/puzzles.js:504; js/world/puzzles.js:107; js/world/world.js:650; js/world/puzzles.js:90; js/world/puzzles.js:297"
+    },
+    "poisonvault": {
+      "name": "Poison gas vault",
+      "element": "fire",
+      "sigil": "firestorm",
+      "note": "floor note: strings.json floor-note.puzzle.poisonvault",
+      "layout": [
+        "3 puzzle-loot cells farthest from the door",
+        "a Firestorm sigil on the free room cell nearest the door",
+        "a gas cloud over every floor cell of the room, never expiring"
+      ],
+      "hazards": [
+        {
+          "when": "each action, anyone in the cloud (not undead, beetles or objects)",
+          "effects": [
+            {
+              "verb": "damage",
+              "amount": 8,
+              "type": "poison",
+              "tags": [
+                "environment"
+              ]
+            }
+          ],
+          "log": "Gas: N.",
+          "phase": "A15 crypt clouds"
+        },
+        {
+          "when": "entering the room (once per visit; leaving resets)",
+          "only": "player",
+          "effects": [
+            {
+              "verb": "apply-status",
+              "status": "poison",
+              "turns": 3,
+              "magnitude": 2,
+              "durationModifiers": false
+            }
+          ]
+        }
+      ],
+      "src": "js/world/puzzles.js:17; js/world/puzzles.js:121; js/world/puzzles.js:323"
+    },
+    "offering": {
+      "name": "Offering chamber",
+      "element": "earth",
+      "sigil": null,
+      "note": "floor note: strings.json floor-note.puzzle.offering",
+      "layout": [
+        "an offering bowl (brazier-unlit, kept, green light #73EE75) on the free cell nearest the room centre that is more than 1 from the door and keeps paths open"
+      ],
+      "src": "js/world/puzzles.js:18; js/world/puzzles.js:118; js/world/puzzles.js:300"
+    },
+    "chasm": {
+      "name": "Chasm vault",
+      "element": "air",
+      "sigil": "levitate",
+      "note": "floor note: strings.json floor-note.puzzle.chasm",
+      "layout": [
+        "a one-tile chasm band across the whole room, one row (or column) in from the door side",
+        "3 puzzle-loot cells among the farthest third of the room cells (at least 1)"
+      ],
+      "air3": "stepping toward a chasm with Air 3 grants Levitate 1 and wind-carry, renewed each action while on a chasm",
+      "src": "js/world/puzzles.js:19; js/world/puzzles.js:127; js/world/puzzles.js:410; js/world/puzzles.js:533"
+    },
+    "drowned": {
+      "name": "Drowned cellar",
+      "element": "air",
+      "sigil": "levitate",
+      "note": "floor note: strings.json floor-note.puzzle.drowned",
+      "layout": [
+        "every puzzle cell becomes water except the 3 farthest from the door, which keep 3 puzzle-loot items",
+        "the room is deep"
+      ],
+      "hazards": [
+        {
+          "when": "each move into a water tile of the room, not levitating",
+          "only": "player",
+          "effects": [
+            {
+              "verb": "damage",
+              "amount": {
+                "pct-of": {
+                  "stat": "max-hp",
+                  "pct": 8,
+                  "min": 1
+                }
+              },
+              "type": "ice",
+              "tags": [
+                "environment"
+              ],
+              "note": "ordinary damage through the pipeline with resistance (world.md answer 2); 1.7 used direct damage with no defences"
+            }
+          ],
+          "log": "The cold water saps you: N damage."
+        }
+      ],
+      "src": "js/world/puzzles.js:20; js/world/puzzles.js:133; js/world/puzzles.js:334; js/world/puzzles.js:411",
+      "damageClock": "each game turn in the water, moving or waiting (ruled 2026-10-15)"
+    },
+    "barricade": {
+      "challengeChest": true,
+      "name": "Burning chamber",
+      "element": "water",
+      "sigil": null,
+      "note": "floor note: strings.json floor-note.puzzle.barricade",
+      "layout": [
+        "3 puzzle-loot cells",
+        "every floor cell burns",
+        "a water barrel (kept, does not burn) on the free puzzle cell nearest the centre at least 3 (Manhattan) from the door"
+      ],
+      "hazards": [
+        {
+          "when": "each action, every floor cell of the unsolved room is set to burn for at least 3 more actions (after the fire tick)",
+          "effects": [
+            {
+              "verb": "field",
+              "field": "fire",
+              "shape": {
+                "selector": "room"
+              },
+              "turns": 3,
+              "clock": "game-turn"
+            }
+          ],
+          "note": "standing in fire: Burn 3 game turns, magnitude sDMG(2), each world pulse (not with Fire 6, not fire creatures); fire spreads out of the room by the ordinary fire rules"
+        }
+      ],
+      "onSolve": "fire cleared and every floor cell of the room becomes water for good",
+      "legacy": "1.7 still carries a sealed-barricade path (bump: \"The barricade blocks the doorway. Fire would clear it.\"; Fire 3 or fire burns it: \"the timber burns away.\") that new floors never use, since every new burning chamber has burning set",
+      "src": "js/world/puzzles.js:21; js/world/puzzles.js:138; js/world/puzzles.js:371; js/world/biomes/dungeon/beta-world.js:19"
+    },
+    "hoard": {
+      "name": "Frozen hoard",
+      "element": "fire",
+      "sigil": "firestorm",
+      "note": "floor note: strings.json floor-note.puzzle.hoard",
+      "layout": [
+        "3 puzzle-loot items on the 3 farthest cells, each under an ice block (kept, not breakable by blows)",
+        "an explosive barrel on the free cell nearest the centre at least 3 (Manhattan) from the door"
+      ],
+      "rules": [
+        "bumping a block: \"The ice is too hard to break. Only fire will melt it.\" sfx ice-hit, no action spent",
+        "Fire 3 bumping a block solves the room: \"the ice melts at your touch.\" (one action)",
+        "each action (A14) any block with fire on or beside it (8-way) melts: \"Fire melts a block of ice.\" / \"Fire melts N blocks of ice.\" sfx ice-melt; the last one solves: \"the last of the ice runs away as water.\"",
+        "fire ground (a fire field) on the room solves: \"the frozen chamber thaws.\"; fire ground melts the blocks it covers (effects.md G4)"
+      ],
+      "onSolve": "every hoard block on the floor is removed",
+      "src": "js/world/puzzles.js:22; js/world/puzzles.js:141; js/world/puzzles.js:489; js/world/puzzles.js:539"
+    },
+    "everburn": {
+      "name": "Everburning door",
+      "element": "water",
+      "sigil": "identify",
+      "retired": true,
+      "note": "floor note: strings.json floor-note.puzzle.everburn",
+      "rules": [
+        "never planned; a cached plan naming it builds a burning chamber instead",
+        "the door tile burns each action",
+        "Identify sigil within 3 of the door: \"the undying flame gutters out.\"; Water 3 walking in: \"the flame dies at your touch.\""
+      ],
+      "src": "js/world/puzzles.js:23; js/world/puzzles.js:109; js/world/puzzles.js:377"
+    },
+    "baths": {
+      "challengeChest": true,
+      "name": "Scalding baths",
+      "element": "earth",
+      "sigil": null,
+      "note": "floor note: strings.json floor-note.puzzle.baths",
+      "layout": [
+        "puddle ground on every floor cell without ground cover",
+        "3 puzzle-loot cells",
+        "a poison barrel (kept, does not burn) on the free puzzle cell nearest the centre at least 3 (Manhattan) from the door"
+      ],
+      "hazards": [
+        {
+          "when": "each action standing in the unsolved room, not levitating, not cooled",
+          "only": "player",
+          "effects": [
+            {
+              "verb": "damage",
+              "amount": {
+                "roll": [
+                  3,
+                  5
+                ]
+              },
+              "type": "fire",
+              "tags": [
+                "environment"
+              ]
+            }
+          ],
+          "log": "The scalding stone burns you: N damage."
+        }
+      ],
+      "dead": [
+        "Identify-sigil cooling (\"<b>Scalding baths:</b> the stone cools for 10 turns.\", 10 actions) never fires: the baths have no sigil",
+        "mastery never fires: excluded from mastery"
+      ],
+      "src": "js/world/puzzles.js:24; js/world/puzzles.js:151; js/world/puzzles.js:383"
+    },
+    "spikes": {
+      "name": "Spike gauntlet",
+      "element": "earth",
+      "sigil": "stoneskin",
+      "note": "floor note: strings.json floor-note.puzzle.spikes",
+      "layout": [
+        "the 3 farthest cells hold puzzle loot",
+        "a hidden spike trap on every other floor puzzle cell"
+      ],
+      "ruling": "2026-09-18: spikes are hidden like any trap; search finds them",
+      "src": "js/world/puzzles.js:25; js/world/biomes/dungeon/beta-world.js:61; js/world/puzzles.js:155"
+    },
+    "sentinels": {
+      "challengeChest": true,
+      "name": "Stone sentinels",
+      "element": "earth",
+      "sigil": "stoneskin",
+      "note": "floor note: strings.json floor-note.puzzle.sentinels",
+      "layout": [
+        "3 puzzle-loot cells, spread (no two adjacent) where possible",
+        "a guardian shutoff lever on the free cell farthest from the door",
+        "cover pillars at the centre +-1 across the short axis (if paths stay open)",
+        "up to 2 sentinel statues on the farthest free cells that keep paths open"
+      ],
+      "rules": [
+        "entering the room while not hidden: with Stone Skin or Earth 3 it solves (\"the sentinels take you for one of their own and sleep on.\"); otherwise it is marked solved and every sentinel statue becomes a hunting Stone Sentinel",
+        "\"<b>The stone sentinels wake!</b>\" shake 8, sfx golem-alert"
+      ],
+      "sentinel": {
+        "base": "brute",
+        "name": "Stone Sentinel",
+        "hp": 58,
+        "armour": 6,
+        "sprite": "m-stoneling",
+        "colour": "#8C8C84",
+        "state": "hunt",
+        "dmg": [
+          8,
+          11
+        ],
+        "acc": 58
+      },
+      "lever": "pulling it solves and disables: sentinels and sentries lose their flag and light, awakened sentinels turn back to dim statues; \"The guardians go still.\" sfx lever; one action",
+      "src": "js/world/puzzles.js:26; js/world/puzzles.js:162; js/world/puzzles.js:396; js/world/biomes/dungeon/beta-world.js:65",
+      "solvedBy": "the shutoff lever or every sentinel destroyed, with the solve message (ruled 2026-10-15)"
+    },
+    "darktraps": {
+      "name": "Lightless room",
+      "element": "light",
+      "sigil": "heal",
+      "note": "floor note: strings.json floor-note.puzzle.darktraps",
+      "layout": [
+        "the room is dark",
+        "3 puzzle-loot cells (farthest)",
+        "5 heavy hidden traps (fire, spark or dart, uniform) on random puzzle cells more than 1 (Manhattan) from the door",
+        "a bones prop just inside the door, offset one tile"
+      ],
+      "rules": [
+        "sight radius in the unsolved room is 1 for everyone (ruled 2026-10-15)",
+        "traps here hide 5 times better from passive spotting"
+      ],
+      "onSolve": "the room is lit and every puzzle trap in it is found",
+      "src": "js/world/puzzles.js:27; js/world/puzzles.js:167; js/engine/geometry.js:28"
+    },
+    "sentries": {
+      "challengeChest": true,
+      "name": "Sentry gallery",
+      "element": "shadow",
+      "sigil": "vanish",
+      "note": "floor note: strings.json floor-note.puzzle.sentries",
+      "layout": [
+        "3 puzzle-loot cells spread",
+        "lever and cover pillars as for sentinels",
+        "up to 2 sentry statues (red light #FF5A4A) on edge cells more than 2 (Manhattan) from the door"
+      ],
+      "hazards": [
+        {
+          "when": "each action in the unsolved room, not hidden and Shadow below 3",
+          "only": "player",
+          "effects": [
+            {
+              "verb": "damage",
+              "amount": {
+                "roll": [
+                  4,
+                  6
+                ]
+              },
+              "type": "light",
+              "tags": [
+                "environment"
+              ]
+            }
+          ],
+          "each": "per sentry statue with a clear projectile path (blocking props stop it)",
+          "log": "A sentry's eyes flare: N damage."
+        }
+      ],
+      "src": "js/world/puzzles.js:28; js/world/puzzles.js:174; js/world/puzzles.js:387"
+    },
+    "library": {
+      "challengeChest": true,
+      "name": "Silent library",
+      "element": "shadow",
+      "sigil": "vanish",
+      "biomes": [
+        "dungeon",
+        "crypt"
+      ],
+      "note": "floor note: strings.json floor-note.puzzle.library",
+      "layout": [
+        "dark room",
+        "guardian lever at the farthest free cell",
+        "2 sleeping keepers on the farthest free cells: duskling in the Dungeon, stalker elsewhere",
+        "forbidden library rewards (2 sigils of 2+ motes and a quality-rolled tome) on the farthest free cells",
+        "up to 4 bookshelves on edge cells whose row is a multiple of 3 from the top, more than 2 (Manhattan) from the door"
+      ],
+      "rules": [
+        "first entry wakes the keepers (they remember you): \"The library guardians wake.\"",
+        "biome 2+ cached plans build a sentry gallery instead"
+      ],
+      "src": "js/world/puzzles.js:29; js/world/puzzles.js:180; js/world/puzzles.js:327; js/world/world.js:958"
+    },
+    "crystal-vault": {
+      "name": "Crystal vault",
+      "note": "floor note: strings.json floor-note.crystal-vault",
+      "layout": [
+        "pocket 4-6 by 3-4 (else 3-5 by 3-4) behind a crystal door",
+        "3 treasures on the farthest free cells, each under a flat violet crystal marker (light #9FE8FF, dim): 1) gear, uncursed, plus at least 0, +1 enhancement; 2) ring or amulet 50/50; 3) one random mote or essence 60-90 + 10 x floor (50/50)",
+        "a crystal key on a random free main-room cell"
+      ],
+      "rules": [
+        "bump without key: \"A door of solid crystal. A <b>crystal key</b> on this floor opens it.\" sfx door-locked",
+        "with key: key spent, door opens: \"The crystal key rings true. <b>Take one treasure</b>; the rest will shatter.\" sfx door-unlock (one action)",
+        "taking one treasure shatters the others and the markers: \"The other treasures shatter.\" sfx ice-melt"
+      ],
+      "src": "js/world/puzzles.js:235; js/combat/systems.js:242; js/world/puzzles.js:424"
+    },
+    "elemental-treasury": {
+      "name": "Elemental treasury",
+      "note": "floor note: strings.json floor-note.treasury",
+      "layout": [
+        "pocket 4-5 by 3-4, sealed door",
+        "an elemental lock pedestal on a random main-room cell (80 tries) else just inside the pocket door; no lock means the pocket is filled back in",
+        "random element; cost = biome index + 1 motes",
+        "5 rewards on the farthest free cells: a weapon for the class (fighter/warrior mace or axe; scoundrel bow or dagger; mage wand or staff; cleric censer or a 2+ mote sigil; tourist any) at tier min(3, 2 + floor(biome/2)), plus 2 + biome, enchanted with the element, uncursed, unidentified; ring or amulet 50/50; three essence piles of 30-50 + 5 x floor"
+      ],
+      "rules": [
+        "bump the sealed door: \"Sealed by elemental magic. A lock pedestal elsewhere on this floor requires N <element> mote(s).\""
+      ],
+      "src": "js/world/puzzles.js:204; js/combat/systems.js:248"
+    }
+  }
+}

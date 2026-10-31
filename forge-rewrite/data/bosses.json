@@ -1,0 +1,2289 @@
+{
+  "version": 1,
+  "note": "Set pieces as verb lists (ruled 2026-10-15). spec/bosses.md explains every row. Arenas are packet G's (ids by reference). Damage amounts are 1.7's: a bare roll is unscaled, a scaled roll with number-scale and lethality is 1.7's sDMG. Move clocks are 1.7's (actor-action: the boss's own actions; action: player actions); bosses.md question 1 proposes game turns for all.",
+  "rows": {
+    "grukk": {
+      "name": "Grukk the Warchief",
+      "barWords": {"slam": "GROUND SLAM", "shockwave": "SHOCKWAVE", "charge": "CHARGE!"},
+      "monsters": [
+        "warchief"
+      ],
+      "floor": 5,
+      "arena": {
+        "packet": "G",
+        "id": "dungeon-boss-room",
+        "throne": true
+      },
+      "guards": [
+        {
+          "creature": "goblin",
+          "count": 2,
+          "state": "asleep"
+        },
+        {
+          "creature": "archer",
+          "count": 1,
+          "state": "asleep"
+        }
+      ],
+      "wake": {
+        "state": "throne",
+        "when": [
+          "sees-player-within-7-in-boss-room",
+          "hurt"
+        ],
+        "log": "boss.wake",
+        "sfx": "warchief-roar",
+        "shake": 8,
+        "guards": "hunt"
+      },
+      "music": "boss-grukk",
+      "bossBar": true,
+      "phases": [
+        {
+          "id": "phase-1",
+          "belowPct": 66,
+          "effects": [
+            {
+              "verb": "summon",
+              "side": "hostile",
+              "creature": "goblin",
+              "count": 1,
+              "placement": "near-source",
+              "within": 3
+            },
+            {
+              "verb": "summon",
+              "side": "hostile",
+              "creature": "archer",
+              "count": 1,
+              "placement": "near-source",
+              "within": 3
+            }
+          ],
+          "log": "boss.grukk.reinforcements"
+        },
+        {
+          "id": "phase-2",
+          "belowPct": 33,
+          "effects": [
+            {
+              "verb": "summon",
+              "side": "hostile",
+              "creature": "goblin",
+              "count": 1,
+              "placement": "near-source",
+              "within": 3
+            },
+            {
+              "verb": "summon",
+              "side": "hostile",
+              "creature": "archer",
+              "count": 1,
+              "placement": "near-source",
+              "within": 3
+            }
+          ],
+          "log": "boss.grukk.enraged"
+        }
+      ],
+      "actions": [
+        {
+          "verb": "rotation",
+          "moves": [
+            {
+              "id": "slam",
+              "if": {
+                "distance": {
+                  "max": 3
+                }
+              },
+              "onFail": "wait",
+              "effects": [
+                {
+                  "verb": "telegraph",
+                  "tiles": {
+                    "selector": "radius",
+                    "centre": "self",
+                    "n": 2
+                  },
+                  "delay": 2,
+                  "clock": "game-turn",
+                  "warning": "warn.grukk.slam",
+                  "then": [
+                    {
+                      "verb": "damage",
+                      "amount": {
+                        "scaled": {
+                          "base": {
+                            "roll": [
+                              16,
+                              24
+                            ]
+                          },
+                          "mult": [
+                            "number-scale",
+                            "lethality"
+                          ],
+                          "round": true,
+                          "min": 1
+                        }
+                      },
+                      "type": "phys",
+                      "tags": [
+                        "area"
+                      ],
+                      "target": {
+                        "selector": "tile",
+                        "side": "foes"
+                      },
+                      "then": [
+                        {
+                          "verb": "apply-status",
+                          "status": "stun",
+                          "turns": 1
+                        }
+                      ]
+                    },
+                    {
+                      "verb": "telegraph",
+                      "if": {
+                        "hp-below-pct": {
+                          "body": "self",
+                          "pct": 33
+                        }
+                      },
+                      "tiles": {
+                        "selector": "ring",
+                        "centre": "self",
+                        "min": 3,
+                        "max": 4
+                      },
+                      "delay": 2,
+                      "clock": "game-turn",
+                      "warning": "warn.grukk.shockwave",
+                      "then": [
+                        {
+                          "verb": "damage",
+                          "amount": {
+                            "scaled": {
+                              "base": {
+                                "roll": [
+                                  12,
+                                  18
+                                ]
+                              },
+                              "mult": [
+                                "number-scale",
+                                "lethality"
+                              ],
+                              "round": true,
+                              "min": 1
+                            }
+                          },
+                          "type": "phys",
+                          "tags": [
+                            "area"
+                          ],
+                          "target": {
+                            "selector": "tile",
+                            "side": "foes"
+                          },
+                          "then": [
+                            {
+                              "verb": "apply-status",
+                              "status": "stun",
+                              "turns": 1
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "cleave",
+              "if": {
+                "distance": {
+                  "max": 1
+                }
+              },
+              "onFail": "wait",
+              "effects": [
+                {
+                  "verb": "weapon-attack",
+                  "weapon": "own",
+                  "target": {
+                    "selector": "target"
+                  }
+                },
+                {
+                  "verb": "weapon-attack",
+                  "weapon": "own",
+                  "multiplier": 0.8,
+                  "target": {
+                    "selector": "adjacent",
+                    "centre": "self",
+                    "side": "player-allies"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "charge",
+              "if": {
+                "distance": {
+                  "min": 2
+                }
+              },
+              "onFail": "cleave-if-adjacent-else-wait",
+              "effects": [
+                {
+                  "verb": "telegraph",
+                  "tiles": {
+                    "selector": "line",
+                    "n": 8,
+                    "toward": "target"
+                  },
+                  "delay": 1,
+                  "clock": "game-turn",
+                  "interruptedBy": [
+                    "control"
+                  ],
+                  "warning": "warn.grukk.charge",
+                  "then": [
+                    {
+                      "verb": "dash",
+                      "range": 8,
+                      "until": "player-or-body",
+                      "then": [
+                        {
+                          "verb": "damage",
+                          "amount": {
+                            "scaled": {
+                              "base": {
+                                "roll": [
+                                  14,
+                                  20
+                                ]
+                              },
+                              "mult": [
+                                "number-scale",
+                                "lethality"
+                              ],
+                              "round": true,
+                              "min": 1
+                            }
+                          },
+                          "type": "phys",
+                          "target": {
+                            "selector": "tile",
+                            "side": "foes"
+                          }
+                        }
+                      ],
+                      "onMiss": [
+                        {
+                          "verb": "apply-status",
+                          "status": "dazed",
+                          "turns": 2
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "needs": "straight-lane",
+              "minLane": 2
+            }
+          ],
+          "orderByPhase": {
+            "phase-0": [
+              "slam",
+              "cleave",
+              "cleave",
+              "cleave",
+              "cleave",
+              "charge"
+            ],
+            "phase-1+": [
+              "slam",
+              "cleave",
+              "cleave",
+              "charge"
+            ]
+          }
+        }
+      ],
+      "deathEffects": [
+        {
+          "verb": "apply-status",
+          "status": "fear",
+          "turns": 6,
+          "target": {
+            "selector": "floor",
+            "side": "allies",
+            "only": "guards"
+          }
+        }
+      ],
+      "rewards": {
+        "table": "boss-hoard",
+        "core": true
+      },
+      "src": "js/combat/combat.js:328-335, :380-490; js/world/world.js:1485-1490, :1492-1500; js/engine/run-events.js:53-70",
+      "logs": {
+        "dazed": "boss.grukk.dazed",
+        "recovers": "boss.grukk.recovers"
+      }
+    },
+    "morty": {
+      "name": "Morty the Mostly-Dead",
+      "barWords": {
+        "grave-grasp": "GRAVE GRASP"
+      },
+      "monsters": [
+        "morty",
+        "phylactery"
+      ],
+      "floor": 10,
+      "arena": {
+        "packet": "G",
+        "id": "crypt-boss-hall",
+        "pillars": 4
+      },
+      "guards": [
+        {
+          "creature": "skeleton",
+          "count": 2,
+          "state": "asleep"
+        }
+      ],
+      "wake": {
+        "state": "throne",
+        "when": [
+          "sees-player-within-8-in-hall",
+          "hurt"
+        ],
+        "log": "boss.morty.wake",
+        "sfx": "morty-intro",
+        "guards": "hunt",
+        "music": true,
+        "ruled": "2026-10-16 (bosses.md answer 3)"
+      },
+      "music": "boss-morty",
+      "bossBar": true,
+      "actions": [
+        {
+          "verb": "rotation",
+          "order": [
+            "resolve-nova",
+            "resolve-grasp",
+            "blink",
+            "chase-if-unseen",
+            "bone-nova",
+            "grave-grasp",
+            "soul-bolt",
+            "melee",
+            "chase"
+          ],
+          "moves": [
+            {
+              "id": "blink",
+              "if": {
+                "any": [
+                  {
+                    "distance": {
+                      "max": 1
+                    }
+                  },
+                  {
+                    "every-nth-action": {
+                      "n": 6
+                    }
+                  }
+                ]
+              },
+              "cooldown": 4,
+              "clock": "game-turn",
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "teleport",
+                  "who": {
+                    "selector": "self"
+                  },
+                  "to": "distance-band",
+                  "min": 4,
+                  "rules": [
+                    "in-arena",
+                    "empty",
+                    "walkable"
+                  ]
+                }
+              ],
+              "needs": "sight"
+            },
+            {
+              "id": "bone-nova",
+              "shot": "dark",
+              "if": {
+                "every-nth-action": {
+                  "n": 9
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "telegraph",
+                  "tiles": {
+                    "selector": "ring",
+                    "centre": "self",
+                    "min": 5,
+                    "max": 6,
+                    "metric": "manhattan",
+                    "if": {
+                      "sees": true
+                    }
+                  },
+                  "delay": 2,
+                  "clock": "game-turn",
+                  "interruptedBy": [
+                    "damage-taken 20"
+                  ],
+                  "warning": "warn.morty.nova",
+                  "then": [
+                    {
+                      "verb": "damage",
+                      "amount": {
+                        "roll": [
+                          14,
+                          20
+                        ]
+                      },
+                      "type": "dark",
+                      "capPctMaxHp": 35,
+                      "target": {
+                        "selector": "radius",
+                        "centre": "self",
+                        "n": 99,
+                        "side": "foes",
+                        "if": {
+                          "sees": true
+                        }
+                      }
+                    }
+                  ]
+                }
+              ],
+              "needs": "sight"
+            },
+            {
+              "id": "grave-grasp",
+              "shot": "dark",
+              "if": {
+                "every-nth-action": {
+                  "n": 4,
+                  "remainder": 1
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "telegraph",
+                  "tiles": {
+                    "selector": "tile",
+                    "at": "target",
+                    "extra": 5
+                  },
+                  "delay": 2,
+                  "clock": "game-turn",
+                  "warning": "warn.morty.grasp",
+                  "then": [
+                    {
+                      "verb": "damage",
+                      "amount": {
+                        "roll": [
+                          8,
+                          12
+                        ]
+                      },
+                      "type": "dark",
+                      "target": {
+                        "selector": "tile",
+                        "side": "foes"
+                      },
+                      "then": [
+                        {
+                          "verb": "apply-status",
+                          "status": "root",
+                          "turns": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "needs": "sight"
+            },
+            {
+              "id": "soul-bolt",
+              "shot": "dark",
+              "if": {
+                "distance": {
+                  "min": 2,
+                  "max": 7
+                }
+              },
+              "hit": {
+                "accBonus": 0
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "damage",
+                  "amount": {
+                    "roll": [
+                      8,
+                      12
+                    ]
+                  },
+                  "type": "dark",
+                  "tags": [
+                    "attack",
+                    "spell",
+                    "ranged"
+                  ]
+                }
+              ],
+              "needs": "sight"
+            },
+            {
+              "id": "melee",
+              "if": {
+                "distance": {
+                  "max": 1
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "weapon-attack",
+                  "weapon": "own"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "revival": {
+        "verb": "revive",
+        "delay": 3,
+        "clock": "action",
+        "pctMaxHp": 60,
+        "at": "beside-phylactery",
+        "with": [
+          {
+            "verb": "summon",
+            "side": "hostile",
+            "creature": "skeleton",
+            "count": 2,
+            "placement": "near-source",
+            "stats": {
+              "hp": "summonHp"
+            },
+            "noLoot": true
+          }
+        ],
+        "log": "boss.morty.revives",
+        "warning": "warn.morty.reviving"
+      },
+      "phylactery": {
+        "creature": "phylactery",
+        "log": "boss.morty.phylactery-broken"
+      },
+      "deathEffects": [
+        {
+          "verb": "apply-status",
+          "status": "fear",
+          "turns": 6,
+          "target": {
+            "selector": "floor",
+            "side": "allies",
+            "only": "guards"
+          }
+        }
+      ],
+      "rewards": {
+        "table": "boss-hoard",
+        "core": true,
+        "when": "dead-for-good"
+      },
+      "src": "js/world/biomes/crypt/crypt.js:265-279, :281-368, :417-425; js/engine/death-adapter.js:51-55"
+    },
+    "deep-maw": {
+      "name": "The Deep Maw",
+      "monsters": [
+        "deepmaw",
+        "mawlimb",
+        "wormtender"
+      ],
+      "floor": 15,
+      "arena": {
+        "packet": "G",
+        "id": "caverns-maw-arena",
+        "mounds": "2x2 burrow mounds, closed until the Maw comes up through one"
+      },
+      "wake": {
+        "state": "dormant",
+        "when": [
+          "player-enters-arena"
+        ],
+        "log": "boss.maw.approaching",
+        "music": true,
+        "shake": 6
+      },
+      "music": "boss-maw",
+      "acidSpit": {
+        "range": 8,
+        "damage": { "roll": [14, 20] },
+        "poisonTurns": 3
+      },
+      "bossBar": "while surfaced",
+      "hearing": "feels tremors: any loud player action, or a move that is not levitating, inside the arena tells it where the player is (spec/monsters.md B2)",
+      "cycle": {
+        "clock": "action",
+        "states": [
+          {
+            "id": "under",
+            "turns": 1,
+            "untargetable": "burrowed",
+            "next": "warn",
+            "plan": "pick the eruption site: a 3x3 on the last sighting or tremor (any of the 2x2 body spots that fit), except on the first eruption and every third eruption while above half HP, which pick a burrow mound (the first eruption: the mound nearest the last sighting; later: a random mound) and mark the walkable ring round it. Below half HP an eruption on the player also marks the ring round the nearest mound as rubble."
+          },
+          {
+            "id": "warn",
+            "turns": 2,
+            "untargetable": "burrowed",
+            "next": "up",
+            "effects": [
+              {
+                "verb": "telegraph",
+                "tiles": {
+                  "selector": "tile",
+                  "at": "planned-site"
+                },
+                "delay": 2,
+                "clock": "game-turn",
+                "warning": "warn.maw.surfacing",
+                "then": [
+                  {
+                    "verb": "damage",
+                    "amount": {
+                      "roll": [
+                        48,
+                        64
+                      ]
+                    },
+                    "type": "poison",
+                    "capPctMaxHp": 40,
+                    "target": {
+                      "selector": "tile",
+                      "side": "any",
+                      "zone": "bite"
+                    }
+                  },
+                  {
+                    "verb": "damage",
+                    "amount": {
+                      "roll": [
+                        20,
+                        28
+                      ]
+                    },
+                    "type": "poison",
+                    "capPctMaxHp": 40,
+                    "target": {
+                      "selector": "tile",
+                      "side": "any",
+                      "zone": "rubble"
+                    }
+                  },
+                  {
+                    "verb": "knockback",
+                    "tiles": 3,
+                    "from": "point",
+                    "direction": "away",
+                    "target": {
+                      "selector": "square",
+                      "n": 2,
+                      "at": "body-spot",
+                      "side": "any"
+                    }
+                  },
+                  {
+                    "verb": "summon",
+                    "side": "hostile",
+                    "creature": "wormtender",
+                    "count": 1,
+                    "placement": "beside-random-mound",
+                    "cap": 1,
+                    "noLoot": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "up",
+            "turns": 3,
+            "next": "dive",
+            "actions": [
+              {
+                "verb": "weapon-attack",
+                "weapon": "own",
+                "target": {
+                  "selector": "adjacent",
+                  "centre": "body",
+                  "side": "foes",
+                  "order": "player-first"
+                }
+              }
+            ],
+            "hurtTurns": 2
+          },
+          {
+            "id": "dive",
+            "turns": 0,
+            "next": "under",
+            "untargetable": "burrowed",
+            "log": "boss.maw.dives"
+          }
+        ]
+      },
+      "body": {
+        "footprint": 2,
+        "parts": "mawlimb on the other three tiles pass every hit to the Maw; one hit per action reaches the body however many tiles it covers"
+      },
+      "deathEffects": [
+        {
+          "verb": "dismiss",
+          "who": {
+            "selector": "own-summons",
+            "include": "their summons and spore clouds"
+          },
+          "keep": "the player's Shades"
+        }
+      ],
+      "rewards": {
+        "table": "boss-hoard",
+        "core": true
+      },
+      "src": "js/world/biomes/caverns/cavernmobs.js:478-638; js/enemies/enemy-perception.js:164-173; js/engine/death-adapter.js:26-38; js/engine/damage-adapter.js:48-49"
+    },
+    "matron": {
+      "name": "The Matron of the Web",
+      "barWords": {
+        "tithe": "BLOOD TITHE",
+        "brood": "BROOD CALL"
+      },
+      "monsters": [
+        "matron"
+      ],
+      "floor": 20,
+      "arena": {
+        "packet": "G",
+        "id": "underdark-matron-hall",
+        "throne": true,
+        "circles": "2x2 ritual circles; fallback: the boss room, or the largest room, with no circles"
+      },
+      "guards": [
+        {
+          "creature": "drowblade",
+          "count": 2,
+          "state": "asleep"
+        },
+        {
+          "creature": "drowpriestess",
+          "count": 1,
+          "state": "asleep"
+        }
+      ],
+      "wake": {
+        "state": "throne",
+        "when": [
+          "player-enters-arena",
+          "sees-player-within-7"
+        ],
+        "log": "boss.matron.wake",
+        "sfx": "matron-intro",
+        "shake": 8,
+        "guards": "hunt"
+      },
+      "music": "boss-matron",
+      "bossBar": true,
+      "phases": [
+        {
+          "id": "phase-1",
+          "belowPct": 66,
+          "effects": [
+            {
+              "verb": "summon",
+              "side": "hostile",
+              "creature": "drider",
+              "count": 1,
+              "placement": "near-source",
+              "cap": 2,
+              "noLoot": true
+            },
+            {
+              "verb": "summon",
+              "side": "hostile",
+              "creature": "spiderling",
+              "count": 2,
+              "placement": "near-source",
+              "floorCap": 8,
+              "noLoot": true
+            }
+          ],
+          "log": "boss.matron.reinforcements"
+        },
+        {
+          "id": "phase-2",
+          "belowPct": 33,
+          "effects": [
+            {
+              "verb": "summon",
+              "side": "hostile",
+              "creature": "drider",
+              "count": 1,
+              "placement": "near-source",
+              "cap": 2,
+              "noLoot": true
+            },
+            {
+              "verb": "summon",
+              "side": "hostile",
+              "creature": "spiderling",
+              "count": 3,
+              "placement": "near-source",
+              "floorCap": 8,
+              "noLoot": true
+            }
+          ],
+          "log": "boss.matron.reinforcements"
+        }
+      ],
+      "actions": [
+        {
+          "verb": "rotation",
+          "order": [
+            "break-check",
+            "phase-shriek",
+            "ritual-tick",
+            "start-ritual",
+            "venom-rain",
+            "web",
+            "melee",
+            "attack-adjacent-ally",
+            "chase"
+          ],
+          "moves": [
+            {
+              "id": "ritual",
+              "shot": "dark",
+              "clock": "game-turn",
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "teleport",
+                  "who": {
+                    "selector": "self"
+                  },
+                  "to": "landmark",
+                  "landmark": "ritual-circle-farthest-from-player",
+                  "rules": [
+                    "empty"
+                  ]
+                },
+                {
+                  "verb": "telegraph",
+                  "tiles": {
+                    "selector": "square",
+                    "n": 2,
+                    "at": "circle"
+                  },
+                  "delay": 3,
+                  "clock": "game-turn",
+                  "interruptedBy": [
+                    "damage-taken-pct 8",
+                    "control",
+                    "fear"
+                  ],
+                  "warning": "warn.matron.ritual",
+                  "then": [
+                    {
+                      "verb": "choose",
+                      "by": "move-kind",
+                      "options": [
+                        {
+                          "label": "tithe",
+                          "effects": [
+                            {
+                              "verb": "damage",
+                              "amount": {
+                                "roll": [
+                                  23,
+                                  33
+                                ]
+                              },
+                              "type": "dark",
+                              "capPctMaxHp": 30,
+                              "target": {
+                                "selector": "target"
+                              },
+                              "then": [
+                                {
+                                  "verb": "apply-status",
+                                  "status": "bleed",
+                                  "turns": 3,
+                                  "magnitude": 4
+                                },
+                                {
+                                  "verb": "drain",
+                                  "ratio": 2
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "label": "brood",
+                          "effects": [
+                            {
+                              "verb": "summon",
+                              "side": "hostile",
+                              "creature": "drider",
+                              "count": 1,
+                              "placement": "near-source",
+                              "cap": 2,
+                              "noLoot": true
+                            },
+                            {
+                              "verb": "summon",
+                              "side": "hostile",
+                              "creature": "spiderling",
+                              "count": {
+                                "roll": [
+                                  2,
+                                  3
+                                ]
+                              },
+                              "placement": "near-source",
+                              "floorCap": 8,
+                              "noLoot": true
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "venom-rain",
+              "shot": "poison",
+              "cooldown": 5,
+              "firstReady": 3,
+              "clock": "game-turn",
+              "if": {
+                "distance": {
+                  "min": 2
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "telegraph",
+                  "tiles": {
+                    "selector": "square",
+                    "n": 3,
+                    "centre": "target"
+                  },
+                  "delay": 2,
+                  "clock": "game-turn",
+                  "warning": "warn.matron.venom",
+                  "then": [
+                    {
+                      "verb": "damage",
+                      "amount": {
+                        "roll": [
+                          15,
+                          23
+                        ]
+                      },
+                      "type": "poison",
+                      "capPctMaxHp": 30,
+                      "target": {
+                        "selector": "tile",
+                        "side": "foes"
+                      },
+                      "then": [
+                        {
+                          "verb": "apply-status",
+                          "status": "poison",
+                          "turns": 3,
+                          "tickDamage": 3
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "needs": "sight"
+            },
+            {
+              "id": "web",
+              "cooldown": 5,
+              "firstReady": 2,
+              "clock": "game-turn",
+              "if": {
+                "all": [
+                  {
+                    "distance": {
+                      "min": 2,
+                      "max": 6
+                    }
+                  },
+                  {
+                    "not": {
+                      "has-status": "root"
+                    }
+                  }
+                ]
+              },
+              "hit": {
+                "accBonus": 8
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "apply-status",
+                  "status": "web",
+                  "turns": 1
+                },
+                {
+                  "verb": "field",
+                  "field": "web",
+                  "shape": {
+                    "selector": "square",
+                    "n": 3,
+                    "centre": "target"
+                  },
+                  "turns": 10,
+                  "side": "all"
+                }
+              ],
+              "needs": "straight-lane"
+            },
+            {
+              "id": "melee",
+              "if": {
+                "distance": {
+                  "max": 1
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "weapon-attack",
+                  "weapon": "own"
+                }
+              ],
+              "needs": "sight"
+            }
+          ]
+        }
+      ],
+      "deathEffects": [
+        {
+          "verb": "apply-status",
+          "status": "fear",
+          "turns": 6,
+          "target": {
+            "selector": "floor",
+            "side": "allies",
+            "only": "guards, spiders and her summons"
+          }
+        },
+        {
+          "verb": "terrain",
+          "set": "open-door",
+          "where": {
+            "selector": "tile",
+            "at": "hidden-gate-behind-throne"
+          }
+        }
+      ],
+      "rewards": {
+        "table": "boss-hoard",
+        "core": true
+      },
+      "src": "js/world/biomes/underdark/deepmobs.js:410-612; js/engine/actor-ai.js:198-203; js/engine/death-adapter.js:20-25"
+    },
+    "radiant-warden": {
+      "name": "Radiant Warden",
+      "monsters": [
+        "radiantwarden"
+      ],
+      "plane": "light",
+      "arena": {
+        "packet": "G",
+        "id": "plane-centre",
+        "plane": "light"
+      },
+      "wake": {
+        "state": "asleep",
+        "when": [
+          "ordinary-noticing"
+        ]
+      },
+      "music": "plane-light",
+      "bossBar": false,
+      "actions": [
+        {
+          "verb": "rotation",
+          "order": [
+            "release-judgment",
+            "judgment",
+            "hunter"
+          ],
+          "moves": [
+            {
+              "id": "judgment",
+              "shot": "light",
+              "cooldown": 7,
+              "clock": "game-turn",
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "telegraph",
+                  "tiles": {
+                    "selector": "self"
+                  },
+                  "delay": 3,
+                  "clock": "game-turn",
+                  "warning": "warn.warden.judgment",
+                  "stores": "damage-taken-from-player",
+                  "then": [
+                    {
+                      "verb": "damage-from-packet",
+                      "packet": "stored",
+                      "ratio": 1,
+                      "type": "light",
+                      "to": {
+                        "selector": "target"
+                      },
+                      "capPctMaxHp": 40,
+                      "if": {
+                        "sees": true
+                      }
+                    }
+                  ]
+                }
+              ],
+              "needs": "sight"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "table": "chest-plane",
+        "via": "the plane's grotto chest (packet G)"
+      },
+      "src": "js/world/planes/portals.js:251, :362-372; js/engine/damage-adapter.js:77; js/engine/death-adapter.js:43",
+      "logs": {
+        "fades": "boss.warden.judgment-fades"
+      }
+    },
+    "night-warden": {
+      "name": "Night Warden",
+      "monsters": [
+        "nightwarden"
+      ],
+      "plane": "shadow",
+      "arena": {
+        "packet": "G",
+        "id": "plane-centre",
+        "plane": "shadow",
+        "moonlights": "crystal light pools (packet G)"
+      },
+      "wake": {
+        "state": "asleep",
+        "when": [
+          "ordinary-noticing"
+        ]
+      },
+      "music": "plane-shadow",
+      "bossBar": false,
+      "passives": [
+        {
+          "verb": "grant-immunity",
+          "damageType": "all",
+          "if": {
+            "not": {
+              "lit-by": {
+                "light": "plane",
+                "within": 2
+              }
+            }
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "rotation",
+          "order": [
+            "shadow-step",
+            "hunter"
+          ],
+          "moves": [
+            {
+              "id": "shadow-step",
+              "cooldown": 3,
+              "clock": "game-turn",
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "teleport",
+                  "who": {
+                    "selector": "self"
+                  },
+                  "to": "distance-band",
+                  "min": 2,
+                  "max": 4,
+                  "from": "target",
+                  "rules": [
+                    "empty",
+                    "walkable"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "table": "chest-plane",
+        "via": "the plane's grotto chest (packet G)"
+      },
+      "src": "js/world/planes/portals.js:255, :348-361; js/engine/damage-adapter.js:63",
+      "logs": {
+        "immune": "boss.night-warden.immune"
+      }
+    },
+    "heart-of-the-mountain": {
+      "name": "Heart of the Mountain",
+      "monsters": [
+        "mountainheart",
+        "heartlimb",
+        "crystalnode"
+      ],
+      "plane": "earth",
+      "arena": {
+        "packet": "G",
+        "id": "plane-centre",
+        "plane": "earth",
+        "nodes": 3,
+        "nodeRule": "each node on ground the player can walk to, 3+ tiles from the body; one fewer for each that cannot be placed"
+      },
+      "wake": {
+        "state": "asleep",
+        "when": [
+          "struck-by-player",
+          "player-touches-body"
+        ],
+        "log": "boss.heart.wake",
+        "sfx": "heart-intro",
+        "shake": 6
+      },
+      "music": "plane-earth",
+      "bossBar": false,
+      "body": {
+        "footprint": 2,
+        "parts": "heartlimb bodies on the other three tiles pass every hit to the Heart (ruled 2026-10-16)"
+      },
+      "passives": [
+        {
+          "verb": "grant-immunity",
+          "damageType": "all",
+          "if": {
+            "linked-alive": {
+              "link": "heart-nodes"
+            }
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "rotation",
+          "order": [
+            "control-check",
+            "bite-touching-player",
+            "bite-touching-ally",
+            "stone-spikes"
+          ],
+          "moves": [
+            {
+              "id": "bite",
+              "if": {
+                "distance": {
+                  "max": 1
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "weapon-attack",
+                  "weapon": "own"
+                }
+              ]
+            },
+            {
+              "id": "stone-spikes",
+              "shot": "none",
+              "cooldown": 3,
+              "clock": "game-turn",
+              "if": {
+                "distance": {
+                  "max": 6
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "damage",
+                  "amount": {
+                    "roll": [
+                      11,
+                      15
+                    ]
+                  },
+                  "type": "phys",
+                  "target": {
+                    "selector": "target"
+                  },
+                  "then": [
+                    {
+                      "verb": "apply-status",
+                      "status": "root",
+                      "turns": 2,
+                      "chance": 35
+                    }
+                  ]
+                }
+              ],
+              "needs": "sight"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "table": "chest-plane",
+        "via": "the plane's grotto chest (packet G)"
+      },
+      "src": "js/world/planes/portals.js:262-263, :373-404, :543-575; js/engine/damage-adapter.js:51-62; js/engine/death-adapter.js:42",
+      "logs": {
+        "immune": "boss.heart.immune"
+      }
+    },
+    "emberlord": {
+      "name": "The Emberlord",
+      "monsters": [
+        "emberlord"
+      ],
+      "plane": "fire",
+      "arena": {
+        "packet": "G",
+        "id": "plane-centre",
+        "plane": "fire",
+        "pool": "a lava lake in the far half of the central chamber"
+      },
+      "wake": {
+        "state": "asleep",
+        "when": [
+          "ordinary-noticing"
+        ]
+      },
+      "music": "plane-fire",
+      "bossBar": false,
+      "phases": [
+        {
+          "id": "kindled",
+          "belowPct": 50,
+          "log": "boss.emberlord.enraged",
+          "shake": 8,
+          "effects": [
+            {
+              "verb": "on-event",
+              "trigger": "on-action",
+              "effects": [
+                {
+                  "verb": "terrain",
+                  "set": "fire",
+                  "where": {
+                    "selector": "square",
+                    "n": 3,
+                    "centre": "self"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "verb": "rotation",
+          "order": [
+            "resolve-eruption",
+            "eruption",
+            "hunter"
+          ],
+          "moves": [
+            {
+              "id": "eruption",
+              "shot": "fire",
+              "cooldown": 6,
+              "clock": "game-turn",
+              "if": {
+                "distance": {
+                  "max": 8
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "telegraph",
+                  "tiles": {
+                    "selector": "square",
+                    "n": 3,
+                    "centre": "target"
+                  },
+                  "delay": 2,
+                  "clock": "game-turn",
+                  "warning": "warn.emberlord.eruption",
+                  "then": [
+                    {
+                      "verb": "damage",
+                      "amount": {
+                        "roll": [
+                          30,
+                          38
+                        ]
+                      },
+                      "type": "fire",
+                      "target": {
+                        "selector": "tile",
+                        "side": "non-natives"
+                      },
+                      "then": [
+                        {
+                          "verb": "apply-status",
+                          "status": "burn",
+                          "turns": 3,
+                          "magnitude": 4
+                        }
+                      ]
+                    },
+                    {
+                      "verb": "terrain",
+                      "set": "fire",
+                      "where": {
+                        "selector": "tile",
+                        "at": "telegraphed"
+                      },
+                      "chance": 50,
+                      "perTile": true
+                    }
+                  ]
+                }
+              ],
+              "needs": "sight"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "table": "chest-plane",
+        "via": "the plane's grotto chest (packet G)"
+      },
+      "src": "js/world/planes/planesfwa.js:115-116, :465-491"
+    },
+    "leviathan": {
+      "name": "The Leviathan Eel",
+      "monsters": [
+        "leviathaneel"
+      ],
+      "plane": "water",
+      "arena": {
+        "packet": "G",
+        "id": "plane-centre",
+        "plane": "water"
+      },
+      "wake": {
+        "state": "asleep",
+        "when": [
+          "ordinary-noticing"
+        ]
+      },
+      "music": "plane-water",
+      "bossBar": false,
+      "actions": [
+        {
+          "verb": "rotation",
+          "order": [
+            "emerge",
+            "dive",
+            "tail-sweep",
+            "hunter"
+          ],
+          "moves": [
+            {
+              "id": "emerge",
+              "if": {
+                "in-state": {
+                  "state": "submerged"
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "teleport",
+                  "who": {
+                    "selector": "self"
+                  },
+                  "to": "beside-target",
+                  "rules": [
+                    "empty",
+                    "walkable"
+                  ],
+                  "fallback": "within 2 of itself"
+                }
+              ],
+              "then": {
+                
+              },
+              "log": "boss.leviathan.emerges",
+              "shake": 6
+            },
+            {
+              "id": "dive",
+              "cooldown": 5,
+              "firstReady": 0,
+              "clock": "game-turn",
+              "if": {
+                "all": [
+                  {
+                    "standing-on": "water"
+                  },
+                  {
+                    "distance": {
+                      "min": 2
+                    }
+                  }
+                ]
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "untargetable",
+                  "state": "submerged",
+                  "turns": 1
+                }
+              ],
+              "then": {
+                
+              },
+              "log": "boss.leviathan.dives"
+            },
+            {
+              "id": "tail-sweep",
+              "cooldown": 4,
+              "clock": "game-turn",
+              "if": {
+                "distance": {
+                  "max": 1
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "damage",
+                  "amount": {
+                    "from-source": "dmg"
+                  },
+                  "type": "phys",
+                  "target": {
+                    "selector": "target"
+                  },
+                  "then": [
+                    {
+                      "verb": "knockback",
+                      "tiles": 3,
+                      "from": "source"
+                    },
+                    {
+                      "verb": "apply-status",
+                      "status": "stun",
+                      "turns": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "table": "chest-plane",
+        "via": "the plane's grotto chest (packet G)"
+      },
+      "src": "js/world/planes/planesfwa.js:128-129, :492-516; js/engine/damage-adapter.js:28"
+    },
+    "djinn": {
+      "name": "The Tempest Djinn",
+      "monsters": [
+        "tempestdjinn"
+      ],
+      "plane": "air",
+      "arena": {
+        "packet": "G",
+        "id": "plane-centre",
+        "plane": "air"
+      },
+      "wake": {
+        "state": "asleep",
+        "when": [
+          "ordinary-noticing"
+        ]
+      },
+      "music": "plane-air",
+      "bossBar": false,
+      "actions": [
+        {
+          "verb": "rotation",
+          "order": [
+            "cyclone",
+            "lightning",
+            "hunter"
+          ],
+          "moves": [
+            {
+              "id": "cyclone",
+              "shot": "none",
+              "cooldown": 6,
+              "clock": "game-turn",
+              "if": {
+                "distance": {
+                  "min": 3,
+                  "max": 7
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "pull",
+                  "tiles": 3,
+                  "target": {
+                    "selector": "target"
+                  }
+                },
+                {
+                  "verb": "apply-status",
+                  "status": "stun",
+                  "turns": 1,
+                  "target": {
+                    "selector": "target"
+                  }
+                }
+              ],
+              "needs": "straight-lane"
+            },
+            {
+              "id": "lightning",
+              "shot": "lightning",
+              "cooldown": 3,
+              "clock": "game-turn",
+              "if": {
+                "distance": {
+                  "min": 2
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "damage",
+                  "amount": {
+                    "roll": [
+                      25,
+                      32
+                    ]
+                  },
+                  "type": "lightning",
+                  "tags": [
+                    "attack",
+                    "ranged"
+                  ],
+                  "target": {
+                    "selector": "target"
+                  }
+                }
+              ],
+              "needs": "straight-lane"
+            }
+          ]
+        }
+      ],
+      "rewards": {
+        "table": "chest-plane",
+        "via": "the plane's grotto chest (packet G)"
+      },
+      "src": "js/world/planes/planesfwa.js:137-138, :517-538"
+    },
+    "unmaker": {
+      "name": "The Unmaker",
+      "barWords": {"cleave": "GREAT CLEAVE", "rupture": "RUPTURE", "beam": "PRISM LANCE", "ring": "INVERSION PULSE", "pulse": "DISCORD PULSE"},
+      "monsters": [
+        "unmaker-tyrant",
+        "unmaker-unbound",
+        "unmaker-heart"
+      ],
+      "floor": 25,
+      "arena": {
+        "packet": "G",
+        "id": "chaos-crucible",
+        "pylonSites": [
+          {
+            "x": 42,
+            "y": 34,
+            "label": "I"
+          },
+          {
+            "x": 54,
+            "y": 34,
+            "label": "II"
+          },
+          {
+            "x": 48,
+            "y": 43,
+            "label": "III"
+          }
+        ],
+        "partyStart": "the free arena cells nearest (47, 48)"
+      },
+      "wake": {
+        "state": "hunt",
+        "when": [
+          "encounter-started-at-the-crucible-gate"
+        ],
+        "music": true
+      },
+      "music": "boss-unmaker",
+      "bossBar": true,
+      "forms": [
+        {
+          "id": "tyrant",
+          "creature": "unmaker-tyrant"
+        },
+        {
+          "id": "unbound",
+          "creature": "unmaker-unbound",
+          "belowPct": 65,
+          "log": "boss.unmaker.unbound"
+        },
+        {
+          "id": "heart",
+          "creature": "unmaker-heart",
+          "belowPct": 30,
+          "log": "boss.unmaker.heart"
+        }
+      ],
+      "formChange": "the body keeps its place and HP; damage pair, armour, speed, name and look switch to the new form's row; any pending warning is dropped; the next big move waits 2 game turns; summons are ready at once",
+      "actions": [
+        {
+          "verb": "rotation",
+          "order": [
+            "release-warning",
+            "summon",
+            "big-move",
+            "shoulder-rush",
+            "melee-or-spell",
+            "spell",
+            "step"
+          ],
+          "moves": [
+            {
+              "id": "summon",
+              "cooldown": 4,
+              "clock": "game-turn",
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "summon",
+                  "side": "hostile",
+                  "creature": "cycle:chaos-horned-reaver,chaos-prism-seer,chaos-gorehound,chaos-lash-dancer,chaos-rotling",
+                  "count": 2,
+                  "cap": 3,
+                  "placement": "within 4 of the boss and 2+ from the boss and the player, nearest the player",
+                  "noLoot": true
+                }
+              ]
+            },
+            {
+              "id": "great-cleave",
+              "form": "tyrant",
+              "cooldown": 4,
+              "clock": "game-turn",
+              "if": {
+                "distance": {
+                  "max": 2
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "telegraph",
+                  "tiles": {
+                    "selector": "cone",
+                    "centre": "self",
+                    "min": 1,
+                    "max": 2,
+                    "toward": "target"
+                  },
+                  "delay": 1,
+                  "clock": "game-turn",
+                  "warning": "warn.unmaker.cleave",
+                  "then": [
+                    {
+                      "verb": "damage",
+                      "amount": {
+                        "scaled": {
+                          "base": 76,
+                          "mult": [
+                            "number-scale",
+                            "lethality"
+                          ],
+                          "round": true,
+                          "min": 1
+                        }
+                      },
+                      "type": "phys",
+                      "tags": [
+                        "area"
+                      ],
+                      "target": {
+                        "selector": "tile",
+                        "side": "foes"
+                      }
+                    }
+                  ],
+                  "gaps": "unmaker-safe-step"
+                }
+              ],
+              "needs": "straight-lane"
+            },
+            {
+              "id": "rupture",
+              "shot": "magic",
+              "form": "unbound",
+              "cooldown": 4,
+              "clock": "game-turn",
+              "if": {
+                "distance": {
+                  "max": 8
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "telegraph",
+                  "tiles": {
+                    "selector": "square",
+                    "n": 3,
+                    "centre": "target"
+                  },
+                  "delay": 1,
+                  "clock": "game-turn",
+                  "warning": "warn.unmaker.rupture",
+                  "then": [
+                    {
+                      "verb": "damage",
+                      "amount": {
+                        "scaled": {
+                          "base": 66,
+                          "mult": [
+                            "number-scale",
+                            "lethality"
+                          ],
+                          "round": true,
+                          "min": 1
+                        }
+                      },
+                      "type": "magic",
+                      "tags": [
+                        "area"
+                      ],
+                      "target": {
+                        "selector": "tile",
+                        "side": "foes"
+                      }
+                    }
+                  ],
+                  "gaps": "unmaker-safe-step"
+                }
+              ],
+              "needs": "straight-lane"
+            },
+            {
+              "id": "inversion-pulse",
+              "shot": "lightning",
+              "form": "unbound",
+              "cooldown": 4,
+              "clock": "game-turn",
+              "if": {
+                "distance": {
+                  "max": 8
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "telegraph",
+                  "tiles": {
+                    "selector": "ring",
+                    "centre": "self",
+                    "min": 2,
+                    "max": 5
+                  },
+                  "delay": 1,
+                  "clock": "game-turn",
+                  "warning": "warn.unmaker.ring",
+                  "then": [
+                    {
+                      "verb": "damage",
+                      "amount": {
+                        "scaled": {
+                          "base": 66,
+                          "mult": [
+                            "number-scale",
+                            "lethality"
+                          ],
+                          "round": true,
+                          "min": 1
+                        }
+                      },
+                      "type": "lightning",
+                      "tags": [
+                        "area"
+                      ],
+                      "target": {
+                        "selector": "tile",
+                        "side": "foes"
+                      }
+                    }
+                  ],
+                  "gaps": "unmaker-safe-step"
+                }
+              ],
+              "needs": "straight-lane"
+            },
+            {
+              "id": "discord-pulse",
+              "shot": "magic",
+              "form": "heart",
+              "cooldown": 4,
+              "clock": "game-turn",
+              "if": {
+                "distance": {
+                  "max": 4
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "telegraph",
+                  "tiles": {
+                    "selector": "ring",
+                    "centre": "self",
+                    "min": 1,
+                    "max": 1
+                  },
+                  "delay": 1,
+                  "clock": "game-turn",
+                  "warning": "warn.unmaker.pulse",
+                  "then": [
+                    {
+                      "verb": "damage",
+                      "amount": {
+                        "scaled": {
+                          "base": 66,
+                          "mult": [
+                            "number-scale",
+                            "lethality"
+                          ],
+                          "round": true,
+                          "min": 1
+                        }
+                      },
+                      "type": "magic",
+                      "tags": [
+                        "area"
+                      ],
+                      "target": {
+                        "selector": "tile",
+                        "side": "foes"
+                      }
+                    },
+                    {
+                      "verb": "telegraph",
+                      "tiles": {
+                        "selector": "ring",
+                        "centre": "self",
+                        "min": 2,
+                        "max": 4
+                      },
+                      "delay": 1,
+                      "clock": "game-turn",
+                      "then": [
+                        {
+                          "verb": "damage",
+                          "amount": {
+                            "scaled": {
+                              "base": 66,
+                              "mult": [
+                                "number-scale",
+                                "lethality"
+                              ],
+                              "round": true,
+                              "min": 1
+                            }
+                          },
+                          "type": "magic",
+                          "tags": [
+                            "area"
+                          ],
+                          "target": {
+                            "selector": "tile",
+                            "side": "foes"
+                          }
+                        }
+                      ],
+                      "gaps": "unmaker-safe-step"
+                    }
+                  ],
+                  "gaps": "unmaker-safe-step"
+                }
+              ],
+              "needs": "straight-lane"
+            },
+            {
+              "id": "shoulder-rush",
+              "form": "tyrant",
+              "cooldown": 4,
+              "clock": "game-turn",
+              "if": {
+                "distance": {
+                  "min": 2,
+                  "max": 7
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "dash",
+                  "range": 4,
+                  "until": "beside-target",
+                  "then": [
+                    {
+                      "verb": "weapon-attack",
+                      "weapon": "own",
+                      "multiplier": 1.15,
+                      "label": "Shoulder Rush"
+                    }
+                  ]
+                }
+              ],
+              "needs": "straight-lane"
+            },
+            {
+              "id": "chaos-bolt",
+              "forms": [
+                "unbound",
+                "heart"
+              ],
+              "if": {
+                "distance": {
+                  "max": 7
+                }
+              },
+              "hit": {
+                "accBonus": 0
+              },
+              "cycleTypes": [
+                "fire",
+                "ice",
+                "lightning",
+                "light",
+                "dark"
+              ],
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "damage",
+                  "amount": {
+                    "scaled": {
+                      "base": 42,
+                      "mult": [
+                        "number-scale",
+                        "lethality"
+                      ],
+                      "round": true,
+                      "min": 1
+                    }
+                  },
+                  "type": "cycle",
+                  "tags": [
+                    "area",
+                    "spell",
+                    "ranged"
+                  ],
+                  "target": {
+                    "selector": "target"
+                  }
+                }
+              ],
+              "needs": "straight-lane"
+            },
+            {
+              "id": "melee",
+              "if": {
+                "distance": {
+                  "max": 1
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "weapon-attack",
+                  "weapon": "own"
+                }
+              ],
+              "forms": [
+                "tyrant",
+                "heart"
+              ]
+            },
+            {
+              "id": "unbound-lash",
+              "form": "unbound",
+              "if": {
+                "distance": {
+                  "max": 1
+                }
+              },
+              "onFail": "skip",
+              "effects": [
+                {
+                  "verb": "weapon-attack",
+                  "weapon": "own",
+                  "label": "Unbound Lash"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "deathEffects": [
+        {
+          "verb": "dismiss",
+          "who": {
+            "selector": "own-summons"
+          }
+        }
+      ],
+      "rewards": {
+        "none": true,
+        "victory": "the true Forge wakes: standing beside it offers Retire (victory) or Keep exploring (packet H)"
+      },
+      "src": "js/world/chaos/unmaker-encounter.js:7-276; js/world/chaos/chaos-campaign.js:77, :105",
+      "pylons": {
+        "form": "unbound",
+        "sites": [
+          {
+            "x": 42,
+            "y": 34,
+            "label": "I"
+          },
+          {
+            "x": 54,
+            "y": 34,
+            "label": "II"
+          },
+          {
+            "x": 48,
+            "y": 43,
+            "label": "III"
+          }
+        ],
+        "firstReady": [
+          1,
+          2,
+          3
+        ],
+        "cooldown": 5,
+        "clock": "game-turn",
+        "effects": [
+          {
+            "verb": "telegraph",
+            "tiles": {
+              "selector": "line",
+              "n": 40,
+              "from": "pylon",
+              "toward": "nearest party member the boss can see"
+            },
+            "delay": 2,
+            "clock": "game-turn",
+            "warning": "warn.unmaker.pylon",
+            "then": [
+              {
+                "verb": "damage",
+                "amount": {
+                  "scaled": {
+                    "base": 48,
+                    "mult": [
+                      "number-scale",
+                      "lethality"
+                    ],
+                    "round": true,
+                    "min": 1
+                  }
+                },
+                "type": "light",
+                "target": {
+                  "selector": "tile",
+                  "side": "foes",
+                  "requires": "unbroken line from the pylon"
+                }
+              }
+            ],
+            "gaps": "unmaker-safe-step"
+          }
+        ]
+      }
+    }
+  }
+}

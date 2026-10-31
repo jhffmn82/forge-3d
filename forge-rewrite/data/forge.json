@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "rows": {
+    "tabs": {
+      "kind": "rule",
+      "does": "The Forge window: the mote strip, affinity line, cap 'total / cap', essence; tabs Fuse, Enchant, Upgrade, Craft, Recycle. Every action leaves a notice across the top of the window for 6 seconds (it covers the log, ruled 2026-09-20).",
+      "tabs": [
+        "fuse",
+        "enchant",
+        "upgrade",
+        "craft",
+        "recycle"
+      ],
+      "src": "js/equipment/forge.js:71-77, :87-155, :157-173; js/presentation/ui/forgeui.js:138-141"
+    },
+    "fuse": {
+      "kind": "action",
+      "name": "Fuse",
+      "cost": {
+        "motes": 1
+      },
+      "does": "Burn one mote of an element into the hero for +1 affinity in it, permanently, after a confirm. Refused: the god forbids the element; no mote; total affinity at the cap; a third element; the opposite of a held element; a secondary that would pass the primary; already 6. The first element fused becomes primary. Ice Armor refills; new abilities are announced.",
+      "effects": [
+        {
+          "verb": "gain",
+          "resource": "affinity",
+          "amount": 1,
+          "element": "chosen"
+        }
+      ],
+      "src": "js/engine/forge-adapter.js:66-93; js/equipment/forge.js:142-143"
+    },
+    "core-infusion": {
+      "kind": "action",
+      "name": "Core infusion",
+      "does": "Picking up a boss core claims it (once per core name): the affinity cap rises by 1 and, after the current action finishes, the Fuse tab opens on its own as 'Core claimed: infuse an element' (fuse only, no other tabs), with 'Keep motes' (or 'Continue' when at the cap) to close it. The carried core still opens the exit gate.",
+      "cores": [
+        "Dungeon Core",
+        "Crypt Core",
+        "Cavern Core",
+        "Ruin Core",
+        "Abyss Core"
+      ],
+      "effects": [
+        {
+          "verb": "gain",
+          "resource": "affinity-cap",
+          "amount": 1
+        }
+      ],
+      "src": "js/elements/cores.js:8-27, :112-120; js/equipment/forge.js:47-68"
+    },
+    "enchant": {
+      "kind": "action",
+      "name": "Enchant",
+      "cost": {
+        "motes": 1
+      },
+      "does": "Set one mote's element into a worn weapon (main or off-hand), ranged weapon, armour or off-hand (shield, orb, tome, holy symbol). Refused: the god forbids the element; unidentified ('Identify it first.'); no mote; the item already holds that element. Replacing another element asks first and the old one is gone. A cursed item is cleansed. Values: upgrades.json enchant rows (packet C).",
+      "slots": [
+        "main",
+        "off",
+        "ranged",
+        "armour"
+      ],
+      "values": "upgrades.json enchant-<slot>-<element>",
+      "src": "js/engine/forge-adapter.js:3-32; js/presentation/ui/forgeui.js:80-89"
+    },
+    "upgrade": {
+      "kind": "action",
+      "name": "Upgrade",
+      "does": "Costs and caps are packet C (items.md I29-I30, upgrades.json).",
+      "ref": "upgrades.json",
+      "src": "js/engine/forge-adapter.js:51-64"
+    },
+    "carve": {
+      "kind": "action",
+      "name": "Craft",
+      "does": "Carve a sigil: pay its motes (sigils.json motes) and essence (sigils.json essence-cost). Refused: not enough motes or essence; the god forbids it (said on the tile); the bag is full and holds no stack of it. A carved sigil is identified and the kind becomes known for the run.",
+      "src": "js/engine/forge-adapter.js:33-50; js/engine/inventory.js:48-57; js/equipment/forge.js:124-137"
+    },
+    "recycle": {
+      "kind": "action",
+      "name": "Recycle",
+      "does": "Melt a carried gear piece into essence: weapon, armour or off-hand by tier (Worn 5, Plain 15, Fine 40, Masterwork 100) x (1 + 0.25 x plus, plus never below 0); a ring or amulet 25; joke gear and the Loud Shirt 1; then x the biome essence multiplier (upgrades.json), rounded, at least 1. Nothing else recycles. Unidentified gear is fine. 'Recycle all' confirms the count and total first. Field Smelt (faith.md) uses the same value.",
+      "byTier": [
+        5,
+        15,
+        40,
+        100
+      ],
+      "perPlus": 0.25,
+      "ringOrAmulet": 25,
+      "joke": 1,
+      "min": 1,
+      "effects": [
+        {
+          "verb": "item-change",
+          "change": "recycle",
+          "which": "chosen"
+        }
+      ],
+      "src": "js/presentation/ui/forgeui.js:91-131; js/faith/gods.js:611-615"
+    }
+  }
+}

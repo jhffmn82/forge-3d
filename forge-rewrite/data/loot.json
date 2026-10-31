@@ -1,0 +1,621 @@
+{
+  "version": 1,
+  "rows": {
+    "kill-drops": {
+      "kind": "rule",
+      "luck": "Ring of Luck loot-mod: chance x (1 + its percent / 100), never below 0",
+      "never": ["no-xp", "no-loot", "shade"],
+      "ruled": "2026-10-14",
+      "spot": "the body tile if free and walkable, else a free tile within 1",
+      "src": "js/equipment/gear.js:195-211; js/engine/death-adapter.js:93-94"
+    },
+    "random-gear": {
+      "kind": "rule",
+      "steps": ["draw cursed (15%)", "roll an equipment candidate, unidentified, cursed if drawn (no ring or amulet draws, ruled 2026-10-15)", "roll quality (tiers.json quality-by-biome)", "a Masterwork piece the hero already picked up (two for dagger and censer) rerolls the candidate once, keeping unidentified, curse and Masterwork"],
+      "candidate": ["draw kind: 30% armour (gear-armour), else a pool (gear-pools)", "roll the plus (tiers.json enhancement-roll)", "weapons and armour only: enchant chance (tiers.json drop-enchant)"],
+      "ruled": "2026-10-14, 2026-10-15; 2026-10-23: gear selection is independent of player attributes and equip requirements",
+      "src": "js/engine/gear-adapter.js:73-81, :87-121"
+    },
+    "masterwork-reroll": {
+      "kind": "rule",
+      "countedOn": "first pickup of each physical piece",
+      "appliesTo": "every random piece, those made when a floor is built too (the floor builders read the hero's pickups; Justin 2026-10-22, item 313 rule 6)",
+      "ruled": "2026-10-14",
+      "src": "js/engine/gear-adapter.js:87-102; js/engine/inventory-adapter.js:26"
+    },
+    "bag": {
+      "kind": "rule",
+      "slots": 25,
+      "stacks": ["food of one kind", "sigil of one kind"],
+      "src": "js/combat/systems.js:6; js/engine/inventory-adapter.js:17-39"
+    },
+    "globes": {
+      "kind": "rule",
+      "chances": {"tuning": "rewards-on-kill"},
+      "heartHealPct": 25,
+      "globeManaPct": 25,
+      "clock": "game-turn (ruled 2026-10-15; tuning.json globeLifeTurns)",
+      "src": "js/elements/capstones.js:15-35; js/engine/death-adapter.js:136-139"
+    },
+    "essence-pickup": {
+      "kind": "rule",
+      "auto": true,
+      "scaledBy": "upgrades.json essence-biome-mult",
+      "src": "js/combat/systems.js:126; js/equipment/upgrade.js:129-132"
+    },
+    "gear-pools": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"table": "pool-warrior"}}, {"weight": 1, "give": {"table": "pool-skirmisher"}}, {"weight": 1, "give": {"table": "pool-mage"}}, {"weight": 1, "give": {"table": "pool-cleric"}}],
+      "ruled": "2026-10-14",
+      "src": "js/engine/gear-adapter.js:59-71, :76"
+    },
+    "pool-warrior": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"item": "buckler"}}, {"weight": 1, "give": {"item": "kite"}}, {"weight": 1, "give": {"item": "mace"}}, {"weight": 1, "give": {"item": "axe"}}, {"weight": 1, "give": {"item": "spear"}}, {"weight": 1, "give": {"item": "longsword"}}],
+      "src": "js/engine/gear-adapter.js:67"
+    },
+    "pool-skirmisher": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"item": "bow"}}, {"weight": 1, "give": {"item": "dagger"}}, {"weight": 1, "give": {"item": "sword"}}],
+      "src": "js/engine/gear-adapter.js:68"
+    },
+    "pool-mage": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"item": "staff"}}, {"weight": 1, "give": {"item": "wand"}}, {"weight": 1, "give": {"item": "orb"}}, {"weight": 1, "give": {"item": "tome"}}],
+      "src": "js/engine/gear-adapter.js:69"
+    },
+    "pool-cleric": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"item": "censer"}}, {"weight": 1, "give": {"item": "holy"}}],
+      "src": "js/engine/gear-adapter.js:70"
+    },
+    "gear-armour": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"table": "armour-heavy"}}, {"weight": 1, "give": {"item": "leather"}}, {"weight": 1, "give": {"item": "robe"}}],
+      "ruled": "2026-10-14",
+      "src": "js/engine/gear-adapter.js:72"
+    },
+    "armour-heavy": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"item": "plate"}}, {"weight": 1, "give": {"item": "chain"}}],
+      "src": "js/engine/gear-adapter.js:72"
+    },
+    "sigil-drop": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 85, "give": {"sigil": "group:singles"}}, {"weight": 10, "give": {"sigil": "group:pairs", "except": ["rot"]}}, {"weight": 4, "give": {"sigil": "group:plus-and-triple"}}, {"weight": 1, "give": {"sigil": "group:grand"}}],
+      "src": "js/elements/sigils.js:74-82"
+    },
+    "food-drop": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"food": "random"}}],
+      "note": "foods.json special-chance",
+      "src": "js/equipment/foods.js:24-29"
+    },
+    "amulet-plenty": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"food": "random", "specialPct": {"from-source": "specialPct"}}}],
+      "src": "js/equipment/amulets.js:99"
+    },
+    "floor-scatter": {
+      "kind": "table",
+      "gives": [{"essence": {"scaled": {"base": {"roll": [5, 12]}, "per": {"floor": 2}}}}, {"essence": {"scaled": {"base": {"roll": [5, 12]}, "per": {"floor": 2}}}}, {"essence": {"scaled": {"base": {"roll": [5, 12]}, "per": {"floor": 2}}}}, {"gear": "random", "chancePct": 12}, {"gear": "random", "chancePct": 12, "floors": [16, 20]}, {"sigil": "random", "chancePct": 10}],
+      "spot": "a random free room cell away from doors, outside merchant, hidden-sigil and rare rooms; an occupied pick drops nothing",
+      "ruled": "2026-10-14",
+      "src": "js/world/world.js:423-433"
+    },
+    "floor-guaranteed": {
+      "kind": "table",
+      "gives": [{"gear": "random", "kinds": ["weapon"], "uncursed": true, "floors": [1, 2]}, {"gear": "random", "kinds": ["armour"], "uncursed": true, "floors": [1, 2]}, {"gear": "random", "kinds": ["weapon", "armour"], "uncursed": true, "floors": [3, 15]}, {"gear": "random", "kinds": ["weapon"], "uncursed": true, "floors": [16, 20]}, {"gear": "random", "kinds": ["weapon"], "uncursed": true, "floors": [16, 20]}, {"gear": "random", "kinds": ["armour"], "uncursed": true, "floors": [16, 20]}, {"gear": "random", "kinds": ["offhand"], "uncursed": true, "floors": [16, 20]}, {"gear": "random", "kinds": ["weapon", "armour"], "uncursed": true, "floors": [21, 24]}],
+      "kinds": "the normal roll (random-gear) drawn again until it is one of these kinds",
+      "spot": "a free cell of an ordinary room the arrival walks to: not behind a locked, toll, secret, sealed or puzzle door, not a pocket, special, rare, start or boss room",
+      "ruled": "2026-10-22: \"Let's consolodate changes into something that makes sense to achieve a low random drop rate, then add a number of guaranteed floor drops to increase the minimum floor\"; amended: \"the Underdark gets 2 guaranteed weapons, 1 armour and 1 off-hand a floor\", \"1 guaranteed weapon AND armor for the first 2 levels (to give tourists a shot at surviving)\", \"Keep the normal mix for the guaranteed off-hand.\"",
+      "src": "new (item 313, gear-economy.md section 7)"
+    },
+    "floor-food": {
+      "kind": "table",
+      "gives": [{"food": "random"}, {"food": "random", "chancePct": 15}],
+      "spot": "a reachable room cell on the finished map",
+      "ruled": "2026-10-14",
+      "src": "js/world/world.js:502-519"
+    },
+    "floor-trinkets": {
+      "kind": "rule",
+      "perBiome": {"rings": 2, "amulets": 1},
+      "floors": "one of the first four floors of the biome, each pick its own",
+      "cursedPct": 15,
+      "streams": {"plan": "world seed ^ (0x51ed + biome x 977)", "spots": "floor seed ^ 0x7a11"},
+      "src": "js/equipment/upgrade.js:103-126"
+    },
+    "chest-wood": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 22, "give": {"mote": "random"}}, {"weight": 73, "give": {"essence": {"scaled": {"base": {"roll": [10, 22]}, "per": {"floor": 3}}}}}, {"weight": 5, "give": {"gear": "random"}}],
+      "ruled": "2026-10-14",
+      "src": "js/combat/systems.js:689-704"
+    },
+    "chest-iron": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 22, "give": {"mote": "random"}}, {"weight": 73, "give": {"essence": {"scaled": {"base": {"roll": [10, 22]}, "per": {"floor": 3}}}}}, {"weight": 5, "give": {"gear": "random"}}],
+      "src": "js/combat/systems.js:689-704; js/world/world.js:688"
+    },
+    "chest-gold": {
+      "kind": "table",
+      "gives": [{"gear": "random"}],
+      "givesNote": "one piece of the floor's normal roll, then the two draws (Justin 2026-10-22: \"i think gold chests should always give a piece of gear from the biomes drop table\")",
+      "rolls": 2,
+      "picks": [{"weight": 22, "give": {"mote": "random"}}, {"weight": 73, "give": {"essence": {"scaled": {"base": {"roll": [10, 22]}, "per": {"floor": 3}}}, "mult": 1.25, "round": "up"}}, {"weight": 5, "give": {"gear": "random"}}],
+      "src": "js/combat/systems.js:690, :700"
+    },
+    "chest-ornate": {
+      "kind": "table",
+      "rolls": 3,
+      "picks": [{"weight": 22, "give": {"mote": "random"}}, {"weight": 73, "give": {"essence": {"scaled": {"base": {"roll": [10, 22]}, "per": {"floor": 3}}}}}, {"weight": 5, "give": {"gear": "random"}}],
+      "src": "js/combat/systems.js:689-690"
+    },
+    "chest-crystal": {
+      "kind": "table",
+      "rolls": 3,
+      "picks": [{"weight": 22, "give": {"mote": "random"}}, {"weight": 73, "give": {"essence": {"scaled": {"base": {"roll": [10, 22]}, "per": {"floor": 3}}}}}, {"weight": 5, "give": {"gear": "random"}}],
+      "src": "js/combat/systems.js:689-690; js/world/world.js:1454"
+    },
+    "chest-enhanced": {
+      "kind": "rule",
+      "every": {"gear": "random", "plusBump": 1},
+      "rolls": 2, "rollsNote": "as a gold chest: every enhanced chest is gold (1.7 rolls as the chest kind)",
+      "ruled": "2026-10-14",
+      "src": "js/combat/systems.js:695; js/world/world.js:1339"
+    },
+    "mimic-chance": {
+      "kind": "rule",
+      "pct": 12,
+      "fromFloor": 2,
+      "chests": "the two ordinary floor chests",
+      "src": "js/world/world.js:409-412"
+    },
+    "crate-supply": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 15, "give": {"food": "random"}}, {"weight": 5, "give": {"sigil": "random"}}, {"weight": 80, "give": {"essence": {"scaled": {"base": {"roll": [10, 22]}, "per": {"floor": 3}}}}}],
+      "ruled": "2026-10-14",
+      "src": "js/combat/systems.js:696"
+    },
+    "chest-plane": {
+      "kind": "table",
+      "gives": [{"gear": "random", "uncursed": true, "plusAtLeast": 0, "plusBump": 1, "enchant": "plane-element"}, {"gear": "random", "uncursed": true, "plusAtLeast": 0, "plusBump": 1, "enchant": "plane-element"}, {"mote": "plane-element"}, {"mote": "plane-element"}, {"mote": "plane-element", "chancePct": 50}, {"essence": {"roll": [80, 120]}, "continuous": true}],
+      "ruled": "2026-10-14, 2026-10-15 (essence scaled once, at pickup)",
+      "src": "js/world/planes/portals.js:220-231"
+    },
+    "prop-break": {
+      "kind": "table",
+      "rolls": 1,
+      "chance": "props.json loot (packet G)",
+      "picks": [{"weight": 74, "give": {"essence": {"scaled": {"base": {"roll": [4, 10]}, "per": {"floor": 1}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 4, "give": {"food": "random"}}, {"weight": 22, "give": {"mote": "random"}}],
+      "log": "Something rolls out of the pieces.",
+      "ruled": "2026-10-14",
+      "src": "js/combat/systems.js:460-474"
+    },
+    "loot-room-pile": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 8, "give": {"gear": "random", "plusAtLeast": 1}}, {"weight": 62, "give": {"essence": {"scaled": {"base": {"roll": [12, 25]}, "per": {"floor": 3}}}}}, {"weight": 30, "give": {"mote": "random"}}],
+      "ruled": "2026-10-14",
+      "src": "js/world/world.js:685-697"
+    },
+    "puzzle-reward": {
+      "kind": "table",
+      "rolls": 3,
+      "picks": [{"weight": 45, "give": {"gear": "random", "plusBump": 1}}, {"weight": 30, "give": {"essence": {"scaled": {"base": {"roll": [20, 35]}, "per": {"floor": 4}}}}}, {"weight": 25, "give": {"mote": "random"}}],
+      "ruled": "2026-10-14",
+      "src": "js/world/puzzles.js:68-74"
+    },
+    "crystal-vault": {
+      "kind": "table",
+      "gives": [{"gear": "random", "uncursed": true, "plusAtLeast": 0, "plusBump": 1}, {"table": "ring-or-amulet"}, {"table": "mote-or-vault-essence"}],
+      "ruled": "2026-10-14",
+      "src": "js/world/puzzles.js:235-246"
+    },
+    "ring-or-amulet": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"ring": "random", "cursedPct": 0}}, {"weight": 1, "give": {"amulet": "random", "cursedPct": 0}}],
+      "src": "js/world/puzzles.js:242, :228"
+    },
+    "mote-or-vault-essence": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"mote": "random"}}, {"weight": 1, "give": {"essence": {"scaled": {"base": {"roll": [60, 90]}, "per": {"floor": 10}}}}}],
+      "src": "js/world/puzzles.js:243"
+    },
+    "boss-hoard": {
+      "kind": "table",
+      "gives": [{"core": "floor"}, {"essence": 60}, {"mote": "random"}, {"gear": "random", "plusAtLeast": 1, "tierAtLeast": 2}],
+      "ruled": "2026-10-14",
+      "src": "js/engine/run-events.js:62-64"
+    },
+    "sacrifice-altar": {
+      "kind": "rule",
+      "passes": {"3": {"essence": {"scaled": {"base": 25, "per": {"floor": 5}}}}, "5": {"sigil": "random"}, "7": {"table": "altar-seventh"}},
+      "src": "js/combat/systems.js:491-516"
+    },
+    "altar-seventh": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"gear": "random", "plus": 3, "tier": 2}}, {"weight": 1, "give": {"mote": "random"}}],
+      "ruled": "2026-10-15",
+      "src": "js/combat/systems.js:506-507"
+    },
+    "prisoner-reward": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 34, "give": {"ring": "random", "cursedPct": 0}}, {"weight": 33, "give": {"amulet": "random", "cursedPct": 0}}, {"weight": 33, "give": {"essence": {"scaled": {"base": 25, "per": {"floor": 5}}}}}],
+      "src": "js/combat/systems.js:383"
+    },
+    "escort-reward": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"ring": "random", "cursedPct": 0}}, {"weight": 1, "give": {"amulet": "random", "cursedPct": 0}}],
+      "src": "js/engine/gear-adapter.js:2; js/combat/systems.js:383"
+    },
+    "expedition-reward": {
+      "kind": "table",
+      "gives": [{"food": "random-special", "biome": 1}, {"food": "random-special", "biome": 1}, {"ring": "random", "cursedPct": 0, "plusAtLeast": 2}],
+      "src": "js/world/rare-rooms.js:47-50; js/engine/gear-adapter.js:3"
+    },
+    "camp-harvester": {
+      "kind": "table",
+      "gives": [{"food": "skewer"}, {"food": "glowstew"}, {"food": "random-special", "biome": 4}],
+      "src": "js/world/world.js:785-790"
+    },
+    "camp-survey": {
+      "kind": "table",
+      "gives": [{"food": "ration"}, {"food": "ration"}, {"sigil": "random"}],
+      "src": "js/world/world.js:802"
+    },
+    "camp-adventurer": {
+      "kind": "table",
+      "gives": [{"food": "ration"}, {"food": "ration"}, {"gear": "random"}],
+      "src": "js/world/world.js:811"
+    },
+    "library-reward": {
+      "kind": "table",
+      "gives": [{"sigil": "library-first"}, {"sigil": "library-second"}, {"item": "tome", "tier": "roll"}],
+      "ruled": "2026-10-14",
+      "src": "js/world/world.js:958-963"
+    },
+    "elemental-treasure": {
+      "kind": "table",
+      "gives": [{"gear": "pools", "tier": "fine, masterwork from biome 3", "plus": "2 + (biome - 1)", "enchant": "room element", "uncursed": true, "unidentified": true}, {"table": "ring-or-amulet"}, {"essence": {"scaled": {"base": {"roll": [30, 50]}, "per": {"floor": 5}}}}, {"essence": {"scaled": {"base": {"roll": [30, 50]}, "per": {"floor": 5}}}}, {"essence": {"scaled": {"base": {"roll": [30, 50]}, "per": {"floor": 5}}}}],
+      "ruled": "2026-10-15",
+      "src": "js/world/puzzles.js:204-210, :225-229"
+    },
+    "merchant": {
+      "kind": "table",
+      "appears": {"biome": 3, "chancePct": 30, "floors": [11, 14], "stream": "rare-run seed ^ 0x4D455243"},
+      "gives": [{"ring": "random", "cursedPct": 0, "price": 5000}, {"amulet": "random", "cursedPct": 0, "price": 5000}, {"gear": "candidate", "slot": "weapon", "tier": "masterwork", "identified": true, "uncursed": true, "price": 5000}, {"gear": "candidate", "slot": "armour", "tier": "masterwork", "identified": true, "uncursed": true, "price": 5000}, {"gear": "candidate", "slot": "offhand", "tier": "masterwork", "identified": true, "uncursed": true, "price": 5000}, {"mote": "each element", "price": 100}, {"sigil": "group:singles", "price": "twice its essence"}, {"sigil": "group:singles", "price": "twice its essence"}, {"sigil": "group:pairs", "price": "twice its essence"}, {"sigil": "group:plus", "price": "twice its essence"}, {"sigil": "group:triple", "price": "twice its essence"}, {"sigil": "group:grand", "price": "twice its essence"}],
+      "eachOnce": true,
+      "buyRange": "next to the vendor or the stall",
+      "src": "js/world/world.js:1059-1063, :1085-1107; js/combat/systems.js:287-316"
+    },
+    "wobbles-gift-passive": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"sigil": "random"}}, {"weight": 1, "give": {"mote": "random"}}, {"weight": 1, "give": {"essence": {"roll": [40, 80]}}}],
+      "spot": "first empty, reachable, unburning neighbour in fixed order, else the hero tile; draws nothing",
+      "ruled": "2026-10-15 (packet E)",
+      "src": "js/faith/gods.js:54-86; js/engine/progression.js:25-28"
+    },
+    "wobbles-gift-greater": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 50, "give": {"mote": "random", "count": 2}}, {"weight": 25, "give": {"sigil": "random"}}, {"weight": 12.5, "give": {"ring": "random", "cursedPct": 0}}, {"weight": 12.5, "give": {"amulet": "random", "cursedPct": 0}}],
+      "spot": "as wobbles-gift-passive",
+      "src": "js/faith/gods.js:54-86; js/engine/progression.js:25-28"
+    },
+    "wobbles-gift-invoke": {
+      "kind": "table",
+      "rolls": 1,
+      "picks": [{"weight": 50, "give": {"mote": "random"}}, {"weight": 25, "give": {"essence": {"roll": [20, 40]}}}, {"weight": 12.5, "give": {"ring": "random", "cursedPct": 0}}, {"weight": 12.5, "give": {"amulet": "random", "cursedPct": 0}}],
+      "spot": "as wobbles-gift-passive",
+      "src": "js/faith/gods.js:54-86; js/engine/progression.js:25-28"
+    },
+    "kill-default": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 12,
+      "rolls": 1,
+      "picks": [{"weight": 9, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 1, "give": {"gear": "random", "keepPct": 20}}],
+      "src": "js/equipment/gear.js:197"
+    },
+    "kill-none": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 0,
+      "rolls": 1,
+      "picks": [],
+      "src": "js/world/biomes/caverns/cavernmobs.js:58-59, :65-66; js/world/biomes/crypt/crypt.js:38; js/world/biomes/underdark/deepmobs.js:56; js/combat/shadow-clone.js:224; js/world/chaos/unmaker-encounter.js:26"
+    },
+    "kill-rat": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 10,
+      "rolls": 1,
+      "picks": [{"weight": 8, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 4, "give": {"food": "random"}}],
+      "src": "js/content/data.js:952; js/world/biomes/caverns/cavernmobs.js:62"
+    },
+    "kill-bat": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 8,
+      "rolls": 1,
+      "picks": [{"weight": 19, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}],
+      "src": "js/content/data.js:953; js/world/biomes/caverns/cavernmobs.js:63"
+    },
+    "kill-goblin": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 18,
+      "rolls": 1,
+      "picks": [{"weight": 13, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 4, "give": {"gear": "random", "keepPct": 20}}, {"weight": 4, "give": {"food": "random"}}],
+      "src": "js/content/data.js:954"
+    },
+    "kill-archer": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 20,
+      "rolls": 1,
+      "picks": [{"weight": 11, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 6, "give": {"gear": "random", "keepPct": 20}}],
+      "src": "js/content/data.js:955"
+    },
+    "kill-brute": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 35,
+      "rolls": 1,
+      "picks": [{"weight": 4, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 5, "give": {"gear": "random", "keepPct": 20}}, {"weight": 2, "give": {"food": "random"}}],
+      "src": "js/content/data.js:956"
+    },
+    "kill-slime": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 15,
+      "rolls": 1,
+      "picks": [{"weight": 17, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}],
+      "src": "js/content/data.js:957-958; js/world/biomes/caverns/cavernmobs.js:64"
+    },
+    "kill-shaman": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 35,
+      "rolls": 1,
+      "picks": [{"weight": 9, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 4, "give": {"gear": "random", "keepPct": 20}}],
+      "src": "js/content/data.js:959"
+    },
+    "kill-skeleton": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 25,
+      "rolls": 1,
+      "picks": [{"weight": 4, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 6, "give": {"gear": "random", "keepPct": 20}}],
+      "src": "js/content/data.js:960"
+    },
+    "kill-mimic": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 100,
+      "rolls": 1,
+      "picks": [{"weight": 4, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 6, "give": {"gear": "random", "keepPct": 20}}],
+      "src": "js/content/data.js:961"
+    },
+    "kill-ghoul": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 12,
+      "rolls": 1,
+      "picks": [{"weight": 10, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 2, "give": {"food": "random"}}],
+      "src": "js/enemies/ghoul.js:8"
+    },
+    "kill-greenslime": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 12,
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}],
+      "src": "js/enemies/green-slime.js:9"
+    },
+    "kill-stormbeetle": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 20,
+      "rolls": 1,
+      "picks": [{"weight": 11, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 3, "give": {"gear": "random", "keepPct": 20}}],
+      "src": "js/world/biomes/caverns/cavernmobs.js:54"
+    },
+    "kill-sparkjelly": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 20,
+      "rolls": 1,
+      "picks": [{"weight": 14, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}],
+      "src": "js/world/biomes/caverns/cavernmobs.js:55"
+    },
+    "kill-shockeel": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 30,
+      "rolls": 1,
+      "picks": [{"weight": 11, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 3, "give": {"food": "random"}}],
+      "src": "js/world/biomes/caverns/cavernmobs.js:56"
+    },
+    "kill-myconid": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 30,
+      "rolls": 1,
+      "picks": [{"weight": 11, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 3, "give": {"food": "random"}}],
+      "src": "js/world/biomes/caverns/cavernmobs.js:57; js/enemies/sporecaller.js:10"
+    },
+    "kill-crystalcrawler": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 25,
+      "rolls": 1,
+      "picks": [{"weight": 14, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 3, "give": {"gear": "random", "keepPct": 20}}],
+      "src": "js/world/biomes/caverns/cavernmobs.js:60"
+    },
+    "kill-rootbound": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 25,
+      "rolls": 1,
+      "picks": [{"weight": 12, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 2, "give": {"food": "random"}}],
+      "src": "js/world/biomes/caverns/cavernmobs.js:61"
+    },
+    "kill-shambler": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 12,
+      "rolls": 1,
+      "picks": [{"weight": 10, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 4, "give": {"food": "random"}}],
+      "src": "js/world/biomes/crypt/crypt.js:32"
+    },
+    "kill-gravebeetle": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 14,
+      "rolls": 1,
+      "picks": [{"weight": 13, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}],
+      "src": "js/world/biomes/crypt/crypt.js:33"
+    },
+    "kill-bonearcher": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 22,
+      "rolls": 1,
+      "picks": [{"weight": 9, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 6, "give": {"gear": "random", "keepPct": 20}}],
+      "src": "js/world/biomes/crypt/crypt.js:34"
+    },
+    "kill-shade": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 20,
+      "rolls": 1,
+      "picks": [{"weight": 13, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}],
+      "src": "js/world/biomes/crypt/crypt.js:35"
+    },
+    "kill-gravebloat": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 35,
+      "rolls": 1,
+      "picks": [{"weight": 6, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 5, "give": {"gear": "random", "keepPct": 20}}, {"weight": 2, "give": {"food": "random"}}],
+      "src": "js/world/biomes/crypt/crypt.js:36"
+    },
+    "kill-acolyte": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 40,
+      "rolls": 1,
+      "picks": [{"weight": 10, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 4, "give": {"gear": "random", "keepPct": 20}}],
+      "src": "js/world/biomes/crypt/crypt.js:37"
+    },
+    "kill-drowblade": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 25,
+      "rolls": 1,
+      "picks": [{"weight": 11, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 5, "give": {"gear": "random", "keepPct": 20}}],
+      "src": "js/world/biomes/underdark/deepmobs.js:48"
+    },
+    "kill-drowpriestess": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 35,
+      "rolls": 1,
+      "picks": [{"weight": 11, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 3, "give": {"gear": "random", "keepPct": 20}}, {"weight": 1, "give": {"food": "random"}}],
+      "src": "js/world/biomes/underdark/deepmobs.js:49"
+    },
+    "kill-thoughteater": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 30,
+      "rolls": 1,
+      "picks": [{"weight": 15, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}],
+      "src": "js/world/biomes/underdark/deepmobs.js:50"
+    },
+    "kill-webspitter": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 20,
+      "rolls": 1,
+      "picks": [{"weight": 12, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 2, "give": {"food": "random"}}],
+      "src": "js/world/biomes/underdark/deepmobs.js:51"
+    },
+    "kill-spiderling": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 4,
+      "rolls": 1,
+      "picks": [{"weight": 1, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}],
+      "src": "js/world/biomes/underdark/deepmobs.js:52; js/world/chaos/chaos-enemies.js:61"
+    },
+    "kill-drider": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 60,
+      "rolls": 1,
+      "picks": [{"weight": 8, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 8, "give": {"gear": "random", "keepPct": 20}}],
+      "src": "js/world/biomes/underdark/deepmobs.js:53"
+    },
+    "kill-fireimp": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 25,
+      "rolls": 1,
+      "picks": [{"weight": 14, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}],
+      "src": "js/world/biomes/underdark/deepmobs.js:54"
+    },
+    "kill-emberspider": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 22,
+      "rolls": 1,
+      "picks": [{"weight": 12, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 2, "give": {"gear": "random", "keepPct": 20}}, {"weight": 2, "give": {"food": "random"}}],
+      "src": "js/world/biomes/underdark/deepmobs.js:55"
+    },
+    "kill-chaos": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 22,
+      "rolls": 1,
+      "picks": [{"weight": 12, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 3, "give": {"gear": "random", "keepPct": 20}}, {"weight": 2, "give": {"food": "random"}}],
+      "src": "js/world/chaos/chaos-enemies.js:57"
+    },
+    "kill-plane-elite": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 60,
+      "rolls": 1,
+      "picks": [{"weight": 8, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 8, "give": {"gear": "random", "keepPct": 20}}],
+      "src": "js/world/planes/planesfwa.js:139"
+    },
+    "kill-plane": {
+      "kind": "table",
+      "use": "kill",
+      "chancePct": 30,
+      "rolls": 1,
+      "picks": [{"weight": 10, "give": {"essence": {"scaled": {"base": {"roll": [3, 8]}, "per": {"floor": 2}}}, "mult": 1.5, "keepPct": 50}}, {"weight": 3, "give": {"gear": "random", "keepPct": 20}}],
+      "src": "js/world/planes/planesfwa.js:139; js/world/planes/portals.js:264"
+    }
+  }
+}

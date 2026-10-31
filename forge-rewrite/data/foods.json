@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "rows": {
+    "ration": {
+      "kind": "food",
+      "name": "Ration",
+      "icon": "item-ration",
+      "text": "item.food.ration",
+      "nutrition": 700,
+      "special": false,
+      "effects": [{"verb": "gain", "resource": "hunger", "amount": 700}],
+      "src": "js/equipment/foods.js:10"
+    },
+    "honeycake": {
+      "kind": "food",
+      "name": "Honeycake",
+      "icon": "item-honeycake",
+      "text": "item.food.honeycake",
+      "nutrition": 400,
+      "special": true,
+      "biome": null,
+      "effects": [{"verb": "gain", "resource": "hunger", "amount": 400}, {"verb": "apply-status", "status": "regeneration", "turns": 60, "target": {"selector": "self"}}],
+      "src": "js/equipment/foods.js:12, :43-48"
+    },
+    "moontart": {
+      "kind": "food",
+      "name": "Moonberry Tart",
+      "icon": "item-moontart",
+      "text": "item.food.moontart",
+      "nutrition": 400,
+      "special": true,
+      "biome": null,
+      "effects": [{"verb": "gain", "resource": "hunger", "amount": 400}, {"verb": "apply-status", "status": "manaflow", "turns": 60, "target": {"selector": "self"}}],
+      "src": "js/equipment/foods.js:13"
+    },
+    "figs": {
+      "kind": "food",
+      "name": "Sugared Figs",
+      "icon": "item-figs",
+      "text": "item.food.figs",
+      "nutrition": 300,
+      "special": true,
+      "biome": null,
+      "effects": [{"verb": "gain", "resource": "hunger", "amount": 300}, {"verb": "apply-status", "status": "haste", "turns": 20, "target": {"selector": "self"}}],
+      "src": "js/equipment/foods.js:14"
+    },
+    "meat": {
+      "kind": "food",
+      "name": "Roast Meat",
+      "icon": "item-meat",
+      "text": "item.food.meat",
+      "nutrition": 550,
+      "special": true,
+      "biome": null,
+      "effects": [{"verb": "gain", "resource": "hunger", "amount": 550}, {"verb": "apply-status", "status": "might", "turns": 30, "target": {"selector": "self"}}],
+      "src": "js/equipment/foods.js:15; js/content/data.js:879"
+    },
+    "skewer": {
+      "kind": "food",
+      "name": "Mushroom Skewer",
+      "icon": "item-skewer",
+      "text": "item.food.skewer",
+      "nutrition": 400,
+      "special": true,
+      "biome": 1,
+      "effects": [{"verb": "gain", "resource": "hunger", "amount": 400}, {"verb": "apply-status", "status": "poisonward", "turns": 60, "target": {"selector": "self"}}],
+      "src": "js/equipment/foods.js:17"
+    },
+    "graveplum": {
+      "kind": "food",
+      "name": "Grave Plum",
+      "icon": "item-graveplum",
+      "text": "item.food.graveplum",
+      "nutrition": 300,
+      "special": true,
+      "biome": 2,
+      "effects": [{"verb": "gain", "resource": "hunger", "amount": 300}, {"verb": "apply-status", "status": "shadeward", "turns": 60, "target": {"selector": "self"}}],
+      "src": "js/equipment/foods.js:18"
+    },
+    "glowstew": {
+      "kind": "food",
+      "name": "Glowcap Stew",
+      "icon": "item-glowstew",
+      "text": "item.food.glowstew",
+      "nutrition": 500,
+      "special": true,
+      "biome": 3,
+      "effects": [{"verb": "gain", "resource": "hunger", "amount": 500}, {"verb": "apply-status", "status": "stormward", "turns": 60, "target": {"selector": "self"}}],
+      "src": "js/equipment/foods.js:19"
+    },
+    "emberpepper": {
+      "kind": "food",
+      "name": "Ember Pepper",
+      "icon": "item-emberpepper",
+      "text": "item.food.emberpepper",
+      "nutrition": 250,
+      "special": true,
+      "biome": 4,
+      "effects": [{"verb": "gain", "resource": "hunger", "amount": 250}, {"verb": "apply-status", "status": "fireward", "turns": 60, "target": {"selector": "self"}}],
+      "src": "js/equipment/foods.js:20"
+    },
+    "starfruit": {
+      "kind": "food",
+      "name": "Starfruit",
+      "icon": "item-starfruit",
+      "text": "item.food.starfruit",
+      "nutrition": 400,
+      "special": true,
+      "biome": 5,
+      "effects": [{"verb": "gain", "resource": "hunger", "amount": 400}, {"verb": "apply-status", "status": "starward", "turns": 60, "target": {"selector": "self"}}],
+      "src": "js/equipment/foods.js:21"
+    },
+    "special-chance": {
+      "kind": "rule",
+      "specialPct": 20,
+      "pool": "specials with no biome, plus the current biome own special; planes add no biome special",
+      "ruled": "2026-09-19",
+      "src": "js/equipment/foods.js:1-7, :24-29"
+    },
+    "one-buff": {
+      "kind": "rule",
+      "foodBuffs": ["regeneration", "manaflow", "haste", "might", "poisonward", "shadeward", "stormward", "fireward", "starward"],
+      "src": "js/equipment/foods.js:8, :31-39"
+    },
+    "eating": {
+      "kind": "rule",
+      "src": "js/combat/systems.js:841-850; js/content/data.js:881"
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "rows": {
+    "protection": {
+      "kind": "ring",
+      "name": "Ring of Protection",
+      "text": "item.ring.protection",
+      "values": {"armour": {"perPower": 1, "gearBonus": true, "round": true}},
+      "effects": [{"verb": "modify-stat", "stat": "armour", "add": {"from-source": "armour"}}],
+      "src": "js/equipment/gear.js:11; js/engine/stats.js:122"
+    },
+    "evasion": {
+      "kind": "ring",
+      "name": "Ring of Evasion",
+      "text": "item.ring.evasion",
+      "values": {"evasion": {"perPower": 5, "gearBonus": true, "round": true}},
+      "effects": [{"verb": "modify-stat", "stat": "evasion", "add": {"from-source": "evasion"}}],
+      "src": "js/equipment/gear.js:12; js/engine/stats.js:123"
+    },
+    "accuracy": {
+      "kind": "ring",
+      "name": "Ring of Accuracy",
+      "text": "item.ring.accuracy",
+      "values": {"accuracy": {"perPower": 5, "gearBonus": true, "round": true}, "critPct": {"perPower": 4, "gearBonus": true}},
+      "effects": [{"verb": "modify-stat", "stat": "accuracy", "add": {"from-source": "accuracy"}}, {"verb": "modify-stat", "stat": "crit", "add": {"from-source": "critPct"}}],
+      "ruled": "2026-10-13",
+      "src": "js/equipment/gear.js:13; js/engine/stats.js:124"
+    },
+    "vitality": {
+      "kind": "ring",
+      "name": "Ring of Vitality",
+      "text": "item.ring.vitality",
+      "values": {"maxHpPct": {"perPower": 8, "gearBonus": true}},
+      "effects": [{"verb": "modify-stat", "stat": "max-hp", "pct": {"from-source": "maxHpPct"}}],
+      "src": "js/equipment/gear.js:14; js/engine/stats.js:125"
+    },
+    "wizardry": {
+      "kind": "ring",
+      "name": "Ring of Wizardry",
+      "text": "item.ring.wizardry",
+      "values": {"maxMpPct": {"perPower": 5, "gearBonus": true}, "spellPct": {"perPower": 2.5, "gearBonus": true, "min": -50}},
+      "effects": [{"verb": "modify-stat", "stat": "max-mp", "pct": {"from-source": "maxMpPct"}}, {"verb": "modify-stat", "stat": "spell-power", "pct": {"from-source": "spellPct"}}],
+      "src": "js/equipment/gear.js:15, :74; js/engine/stats.js:35, :126"
+    },
+    "striking": {
+      "kind": "ring",
+      "name": "Ring of Striking",
+      "text": "item.ring.striking",
+      "values": {"damage": {"perPower": 1, "base": 1, "gearBonus": true, "round": true}, "critPct": {"perPower": 1, "base": 1, "gearBonus": true}},
+      "effects": [{"verb": "modify-stat", "stat": "damage", "add": {"from-source": "damage"}}, {"verb": "modify-stat", "stat": "crit", "add": {"from-source": "critPct"}}],
+      "src": "js/equipment/gear.js:16, :76; js/engine/stats.js:127"
+    },
+    "mending": {
+      "kind": "ring",
+      "name": "Ring of Mending",
+      "text": "item.ring.mending",
+      "values": {"hpRegenPct": {"perPower": 0.33333333, "gearBonus": true}},
+      "effects": [{"verb": "modify-stat", "stat": "hp-regen", "add": {"from-source": "hpRegenPct"}, "if": {"all": [{"fed": true}, {"not": {"has-status": "poison"}}]}}],
+      "cursedEffects": [{"verb": "heal-mod", "mult": 0, "heals": "regen"}],
+      "src": "js/equipment/gear.js:17, :66-68; js/engine/turns.js:56-58; js/engine/gear.js:6; js/engine/damage-adapter.js:518"
+    },
+    "sustenance": {
+      "kind": "ring",
+      "name": "Ring of Sustenance",
+      "text": "item.ring.sustenance",
+      "values": {"hungerRatePct": {"perPower": -15, "gearBonus": true}, "foodBuffMult": {"perPower": 100, "gearBonus": true, "asMult": "more"}},
+      "effects": [{"verb": "modify-stat", "stat": "hunger-rate", "pct": {"from-source": "hungerRatePct"}}, {"verb": "modify-duration", "scope": "self-buffs", "mult": {"from-source": "foodBuffMult"}, "statuses": ["regeneration", "manaflow", "haste", "might", "poisonward", "shadeward", "stormward", "fireward", "starward"]}],
+      "ruled": "2026-10-13",
+      "src": "js/equipment/gear.js:18, :156; js/engine/turns.js:34-35; js/equipment/foods.js:34"
+    },
+    "haste": {
+      "kind": "ring",
+      "name": "Ring of Haste",
+      "text": "item.ring.haste",
+      "values": {"speedPct": {"perPower": 5, "gearBonus": true}},
+      "effects": [{"verb": "modify-stat", "stat": "speed", "pct": {"from-source": "speedPct"}}],
+      "src": "js/equipment/gear.js:19; js/engine/stats.js:129"
+    },
+    "warding": {
+      "kind": "ring",
+      "name": "Ring of Warding",
+      "text": "item.ring.warding",
+      "values": {"resistPct": {"perPower": -5, "gearBonus": true}},
+      "effects": [{"verb": "resist", "type": "elemental", "add": {"from-source": "resistPct"}}],
+      "src": "js/equipment/gear.js:20; js/engine/actions.js:33; js/engine/actions-adapter.js:80"
+    },
+    "keeneyes": {
+      "kind": "ring",
+      "name": "Ring of Keen Eyes",
+      "text": "item.ring.keeneyes",
+      "values": {"spotPct": {"perPower": 8, "gearBonus": true}, "doorPct": {"perPower": 4, "gearBonus": true}},
+      "effects": [{"verb": "modify-stat", "stat": "trap-spot", "add": {"from-source": "spotPct"}}, {"verb": "modify-stat", "stat": "search", "add": {"from-source": "spotPct"}}, {"verb": "on-event", "trigger": "on-action", "effects": [{"verb": "reveal", "what": "secret-doors", "where": {"selector": "all-visible"}, "chance": {"from-source": "doorPct"}}]}],
+      "src": "js/equipment/gear.js:21; js/equipment/upgrade.js:39-46; js/combat/systems.js:668; js/world/puzzles.js:459"
+    },
+    "luck": {
+      "kind": "ring",
+      "name": "Ring of Luck",
+      "text": "item.ring.luck",
+      "values": {"lootMult": {"perPower": 25, "gearBonus": true, "min": -100, "asMult": "more"}},
+      "effects": [{"verb": "loot-mod"}],
+      "src": "js/equipment/gear.js:22, :198"
+    },
+    "looks": {
+      "kind": "rule",
+      "looks": ["jade", "ruby", "iron", "bone", "opal", "copper", "obsidian", "silver", "amber", "moonstone", "coral", "onyx"],
+      "shuffled": "once per run, side stream world seed ^ 0x5eed77",
+      "src": "js/equipment/gear.js:24, :34-41"
+    },
+    "power": {
+      "kind": "rule",
+      "perPlus": 1,
+      "cursedPower": "minus the curse, at least 1",
+      "valueIs": "perPower x power + base x sign(power), x gear bonus",
+      "slots": 2,
+      "stack": "two of a kind add",
+      "src": "js/engine/gear.js:4; js/engine/stats.js:52-61"
+    },
+    "make": {
+      "kind": "rule",
+      "plusOnePct": 30,
+      "cursedPlusRoll": [-3, -1],
+      "unidentified": true,
+      "src": "js/engine/gear-adapter.js:8-12"
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "rows": {
+    "clock": {
+      "unitsPerGameTurn": 100,
+      "speedNumerator": 10000,
+      "schedulerStepLimit": 10000,
+      "src": "js/engine/costs.js:6; js/engine/turns.js:123-127"
+    },
+    "player-action-cost": {
+      "agilityPerPointPct": 2,
+      "agilityBase": 10,
+      "unarmedAttackMult": 0.8,
+      "minimumCost": 40,
+      "holyAirMinimumCost": 40,
+      "src": "js/engine/costs.js:4-24"
+    },
+    "player-move-cost": {
+      "waterMult": 1.25,
+      "src": "js/engine/costs.js:25-34"
+    },
+    "speed-buffs": {
+      "slowDefaultMult": 0.5,
+      "src": "js/engine/stats.js:143; js/engine/costs-adapter.js:4; js/faith/sylla.js:36"
+    },
+    "chill": {
+      "slowBasePct": 33,
+      "slowPerWaterRankPct": 3,
+      "slowWaterRankFrom": 3,
+      "slowCapPct": 50,
+      "duration": 4,
+      "src": "js/runtime/balance-rulings.js:3; js/engine/effects.js:137-152; js/engine/damage-adapter.js:142-145"
+    },
+    "free-action": {
+      "chancePct": 15,
+      "src": "js/engine/turns.js:14"
+    },
+    "ai": {"memoryUnits": 1200, "wanderRepickPct": 4, "huntSleepUnits": 3000, "src": "spec/monsters.md M14, M10; js/engine/actor-ai.js; huntSleepUnits: item 149, Justin 2026-10-18 (\"an enemy that is hunting should go to sleep after so many turns (say 30)\"), 30 game turns since it last saw the hero"},
+    "to-hit": {
+      "basePct": 75,
+      "accuracyPivot": 80,
+      "evasionPivot": 30,
+      "perPointPct": 0.75,
+      "minPct": 15,
+      "maxPct": 95,
+      "spellBoltAccuracyBonus": 10,
+      "blindAttackerMult": 0.6,
+      "src": "js/runtime/game.js:157; js/combat/combat.js:152, :605; js/engine/actions-adapter.js:256-259, :310"
+    },
+    "hearing": {
+      "earshot": 12, "loudRadius": 6,
+      "quietRadius": 3,
+      "scoundrelQuietRadius": 1,
+      "doorCost": 3,
+      "diagonalCost": 1.4,
+      "loudPct": 55,
+      "loudUsesNoticeBands": true,
+      "quietPct": 20,
+      "quietWithin": 3,
+      "note": "one rule for every hearer, asleep or awake (Justin 2026-10-16, monsters.md answer 3); Scoundrel x0.5 and stealth apply as for sight (character.md A42)",
+      "src": "js/enemies/enemy-perception.js:138-173; js/character/classes.js:164-170"
+    },
+    "chaos-combat": {
+      "accuracyBonus": 34,
+      "src": "Justin 2026-10-23: remove depth scaling while preserving existing Chaos combat."
+    },
+    "critical": {
+      "playerMultBase": 1.6,
+      "agility15Bonus": 0.25,
+      "creatureChancePct": 5,
+      "creatureMult": 1.6,
+      "src": "js/engine/actions.js:4-6; js/engine/actions-adapter.js:338-340"
+    },
+    "surprise": {
+      "weaponMult": 1.5,
+      "spellMult": 1.5,
+      "lostActionsForNewOpening": 2,
+      "src": "js/engine/actions-adapter.js:334; js/engine/actions.js:50-58; js/combat/surprise.js:11"
+    },
+    "weapon-damage": {
+      "mightPerPointPct": 4,
+      "poolFloor": 0.1,
+      "offhandMult": 0.6,
+      "riposteMult": 0.5,
+      "blockedMult": 0.25,
+      "creatureElementPacketMult": 0.5,
+      "creatureElementProcPct": 22,
+      "src": "js/engine/actions-adapter.js:120-123, :284, :296-313, :342, :393-406, :434-437"
+    },
+    "armour": {
+      "flatDivisor": 2,
+      "flatCapOfHit": 0.5,
+      "pctPerArmour": 2,
+      "pctCap": 50,
+      "minimumHit": 1,
+      "src": "js/engine/damage.js:12-19"
+    },
+    "resistance": {
+      "playerElementalFloor": 0.25,
+      "playerMagicFloor": 0.75,
+      "creatureOwnElementPct": -50,
+      "creatureOppositeElementPct": 50,
+      "undeadLightPct": 50,
+      "wetLightningPct": 50,
+      "wetFirePct": -25,
+      "chilledIcePct": 25,
+      "sanctuaryPerPowerPct": 15,
+      "sanctuaryFloor": 0.25,
+      "src": "js/engine/actions.js:14-42; js/engine/damage.js:20-24; js/engine/actions-adapter.js:76"
+    },
+    "defences": {
+      "spellWardBasePct": 25,
+      "spellWardPerMightPct": 1,
+      "spellWardCapPct": 40,
+      "spellWardMult": 0.25,
+      "fortitudeMult": 0.5,
+      "src": "js/engine/damage-adapter.js:132-136, :168, :170"
+    },
+    "shields": {
+      "absorbOrder": ["ward", "manaWard", "iceArmor", "hideShield", "mward", "guard"],
+      "note": "Guard and Ice Armor sizes and refills live in progression.json (rulings on packets A and E)",
+      "src": "js/engine/damage-adapter.js:155; js/engine/stats.js:118, :144; js/engine/turns.js:55"
+    },
+    "statuses": {
+      "tickOrder": ["bleed", "burn", "poison", "aura"],
+      "bossControlDuration": 1,
+      "src": "js/engine/effects.js:50-58, :105, :130, :160-184; js/engine/effect-adapter.js:54, :111-151; js/combat/combat.js:160-165, :176"
+    },
+    "rewards-on-kill": {
+      "heartGlobePct": 15,
+      "manaGlobePct": 15,
+      "globeLifeTurns": 40,
+      "deathRemainsUnits": 2000,
+      "src": "js/elements/capstones.js:18; js/engine/death-adapter.js:66-71, :138; js/combat/combat.js:178-189"
+    },
+    "sight": {
+      "radius": 9,
+      "snuffedRadius": 2,
+      "darkRoomRadius": 2,
+      "darkTrapRoomRadius": 1,
+      "rockRevealReach": 2,
+      "rememberedShade": 0.55,
+      "src": "js/engine/geometry.js:28-36, :119-127; spec/sight.md (rememberedShade is the recommended stand-in, open question 1)"
+    },
+    "number-scale": {
+      "numberScale": 1.0,
+      "lethality": 1.0,
+      "src": "js/runtime/game.js:50-52"
+    }
+  }
+}

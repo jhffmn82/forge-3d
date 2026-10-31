@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "rows": {
+    "worn": {
+      "kind": "tier",
+      "index": 0,
+      "prefix": "Worn",
+      "colour": "tier.worn",
+      "requirements": false,
+      "upgradeCostMult": 1,
+      "src": "js/equipment/tiers.js:10-11, :143; js/equipment/upgrade.js:51"
+    },
+    "plain": {
+      "kind": "tier",
+      "index": 1,
+      "prefix": "",
+      "colour": "tier.plain",
+      "requirements": true,
+      "upgradeCostMult": 1,
+      "src": "js/equipment/tiers.js:10-11; js/equipment/upgrade.js:51"
+    },
+    "fine": {
+      "kind": "tier",
+      "index": 2,
+      "prefix": "Fine",
+      "colour": "tier.fine",
+      "requirements": true,
+      "upgradeCostMult": 2,
+      "src": "js/equipment/tiers.js:10-11; js/equipment/upgrade.js:51"
+    },
+    "masterwork": {
+      "kind": "tier",
+      "index": 3,
+      "prefix": "Masterwork",
+      "colour": "tier.masterwork",
+      "requirements": true,
+      "upgradeCostMult": 4,
+      "src": "js/equipment/tiers.js:10-11; js/equipment/upgrade.js:51"
+    },
+    "quality-by-biome": {
+      "kind": "rule",
+      "ruled": "2026-10-14",
+      "biomes": [{"biome": 1, "floors": [1, 5], "plainPct": 90, "finePct": 10}, {"biome": 2, "floors": [6, 10], "plainPct": 10, "finePct": 90}, {"biome": 3, "floors": [11, 15], "plainPct": 0, "finePct": 90}, {"biome": 4, "floors": [16, 20], "plainPct": 0, "finePct": 0}, {"biome": 5, "floors": [21, 25], "plainPct": 0, "finePct": 0}],
+      "src": "js/equipment/tiers.js:64-76, :196-199"
+    },
+    "enhancement-roll": {
+      "kind": "rule",
+      "stepPct": 33.333333,
+      "max": 3,
+      "src": "js/equipment/tiers.js:83-87"
+    },
+    "special-reward-bump": {
+      "kind": "rule",
+      "plus": 1,
+      "max": 3,
+      "skipCursed": true,
+      "ruled": "2026-10-14",
+      "src": "js/equipment/tiers.js:77-82"
+    },
+    "upgrade-damage": {
+      "kind": "rule",
+      "perPlusMin": 1,
+      "perPlusMaxIsTierIndexPlus": 1,
+      "twoHandedMult": 1.5,
+      "round": "nearest",
+      "plus": "bare",
+      "countedOnce": "these steps are the whole per-plus damage; character.md A37 upgrade value is the same steps, not an extra",
+      "dwarf": "races.json dwarf gearUpgradeBonus: +1 to both ends",
+      "src": "js/equipment/tiers.js:118-120, :134-138; js/engine/stats.js:108, :116"
+    },
+    "upgrade-armour": {
+      "kind": "rule",
+      "perPlus": 1,
+      "plus": "effective",
+      "src": "js/engine/stats.js:113, :134"
+    },
+    "effective-plus": {
+      "kind": "rule",
+      "appliesTo": "every per-plus number on a weapon (main, ranged or off hand) or body armour marked plus: effective; off-hands and rings use the bare plus",
+      "exceptions": "weapon damage steps and Leather evasion use the bare plus; the dwarf part of those is races.json dwarf (gearUpgradeBonus +1 to both damage ends, leatherEvasionPerUpgrade), ruled 2026-10-15 in packet A",
+      "ruled": "2026-10-15",
+      "src": "js/combat/combat.js:53; js/engine/stats.js:49-51, :130-133"
+    },
+    "requirements": {
+      "kind": "rule",
+      "items": {
+        "robe": {"all": {"focus": [0, 15, 18, 21], "vitality": [0, 12, 15, 18]}},
+        "leather": {"all": {"agility": [0, 15, 18, 21], "vitality": [0, 12, 15, 18]}},
+        "chain": {"all": {"might": [0, 15, 18, 21], "vitality": [0, 12, 15, 18]}},
+        "plate": {"all": {"might": [0, 18, 21, 25], "vitality": [0, 12, 15, 18]}},
+        "longsword": {"any": ["might"], "tiers": [0, 12, 18, 21]},
+        "axe": {"any": ["might"], "tiers": [0, 15, 21, 25]},
+        "mace": {"any": ["might"], "tiers": [0, 15, 21, 25]},
+        "spear": {"any": ["might", "agility"], "tiers": [0, 12, 18, 21]},
+        "sword": {"any": ["might", "agility"], "tiers": [0, 12, 18, 21]},
+        "dagger": {"any": ["agility"], "tiers": [0, 15, 21, 25]},
+        "bow": {"any": ["agility"], "tiers": [0, 15, 21, 25]},
+        "staff": {"any": ["focus"], "tiers": [0, 15, 21, 25]},
+        "wand": {"any": ["focus"], "tiers": [0, 12, 18, 21]},
+        "orb": {"any": ["focus"], "tiers": [0, 12, 18, 21]},
+        "tome": {"any": ["focus"], "tiers": [0, 12, 18, 21]},
+        "holy": {"any": ["might", "vitality"], "tiers": [0, 12, 18, 21]},
+        "censer": {"any": ["agility", "vitality"], "tiers": [0, 12, 18, 21]},
+        "buckler": {"any": ["might", "vitality"], "tiers": [0, 12, 18, 21]},
+        "kite": {"any": ["might"], "tiers": [0, 15, 21, 25]}
+      },
+      "ruled": "2026-10-23: authored requirements replace the old tier requirements and cap; Worn remains unrestricted."
+    },
+    "offhand-weapon": {
+      "kind": "rule",
+      "needs": "light one-handed weapon",
+      "evasion": 3,
+      "block": 0,
+      "src": "js/character/create.js:66-70; js/engine/inventory.js:30-34"
+    },
+    "identification": {
+      "kind": "rule",
+      "usesToIdentify": {"weapon": 20, "armour": 20, "offhand": 150, "ring": 300, "amulet": 3},
+      "weaponUse": "each attack the player makes with it",
+      "armourUse": "each attack made on the player",
+      "offhandUse": "each paid action while a hunting foe is in sight",
+      "src": "js/equipment/gear.js:31, :133-137, :161-166; js/engine/actions-adapter.js:103-104; js/engine/gear-adapter.js:126"
+    },
+    "curses": {
+      "kind": "rule",
+      "foundCursedPct": 15,
+      "plusRoll": [-3, -1],
+      "binds": "cursed and (not an amulet, or an identified amulet)",
+      "revealOnWear": "all but unidentified amulets",
+      "src": "js/engine/gear-adapter.js:103, :107; js/engine/inventory.js:7; js/equipment/gear.js:103-107, :139-149"
+    },
+    "drop-enchant": {
+      "kind": "rule",
+      "basePct": 15,
+      "perFloorPct": 3,
+      "slots": ["weapon", "armour"],
+      "element": "random",
+      "src": "js/engine/gear-adapter.js:79"
+    },
+    "transmutation": {
+      "kind": "rule",
+      "keeps": ["tier", "plus", "enchant", "cursed", "unidentified", "uses"],
+      "src": "js/engine/gear.js:14-29; js/engine/gear-adapter.js:42-58"
+    }
+  }
+}

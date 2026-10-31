@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "rows": {
+    "ember": {
+      "name": "Ember Court",
+      "element": "fire",
+      "startingAffinity": {
+        "fire": 1
+      },
+      "weakTo": "water",
+      "passive": [
+        {
+          "verb": "resist",
+          "type": "ice",
+          "add": 25
+        }
+      ],
+      "look": "fire",
+      "text": "court.ember",
+      "src": "js/content/data.js:38; js/character/create.js:746; js/engine/actions.js:23; js/engine/actions-adapter.js:78"
+    },
+    "tide": {
+      "name": "Tide Court",
+      "element": "water",
+      "startingAffinity": {
+        "water": 1
+      },
+      "weakTo": "fire",
+      "passive": [
+        {
+          "verb": "resist",
+          "type": "fire",
+          "add": 25
+        }
+      ],
+      "look": "water",
+      "text": "court.tide",
+      "src": "js/content/data.js:38; js/character/create.js:746; js/engine/actions.js:23; js/engine/actions-adapter.js:78"
+    },
+    "gale": {
+      "name": "Gale Court",
+      "element": "air",
+      "startingAffinity": {
+        "air": 1
+      },
+      "weakTo": "earth",
+      "passive": [
+        {
+          "verb": "resist",
+          "type": "poison",
+          "add": 25
+        }
+      ],
+      "look": "air",
+      "text": "court.gale",
+      "src": "js/content/data.js:38; js/character/create.js:746; js/engine/actions.js:23; js/engine/actions-adapter.js:78"
+    },
+    "stone": {
+      "name": "Stone Court",
+      "element": "earth",
+      "startingAffinity": {
+        "earth": 1
+      },
+      "weakTo": "air",
+      "passive": [
+        {
+          "verb": "resist",
+          "type": "lightning",
+          "add": 25
+        }
+      ],
+      "look": "earth",
+      "text": "court.stone",
+      "src": "js/content/data.js:38; js/character/create.js:746; js/engine/actions.js:23; js/engine/actions-adapter.js:78"
+    }
+  }
+}

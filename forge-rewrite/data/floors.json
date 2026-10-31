@@ -1,0 +1,6709 @@
+{
+  "version": 1,
+  "rows": {
+    "chaos-preview-prism-archives": {
+      "kind": "chaos-island-template-set",
+      "name": "Prism Archives",
+      "width": 56,
+      "height": 34,
+      "use": "Source layouts for the Realm of Chaos composer: each region is one approved island. Not reachable as a standalone floor in 1.7.",
+      "grid": [
+        "________________________________________________________",
+        "________________________________________........._______",
+        "_____.######.___________________________........._______",
+        "_____.#....#.________________________..#####+#####..____",
+        "___...#....#...______________________..#.........#..____",
+        "___..###+####..______________________..#.......PP#..____",
+        "___..#......#..____#####_____________..#.......PP#..____",
+        "___..#......#..____#...#__________.....#####+###+#....__",
+        "___..#......#......#...#__________....................__",
+        "___..+......+......+.PP#__________PP..................__",
+        "___..#......#......#.PP#__________PP..#####+#+#####...__",
+        "___..#......#..____#...#__________....#...........#...__",
+        "___..####+###..____#####__________....#...........#...__",
+        "___............______________________.#...........#.____",
+        "_____........________________________.######+######.____",
+        "_____........________________________...............____",
+        "________________________________________........._______",
+        "________________________________________........._______",
+        "________________________________________________________",
+        "________________________________________________________",
+        "________________________________________________________",
+        "________________________________________________________",
+        "_____________________................___________________",
+        "_____________________................___________________",
+        "_____________________....####+####...___________________",
+        "__________________.......#.......#......________________",
+        "__________________.......#.......#....PP________________",
+        "__________________.......+.......+....PP________________",
+        "__________________.......#.......#......________________",
+        "__________________.......#.......#......________________",
+        "_____________________....####+####...___________________",
+        "_____________________................___________________",
+        "_____________________................___________________",
+        "________________________________________________________"
+      ],
+      "regionGrid": [
+        "________________________________________________________",
+        "________________________________________111111111_______",
+        "_____00000000___________________________111111111_______",
+        "_____00000000________________________111111111111111____",
+        "___000000000000______________________111111111111111____",
+        "___000000000000______________________111111111111111____",
+        "___000000000000____00000_____________111111111111111____",
+        "___000000000000____00000__________11111111111111111111__",
+        "___000000000000000000000__________11111111111111111111__",
+        "___000000000000000000000__________11111111111111111111__",
+        "___000000000000000000000__________11111111111111111111__",
+        "___000000000000____00000__________11111111111111111111__",
+        "___000000000000____00000__________11111111111111111111__",
+        "___000000000000______________________111111111111111____",
+        "_____00000000________________________111111111111111____",
+        "_____00000000________________________111111111111111____",
+        "________________________________________111111111_______",
+        "________________________________________111111111_______",
+        "________________________________________________________",
+        "________________________________________________________",
+        "________________________________________________________",
+        "________________________________________________________",
+        "_____________________2222222222222222___________________",
+        "_____________________2222222222222222___________________",
+        "_____________________2222222222222222___________________",
+        "__________________2222222222222222222222________________",
+        "__________________2222222222222222222222________________",
+        "__________________2222222222222222222222________________",
+        "__________________2222222222222222222222________________",
+        "__________________2222222222222222222222________________",
+        "_____________________2222222222222222___________________",
+        "_____________________2222222222222222___________________",
+        "_____________________2222222222222222___________________",
+        "________________________________________________________"
+      ],
+      "regionLegend": {
+        "0": "index-court",
+        "1": "refraction-galleries",
+        "2": "astral-repository"
+      },
+      "regions": [
+        {
+          "id": "index-court",
+          "name": "Index Court",
+          "bounds": {
+            "x": 3,
+            "y": 2,
+            "w": 21,
+            "h": 14
+          },
+          "spawn": {
+            "x": 8,
+            "y": 9
+          },
+          "height": 3,
+          "palette": "prism"
+        },
+        {
+          "id": "refraction-galleries",
+          "name": "Refraction Galleries",
+          "bounds": {
+            "x": 34,
+            "y": 1,
+            "w": 20,
+            "h": 17
+          },
+          "spawn": {
+            "x": 36,
+            "y": 10
+          },
+          "height": 4,
+          "palette": "prism"
+        },
+        {
+          "id": "astral-repository",
+          "name": "Astral Repository",
+          "bounds": {
+            "x": 18,
+            "y": 22,
+            "w": 22,
+            "h": 11
+          },
+          "spawn": {
+            "x": 37,
+            "y": 27
+          },
+          "height": 5,
+          "palette": "prism"
+        }
+      ],
+      "spawn": {
+        "x": 8,
+        "y": 9
+      },
+      "portals": [
+        {
+          "id": "index-gate",
+          "pairId": "index-gallery",
+          "regionId": "index-court",
+          "x": 21,
+          "y": 9,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 20,
+            "y": 9
+          },
+          "destinationId": "gallery-west",
+          "label": "To Refraction Galleries"
+        },
+        {
+          "id": "gallery-west",
+          "pairId": "index-gallery",
+          "regionId": "refraction-galleries",
+          "x": 34,
+          "y": 9,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 36,
+            "y": 10
+          },
+          "destinationId": "index-gate",
+          "label": "To Index Court"
+        },
+        {
+          "id": "gallery-east",
+          "pairId": "gallery-repository",
+          "regionId": "refraction-galleries",
+          "x": 47,
+          "y": 5,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 46,
+            "y": 5
+          },
+          "destinationId": "repository-gate",
+          "label": "To Astral Repository"
+        },
+        {
+          "id": "repository-gate",
+          "pairId": "gallery-repository",
+          "regionId": "astral-repository",
+          "x": 38,
+          "y": 26,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 37,
+            "y": 27
+          },
+          "destinationId": "gallery-east",
+          "label": "To Refraction Galleries"
+        }
+      ],
+      "focals": {
+        "rule": "Fixed 2x2 positions in region order; art names are a Fisher-Yates shuffle of the four choices by the focal stream, taken in order (index-court, refraction-galleries, astral-repository); the fourth is unused.",
+        "stream": "mulberry32(seed ^ 0x50726973)",
+        "choices": [
+          {
+            "artName": "prism-lens",
+            "label": "Crystal lens"
+          },
+          {
+            "artName": "prism-astrolabe",
+            "label": "Astral astrolabe"
+          },
+          {
+            "artName": "prism-lectern",
+            "label": "Floating-book lectern"
+          },
+          {
+            "artName": "prism-tree",
+            "label": "Prism tree"
+          }
+        ],
+        "sites": [
+          {
+            "region": "index-court",
+            "x": 20,
+            "y": 7,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "region": "refraction-galleries",
+            "x": 42,
+            "y": 16,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "region": "astral-repository",
+            "x": 28,
+            "y": 26,
+            "w": 2,
+            "h": 2
+          }
+        ],
+        "prop": {
+          "name": "prism-focal",
+          "b": 1,
+          "flat": 0
+        },
+        "src": "js/world/chaos/chaos-preview.js:103-110, :133-137"
+      },
+      "props": [
+        {
+          "name": "bookshelf",
+          "x": 6,
+          "y": 6,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 7,
+          "y": 6,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 10,
+          "y": 6,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 11,
+          "y": 6,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 6,
+          "y": 11,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 7,
+          "y": 11,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 10,
+          "y": 11,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 11,
+          "y": 11,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "table-candle",
+          "x": 8,
+          "y": 8,
+          "light": "#F0DCAB"
+        },
+        {
+          "name": "table-candle",
+          "x": 10,
+          "y": 9,
+          "light": "#BBD8FF"
+        },
+        {
+          "name": "bookshelf",
+          "x": 7,
+          "y": 3,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 10,
+          "y": 3,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "grave-pillar",
+          "x": 3,
+          "y": 5
+        },
+        {
+          "name": "grave-pillar",
+          "x": 14,
+          "y": 5
+        },
+        {
+          "name": "grave-pillar",
+          "x": 3,
+          "y": 12
+        },
+        {
+          "name": "grave-pillar",
+          "x": 14,
+          "y": 12
+        },
+        {
+          "name": "crystal-gold-small",
+          "x": 6,
+          "y": 14
+        },
+        {
+          "name": "crystal-water-small",
+          "x": 11,
+          "y": 14
+        },
+        {
+          "name": "crystal-water-small",
+          "x": 20,
+          "y": 11
+        },
+        {
+          "name": "crystal-gold-small",
+          "x": 22,
+          "y": 11
+        },
+        {
+          "name": "bookshelf",
+          "x": 40,
+          "y": 4,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 41,
+          "y": 4,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 42,
+          "y": 4,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 45,
+          "y": 4,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 46,
+          "y": 4,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 47,
+          "y": 4,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "table-candle",
+          "x": 40,
+          "y": 6,
+          "light": "#C6E6FE"
+        },
+        {
+          "name": "crystal-water-small",
+          "x": 46,
+          "y": 6
+        },
+        {
+          "name": "bookshelf",
+          "x": 39,
+          "y": 11,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 40,
+          "y": 11,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 41,
+          "y": 11,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 46,
+          "y": 11,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 47,
+          "y": 11,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 48,
+          "y": 11,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 49,
+          "y": 11,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "table-candle",
+          "x": 39,
+          "y": 13,
+          "light": "#F1DBA5"
+        },
+        {
+          "name": "table-candle",
+          "x": 46,
+          "y": 13,
+          "light": "#C6E6FE"
+        },
+        {
+          "name": "grave-pillar",
+          "x": 37,
+          "y": 4
+        },
+        {
+          "name": "grave-pillar",
+          "x": 51,
+          "y": 4
+        },
+        {
+          "name": "grave-pillar",
+          "x": 37,
+          "y": 14
+        },
+        {
+          "name": "grave-pillar",
+          "x": 51,
+          "y": 14
+        },
+        {
+          "name": "crystal-water-small",
+          "x": 41,
+          "y": 1
+        },
+        {
+          "name": "crystal-gold-small",
+          "x": 47,
+          "y": 1
+        },
+        {
+          "name": "crystal-gold-small",
+          "x": 41,
+          "y": 17
+        },
+        {
+          "name": "crystal-water-small",
+          "x": 47,
+          "y": 17
+        },
+        {
+          "name": "statue",
+          "x": 53,
+          "y": 8
+        },
+        {
+          "name": "statue",
+          "x": 53,
+          "y": 11
+        },
+        {
+          "name": "bookshelf",
+          "x": 26,
+          "y": 25,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 32,
+          "y": 25,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 26,
+          "y": 29,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 32,
+          "y": 29,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 22,
+          "y": 23,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 23,
+          "y": 23,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 35,
+          "y": 23,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 35,
+          "y": 24,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 22,
+          "y": 31,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 23,
+          "y": 31,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 35,
+          "y": 30,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "bookshelf",
+          "x": 35,
+          "y": 31,
+          "artName": "prism-bookcase",
+          "previewLabel": "Prism bookcase"
+        },
+        {
+          "name": "table-candle",
+          "x": 22,
+          "y": 26,
+          "light": "#C6E6FE"
+        },
+        {
+          "name": "table-candle",
+          "x": 35,
+          "y": 28,
+          "light": "#F1DBA5"
+        },
+        {
+          "name": "crystal-gold-small",
+          "x": 18,
+          "y": 25
+        },
+        {
+          "name": "crystal-water-small",
+          "x": 18,
+          "y": 29
+        },
+        {
+          "name": "grave-pillar",
+          "x": 27,
+          "y": 22
+        },
+        {
+          "name": "grave-pillar",
+          "x": 31,
+          "y": 22
+        },
+        {
+          "name": "grave-pillar",
+          "x": 27,
+          "y": 32
+        },
+        {
+          "name": "grave-pillar",
+          "x": 31,
+          "y": 32
+        }
+      ],
+      "rooms": [
+        {
+          "previewId": "reading-hall",
+          "regionId": "index-court",
+          "x": 5,
+          "y": 5,
+          "w": 8,
+          "h": 8,
+          "special": "library"
+        },
+        {
+          "previewId": "catalogue-alcove",
+          "regionId": "index-court",
+          "x": 6,
+          "y": 2,
+          "w": 6,
+          "h": 4,
+          "special": "library"
+        },
+        {
+          "previewId": "lens-atelier",
+          "regionId": "index-court",
+          "x": 19,
+          "y": 6,
+          "w": 5,
+          "h": 7,
+          "special": "library"
+        },
+        {
+          "previewId": "upper-gallery",
+          "regionId": "refraction-galleries",
+          "x": 39,
+          "y": 3,
+          "w": 11,
+          "h": 5,
+          "special": "library"
+        },
+        {
+          "previewId": "lower-gallery",
+          "regionId": "refraction-galleries",
+          "x": 38,
+          "y": 10,
+          "w": 13,
+          "h": 5,
+          "special": "library"
+        },
+        {
+          "previewId": "great-index",
+          "regionId": "astral-repository",
+          "x": 25,
+          "y": 24,
+          "w": 9,
+          "h": 7,
+          "special": "library"
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "reading-hall",
+          "kind": "room",
+          "regionId": "index-court",
+          "x": 5,
+          "y": 5,
+          "w": 8,
+          "h": 8,
+          "label": "The Reading Hall"
+        },
+        {
+          "id": "catalogue-alcove",
+          "kind": "room",
+          "regionId": "index-court",
+          "x": 6,
+          "y": 2,
+          "w": 6,
+          "h": 4,
+          "label": "Catalogue Alcove"
+        },
+        {
+          "id": "lens-atelier",
+          "kind": "room",
+          "regionId": "index-court",
+          "x": 19,
+          "y": 6,
+          "w": 5,
+          "h": 7,
+          "label": "Prism Atelier"
+        },
+        {
+          "id": "lens-bridge",
+          "kind": "bridge",
+          "regionId": "index-court",
+          "x": 14,
+          "y": 8,
+          "w": 6,
+          "h": 3,
+          "label": "Atelier Causeway"
+        },
+        {
+          "id": "upper-gallery",
+          "kind": "room",
+          "regionId": "refraction-galleries",
+          "x": 39,
+          "y": 3,
+          "w": 11,
+          "h": 5,
+          "label": "Spectrum Gallery"
+        },
+        {
+          "id": "lower-gallery",
+          "kind": "room",
+          "regionId": "refraction-galleries",
+          "x": 38,
+          "y": 10,
+          "w": 13,
+          "h": 5,
+          "label": "The Mirrored Stacks"
+        },
+        {
+          "id": "great-index",
+          "kind": "room",
+          "regionId": "astral-repository",
+          "x": 25,
+          "y": 24,
+          "w": 9,
+          "h": 7,
+          "label": "The Great Index"
+        }
+      ],
+      "planeLights": [
+        {
+          "x": 8,
+          "y": 8,
+          "col": "#F3DFAD",
+          "r": 4,
+          "s": 0.55
+        },
+        {
+          "x": 21,
+          "y": 8,
+          "col": "#9DD7FA",
+          "r": 3.5,
+          "s": 0.55
+        },
+        {
+          "x": 44,
+          "y": 8,
+          "col": "#C7E8FF",
+          "r": 4,
+          "s": 0.55
+        },
+        {
+          "x": 44,
+          "y": 12,
+          "col": "#F1DDB6",
+          "r": 3.5,
+          "s": 0.55
+        },
+        {
+          "x": 29,
+          "y": 27,
+          "col": "#E7DEFF",
+          "r": 4.2,
+          "s": 0.55
+        },
+        {
+          "x": 22,
+          "y": 27,
+          "col": "#9FDFFF",
+          "r": 3,
+          "s": 0.55
+        }
+      ],
+      "src": "js/world/chaos/chaos-preview.js:1"
+    },
+    "chaos-preview-cinder-bastion": {
+      "kind": "chaos-island-template-set",
+      "name": "Cinder Bastion",
+      "width": 56,
+      "height": 34,
+      "use": "Source layouts for the Realm of Chaos composer: each region is one approved island. Not reachable as a standalone floor in 1.7.",
+      "grid": [
+        "________________________________________________________",
+        "______________________________________........._________",
+        "_____.######._________________________........._________",
+        "_____.#....#._____________________................._____",
+        "___...#....#...___________________..######+######.._____",
+        "___..####+####.___________________..#...........#.._____",
+        "___..#.......#.___________________..#...........#.....__",
+        "___..#.......#.____#######_____.....#...........#.....__",
+        "___..#.......#.____#.....#_____.....#...........#.....__",
+        "___..+.......+.....#.....#_____PP...####+#####+##.....__",
+        "___..#.......#.....+..PP.#_____PP.....................__",
+        "___..#.......#.....#..PP.#_____.....####+#####+###.PP.__",
+        "___..#.......#.____#.....#_____.....#............#.PP.__",
+        "___..####+####.____#.....#_____.....#............#....__",
+        "___............____#######________..#............#....__",
+        "_____........_____________________..#............#._____",
+        "_____........_______________________#######+######______",
+        "____________________________________..............______",
+        "____________________________________..............______",
+        "________________________________________________________",
+        "________________________________________________________",
+        "________________________........._______________________",
+        "_____________________................___________________",
+        "_____________________..######+#####..___________________",
+        "_____________________..#..........#........_____________",
+        "_________________......#..........#........_____________",
+        "_________________......#..........#....PP.._____________",
+        "_________________......+..........+....PP.._____________",
+        "_________________......#..........#........_____________",
+        "_________________......#..........#........_____________",
+        "_____________________..#..........#........_____________",
+        "_____________________..######+#####..___________________",
+        "_____________________................___________________",
+        "________________________________________________________"
+      ],
+      "regionGrid": [
+        "________________________________________________________",
+        "______________________________________111111111_________",
+        "_____00000000_________________________111111111_________",
+        "_____00000000_____________________11111111111111111_____",
+        "___000000000000___________________11111111111111111_____",
+        "___000000000000___________________11111111111111111_____",
+        "___000000000000___________________11111111111111111111__",
+        "___000000000000____0000000_____11111111111111111111111__",
+        "___000000000000____0000000_____11111111111111111111111__",
+        "___00000000000000000000000_____11111111111111111111111__",
+        "___00000000000000000000000_____11111111111111111111111__",
+        "___00000000000000000000000_____11111111111111111111111__",
+        "___000000000000____0000000_____11111111111111111111111__",
+        "___000000000000____0000000_____11111111111111111111111__",
+        "___000000000000____0000000________11111111111111111111__",
+        "_____00000000_____________________11111111111111111_____",
+        "_____00000000_______________________11111111111111______",
+        "____________________________________11111111111111______",
+        "____________________________________11111111111111______",
+        "________________________________________________________",
+        "________________________________________________________",
+        "________________________222222222_______________________",
+        "_____________________2222222222222222___________________",
+        "_____________________2222222222222222___________________",
+        "_____________________2222222222222222222222_____________",
+        "_________________22222222222222222222222222_____________",
+        "_________________22222222222222222222222222_____________",
+        "_________________22222222222222222222222222_____________",
+        "_________________22222222222222222222222222_____________",
+        "_________________22222222222222222222222222_____________",
+        "_____________________2222222222222222222222_____________",
+        "_____________________2222222222222222___________________",
+        "_____________________2222222222222222___________________",
+        "________________________________________________________"
+      ],
+      "regionLegend": {
+        "0": "mustering-hall",
+        "1": "bastion-armory",
+        "2": "cooling-forge-court"
+      },
+      "regions": [
+        {
+          "id": "mustering-hall",
+          "name": "Ember Mustering Hall",
+          "bounds": {
+            "x": 3,
+            "y": 2,
+            "w": 23,
+            "h": 15
+          },
+          "spawn": {
+            "x": 7,
+            "y": 11
+          },
+          "height": 3,
+          "palette": "cinder"
+        },
+        {
+          "id": "bastion-armory",
+          "name": "Ironbound Armory",
+          "bounds": {
+            "x": 31,
+            "y": 1,
+            "w": 23,
+            "h": 18
+          },
+          "spawn": {
+            "x": 33,
+            "y": 10
+          },
+          "height": 4,
+          "palette": "cinder"
+        },
+        {
+          "id": "cooling-forge-court",
+          "name": "Cooling Forge Court",
+          "bounds": {
+            "x": 17,
+            "y": 21,
+            "w": 26,
+            "h": 12
+          },
+          "spawn": {
+            "x": 38,
+            "y": 27
+          },
+          "height": 5,
+          "palette": "cinder"
+        }
+      ],
+      "spawn": {
+        "x": 7,
+        "y": 11
+      },
+      "portals": [
+        {
+          "id": "mustering-gate",
+          "pairId": "mustering-armory",
+          "regionId": "mustering-hall",
+          "x": 22,
+          "y": 10,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 21,
+            "y": 11
+          },
+          "destinationId": "armory-west",
+          "label": "To Ironbound Armory"
+        },
+        {
+          "id": "armory-west",
+          "pairId": "mustering-armory",
+          "regionId": "bastion-armory",
+          "x": 31,
+          "y": 9,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 33,
+            "y": 10
+          },
+          "destinationId": "mustering-gate",
+          "label": "To Ember Mustering Hall"
+        },
+        {
+          "id": "armory-east",
+          "pairId": "armory-forge",
+          "regionId": "bastion-armory",
+          "x": 51,
+          "y": 11,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 50,
+            "y": 12
+          },
+          "destinationId": "forge-gate",
+          "label": "To Cooling Forge Court"
+        },
+        {
+          "id": "forge-gate",
+          "pairId": "armory-forge",
+          "regionId": "cooling-forge-court",
+          "x": 39,
+          "y": 26,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 38,
+            "y": 27
+          },
+          "destinationId": "armory-east",
+          "label": "To Ironbound Armory"
+        }
+      ],
+      "focals": {
+        "rule": "Each focal picks one of two top-left positions with floor(r x 2) from the focal stream, in this order.",
+        "stream": "mulberry32(seed ^ 0x43696e64)",
+        "sites": [
+          {
+            "region": "mustering-hall",
+            "artName": "cinder-furnace",
+            "label": "Great horned furnace",
+            "w": 3,
+            "h": 3,
+            "positions": [
+              [
+                8,
+                7
+              ],
+              [
+                8,
+                8
+              ]
+            ]
+          },
+          {
+            "region": "bastion-armory",
+            "artName": "cinder-anvil",
+            "label": "Bastion anvil",
+            "w": 3,
+            "h": 2,
+            "positions": [
+              [
+                42,
+                6
+              ],
+              [
+                40,
+                6
+              ]
+            ]
+          },
+          {
+            "region": "cooling-forge-court",
+            "artName": "cinder-shields",
+            "label": "Cracked shield monument",
+            "w": 2,
+            "h": 2,
+            "positions": [
+              [
+                27,
+                26
+              ],
+              [
+                29,
+                27
+              ]
+            ]
+          }
+        ],
+        "prop": {
+          "b": 1,
+          "flat": 0
+        },
+        "src": "js/world/chaos/cinder-preview.js:12, :43-47, :67, :83, :98"
+      },
+      "props": [
+        {
+          "name": "weapon-rack",
+          "x": 6,
+          "y": 6,
+          "previewLabel": "Muster weapons",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "weapon-rack",
+          "x": 12,
+          "y": 6,
+          "previewLabel": "Muster weapons",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "banner-stand",
+          "x": 6,
+          "y": 12,
+          "previewLabel": "Ironbound standard",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "brazier-unlit",
+          "x": 12,
+          "y": 12,
+          "previewLabel": "Cooling brazier",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "table-candle",
+          "x": 8,
+          "y": 3,
+          "previewLabel": "Gatehouse watch table",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "chains",
+          "x": 10,
+          "y": 4,
+          "previewLabel": "Gatehouse chains",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "grave-pillar",
+          "x": 3,
+          "y": 5,
+          "previewLabel": "Squat red-stone buttress",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "grave-pillar",
+          "x": 14,
+          "y": 14,
+          "previewLabel": "Squat red-stone buttress",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "rubble",
+          "x": 4,
+          "y": 12,
+          "previewLabel": "Broken battlement",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "chains",
+          "x": 11,
+          "y": 15,
+          "previewLabel": "Cliff anchor links",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "weapon-rack",
+          "x": 20,
+          "y": 8,
+          "previewLabel": "Annex weapons",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "brazier-unlit",
+          "x": 24,
+          "y": 8,
+          "previewLabel": "Cooling brazier",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "chains",
+          "x": 24,
+          "y": 13,
+          "previewLabel": "Annex chain anchor",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "weapon-rack",
+          "x": 37,
+          "y": 5,
+          "previewLabel": "Forged weapon rack",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "weapon-rack",
+          "x": 47,
+          "y": 5,
+          "previewLabel": "Forged weapon rack",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "barrel",
+          "x": 37,
+          "y": 8,
+          "previewLabel": "Quenched iron stores",
+          "b": 1,
+          "flat": 0,
+          "br": 1
+        },
+        {
+          "name": "brazier-unlit",
+          "x": 47,
+          "y": 8,
+          "previewLabel": "Cold brazier",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "weapon-rack",
+          "x": 37,
+          "y": 12,
+          "previewLabel": "Armory weapon rack",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "weapon-rack",
+          "x": 48,
+          "y": 15,
+          "previewLabel": "Armory weapon rack",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "cage",
+          "x": 41,
+          "y": 14,
+          "previewLabel": "Empty iron cage",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "banner-stand",
+          "x": 45,
+          "y": 14,
+          "previewLabel": "Bastion standard",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "grave-pillar",
+          "x": 38,
+          "y": 2,
+          "previewLabel": "Battlement buttress",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "grave-pillar",
+          "x": 46,
+          "y": 2,
+          "previewLabel": "Battlement buttress",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "rubble",
+          "x": 34,
+          "y": 14,
+          "previewLabel": "Broken battlement",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "chains",
+          "x": 48,
+          "y": 17,
+          "previewLabel": "Cliff anchor links",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "chains",
+          "x": 52,
+          "y": 7,
+          "previewLabel": "Eastern anchor links",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "brazier-unlit",
+          "x": 24,
+          "y": 28,
+          "previewLabel": "Quenched brazier",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "brazier-unlit",
+          "x": 33,
+          "y": 26,
+          "previewLabel": "Quenched brazier",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "grave-pillar",
+          "x": 22,
+          "y": 23,
+          "previewLabel": "Forge buttress",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "grave-pillar",
+          "x": 35,
+          "y": 31,
+          "previewLabel": "Forge buttress",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "weapon-rack",
+          "x": 18,
+          "y": 26,
+          "previewLabel": "Cooling weapons",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "barrel",
+          "x": 18,
+          "y": 28,
+          "previewLabel": "Forge stores",
+          "b": 1,
+          "flat": 0,
+          "br": 1
+        },
+        {
+          "name": "banner-stand",
+          "x": 41,
+          "y": 25,
+          "previewLabel": "Forge standard",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "chains",
+          "x": 41,
+          "y": 29,
+          "previewLabel": "Forge anchor links",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "rubble",
+          "x": 25,
+          "y": 32,
+          "previewLabel": "Cooling slag fragments",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "rubble",
+          "x": 31,
+          "y": 22,
+          "previewLabel": "Broken court stone",
+          "b": 0,
+          "flat": 1
+        }
+      ],
+      "rooms": [
+        {
+          "previewId": "ember-gatehouse",
+          "regionId": "mustering-hall",
+          "x": 6,
+          "y": 2,
+          "w": 6,
+          "h": 4,
+          "special": "chaos-preview"
+        },
+        {
+          "previewId": "mustering-chamber",
+          "regionId": "mustering-hall",
+          "x": 5,
+          "y": 5,
+          "w": 9,
+          "h": 9,
+          "special": "chaos-preview"
+        },
+        {
+          "previewId": "chain-annex",
+          "regionId": "mustering-hall",
+          "x": 19,
+          "y": 7,
+          "w": 7,
+          "h": 8,
+          "special": "chaos-preview"
+        },
+        {
+          "previewId": "anvil-hall",
+          "regionId": "bastion-armory",
+          "x": 36,
+          "y": 4,
+          "w": 13,
+          "h": 6,
+          "special": "chaos-preview"
+        },
+        {
+          "previewId": "shield-store",
+          "regionId": "bastion-armory",
+          "x": 36,
+          "y": 11,
+          "w": 14,
+          "h": 6,
+          "special": "chaos-preview"
+        },
+        {
+          "previewId": "cooling-court",
+          "regionId": "cooling-forge-court",
+          "x": 23,
+          "y": 23,
+          "w": 12,
+          "h": 9,
+          "special": "chaos-preview"
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "ember-gatehouse",
+          "kind": "room",
+          "regionId": "mustering-hall",
+          "x": 6,
+          "y": 2,
+          "w": 6,
+          "h": 4,
+          "label": "Ember Gatehouse"
+        },
+        {
+          "id": "mustering-chamber",
+          "kind": "room",
+          "regionId": "mustering-hall",
+          "x": 5,
+          "y": 5,
+          "w": 9,
+          "h": 9,
+          "label": "The Mustering Hall"
+        },
+        {
+          "id": "chain-annex",
+          "kind": "room",
+          "regionId": "mustering-hall",
+          "x": 19,
+          "y": 7,
+          "w": 7,
+          "h": 8,
+          "label": "The Chain Annex"
+        },
+        {
+          "id": "mustering-causeway",
+          "kind": "bridge",
+          "regionId": "mustering-hall",
+          "x": 15,
+          "y": 9,
+          "w": 4,
+          "h": 3,
+          "label": "Ironbound Causeway"
+        },
+        {
+          "id": "anvil-hall",
+          "kind": "room",
+          "regionId": "bastion-armory",
+          "x": 36,
+          "y": 4,
+          "w": 13,
+          "h": 6,
+          "label": "The Anvil Hall"
+        },
+        {
+          "id": "shield-store",
+          "kind": "room",
+          "regionId": "bastion-armory",
+          "x": 36,
+          "y": 11,
+          "w": 14,
+          "h": 6,
+          "label": "Shield Store"
+        },
+        {
+          "id": "cooling-court",
+          "kind": "room",
+          "regionId": "cooling-forge-court",
+          "x": 23,
+          "y": 23,
+          "w": 12,
+          "h": 9,
+          "label": "The Cooling Court"
+        }
+      ],
+      "planeLights": [],
+      "src": "js/world/chaos/cinder-preview.js:1",
+      "cosmeticPools": [
+        {
+          "x": 24,
+          "y": 24,
+          "w": 3,
+          "h": 2,
+          "regionId": "cooling-forge-court",
+          "variant": 0
+        },
+        {
+          "x": 31,
+          "y": 29,
+          "w": 3,
+          "h": 2,
+          "regionId": "cooling-forge-court",
+          "variant": 1
+        }
+      ],
+      "chains": [
+        {
+          "x": 12,
+          "y": 16,
+          "toX": 14,
+          "toY": 20,
+          "regionId": "mustering-hall",
+          "variant": 0
+        },
+        {
+          "x": 25,
+          "y": 13,
+          "toX": 28,
+          "toY": 17,
+          "regionId": "mustering-hall",
+          "variant": 1
+        },
+        {
+          "x": 47,
+          "y": 18,
+          "toX": 48,
+          "toY": 21,
+          "regionId": "bastion-armory",
+          "variant": 2
+        },
+        {
+          "x": 53,
+          "y": 14,
+          "toX": 55,
+          "toY": 18,
+          "regionId": "bastion-armory",
+          "variant": 0
+        },
+        {
+          "x": 21,
+          "y": 30,
+          "toX": 18,
+          "toY": 33,
+          "regionId": "cooling-forge-court",
+          "variant": 1
+        },
+        {
+          "x": 36,
+          "y": 32,
+          "toX": 39,
+          "toY": 33,
+          "regionId": "cooling-forge-court",
+          "variant": 2
+        }
+      ]
+    },
+    "chaos-preview-violet-warrens": {
+      "kind": "chaos-island-template-set",
+      "name": "Violet Warrens",
+      "width": 56,
+      "height": 34,
+      "use": "Source layouts for the Realm of Chaos composer: each region is one approved island. Not reachable as a standalone floor in 1.7.",
+      "grid": [
+        "________________________________________________________",
+        "________________________________________________________",
+        "________#######________________________#######__________",
+        "______##........##__________________#...........#_______",
+        "____#..............#______________#...............#_____",
+        "___#................#____________#..................#___",
+        "___.............###...._________.......###...........#__",
+        "__#..............##....#_______#PP.......#...........#__",
+        "__#...............#....#_______#PP......##...........___",
+        "___...................._________....................____",
+        "___...................___________.................#_____",
+        "____.................____________..............PP.._____",
+        "____#....##.........______________.............PP.______",
+        "_____#....##........_______________#............._______",
+        "______#............_________________#..........#________",
+        "_______#.........#____________________#......#__________",
+        "_________#.....#________________________#..#____________",
+        "__________....._________________________________________",
+        "___________...__________________________________________",
+        "___________...__________________________________________",
+        "___________...___________________________######_________",
+        "__________#....#______________________#..........#______",
+        "________#........#________________#................#____",
+        "_______#..........#____________#................PP..#___",
+        "_______......PP....#________#............##.....PP..#___",
+        "________#....PP....._______#............##..........____",
+        "_________#........._______#.............##........._____",
+        "__________#......#________#......................_______",
+        "____________#..#___________#....................________",
+        "_____________________________#................._________",
+        "_______________________________#..............__________",
+        "_________________________________#........#_____________",
+        "___________________________________#...#________________",
+        "________________________________________________________"
+      ],
+      "regionGrid": [
+        "________________________________________________________",
+        "________________________________________________________",
+        "________0000000________________________1111111__________",
+        "______000000000000__________________1111111111111_______",
+        "____0000000000000000______________11111111111111111_____",
+        "___000000000000000000____________11111111111111111111___",
+        "___00000000000000000000_________1111111111111111111111__",
+        "__0000000000000000000000_______11111111111111111111111__",
+        "__0000000000000000000000_______1111111111111111111111___",
+        "___00000000000000000000_________11111111111111111111____",
+        "___0000000000000000000___________111111111111111111_____",
+        "____00000000000000000____________111111111111111111_____",
+        "____0000000000000000______________1111111111111111______",
+        "_____000000000000000_______________11111111111111_______",
+        "______0000000000000_________________111111111111________",
+        "_______00000000000____________________11111111__________",
+        "_________0000000________________________1111____________",
+        "__________00000_________________________________________",
+        "___________000__________________________________________",
+        "___________000__________________________________________",
+        "___________000___________________________222222_________",
+        "__________000000______________________222222222222______",
+        "________0000000000________________222222222222222222____",
+        "_______000000000000____________2222222222222222222222___",
+        "_______0000000000000________2222222222222222222222222___",
+        "________000000000000_______2222222222222222222222222____",
+        "_________0000000000_______2222222222222222222222222_____",
+        "__________00000000________22222222222222222222222_______",
+        "____________0000___________222222222222222222222________",
+        "_____________________________222222222222222222_________",
+        "_______________________________222222222222222__________",
+        "_________________________________2222222222_____________",
+        "___________________________________22222________________",
+        "________________________________________________________"
+      ],
+      "regionLegend": {
+        "0": "silkveil-grotto",
+        "1": "pearlcoil-nursery",
+        "2": "moonthread-gallery"
+      },
+      "regions": [
+        {
+          "id": "silkveil-grotto",
+          "name": "Silkveil Grotto",
+          "bounds": {
+            "x": 2,
+            "y": 2,
+            "w": 22,
+            "h": 27
+          },
+          "spawn": {
+            "x": 7,
+            "y": 10
+          },
+          "height": 4,
+          "palette": "violet"
+        },
+        {
+          "id": "pearlcoil-nursery",
+          "name": "Pearlcoil Nursery",
+          "bounds": {
+            "x": 31,
+            "y": 2,
+            "w": 23,
+            "h": 15
+          },
+          "spawn": {
+            "x": 34,
+            "y": 8
+          },
+          "height": 3,
+          "palette": "violet"
+        },
+        {
+          "id": "moonthread-gallery",
+          "name": "Moonthread Gallery",
+          "bounds": {
+            "x": 26,
+            "y": 20,
+            "w": 27,
+            "h": 13
+          },
+          "spawn": {
+            "x": 47,
+            "y": 24
+          },
+          "height": 5,
+          "palette": "violet"
+        }
+      ],
+      "spawn": {
+        "x": 7,
+        "y": 10
+      },
+      "portals": [
+        {
+          "id": "silkveil-gate",
+          "pairId": "silkveil-pearlcoil",
+          "regionId": "silkveil-grotto",
+          "x": 13,
+          "y": 24,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 12,
+            "y": 25
+          },
+          "destinationId": "pearlcoil-west",
+          "label": "To Pearlcoil Nursery"
+        },
+        {
+          "id": "pearlcoil-west",
+          "pairId": "silkveil-pearlcoil",
+          "regionId": "pearlcoil-nursery",
+          "x": 32,
+          "y": 7,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 34,
+            "y": 8
+          },
+          "destinationId": "silkveil-gate",
+          "label": "To Silkveil Grotto"
+        },
+        {
+          "id": "pearlcoil-east",
+          "pairId": "pearlcoil-moonthread",
+          "regionId": "pearlcoil-nursery",
+          "x": 47,
+          "y": 11,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 46,
+            "y": 12
+          },
+          "destinationId": "moonthread-gate",
+          "label": "To Moonthread Gallery"
+        },
+        {
+          "id": "moonthread-gate",
+          "pairId": "pearlcoil-moonthread",
+          "regionId": "moonthread-gallery",
+          "x": 48,
+          "y": 23,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 47,
+            "y": 24
+          },
+          "destinationId": "pearlcoil-east",
+          "label": "To Pearlcoil Nursery"
+        }
+      ],
+      "focals": {
+        "rule": "Each focal picks one of two top-left positions with floor(r x 2) from the focal stream, in this order.",
+        "stream": "mulberry32(seed ^ 0x56696f6c)",
+        "sites": [
+          {
+            "region": "silkveil-grotto",
+            "artName": "violet-pavilion",
+            "label": "Silk-draped pavilion",
+            "w": 3,
+            "h": 3,
+            "positions": [
+              [
+                8,
+                6
+              ],
+              [
+                9,
+                6
+              ]
+            ]
+          },
+          {
+            "region": "pearlcoil-nursery",
+            "artName": "violet-eggs",
+            "label": "Pearl egg nest",
+            "w": 2,
+            "h": 2,
+            "positions": [
+              [
+                41,
+                11
+              ],
+              [
+                42,
+                11
+              ]
+            ]
+          },
+          {
+            "region": "moonthread-gallery",
+            "artName": "violet-loom",
+            "label": "Moonthread silk loom",
+            "w": 3,
+            "h": 2,
+            "positions": [
+              [
+                35,
+                25
+              ],
+              [
+                35,
+                27
+              ]
+            ]
+          }
+        ],
+        "prop": {
+          "b": 1,
+          "flat": 0
+        },
+        "src": "js/world/chaos/violet-preview.js:123, :147-152, :181, :198, :214"
+      },
+      "props": [
+        {
+          "name": "crystal-violet-small",
+          "x": 5,
+          "y": 6,
+          "previewLabel": "Amethyst buds",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-crystal-shards-3",
+          "x": 14,
+          "y": 4,
+          "previewLabel": "Lavender crystal scatter",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "stalagmite-tall-2",
+          "x": 20,
+          "y": 7,
+          "previewLabel": "Flowing plum rock",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "cl-cave-pearls-1",
+          "x": 6,
+          "y": 12,
+          "previewLabel": "Silver cave pearls",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-rubble-2",
+          "x": 5,
+          "y": 10,
+          "previewLabel": "Smooth plum stone",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-crystal-shards-1",
+          "x": 16,
+          "y": 12,
+          "previewLabel": "Moonlit crystal scatter",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-cave-pearls-2",
+          "x": 9,
+          "y": 24,
+          "previewLabel": "Annex pearls",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-violet-small",
+          "x": 17,
+          "y": 23,
+          "previewLabel": "Amethyst buds",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "stalagmite-tall-3",
+          "x": 17,
+          "y": 26,
+          "previewLabel": "Silk anchor stone",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "cl-cave-pearls-3",
+          "x": 37,
+          "y": 4,
+          "previewLabel": "Unlit pearl cluster",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-violet-small",
+          "x": 45,
+          "y": 5,
+          "previewLabel": "Violet crystal buds",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "stalagmite-tall-1",
+          "x": 50,
+          "y": 7,
+          "previewLabel": "Plum mineral column",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "cl-rubble-1",
+          "x": 33,
+          "y": 9,
+          "previewLabel": "Polished cave rubble",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-crystal-shards-3",
+          "x": 36,
+          "y": 13,
+          "previewLabel": "Pearlcoil crystals",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-cave-pearls-1",
+          "x": 44,
+          "y": 14,
+          "previewLabel": "Small pearl nest",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-crystal-shards-1",
+          "x": 44,
+          "y": 8,
+          "previewLabel": "Nursery crystal scatter",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-violet-small",
+          "x": 39,
+          "y": 22,
+          "previewLabel": "Moonthread crystals",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-cave-pearls-2",
+          "x": 46,
+          "y": 22,
+          "previewLabel": "Silver pearl scatter",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "stalagmite-tall-3",
+          "x": 29,
+          "y": 25,
+          "previewLabel": "Curved silk anchor",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "cl-rubble-2",
+          "x": 32,
+          "y": 29,
+          "previewLabel": "Smooth gallery stone",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "stalagmite-tall-2",
+          "x": 43,
+          "y": 29,
+          "previewLabel": "Plum mineral column",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "cl-crystal-shards-3",
+          "x": 37,
+          "y": 31,
+          "previewLabel": "Lavender crystal scatter",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-cave-pearls-3",
+          "x": 48,
+          "y": 25,
+          "previewLabel": "Gallery pearls",
+          "b": 0,
+          "flat": 1
+        }
+      ],
+      "rooms": [
+        {
+          "previewId": "silkveil-grotto",
+          "regionId": "silkveil-grotto",
+          "x": 2,
+          "y": 2,
+          "w": 22,
+          "h": 27,
+          "special": "chaos-preview"
+        },
+        {
+          "previewId": "pearlcoil-nursery",
+          "regionId": "pearlcoil-nursery",
+          "x": 31,
+          "y": 2,
+          "w": 23,
+          "h": 15,
+          "special": "chaos-preview"
+        },
+        {
+          "previewId": "moonthread-gallery",
+          "regionId": "moonthread-gallery",
+          "x": 26,
+          "y": 20,
+          "w": 27,
+          "h": 13,
+          "special": "chaos-preview"
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "silkveil-causeway",
+          "kind": "bridge",
+          "regionId": "silkveil-grotto",
+          "x": 11,
+          "y": 18,
+          "w": 3,
+          "h": 3,
+          "label": "The Silk Causeway"
+        },
+        {
+          "id": "silkveil-annex",
+          "kind": "annex",
+          "regionId": "silkveil-grotto",
+          "x": 7,
+          "y": 21,
+          "w": 13,
+          "h": 8,
+          "label": "The Draped Alcove"
+        }
+      ],
+      "planeLights": [],
+      "src": "js/world/chaos/violet-preview.js:1",
+      "cosmeticPools": [
+        {
+          "x": 13,
+          "y": 10,
+          "w": 3,
+          "h": 2,
+          "regionId": "silkveil-grotto",
+          "variant": 0
+        },
+        {
+          "x": 35,
+          "y": 10,
+          "w": 3,
+          "h": 2,
+          "regionId": "pearlcoil-nursery",
+          "variant": 1
+        },
+        {
+          "x": 29,
+          "y": 26,
+          "w": 3,
+          "h": 2,
+          "regionId": "moonthread-gallery",
+          "variant": 2
+        }
+      ],
+      "filaments": [
+        {
+          "x": 3,
+          "y": 9,
+          "toX": 0,
+          "toY": 12,
+          "regionId": "silkveil-grotto",
+          "variant": 0
+        },
+        {
+          "x": 20,
+          "y": 11,
+          "toX": 24,
+          "toY": 15,
+          "regionId": "silkveil-grotto",
+          "variant": 1
+        },
+        {
+          "x": 15,
+          "y": 28,
+          "toX": 18,
+          "toY": 31,
+          "regionId": "silkveil-grotto",
+          "variant": 2
+        },
+        {
+          "x": 46,
+          "y": 3,
+          "toX": 49,
+          "toY": 1,
+          "regionId": "pearlcoil-nursery",
+          "variant": 0
+        },
+        {
+          "x": 51,
+          "y": 8,
+          "toX": 55,
+          "toY": 10,
+          "regionId": "pearlcoil-nursery",
+          "variant": 2
+        },
+        {
+          "x": 39,
+          "y": 15,
+          "toX": 36,
+          "toY": 18,
+          "regionId": "pearlcoil-nursery",
+          "variant": 1
+        },
+        {
+          "x": 32,
+          "y": 23,
+          "toX": 28,
+          "toY": 20,
+          "regionId": "moonthread-gallery",
+          "variant": 0
+        },
+        {
+          "x": 50,
+          "y": 25,
+          "toX": 54,
+          "toY": 28,
+          "regionId": "moonthread-gallery",
+          "variant": 1
+        },
+        {
+          "x": 38,
+          "y": 32,
+          "toX": 41,
+          "toY": 33,
+          "regionId": "moonthread-gallery",
+          "variant": 2
+        }
+      ]
+    },
+    "chaos-preview-rot-hollows": {
+      "kind": "chaos-island-template-set",
+      "name": "Rot Hollows",
+      "width": 56,
+      "height": 34,
+      "use": "Source layouts for the Realm of Chaos composer: each region is one approved island. Not reachable as a standalone floor in 1.7.",
+      "grid": [
+        "________________________________________________________",
+        "________________________________________________________",
+        "________#####____________________________######_________",
+        "_____##......##_______________________##........##______",
+        "____#..........#____________________##.............#____",
+        "___#............#__________________#................#___",
+        "___.........##..._________________.......##..........___",
+        "__#..........##.._____#.#________.PP......#..........#__",
+        "__#.............____.....#_______.PP.....##...........#_",
+        "___...................PP..________....................#_",
+        "___...................PP..._______....................__",
+        "___........................________.............PP....__",
+        "____.............___......__________............PP...___",
+        "____#..........._____....___________#...............____",
+        "_____#.........______________________#............#_____",
+        "______#......#_________________________..........#______",
+        "________....______________________________......________",
+        "________________________________________________________",
+        "________________________________________________________",
+        "________________________________________________________",
+        "________________________________________________________",
+        "_________________________########_______________________",
+        "______________________##..........##____________________",
+        "____________________#................#__________________",
+        "___________________#...................#________________",
+        "_________________#.......#..............._______________",
+        "_________________#.......##...........PP..______________",
+        "__________________........##..........PP..______________",
+        "__________________#......................_______________",
+        "___________________#....................________________",
+        "_____________________#................._________________",
+        "_______________________.............#___________________",
+        "__________________________......._______________________",
+        "________________________________________________________"
+      ],
+      "regionGrid": [
+        "________________________________________________________",
+        "________________________________________________________",
+        "________00000____________________________111111_________",
+        "_____0000000000_______________________111111111111______",
+        "____000000000000____________________1111111111111111____",
+        "___00000000000000__________________111111111111111111___",
+        "___00000000000000_________________1111111111111111111___",
+        "__000000000000000_____000________111111111111111111111__",
+        "__00000000000000____000000_______1111111111111111111111_",
+        "___00000000000000000000000________111111111111111111111_",
+        "___000000000000000000000000_______11111111111111111111__",
+        "___000000000000000000000000________1111111111111111111__",
+        "____0000000000000___000000__________11111111111111111___",
+        "____000000000000_____0000___________1111111111111111____",
+        "_____0000000000______________________11111111111111_____",
+        "______00000000_________________________11111111111______",
+        "________0000______________________________111111________",
+        "________________________________________________________",
+        "________________________________________________________",
+        "________________________________________________________",
+        "________________________________________________________",
+        "_________________________22222222_______________________",
+        "______________________22222222222222____________________",
+        "____________________222222222222222222__________________",
+        "___________________222222222222222222222________________",
+        "_________________222222222222222222222222_______________",
+        "_________________2222222222222222222222222______________",
+        "__________________222222222222222222222222______________",
+        "__________________22222222222222222222222_______________",
+        "___________________222222222222222222222________________",
+        "_____________________222222222222222222_________________",
+        "_______________________22222222222222___________________",
+        "__________________________2222222_______________________",
+        "________________________________________________________"
+      ],
+      "regionLegend": {
+        "0": "rootmouth-grotto",
+        "1": "shelfcap-hollow",
+        "2": "puffball-basin"
+      },
+      "regions": [
+        {
+          "id": "rootmouth-grotto",
+          "name": "Rootmouth Grotto",
+          "bounds": {
+            "x": 2,
+            "y": 2,
+            "w": 25,
+            "h": 15
+          },
+          "spawn": {
+            "x": 7,
+            "y": 11
+          },
+          "height": 3,
+          "palette": "rot"
+        },
+        {
+          "id": "shelfcap-hollow",
+          "name": "Shelfcap Hollow",
+          "bounds": {
+            "x": 33,
+            "y": 2,
+            "w": 22,
+            "h": 15
+          },
+          "spawn": {
+            "x": 36,
+            "y": 8
+          },
+          "height": 4,
+          "palette": "rot"
+        },
+        {
+          "id": "puffball-basin",
+          "name": "Puffball Basin",
+          "bounds": {
+            "x": 17,
+            "y": 21,
+            "w": 25,
+            "h": 12
+          },
+          "spawn": {
+            "x": 37,
+            "y": 27
+          },
+          "height": 5,
+          "palette": "rot"
+        }
+      ],
+      "spawn": {
+        "x": 7,
+        "y": 11
+      },
+      "portals": [
+        {
+          "id": "rootmouth-gate",
+          "pairId": "rootmouth-shelfcap",
+          "regionId": "rootmouth-grotto",
+          "x": 22,
+          "y": 9,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 21,
+            "y": 10
+          },
+          "destinationId": "shelfcap-west",
+          "label": "To Shelfcap Hollow"
+        },
+        {
+          "id": "shelfcap-west",
+          "pairId": "rootmouth-shelfcap",
+          "regionId": "shelfcap-hollow",
+          "x": 34,
+          "y": 7,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 36,
+            "y": 8
+          },
+          "destinationId": "rootmouth-gate",
+          "label": "To Rootmouth Grotto"
+        },
+        {
+          "id": "shelfcap-east",
+          "pairId": "shelfcap-puffball",
+          "regionId": "shelfcap-hollow",
+          "x": 48,
+          "y": 11,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 47,
+            "y": 12
+          },
+          "destinationId": "puffball-gate",
+          "label": "To Puffball Basin"
+        },
+        {
+          "id": "puffball-gate",
+          "pairId": "shelfcap-puffball",
+          "regionId": "puffball-basin",
+          "x": 38,
+          "y": 26,
+          "w": 2,
+          "h": 2,
+          "arrival": {
+            "x": 37,
+            "y": 27
+          },
+          "destinationId": "shelfcap-east",
+          "label": "To Shelfcap Hollow"
+        }
+      ],
+      "focals": {
+        "rule": "Fixed.",
+        "sites": [
+          {
+            "region": "rootmouth-grotto",
+            "artName": "rot-canopy",
+            "label": "Ancient shelfcap canopy",
+            "x": 7,
+            "y": 6,
+            "w": 3,
+            "h": 3,
+            "b": 1,
+            "flat": 0
+          },
+          {
+            "region": "shelfcap-hollow",
+            "artName": "rot-pool",
+            "label": "Glowing spore pool",
+            "x": 44,
+            "y": 9,
+            "w": 3,
+            "h": 2,
+            "b": 0,
+            "flat": 1,
+            "note": "picture not drawn (Justin 2026-10-12); the cosmetic pool under it is painted as water"
+          },
+          {
+            "region": "puffball-basin",
+            "artName": "rot-puffballs",
+            "label": "Giant luminous puffballs",
+            "x": 29,
+            "y": 25,
+            "w": 2,
+            "h": 2,
+            "b": 1,
+            "flat": 0
+          }
+        ],
+        "src": "js/world/chaos/rot-preview.js:264-267, :287, :313, :334"
+      },
+      "props": [
+        {
+          "name": "stalagmite-tall-3",
+          "x": 4,
+          "y": 6,
+          "previewLabel": "Ivory cave rock",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "cl-small-mushrooms-3",
+          "x": 11,
+          "y": 4,
+          "previewLabel": "Amber shelfcaps",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-small-mushrooms-4",
+          "x": 5,
+          "y": 9,
+          "previewLabel": "Lime mushrooms",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "vines",
+          "x": 12,
+          "y": 9,
+          "previewLabel": "Exposed roots",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-rubble-2",
+          "x": 5,
+          "y": 12,
+          "previewLabel": "Porous cave rubble",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-glow-moss-1",
+          "x": 9,
+          "y": 14,
+          "previewLabel": "Luminous moss",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-small-mushrooms-2",
+          "x": 14,
+          "y": 11,
+          "previewLabel": "Pale mushroom cluster",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-small-mushrooms-3",
+          "x": 23,
+          "y": 12,
+          "previewLabel": "Amber shelfcaps",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "vines",
+          "x": 21,
+          "y": 8,
+          "previewLabel": "Annex roots",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "giant-mushroom-3",
+          "x": 39,
+          "y": 5,
+          "previewLabel": "Amber shelfcap",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "cl-small-mushrooms-3",
+          "x": 48,
+          "y": 5,
+          "previewLabel": "Shelfcap cluster",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "stalagmite-tall-2",
+          "x": 50,
+          "y": 7,
+          "previewLabel": "Ivory cave rock",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "vines",
+          "x": 38,
+          "y": 10,
+          "previewLabel": "Creeping roots",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-small-mushrooms-4",
+          "x": 39,
+          "y": 13,
+          "previewLabel": "Lime mushrooms",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-glow-moss-2",
+          "x": 43,
+          "y": 14,
+          "previewLabel": "Luminous moss",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-rubble-1",
+          "x": 50,
+          "y": 13,
+          "previewLabel": "Porous cave rubble",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "vines",
+          "x": 45,
+          "y": 4,
+          "previewLabel": "Shelf roots",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-small-mushrooms-4",
+          "x": 23,
+          "y": 24,
+          "previewLabel": "Young puffballs",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-rubble-3",
+          "x": 31,
+          "y": 23,
+          "previewLabel": "Porous cave rubble",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "giant-mushroom-1",
+          "x": 20,
+          "y": 26,
+          "previewLabel": "Lime shelfcap",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "vines",
+          "x": 22,
+          "y": 28,
+          "previewLabel": "Basin roots",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-small-mushrooms-4",
+          "x": 28,
+          "y": 30,
+          "previewLabel": "Young puffballs",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "cl-glow-moss-3",
+          "x": 35,
+          "y": 30,
+          "previewLabel": "Luminous moss",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "stalagmite-tall-1",
+          "x": 36,
+          "y": 24,
+          "previewLabel": "Ivory cave rock",
+          "b": 1,
+          "flat": 0
+        }
+      ],
+      "rooms": [
+        {
+          "previewId": "rootmouth-grotto",
+          "regionId": "rootmouth-grotto",
+          "x": 2,
+          "y": 2,
+          "w": 25,
+          "h": 15,
+          "special": "chaos-preview"
+        },
+        {
+          "previewId": "shelfcap-hollow",
+          "regionId": "shelfcap-hollow",
+          "x": 33,
+          "y": 2,
+          "w": 22,
+          "h": 15,
+          "special": "chaos-preview"
+        },
+        {
+          "previewId": "puffball-basin",
+          "regionId": "puffball-basin",
+          "x": 17,
+          "y": 21,
+          "w": 25,
+          "h": 12,
+          "special": "chaos-preview"
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "rootmouth-annex",
+          "kind": "annex",
+          "regionId": "rootmouth-grotto",
+          "x": 20,
+          "y": 7,
+          "w": 7,
+          "h": 7,
+          "label": "The Spore Nook"
+        },
+        {
+          "id": "rootmouth-bridge",
+          "kind": "bridge",
+          "regionId": "rootmouth-grotto",
+          "x": 17,
+          "y": 9,
+          "w": 3,
+          "h": 3,
+          "label": "Rootbound Causeway"
+        }
+      ],
+      "planeLights": [],
+      "src": "js/world/chaos/rot-preview.js:1",
+      "cosmeticPools": [
+        {
+          "x": 11,
+          "y": 12,
+          "w": 3,
+          "h": 2,
+          "regionId": "rootmouth-grotto",
+          "variant": 0
+        },
+        {
+          "x": 44,
+          "y": 9,
+          "w": 3,
+          "h": 2,
+          "regionId": "shelfcap-hollow",
+          "variant": 1
+        },
+        {
+          "x": 33,
+          "y": 28,
+          "w": 3,
+          "h": 2,
+          "regionId": "puffball-basin",
+          "variant": 2
+        }
+      ],
+      "tendrils": [
+        {
+          "x": 10,
+          "y": 16,
+          "toX": 11,
+          "toY": 20,
+          "regionId": "rootmouth-grotto",
+          "variant": 0
+        },
+        {
+          "x": 26,
+          "y": 11,
+          "toX": 28,
+          "toY": 16,
+          "regionId": "rootmouth-grotto",
+          "variant": 1
+        },
+        {
+          "x": 46,
+          "y": 16,
+          "toX": 45,
+          "toY": 20,
+          "regionId": "shelfcap-hollow",
+          "variant": 2
+        },
+        {
+          "x": 51,
+          "y": 13,
+          "toX": 54,
+          "toY": 18,
+          "regionId": "shelfcap-hollow",
+          "variant": 0
+        },
+        {
+          "x": 23,
+          "y": 31,
+          "toX": 21,
+          "toY": 33,
+          "regionId": "puffball-basin",
+          "variant": 1
+        },
+        {
+          "x": 32,
+          "y": 32,
+          "toX": 34,
+          "toY": 33,
+          "regionId": "puffball-basin",
+          "variant": 2
+        }
+      ]
+    },
+    "unmaker-crucible": {
+      "kind": "fixed-floor",
+      "floor": 25,
+      "name": "The Unmaker's Crucible",
+      "biome": "chaos",
+      "width": 96,
+      "height": 72,
+      "grid": [
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "__________________________________________........._____________________________________________",
+        "_________________________________________...........____________________________________________",
+        "________________________________________.............___________________________________________",
+        "________________________________________..............__________________________________________",
+        "________________________________________..............._________________________________________",
+        "________________________________________..............__________________________________________",
+        "________________________________________..............__________________________________________",
+        "_________________________________________.............__________________________________________",
+        "__________________________________________...........___________________________________________",
+        "___________________________________________.........____________________________________________",
+        "_____________________________________________.......____________________________________________",
+        "_____________________________________________#.....#____________________________________________",
+        "_____________________________________________#.....#____________________________________________",
+        "_____________________________________________#SSSSS#____________________________________________",
+        "______________________________________________.......___________________________________________",
+        "__________________________________________...................___________________________________",
+        "__________________________________....___.....................__________________________________",
+        "________________________________......._......................._________________________________",
+        "_______________________________.................................________________________________",
+        "______________________________..................................________________________________",
+        "_____________________________..........................##........_______________________________",
+        "_____________________________..........................##........_______________________________",
+        "______________________________.......###...............##.......________________________________",
+        "_______________________________......###......................._________________________________",
+        "________________________________..............................__________________________________",
+        "_______________________________...............................__________________________________",
+        "______________________________................................._________________________________",
+        "_____________________________...................................________________________________",
+        "_____________________________...................................._______________________________",
+        "_____________________________.........................###.........______________________________",
+        "_____________________________...........##............###........_______________________________",
+        "_____________________________...........##......................._______________________________",
+        "_____________________________...........##......................._______________________________",
+        "______________________________..................................________________________________",
+        "_______________________________................................_________________________________",
+        "________________________________..___........................___________________________________",
+        "______________________________________.............._.......____________________________________",
+        "_______________________________________.............__..._______________________________________",
+        "_________________________________________.........._____________________________________________",
+        "___________________________________________........_____________________________________________",
+        "_____________________________________________.....______________________________________________",
+        "____________________________________________......._____________________________________________",
+        "____________________________________________#.....#_____________________________________________",
+        "____________________________________________#+++++#_____________________________________________",
+        "____________________________________________#.....#_____________________________________________",
+        "____________________________________________......._____________________________________________",
+        "_____________________________________________.....______________________________________________",
+        "___________________________________________........_____________________________________________",
+        "__________________________________________..........____________________________________________",
+        "_________________________________________............___________________________________________",
+        "_________________________________________.............__________________________________________",
+        "________________________________________..............._________________________________________",
+        "________________________________________..............__________________________________________",
+        "________________________________________...F..........__________________________________________",
+        "_________________________________________.............__________________________________________",
+        "__________________________________________...........___________________________________________",
+        "___________________________________________.....________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________"
+      ],
+      "regionGrid": [
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "__________________________________________222222222_____________________________________________",
+        "_________________________________________22222222222____________________________________________",
+        "________________________________________2222222222222___________________________________________",
+        "________________________________________22222222222222__________________________________________",
+        "________________________________________222222222222222_________________________________________",
+        "________________________________________22222222222222__________________________________________",
+        "________________________________________22222222222222__________________________________________",
+        "_________________________________________2222222222222__________________________________________",
+        "__________________________________________22222222222___________________________________________",
+        "___________________________________________222222222____________________________________________",
+        "_____________________________________________2222222____________________________________________",
+        "_____________________________________________2222222____________________________________________",
+        "_____________________________________________2222222____________________________________________",
+        "_____________________________________________2222222____________________________________________",
+        "______________________________________________1111111___________________________________________",
+        "__________________________________________1111111111111111111___________________________________",
+        "__________________________________1111___111111111111111111111__________________________________",
+        "________________________________1111111_11111111111111111111111_________________________________",
+        "_______________________________111111111111111111111111111111111________________________________",
+        "______________________________1111111111111111111111111111111111________________________________",
+        "_____________________________111111111111111111111111111111111111_______________________________",
+        "_____________________________111111111111111111111111111111111111_______________________________",
+        "______________________________1111111111111111111111111111111111________________________________",
+        "_______________________________11111111111111111111111111111111_________________________________",
+        "________________________________111111111111111111111111111111__________________________________",
+        "_______________________________1111111111111111111111111111111__________________________________",
+        "______________________________111111111111111111111111111111111_________________________________",
+        "_____________________________11111111111111111111111111111111111________________________________",
+        "_____________________________111111111111111111111111111111111111_______________________________",
+        "_____________________________1111111111111111111111111111111111111______________________________",
+        "_____________________________111111111111111111111111111111111111_______________________________",
+        "_____________________________111111111111111111111111111111111111_______________________________",
+        "_____________________________111111111111111111111111111111111111_______________________________",
+        "______________________________1111111111111111111111111111111111________________________________",
+        "_______________________________11111111111111111111111111111111_________________________________",
+        "________________________________11___111111111111111111111111___________________________________",
+        "______________________________________11111111111111_1111111____________________________________",
+        "_______________________________________1111111111111__111_______________________________________",
+        "_________________________________________1111111111_____________________________________________",
+        "___________________________________________11111111_____________________________________________",
+        "_____________________________________________11111______________________________________________",
+        "____________________________________________1111111_____________________________________________",
+        "____________________________________________1111111_____________________________________________",
+        "____________________________________________1111111_____________________________________________",
+        "____________________________________________1111111_____________________________________________",
+        "____________________________________________0000000_____________________________________________",
+        "_____________________________________________00000______________________________________________",
+        "___________________________________________00000000_____________________________________________",
+        "__________________________________________0000000000____________________________________________",
+        "_________________________________________000000000000___________________________________________",
+        "_________________________________________0000000000000__________________________________________",
+        "________________________________________000000000000000_________________________________________",
+        "________________________________________00000000000000__________________________________________",
+        "________________________________________00000000000000__________________________________________",
+        "_________________________________________0000000000000__________________________________________",
+        "__________________________________________00000000000___________________________________________",
+        "___________________________________________00000________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________",
+        "________________________________________________________________________________________________"
+      ],
+      "regionLegend": {
+        "0": "preparation",
+        "1": "crucible",
+        "2": "true-forge"
+      },
+      "regions": [
+        {
+          "id": "preparation",
+          "name": "The Last Hearth",
+          "biome": "cinder-bastion",
+          "palette": "cinder",
+          "outline": [
+            [
+              44,
+              56
+            ],
+            [
+              51,
+              56
+            ],
+            [
+              55,
+              60
+            ],
+            [
+              53,
+              65
+            ],
+            [
+              43,
+              66
+            ],
+            [
+              40,
+              62
+            ],
+            [
+              41,
+              59
+            ]
+          ],
+          "spawn": {
+            "x": 46,
+            "y": 62
+          },
+          "height": 3,
+          "bounds": {
+            "x": 40,
+            "y": 54,
+            "w": 15,
+            "h": 12
+          }
+        },
+        {
+          "id": "crucible",
+          "name": "The Unmaker's Crucible",
+          "biome": "cinder-bastion",
+          "palette": "cinder",
+          "outline": [
+            [
+              43,
+              24
+            ],
+            [
+              50,
+              23
+            ],
+            [
+              56,
+              24
+            ],
+            [
+              60,
+              24
+            ],
+            [
+              64,
+              27
+            ],
+            [
+              65,
+              31
+            ],
+            [
+              62,
+              34
+            ],
+            [
+              66,
+              38
+            ],
+            [
+              64,
+              43
+            ],
+            [
+              59,
+              46
+            ],
+            [
+              55,
+              47
+            ],
+            [
+              52,
+              45
+            ],
+            [
+              51,
+              49
+            ],
+            [
+              44,
+              49
+            ],
+            [
+              40,
+              47
+            ],
+            [
+              37,
+              44
+            ],
+            [
+              32,
+              45
+            ],
+            [
+              29,
+              41
+            ],
+            [
+              29,
+              37
+            ],
+            [
+              32,
+              33
+            ],
+            [
+              29,
+              30
+            ],
+            [
+              32,
+              26
+            ],
+            [
+              37,
+              25
+            ],
+            [
+              40,
+              27
+            ]
+          ],
+          "spawn": {
+            "x": 47,
+            "y": 47
+          },
+          "height": 4,
+          "bounds": {
+            "x": 29,
+            "y": 23,
+            "w": 37,
+            "h": 31
+          }
+        },
+        {
+          "id": "true-forge",
+          "name": "Forge of the Elements",
+          "biome": "prism-archives",
+          "palette": "prism",
+          "outline": [
+            [
+              43,
+              9
+            ],
+            [
+              51,
+              9
+            ],
+            [
+              55,
+              13
+            ],
+            [
+              53,
+              18
+            ],
+            [
+              49,
+              20
+            ],
+            [
+              44,
+              19
+            ],
+            [
+              40,
+              15
+            ],
+            [
+              40,
+              12
+            ]
+          ],
+          "spawn": {
+            "x": 48,
+            "y": 19
+          },
+          "height": 5,
+          "bounds": {
+            "x": 40,
+            "y": 9,
+            "w": 15,
+            "h": 14
+          }
+        }
+      ],
+      "arrival": {
+        "x": 46,
+        "y": 62
+      },
+      "bossStart": {
+        "x": 48,
+        "y": 35
+      },
+      "cover": [
+        {
+          "x": 37,
+          "y": 31,
+          "w": 3,
+          "h": 2
+        },
+        {
+          "x": 55,
+          "y": 29,
+          "w": 2,
+          "h": 3
+        },
+        {
+          "x": 40,
+          "y": 39,
+          "w": 2,
+          "h": 3
+        },
+        {
+          "x": 54,
+          "y": 38,
+          "w": 3,
+          "h": 2
+        }
+      ],
+      "entryGate": {
+        "x": 45,
+        "y": 52,
+        "w": 5,
+        "h": 1
+      },
+      "rearSeal": {
+        "x": 46,
+        "y": 22,
+        "w": 5,
+        "h": 1
+      },
+      "trueForge": {
+        "x": 46,
+        "y": 12,
+        "w": 3,
+        "h": 3,
+        "center": {
+          "x": 47,
+          "y": 13
+        },
+        "arrival": {
+          "x": 47,
+          "y": 16
+        },
+        "artName": "final-forge"
+      },
+      "partyPlacement": {
+        "rect": {
+          "x0": 42,
+          "y0": 44,
+          "x1": 53,
+          "y1": 50
+        },
+        "anchor": {
+          "x": 47,
+          "y": 48
+        },
+        "order": "Chebyshev distance to anchor, then larger y first, then smaller x; player first, then allies by id"
+      },
+      "pylonSites": [
+        {
+          "id": 0,
+          "x": 42,
+          "y": 34,
+          "art": "crystal-air",
+          "color": "#91ECFF",
+          "label": "I"
+        },
+        {
+          "id": 1,
+          "x": 54,
+          "y": 34,
+          "art": "crystal-violet",
+          "color": "#D2AEFF",
+          "label": "II"
+        },
+        {
+          "id": 2,
+          "x": 48,
+          "y": 43,
+          "art": "crystal-gold",
+          "color": "#FFE193",
+          "label": "III"
+        }
+      ],
+      "props": [
+        {
+          "name": "weapon-rack",
+          "x": 42,
+          "y": 61,
+          "previewLabel": "Last Hearth tool rack",
+          "b": 1,
+          "flat": 0
+        },
+        {
+          "name": "table-candle",
+          "x": 51,
+          "y": 63,
+          "previewLabel": "Last Hearth workbench",
+          "b": 1,
+          "flat": 0,
+          "light": "#FFCB83"
+        },
+        {
+          "name": "rubble",
+          "x": 43,
+          "y": 64,
+          "previewLabel": "Old forge fragments",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "chains",
+          "x": 52,
+          "y": 59,
+          "previewLabel": "Forge anchor links",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "brazier-lit",
+          "x": 42,
+          "y": 60,
+          "previewLabel": "Last Hearth brazier",
+          "b": 0,
+          "flat": 0,
+          "light": "#FFD09A"
+        },
+        {
+          "name": "brazier-lit",
+          "x": 44,
+          "y": 50,
+          "previewLabel": "Western threshold flame",
+          "b": 0,
+          "flat": 0,
+          "light": "#FFB06E"
+        },
+        {
+          "name": "brazier-lit",
+          "x": 50,
+          "y": 50,
+          "previewLabel": "Eastern threshold flame",
+          "b": 0,
+          "flat": 0,
+          "light": "#FFB06E"
+        },
+        {
+          "name": "chains",
+          "x": 38,
+          "y": 33,
+          "previewLabel": "Fallen western anchor",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "chains",
+          "x": 57,
+          "y": 30,
+          "previewLabel": "Fallen eastern anchor",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "rubble",
+          "x": 39,
+          "y": 41,
+          "previewLabel": "Weathered pillar chips",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "rubble",
+          "x": 56,
+          "y": 40,
+          "previewLabel": "Broken pillar stone",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-fire-small",
+          "x": 40,
+          "y": 32,
+          "previewLabel": "Crucible pillar crystal",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-water-small",
+          "x": 54,
+          "y": 31,
+          "previewLabel": "Crucible pillar crystal",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-violet-small",
+          "x": 42,
+          "y": 40,
+          "previewLabel": "Crucible pillar crystal",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-gold-small",
+          "x": 53,
+          "y": 39,
+          "previewLabel": "Crucible pillar crystal",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-fire-small",
+          "x": 32,
+          "y": 29,
+          "previewLabel": "Ember crystal",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-violet-small",
+          "x": 33,
+          "y": 41,
+          "previewLabel": "Discord crystal",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-gold-small",
+          "x": 60,
+          "y": 28,
+          "previewLabel": "Golden anchor crystal",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-water-small",
+          "x": 61,
+          "y": 40,
+          "previewLabel": "Azure anchor crystal",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "chains",
+          "x": 43,
+          "y": 27,
+          "previewLabel": "Broken northern shackle",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "chains",
+          "x": 58,
+          "y": 44,
+          "previewLabel": "Broken eastern shackle",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "rubble",
+          "x": 35,
+          "y": 28,
+          "previewLabel": "Crucible rim fragments",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "rubble",
+          "x": 60,
+          "y": 42,
+          "previewLabel": "Crucible rim fragments",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-gold-small",
+          "x": 45,
+          "y": 19,
+          "previewLabel": "Rear seal gold crystal",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-water-small",
+          "x": 51,
+          "y": 19,
+          "previewLabel": "Rear seal blue crystal",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-fire-small",
+          "x": 42,
+          "y": 12,
+          "previewLabel": "Elemental Forge anchor",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-air-small",
+          "x": 51,
+          "y": 11,
+          "previewLabel": "Elemental Forge anchor",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-water-small",
+          "x": 53,
+          "y": 14,
+          "previewLabel": "Elemental Forge anchor",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-violet-small",
+          "x": 51,
+          "y": 17,
+          "previewLabel": "Elemental Forge anchor",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-amber-small",
+          "x": 44,
+          "y": 17,
+          "previewLabel": "Elemental Forge anchor",
+          "b": 0,
+          "flat": 1
+        },
+        {
+          "name": "crystal-gold-small",
+          "x": 41,
+          "y": 14,
+          "previewLabel": "Elemental Forge anchor",
+          "b": 0,
+          "flat": 1
+        }
+      ],
+      "focals": [
+        {
+          "x": 46,
+          "y": 12,
+          "w": 3,
+          "h": 3,
+          "regionId": "true-forge",
+          "artName": "final-forge",
+          "label": "Forge of the Elements"
+        },
+        {
+          "x": 46,
+          "y": 9,
+          "w": 2,
+          "h": 2,
+          "regionId": "true-forge",
+          "artName": "prism-lens",
+          "label": "Elemental convergence lens"
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "arrival",
+          "kind": "arrival",
+          "label": "Arrival from the Realm of Chaos",
+          "regionId": "preparation",
+          "x": 46,
+          "y": 62,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "id": "boss-threshold",
+          "kind": "threshold",
+          "label": "The Unmaker entrance gate",
+          "regionId": "crucible",
+          "x": 45,
+          "y": 52,
+          "w": 5,
+          "h": 1
+        },
+        {
+          "id": "cover-1",
+          "kind": "cover",
+          "label": "Crucible stone pillar 1",
+          "regionId": "crucible",
+          "x": 37,
+          "y": 31,
+          "w": 3,
+          "h": 2
+        },
+        {
+          "id": "cover-2",
+          "kind": "cover",
+          "label": "Crucible stone pillar 2",
+          "regionId": "crucible",
+          "x": 55,
+          "y": 29,
+          "w": 2,
+          "h": 3
+        },
+        {
+          "id": "cover-3",
+          "kind": "cover",
+          "label": "Crucible stone pillar 3",
+          "regionId": "crucible",
+          "x": 40,
+          "y": 39,
+          "w": 2,
+          "h": 3
+        },
+        {
+          "id": "cover-4",
+          "kind": "cover",
+          "label": "Crucible stone pillar 4",
+          "regionId": "crucible",
+          "x": 54,
+          "y": 38,
+          "w": 3,
+          "h": 2
+        },
+        {
+          "id": "central-court",
+          "kind": "arena",
+          "label": "The Unmaker: central combat court",
+          "regionId": "crucible",
+          "x": 43,
+          "y": 31,
+          "w": 11,
+          "h": 10
+        },
+        {
+          "id": "western-wing",
+          "kind": "wing",
+          "label": "Broken western wing",
+          "regionId": "crucible",
+          "x": 30,
+          "y": 34,
+          "w": 10,
+          "h": 9
+        },
+        {
+          "id": "eastern-wing",
+          "kind": "wing",
+          "label": "Eastern crucible wing",
+          "regionId": "crucible",
+          "x": 57,
+          "y": 33,
+          "w": 8,
+          "h": 10
+        },
+        {
+          "id": "rear-seal",
+          "kind": "threshold",
+          "label": "Gate of the Elements: opens after the Unmaker falls",
+          "regionId": "true-forge",
+          "x": 46,
+          "y": 22,
+          "w": 5,
+          "h": 1
+        },
+        {
+          "id": "true-forge",
+          "kind": "destination",
+          "label": "Forge of the Elements: final destination",
+          "regionId": "true-forge",
+          "x": 46,
+          "y": 12,
+          "w": 3,
+          "h": 3
+        },
+        {
+          "id": "forge-dais",
+          "kind": "dais",
+          "label": "The restoration dais",
+          "regionId": "true-forge",
+          "x": 46,
+          "y": 15,
+          "w": 3,
+          "h": 3
+        },
+        {
+          "id": "preparation-forge",
+          "kind": "forge",
+          "label": "Last Hearth crafting forge",
+          "regionId": "preparation",
+          "x": 43,
+          "y": 62,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "chains": [
+        {
+          "x": 31,
+          "y": 38,
+          "toX": 26,
+          "toY": 43,
+          "regionId": "crucible",
+          "variant": 0
+        },
+        {
+          "x": 64,
+          "y": 38,
+          "toX": 70,
+          "toY": 42,
+          "regionId": "crucible",
+          "variant": 1
+        }
+      ],
+      "planeLights": [
+        {
+          "x": 48,
+          "y": 60,
+          "col": "#FFD5A0",
+          "r": 4.3,
+          "s": 0.72
+        },
+        {
+          "x": 44,
+          "y": 50,
+          "col": "#FFB066",
+          "r": 4,
+          "s": 0.68
+        },
+        {
+          "x": 50,
+          "y": 50,
+          "col": "#FFB066",
+          "r": 4,
+          "s": 0.68
+        },
+        {
+          "x": 40,
+          "y": 32,
+          "col": "#FFAD70",
+          "r": 4.5,
+          "s": 0.72
+        },
+        {
+          "x": 54,
+          "y": 31,
+          "col": "#86D7FF",
+          "r": 4.5,
+          "s": 0.72
+        },
+        {
+          "x": 42,
+          "y": 40,
+          "col": "#BC9CFF",
+          "r": 4.5,
+          "s": 0.72
+        },
+        {
+          "x": 53,
+          "y": 39,
+          "col": "#FFE0A1",
+          "r": 4.5,
+          "s": 0.72
+        },
+        {
+          "x": 32,
+          "y": 29,
+          "col": "#FF8959",
+          "r": 3.1,
+          "s": 0.65
+        },
+        {
+          "x": 33,
+          "y": 41,
+          "col": "#BB89FF",
+          "r": 3.1,
+          "s": 0.58
+        },
+        {
+          "x": 60,
+          "y": 28,
+          "col": "#FFD181",
+          "r": 3.1,
+          "s": 0.6
+        },
+        {
+          "x": 61,
+          "y": 40,
+          "col": "#76CFFF",
+          "r": 3.1,
+          "s": 0.63
+        },
+        {
+          "x": 45,
+          "y": 19,
+          "col": "#FFCF78",
+          "r": 3.4,
+          "s": 0.72
+        },
+        {
+          "x": 51,
+          "y": 19,
+          "col": "#78CBFF",
+          "r": 3.4,
+          "s": 0.72
+        },
+        {
+          "x": 42,
+          "y": 12,
+          "col": "#FF9265",
+          "r": 3.5,
+          "s": 0.74
+        },
+        {
+          "x": 51,
+          "y": 11,
+          "col": "#D8F2FF",
+          "r": 3.5,
+          "s": 0.74
+        },
+        {
+          "x": 53,
+          "y": 14,
+          "col": "#68C8FF",
+          "r": 3.5,
+          "s": 0.74
+        },
+        {
+          "x": 51,
+          "y": 17,
+          "col": "#BC8CFF",
+          "r": 3.5,
+          "s": 0.74
+        },
+        {
+          "x": 44,
+          "y": 17,
+          "col": "#D9BD77",
+          "r": 3.5,
+          "s": 0.74
+        },
+        {
+          "x": 41,
+          "y": 14,
+          "col": "#FFD581",
+          "r": 3.5,
+          "s": 0.74
+        },
+        {
+          "x": 47,
+          "y": 13,
+          "col": "#FFE2A6",
+          "r": 5.5,
+          "s": 0.9
+        },
+        {
+          "x": 47,
+          "y": 10,
+          "col": "#96DFFF",
+          "r": 4.6,
+          "s": 0.68
+        }
+      ],
+      "floorInlays": [
+        {
+          "kind": "disc",
+          "regionId": "preparation",
+          "x": 46.5,
+          "y": 62.5,
+          "r": 1.35,
+          "color": "#D4B984"
+        },
+        {
+          "kind": "threshold",
+          "regionId": "crucible",
+          "x": 45,
+          "y": 52,
+          "w": 5,
+          "h": 1,
+          "color": "#EEBF79"
+        },
+        {
+          "kind": "broken-ring",
+          "regionId": "crucible",
+          "x": 48,
+          "y": 35,
+          "r": 9.1,
+          "color": "#EDD3A2",
+          "opacity": 0.82,
+          "lineWidth": 2.2,
+          "arcs": [
+            [
+              0.1,
+              0.85
+            ],
+            [
+              1.1,
+              2.1
+            ],
+            [
+              2.45,
+              3.05
+            ],
+            [
+              3.5,
+              4.5
+            ],
+            [
+              4.95,
+              5.85
+            ]
+          ]
+        },
+        {
+          "kind": "broken-ring",
+          "regionId": "crucible",
+          "x": 48,
+          "y": 35,
+          "r": 4.4,
+          "color": "#FFE1A7",
+          "opacity": 0.82,
+          "lineWidth": 2.2,
+          "arcs": [
+            [
+              0,
+              0.9
+            ],
+            [
+              1.3,
+              2.55
+            ],
+            [
+              3,
+              4.15
+            ],
+            [
+              4.65,
+              5.85
+            ]
+          ]
+        },
+        {
+          "kind": "disc",
+          "regionId": "crucible",
+          "x": 48,
+          "y": 35,
+          "r": 1.6,
+          "color": "#FFE8BE",
+          "opacity": 0.75,
+          "lineWidth": 2.2
+        },
+        {
+          "kind": "threshold",
+          "regionId": "true-forge",
+          "x": 46,
+          "y": 22,
+          "w": 5,
+          "h": 1,
+          "color": "#BCEAFF"
+        },
+        {
+          "kind": "broken-ring",
+          "regionId": "true-forge",
+          "x": 47.5,
+          "y": 14,
+          "r": 5.1,
+          "color": "#D6B978",
+          "arcs": [
+            [
+              0,
+              6.283185307179586
+            ]
+          ]
+        },
+        {
+          "kind": "disc",
+          "regionId": "true-forge",
+          "x": 47.5,
+          "y": 16.5,
+          "r": 1.35,
+          "color": "#DAF4FF"
+        }
+      ],
+      "notes": [
+        "crucible",
+        "crucible-review",
+        "void"
+      ],
+      "src": "js/world/chaos/unmaker-preview.js:168-334"
+    },
+    "chaos-treasure-room": {
+      "kind": "fixed-floor",
+      "floor": 20,
+      "name": "Chaos treasure room",
+      "biomeIndex": 0,
+      "width": 56,
+      "height": 34,
+      "grid": [
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "#####################..............#####################",
+        "#####################.......P......#####################",
+        "#####################...F..........#####################",
+        "#####################..............#####################",
+        "#####################..............#####################",
+        "#####################..............#####################",
+        "#####################..............#####################",
+        "#####################..............#####################",
+        "#####################..............#####################",
+        "#####################.......<......#####################",
+        "#####################..............#####################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################",
+        "########################################################"
+      ],
+      "room": {
+        "x": 20,
+        "y": 10,
+        "w": 16,
+        "h": 13,
+        "cx": 28,
+        "cy": 16,
+        "role": "start",
+        "shape": "rect",
+        "interior": "x 21-34, y 11-21"
+      },
+      "portal": {
+        "x": 28,
+        "y": 12
+      },
+      "spawn": {
+        "x": 28,
+        "y": 20,
+        "tile": "upstairs"
+      },
+      "seed": "(worldSeed ^ 0x54726561) >>> 0 (92521 if not finite); the run worldSeed is then set to this value",
+      "loot": {
+        "stream": "mulberry32(seed ^ 0x54726561)",
+        "cells": "x 22-33, y 14-19, skipping x 28 (66 cells), listed row by row then Fisher-Yates shuffled; each item takes cells.pop()",
+        "order": [
+          {
+            "kind": "essence",
+            "n": 250,
+            "count": 4,
+            "scaled": true,
+            "note": "scaled:true means the essence multiplier is never applied"
+          },
+          {
+            "kind": "weapon",
+            "pool": [
+              "sword",
+              "dagger",
+              "mace",
+              "longsword",
+              "axe",
+              "bow",
+              "staff",
+              "wand",
+              "spear",
+              "censer"
+            ],
+            "tier": 3,
+            "plus": 3,
+            "cursed": false,
+            "identified": true
+          },
+          {
+            "kind": "armour",
+            "pool": [
+              "leather",
+              "chain",
+              "plate",
+              "robe"
+            ],
+            "tier": 3,
+            "plus": 3,
+            "cursed": false,
+            "identified": true
+          },
+          {
+            "kind": "offhand",
+            "pool": [
+              "buckler",
+              "kite",
+              "orb",
+              "tome",
+              "holy"
+            ],
+            "tier": 3,
+            "plus": 3,
+            "cursed": false,
+            "identified": true
+          },
+          {
+            "kind": "mote",
+            "each": "element in ELEMENTS order (fire, water, air, earth, light, shadow)",
+            "count": 2
+          },
+          {
+            "kind": "food",
+            "food": "ration",
+            "count": 4
+          }
+        ]
+      },
+      "notes": [
+        "treasure-room",
+        "no-shrines"
+      ],
+      "flags": {
+        "shrine": false,
+        "portal": "light",
+        "exitOpen": false
+      },
+      "src": "js/world/chaos/chaos-entry-preview.js:49-87",
+      "ruling": "ruled 2026-10-15: its own named seed stream from the run seed (the world seed is left alone) and its own biome entry (chaos), not the Dungeon's; allies are left behind when entering it, as on every floor change"
+    },
+    "chaos-realm-composer": {
+      "kind": "generator",
+      "width": 96,
+      "height": 72,
+      "types": [
+        {
+          "biome": "prism-archives",
+          "portal": "prism-portal",
+          "template": "chaos-preview-prism-archives"
+        },
+        {
+          "biome": "rot-hollows",
+          "portal": "rot-portal",
+          "template": "chaos-preview-rot-hollows"
+        },
+        {
+          "biome": "cinder-bastion",
+          "portal": "cinder-portal",
+          "template": "chaos-preview-cinder-bastion"
+        },
+        {
+          "biome": "violet-warrens",
+          "portal": "violet-portal",
+          "template": "chaos-preview-violet-warrens"
+        }
+      ],
+      "stream": "mulberry32(seed ^ 0x4d697865)",
+      "slots": [
+        {
+          "x": 3,
+          "y": 4
+        },
+        {
+          "x": 35,
+          "y": 4
+        },
+        {
+          "x": 67,
+          "y": 4
+        },
+        {
+          "x": 51,
+          "y": 39
+        },
+        {
+          "x": 19,
+          "y": 39
+        }
+      ],
+      "slotSize": 27,
+      "copy": "region cells (PORTAL becomes FLOOR), its props except portals, focals, landmarks, pools, tendrils, chains, filaments, rooms, plane lights, moss",
+      "gates": "island 1 and 5 need 1 gate, 2-4 need 2; reuse the template's original gate 2x2s first if still clear (2x2 clear FLOOR of the island, no prop, not reserved, not covering the island spawn, plus at least one clear edge-adjacent apron cell; arrival = the original arrival if it is on the apron, else the first apron cell in scan order); else the clear 2x2 with the greatest Manhattan distance (>= 6) from the existing gates (or from the island spawn when none), ties lower y then lower x",
+      "links": "4 links: island i gate (i=1: gates[0], else gates[1]) to island i+1 gates[0]; ids chaos-link-N-a / -b; label \"To <other island name>\"; each endpoint uses its own island's portal art",
+      "src": "js/world/chaos/mixed-chaos-preview.js:6-135",
+      "ruling": "ruled 2026-10-15: no chaos biome gives more than 3 of a floor's 5 islands (draws without exceeding 3), so no island shape repeats on a floor"
+    },
+    "chaos-21": {
+      "kind": "generated",
+      "floor": 21,
+      "biome": "chaos",
+      "campaign": true,
+      "seed": "floor seed (world seed LCG, turns.md T33)",
+      "arrival": {
+        "island": 1,
+        "tile": "portal (Portal to the Material Plane, back to the treasure room)",
+        "rule": "landing"
+      },
+      "encounters": {
+        "stream": "mulberry32((floorSeed >>> 0) ^ 0x4368616F)",
+        "rosters": {
+          "prism-archives": [
+            "prism-seer",
+            "folded-horror",
+            "lens-bearer",
+            "rift-skitter",
+            "rift-skitter",
+            "rift-skitter"
+          ],
+          "rot-hollows": [
+            "plague-bloat",
+            "plague-bloat",
+            "plague-bloat",
+            "brood-carrier",
+            "brood-carrier",
+            "bile-spitter"
+          ],
+          "cinder-bastion": [
+            "ironbound",
+            "chain-reaver",
+            "horned-reaver",
+            "gorehound",
+            "horned-reaver",
+            "gorehound"
+          ],
+          "violet-warrens": [
+            "lash-dancer",
+            "razor-dancer",
+            "hookfang",
+            "silk-weaver",
+            "hookfang",
+            "razor-dancer"
+          ]
+        },
+        "rosterUse": "roster listed twice (12); creature id = chaos-<slug>; groups of 3 in roster order",
+        "candidate": "island cell, FLOOR, no prop, no living actor; Chebyshev >= 6 from the floor arrival; Chebyshev >= 4 from the island spawn, every portal arrival and every portal cell; >= 2 open cardinal neighbours and not exactly two opposite ones",
+        "placement": "up to 64 attempts until all 12 fit (attempt 0 uses the first jitter; later attempts redraw every jitter); spacing Chebyshev >= 2 for attempts 0-31, >= 1 after; gorehound needs >= 3 open neighbours; score = jitter x 2 + min(10, nearest safety distance) x 0.15; group leader: + min(12, nearest chosen) x 0.55; followers: - |distance to leader - 3| x 0.7; highest score wins, first in scan order on ties; the best attempt is kept; fewer than 12 is an error",
+        "spawn": {
+          "state": "asleep",
+          "castCd": 1,
+          "offspring": false
+        },
+        "src": "js/world/chaos/chaos-encounters.js:4-69"
+      },
+      "shrine": false,
+      "notes": [
+        "chaos-islands",
+        "no-shrines"
+      ],
+      "src": "js/world/chaos/chaos-campaign.js:73-95"
+    },
+    "chaos-22": {
+      "kind": "generated",
+      "floor": 22,
+      "biome": "chaos",
+      "campaign": true,
+      "seed": "floor seed (world seed LCG, turns.md T33)",
+      "arrival": {
+        "island": 1,
+        "tile": "upstairs (current up to floor 21)",
+        "rule": "landing"
+      },
+      "encounters": {
+        "stream": "mulberry32((floorSeed >>> 0) ^ 0x4368616F)",
+        "rosters": {
+          "prism-archives": [
+            "prism-seer",
+            "folded-horror",
+            "lens-bearer",
+            "rift-skitter",
+            "rift-skitter",
+            "rift-skitter"
+          ],
+          "rot-hollows": [
+            "plague-bloat",
+            "plague-bloat",
+            "plague-bloat",
+            "brood-carrier",
+            "brood-carrier",
+            "bile-spitter"
+          ],
+          "cinder-bastion": [
+            "ironbound",
+            "chain-reaver",
+            "horned-reaver",
+            "gorehound",
+            "horned-reaver",
+            "gorehound"
+          ],
+          "violet-warrens": [
+            "lash-dancer",
+            "razor-dancer",
+            "hookfang",
+            "silk-weaver",
+            "hookfang",
+            "razor-dancer"
+          ]
+        },
+        "rosterUse": "roster listed twice (12); creature id = chaos-<slug>; groups of 3 in roster order",
+        "candidate": "island cell, FLOOR, no prop, no living actor; Chebyshev >= 6 from the floor arrival; Chebyshev >= 4 from the island spawn, every portal arrival and every portal cell; >= 2 open cardinal neighbours and not exactly two opposite ones",
+        "placement": "up to 64 attempts until all 12 fit (attempt 0 uses the first jitter; later attempts redraw every jitter); spacing Chebyshev >= 2 for attempts 0-31, >= 1 after; gorehound needs >= 3 open neighbours; score = jitter x 2 + min(10, nearest safety distance) x 0.15; group leader: + min(12, nearest chosen) x 0.55; followers: - |distance to leader - 3| x 0.7; highest score wins, first in scan order on ties; the best attempt is kept; fewer than 12 is an error",
+        "spawn": {
+          "state": "asleep",
+          "castCd": 1,
+          "offspring": false
+        },
+        "src": "js/world/chaos/chaos-encounters.js:4-69"
+      },
+      "shrine": false,
+      "notes": [
+        "chaos-islands",
+        "no-shrines"
+      ],
+      "src": "js/world/chaos/chaos-campaign.js:73-95"
+    },
+    "chaos-23": {
+      "kind": "generated",
+      "floor": 23,
+      "biome": "chaos",
+      "campaign": true,
+      "seed": "floor seed (world seed LCG, turns.md T33)",
+      "arrival": {
+        "island": 1,
+        "tile": "upstairs (current up to floor 22)",
+        "rule": "landing"
+      },
+      "encounters": {
+        "stream": "mulberry32((floorSeed >>> 0) ^ 0x4368616F)",
+        "rosters": {
+          "prism-archives": [
+            "prism-seer",
+            "folded-horror",
+            "lens-bearer",
+            "rift-skitter",
+            "rift-skitter",
+            "rift-skitter"
+          ],
+          "rot-hollows": [
+            "plague-bloat",
+            "plague-bloat",
+            "plague-bloat",
+            "brood-carrier",
+            "brood-carrier",
+            "bile-spitter"
+          ],
+          "cinder-bastion": [
+            "ironbound",
+            "chain-reaver",
+            "horned-reaver",
+            "gorehound",
+            "horned-reaver",
+            "gorehound"
+          ],
+          "violet-warrens": [
+            "lash-dancer",
+            "razor-dancer",
+            "hookfang",
+            "silk-weaver",
+            "hookfang",
+            "razor-dancer"
+          ]
+        },
+        "rosterUse": "roster listed twice (12); creature id = chaos-<slug>; groups of 3 in roster order",
+        "candidate": "island cell, FLOOR, no prop, no living actor; Chebyshev >= 6 from the floor arrival; Chebyshev >= 4 from the island spawn, every portal arrival and every portal cell; >= 2 open cardinal neighbours and not exactly two opposite ones",
+        "placement": "up to 64 attempts until all 12 fit (attempt 0 uses the first jitter; later attempts redraw every jitter); spacing Chebyshev >= 2 for attempts 0-31, >= 1 after; gorehound needs >= 3 open neighbours; score = jitter x 2 + min(10, nearest safety distance) x 0.15; group leader: + min(12, nearest chosen) x 0.55; followers: - |distance to leader - 3| x 0.7; highest score wins, first in scan order on ties; the best attempt is kept; fewer than 12 is an error",
+        "spawn": {
+          "state": "asleep",
+          "castCd": 1,
+          "offspring": false
+        },
+        "src": "js/world/chaos/chaos-encounters.js:4-69"
+      },
+      "shrine": false,
+      "notes": [
+        "chaos-islands",
+        "no-shrines"
+      ],
+      "src": "js/world/chaos/chaos-campaign.js:73-95"
+    },
+    "chaos-24": {
+      "kind": "generated",
+      "floor": 24,
+      "biome": "chaos",
+      "campaign": true,
+      "seed": "floor seed (world seed LCG, turns.md T33)",
+      "arrival": {
+        "island": 1,
+        "tile": "upstairs (current up to floor 23)",
+        "rule": "landing"
+      },
+      "encounters": {
+        "stream": "mulberry32((floorSeed >>> 0) ^ 0x4368616F)",
+        "rosters": {
+          "prism-archives": [
+            "prism-seer",
+            "folded-horror",
+            "lens-bearer",
+            "rift-skitter",
+            "rift-skitter",
+            "rift-skitter"
+          ],
+          "rot-hollows": [
+            "plague-bloat",
+            "plague-bloat",
+            "plague-bloat",
+            "brood-carrier",
+            "brood-carrier",
+            "bile-spitter"
+          ],
+          "cinder-bastion": [
+            "ironbound",
+            "chain-reaver",
+            "horned-reaver",
+            "gorehound",
+            "horned-reaver",
+            "gorehound"
+          ],
+          "violet-warrens": [
+            "lash-dancer",
+            "razor-dancer",
+            "hookfang",
+            "silk-weaver",
+            "hookfang",
+            "razor-dancer"
+          ]
+        },
+        "rosterUse": "roster listed twice (12); creature id = chaos-<slug>; groups of 3 in roster order",
+        "candidate": "island cell, FLOOR, no prop, no living actor; Chebyshev >= 6 from the floor arrival; Chebyshev >= 4 from the island spawn, every portal arrival and every portal cell; >= 2 open cardinal neighbours and not exactly two opposite ones",
+        "placement": "up to 64 attempts until all 12 fit (attempt 0 uses the first jitter; later attempts redraw every jitter); spacing Chebyshev >= 2 for attempts 0-31, >= 1 after; gorehound needs >= 3 open neighbours; score = jitter x 2 + min(10, nearest safety distance) x 0.15; group leader: + min(12, nearest chosen) x 0.55; followers: - |distance to leader - 3| x 0.7; highest score wins, first in scan order on ties; the best attempt is kept; fewer than 12 is an error",
+        "spawn": {
+          "state": "asleep",
+          "castCd": 1,
+          "offspring": false
+        },
+        "src": "js/world/chaos/chaos-encounters.js:4-69"
+      },
+      "shrine": false,
+      "notes": [
+        "chaos-islands",
+        "no-shrines"
+      ],
+      "src": "js/world/chaos/chaos-campaign.js:73-95"
+    },
+    "chaos-25": {
+      "kind": "fixed",
+      "floor": 25,
+      "biome": "chaos",
+      "layout": "unmaker-crucible",
+      "arrival": {
+        "x": 46,
+        "y": 62,
+        "tile": "upstairs",
+        "dx": 0,
+        "dy": 1
+      },
+      "encounters": "none until the entrance gate (boss: packet F)",
+      "victory": "Forge of the Elements interaction after the Unmaker falls, then Retire",
+      "src": "js/world/chaos/chaos-campaign.js:77-86"
+    },
+    "chaos-poison-patch-vent": {
+      "kind": "hazard",
+      "source": "chaos-plague-bloat vent (target within 2)",
+      "effects": [
+        {
+          "verb": "field",
+          "field": "chaos-hazard",
+          "shape": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 1
+          },
+          "turns": 3,
+          "clock": "game-turn",
+          "side": "foes",
+          "each": [
+            {
+              "verb": "damage",
+              "amount": {
+                "scaled": {
+                  "base": 14,
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "type": "poison",
+              "tags": [
+                "area"
+              ],
+              "then": [],
+              "if": {
+                "not": {
+                  "creature-flag": "airborne"
+                }
+              }
+            }
+          ],
+          "clearedBy": [
+            "water"
+          ],
+          "perSource": 1,
+          "cap": 8,
+          "overlap": "strongest",
+          "shapeLimit": "same-region"
+        }
+      ],
+      "rules": [
+        "one patch per source creature: a new patch replaces its old one",
+        "at most 8 patches per floor: the oldest is dropped",
+        "a victim takes only the strongest patch per pulse; the Poison status uses the longest poisonTurns among all patches it stands in (so a stronger plain patch over a carrier patch still poisons)",
+        "first damage on the first world pulse after the patch is laid; it hurts on exactly 3 pulses",
+        "airborne victims are spared; only the player and allies are hurt; damage source is the creature, or \"The poison cloud\" if it is gone",
+        "travel and auto-explore treat patch tiles as hazards",
+        "water on a tile removes that tile from every patch"
+      ],
+      "src": "js/world/chaos/chaos-enemies.js:189-195, :228, :306-310, :372-390"
+    },
+    "chaos-poison-patch-carrier-bile": {
+      "kind": "hazard",
+      "source": "chaos-brood-carrier bile (target within 5, clear shot)",
+      "effects": [
+        {
+          "verb": "field",
+          "field": "chaos-hazard",
+          "shape": {
+            "selector": "radius",
+            "centre": "target",
+            "n": 1
+          },
+          "turns": 3,
+          "clock": "game-turn",
+          "side": "foes",
+          "each": [
+            {
+              "verb": "damage",
+              "amount": {
+                "scaled": {
+                  "base": 14,
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "type": "poison",
+              "tags": [
+                "area"
+              ],
+              "then": [
+                {
+                  "verb": "apply-status",
+                  "status": "poison",
+                  "turns": 4,
+                  "scale": 1.5
+                }
+              ],
+              "if": {
+                "not": {
+                  "creature-flag": "airborne"
+                }
+              }
+            }
+          ],
+          "clearedBy": [
+            "water"
+          ],
+          "perSource": 1,
+          "cap": 8,
+          "overlap": "strongest",
+          "shapeLimit": "same-region"
+        }
+      ],
+      "rules": [
+        "one patch per source creature: a new patch replaces its old one",
+        "at most 8 patches per floor: the oldest is dropped",
+        "a victim takes only the strongest patch per pulse; the Poison status uses the longest poisonTurns among all patches it stands in (so a stronger plain patch over a carrier patch still poisons)",
+        "first damage on the first world pulse after the patch is laid; it hurts on exactly 3 pulses",
+        "airborne victims are spared; only the player and allies are hurt; damage source is the creature, or \"The poison cloud\" if it is gone",
+        "travel and auto-explore treat patch tiles as hazards",
+        "water on a tile removes that tile from every patch"
+      ],
+      "src": "js/world/chaos/chaos-enemies.js:189-195, :228, :306-310, :372-390"
+    },
+    "chaos-poison-patch-spitter-bile": {
+      "kind": "hazard",
+      "source": "chaos-bile-spitter bile (target 2-5, clear shot)",
+      "effects": [
+        {
+          "verb": "field",
+          "field": "chaos-hazard",
+          "shape": {
+            "selector": "radius",
+            "centre": "target",
+            "n": 1
+          },
+          "turns": 3,
+          "clock": "game-turn",
+          "side": "foes",
+          "each": [
+            {
+              "verb": "damage",
+              "amount": {
+                "scaled": {
+                  "base": 11,
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "type": "poison",
+              "tags": [
+                "area"
+              ],
+              "then": [],
+              "if": {
+                "not": {
+                  "creature-flag": "airborne"
+                }
+              }
+            }
+          ],
+          "clearedBy": [
+            "water"
+          ],
+          "perSource": 1,
+          "cap": 8,
+          "overlap": "strongest",
+          "shapeLimit": "same-region"
+        }
+      ],
+      "rules": [
+        "one patch per source creature: a new patch replaces its old one",
+        "at most 8 patches per floor: the oldest is dropped",
+        "a victim takes only the strongest patch per pulse; the Poison status uses the longest poisonTurns among all patches it stands in (so a stronger plain patch over a carrier patch still poisons)",
+        "first damage on the first world pulse after the patch is laid; it hurts on exactly 3 pulses",
+        "airborne victims are spared; only the player and allies are hurt; damage source is the creature, or \"The poison cloud\" if it is gone",
+        "travel and auto-explore treat patch tiles as hazards",
+        "water on a tile removes that tile from every patch"
+      ],
+      "src": "js/world/chaos/chaos-enemies.js:189-195, :228, :306-310, :372-390"
+    },
+    "unmaker-pylon-beam": {
+      "kind": "hazard",
+      "arena": "unmaker-crucible",
+      "phase": 2,
+      "effects": [
+        {
+          "verb": "telegraph",
+          "tiles": {
+            "selector": "line",
+            "from": "pylon",
+            "toward": "target",
+            "n": 40,
+            "piercing": true,
+            "within": "arena"
+          },
+          "delay": 2,
+          "clock": "game-turn",
+          "then": [
+            {
+              "verb": "damage",
+              "amount": {
+                "scaled": {
+                  "base": 48,
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "type": "light",
+              "tags": [
+                "area"
+              ],
+              "if": {
+                "clear-path": {
+                  "from": "pylon",
+                  "cells": "arena"
+                }
+              }
+            }
+          ],
+          "warning": "pylon-beam",
+          "gaps": "unmaker-safe-pattern"
+        }
+      ],
+      "clocks": {
+        "firstReady": "1, 2, 3 game turns after phase 2 begins (pylon I, II, III)",
+        "fire": "2 game turns after arming and at least one paid player turn later"
+      },
+      "log": "<b>Pylon I|II|III:</b> beam in 2 turns!",
+      "src": "js/world/chaos/unmaker-encounter.js:14-16, :64-72, :192-229"
+    },
+    "crypt-hall-terrain": {
+      "name": "Crypt burial hall (terrain stamp)",
+      "size": [
+        28,
+        24
+      ],
+      "grid": [
+        "############################",
+        "##########.......###########",
+        "##########.......###########",
+        "##########.......###########",
+        "##########.......###########",
+        "#############..#############",
+        "#######..............#######",
+        "#######..............#######",
+        "#.....#..............#.....#",
+        "#.....#..............#.....#",
+        "#.....D..............D.....#",
+        "#.....#..............#.....#",
+        "#.....#..............#.....#",
+        "#######..............#######",
+        "#######..............#######",
+        "#######..............#######",
+        "#############..#############",
+        "#############..#############",
+        "#############..#############",
+        "#############..#############",
+        "#############..#############",
+        "#############..#############",
+        "#############..#############",
+        "############################"
+      ],
+      "areas": {
+        "top-chapel": [
+          10,
+          1,
+          16,
+          4
+        ],
+        "chapel-opening": [
+          13,
+          5,
+          14,
+          5
+        ],
+        "hall": [
+          7,
+          6,
+          20,
+          15
+        ],
+        "west-chapel": [
+          1,
+          8,
+          5,
+          12
+        ],
+        "east-chapel": [
+          22,
+          8,
+          26,
+          12
+        ],
+        "doors": [
+          [
+            6,
+            10
+          ],
+          [
+            21,
+            10
+          ]
+        ],
+        "hallway": [
+          13,
+          16,
+          14,
+          22
+        ]
+      },
+      "hallRoom": {
+        "x": 7,
+        "y": 6,
+        "w": 14,
+        "h": 10,
+        "cx": 13,
+        "cy": 10,
+        "hall": true
+      },
+      "src": "js/world/biomes/crypt/cryptset.js:250-262"
+    },
+    "crypt-boss-hall": {
+      "name": "Morty's hall (floor 10)",
+      "floors": [
+        10
+      ],
+      "size": [
+        28,
+        24
+      ],
+      "placement": {
+        "originX": "MW - 28 - 1 (27 on the 56x34 map)"
+      },
+      "terrain": "crypt-hall-terrain",
+      "grid": [
+        "############################",
+        "##########..MM...###########",
+        "##########u.MM..u###########",
+        "##########c..F..c###########",
+        "##########U.....U###########",
+        "#############..#############",
+        "#######u...........Uu#######",
+        "#######......B.......#######",
+        "#U....#...P......P...#....U#",
+        "#.T.u.#.....SSS......#.u...#",
+        "#.T...D~~...SSS......D....E#",
+        "#.....#~~~..SSS.....,#.R...#",
+        "#...,.#~~~..SSS......#.R..U#",
+        "#######.~~P......P...#######",
+        "#######.~~~~.........#######",
+        "#######,...~~......,.#######",
+        "#############..#############",
+        "#############%.#############",
+        "#############..#############",
+        "#############..#############",
+        "#############.,#############",
+        "#############..#############",
+        "#############..#############",
+        "#############..#############"
+      ],
+      "props": [
+        {
+          "x": 12,
+          "y": 1,
+          "name": "grave-monument",
+          "w": 2,
+          "h": 2,
+          "blocks": true
+        },
+        {
+          "x": 11,
+          "y": 0,
+          "name": "wall-niche",
+          "w": 1,
+          "h": 1,
+          "wall": true,
+          "blocks": true
+        },
+        {
+          "x": 15,
+          "y": 0,
+          "name": "wall-niche",
+          "w": 1,
+          "h": 1,
+          "wall": true,
+          "blocks": true
+        },
+        {
+          "x": 10,
+          "y": 2,
+          "name": "soul-urn",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "soulSmoke": true,
+          "light": "#7CFFA0"
+        },
+        {
+          "x": 16,
+          "y": 2,
+          "name": "soul-urn",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "soulSmoke": true,
+          "light": "#7CFFA0"
+        },
+        {
+          "x": 10,
+          "y": 4,
+          "name": "urn-cluster",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "half": "hash2(x,y,71): <0.35 left, <0.7 right, else both",
+          "breakable": true,
+          "lootPct": 35,
+          "sfx": "pot-break"
+        },
+        {
+          "x": 16,
+          "y": 4,
+          "name": "urn-cluster",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "half": "hash2(x,y,71)",
+          "breakable": true,
+          "lootPct": 35,
+          "sfx": "pot-break"
+        },
+        {
+          "x": 12,
+          "y": 9,
+          "name": "dais-sarcophagus",
+          "w": 3,
+          "h": 4,
+          "blocks": true
+        },
+        {
+          "x": 10,
+          "y": 8,
+          "name": "grave-post",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "wisps": true,
+          "light": "#7CFFA0",
+          "dim": true
+        },
+        {
+          "x": 17,
+          "y": 8,
+          "name": "grave-post",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "wisps": true,
+          "light": "#7CFFA0",
+          "dim": true
+        },
+        {
+          "x": 10,
+          "y": 13,
+          "name": "grave-post",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "wisps": true,
+          "light": "#7CFFA0",
+          "dim": true
+        },
+        {
+          "x": 17,
+          "y": 13,
+          "name": "grave-post",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "wisps": true,
+          "light": "#7CFFA0",
+          "dim": true
+        },
+        {
+          "x": 7,
+          "y": 6,
+          "name": "soul-urn",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "soulSmoke": true,
+          "light": "#7CFFA0"
+        },
+        {
+          "x": 20,
+          "y": 6,
+          "name": "soul-urn",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "soulSmoke": true,
+          "light": "#7CFFA0"
+        },
+        {
+          "x": 19,
+          "y": 6,
+          "name": "urn-cluster",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "half": "hash2(x,y,71)",
+          "breakable": true,
+          "lootPct": 35,
+          "sfx": "pot-break"
+        },
+        {
+          "x": 7,
+          "y": 15,
+          "name": "rubble",
+          "w": 1,
+          "h": 1,
+          "blocks": false,
+          "loose": true
+        },
+        {
+          "x": 20,
+          "y": 11,
+          "name": "rubble",
+          "w": 1,
+          "h": 1,
+          "blocks": false,
+          "loose": true
+        },
+        {
+          "x": 19,
+          "y": 15,
+          "name": "rubble",
+          "w": 1,
+          "h": 1,
+          "blocks": false,
+          "loose": true
+        },
+        {
+          "x": 2,
+          "y": 9,
+          "name": "tomb-v",
+          "w": 1,
+          "h": 2,
+          "blocks": true
+        },
+        {
+          "x": 3,
+          "y": 7,
+          "name": "wall-niche",
+          "w": 1,
+          "h": 1,
+          "wall": true,
+          "blocks": true
+        },
+        {
+          "x": 4,
+          "y": 9,
+          "name": "soul-urn",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "soulSmoke": true,
+          "light": "#7CFFA0",
+          "dim": true
+        },
+        {
+          "x": 1,
+          "y": 8,
+          "name": "urn-cluster",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "half": "hash2(x,y,71)",
+          "breakable": true,
+          "lootPct": 35,
+          "sfx": "pot-break"
+        },
+        {
+          "x": 4,
+          "y": 12,
+          "name": "rubble",
+          "w": 1,
+          "h": 1,
+          "blocks": false,
+          "loose": true
+        },
+        {
+          "x": 24,
+          "y": 7,
+          "name": "wall-niche",
+          "w": 1,
+          "h": 1,
+          "wall": true,
+          "blocks": true
+        },
+        {
+          "x": 23,
+          "y": 9,
+          "name": "soul-urn",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "soulSmoke": true,
+          "light": "#7CFFA0",
+          "dim": true
+        },
+        {
+          "x": 26,
+          "y": 8,
+          "name": "urn-cluster",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "half": "hash2(x,y,71)",
+          "breakable": true,
+          "lootPct": 35,
+          "sfx": "pot-break"
+        },
+        {
+          "x": 26,
+          "y": 12,
+          "name": "urn-cluster",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "half": "hash2(x,y,71)",
+          "breakable": true,
+          "lootPct": 35,
+          "sfx": "pot-break"
+        },
+        {
+          "x": 23,
+          "y": 11,
+          "name": "tomb-rune",
+          "w": 1,
+          "h": 2,
+          "blocks": true,
+          "light": {
+            "col": "#7CFFA0",
+            "r": 2.2,
+            "s": 0.3,
+            "at": "x, y+h-0.2"
+          }
+        },
+        {
+          "x": 13,
+          "y": 17,
+          "name": "bones",
+          "w": 1,
+          "h": 1,
+          "blocks": false,
+          "loose": true
+        },
+        {
+          "x": 14,
+          "y": 20,
+          "name": "rubble",
+          "w": 1,
+          "h": 1,
+          "blocks": false,
+          "loose": true
+        },
+        {
+          "x": 10,
+          "y": 3,
+          "name": "candles-2",
+          "w": 1,
+          "h": 1,
+          "blocks": false,
+          "light": "none at stamp; the scatter pass later lights every candle (#FFC878 r2.2 s0.32)"
+        },
+        {
+          "x": 16,
+          "y": 3,
+          "name": "candles-4",
+          "w": 1,
+          "h": 1,
+          "blocks": false,
+          "light": "none at stamp; the scatter pass later lights every candle (#FFC878 r2.2 s0.32)"
+        },
+        {
+          "x": 5,
+          "y": 7,
+          "name": "wall-cobweb",
+          "w": 1,
+          "h": 1,
+          "wall": true,
+          "blocks": false,
+          "webLeft": false
+        },
+        {
+          "x": 22,
+          "y": 7,
+          "name": "wall-cobweb",
+          "w": 1,
+          "h": 1,
+          "wall": true,
+          "blocks": false,
+          "webLeft": true
+        },
+        {
+          "x": 1,
+          "y": 7,
+          "name": "wall-plaque",
+          "w": 1,
+          "h": 1,
+          "wall": true,
+          "blocks": true,
+          "light": {
+            "col": "#7CFFA0",
+            "r": 1.8,
+            "s": 0.22,
+            "at": "x, y+0.9"
+          }
+        },
+        {
+          "x": 25,
+          "y": 7,
+          "name": "wall-plaque",
+          "w": 1,
+          "h": 1,
+          "wall": true,
+          "blocks": true,
+          "light": {
+            "col": "#7CFFA0",
+            "r": 1.8,
+            "s": 0.22,
+            "at": "x, y+0.9"
+          }
+        }
+      ],
+      "ooze": [
+        [
+          7,
+          10
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          8,
+          11
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          8,
+          12
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          9,
+          12
+        ],
+        [
+          9,
+          13
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          7,
+          12
+        ],
+        [
+          9,
+          14
+        ],
+        [
+          10,
+          14
+        ],
+        [
+          11,
+          14
+        ],
+        [
+          11,
+          15
+        ],
+        [
+          12,
+          15
+        ],
+        [
+          8,
+          14
+        ]
+      ],
+      "exitAt": [
+        26,
+        10
+      ],
+      "bossAt": [
+        13,
+        7
+      ],
+      "phylAt": [
+        13,
+        3
+      ],
+      "hallRect": [
+        0,
+        0,
+        28,
+        24
+      ],
+      "tunnel": "From the hallway foot (13..14, 23) dig 2 wide down to row min(MH-2, oy+25); then 1 wide west (or east) along that row to the x of the BSP room whose right edge is furthest east (its x + (w>>1)); then north up to that room's bottom row. Only WALL cells are dug.",
+      "src": "js/world/biomes/crypt/cryptset.js:265-332"
+    },
+    "crypt-prop-test-room": {
+      "name": "Crypt prop test room (preview)",
+      "preview": true,
+      "size": [
+        14,
+        12
+      ],
+      "placement": "room interior 12x10 with its top-left at map (22,11); the grid adds the 1-tile wall ring, so grid (1,1) is map (22,11); the rest of the map is wall; everything seen",
+      "grid": [
+        "##############",
+        "#.......kP...#",
+        "#.SS.CC....O.#",
+        "#..........O.#",
+        "#...........U#",
+        "#S...m....m..#",
+        "#S......m...k#",
+        "#...~~...\"\"..#",
+        "#..m~~~@.\"\"\".#",
+        "#U....~.....U#",
+        "#......U.....#",
+        "##############"
+      ],
+      "props": [
+        {
+          "x": 1,
+          "y": 1,
+          "name": "sarc",
+          "w": 2,
+          "h": 1,
+          "kind": "intact",
+          "horiz": true,
+          "seed": 3
+        },
+        {
+          "x": 4,
+          "y": 1,
+          "name": "sarc",
+          "w": 2,
+          "h": 1,
+          "kind": "cracked",
+          "horiz": true,
+          "seed": 8
+        },
+        {
+          "x": 10,
+          "y": 1,
+          "name": "sarc",
+          "w": 1,
+          "h": 2,
+          "kind": "open",
+          "horiz": false,
+          "seed": 5
+        },
+        {
+          "x": 0,
+          "y": 4,
+          "name": "sarc",
+          "w": 1,
+          "h": 2,
+          "kind": "intact",
+          "horiz": false,
+          "seed": 11
+        },
+        {
+          "x": 7,
+          "y": 0,
+          "name": "pedestal",
+          "w": 1,
+          "h": 1,
+          "top": "skull",
+          "seed": 2
+        },
+        {
+          "x": 8,
+          "y": 0,
+          "name": "pedestal",
+          "w": 1,
+          "h": 1,
+          "top": "none",
+          "seed": 4,
+          "wisps": true,
+          "light": "#7CFFA0",
+          "dim": true
+        },
+        {
+          "x": 11,
+          "y": 5,
+          "name": "pedestal",
+          "w": 1,
+          "h": 1,
+          "top": "skull",
+          "seed": 9
+        },
+        {
+          "x": 11,
+          "y": 8,
+          "name": "urn-group",
+          "w": 1,
+          "h": 1,
+          "pattern": 0
+        },
+        {
+          "x": 0,
+          "y": 8,
+          "name": "urn-group",
+          "w": 1,
+          "h": 1,
+          "pattern": 4
+        },
+        {
+          "x": 6,
+          "y": 9,
+          "name": "urn-group",
+          "w": 1,
+          "h": 1,
+          "pattern": 5
+        },
+        {
+          "x": 11,
+          "y": 3,
+          "name": "urn-group",
+          "w": 1,
+          "h": 1,
+          "pattern": 2
+        }
+      ],
+      "creatures": [
+        {
+          "x": 4,
+          "y": 4,
+          "kind": "skeleton",
+          "state": "asleep"
+        },
+        {
+          "x": 7,
+          "y": 5,
+          "kind": "acolyte",
+          "state": "asleep"
+        },
+        {
+          "x": 2,
+          "y": 7,
+          "kind": "shambler",
+          "state": "asleep"
+        },
+        {
+          "x": 9,
+          "y": 4,
+          "kind": "bonearcher",
+          "state": "asleep"
+        }
+      ],
+      "src": "js/world/biomes/crypt/cryptprops.js:252-281"
+    },
+    "underdark-matron-hall": {
+      "name": "The Matron of the Web's hall (floor 20)",
+      "floors": [
+        20
+      ],
+      "size": [
+        23,
+        17
+      ],
+      "placement": {
+        "note": "grid includes the 1-tile wall ring: grid (1,1) is hall (0,0) = map (33,9)"
+      },
+      "grid": [
+        "#######################",
+        "#...AA...C.I.C...AA...#",
+        "#.F.................F.#",
+        "#..........T..........#",
+        "#.....................#",
+        "#.......Q.....Q.......#",
+        "#....oo.........oo....#",
+        "#....oo.........oo....#",
+        ">.......Q.....Q.......#",
+        "#.....................#",
+        "#.....................#",
+        "#....oo.Q.....Q.oo....#",
+        "#....oo.........oo....#",
+        "#.....................#",
+        "#.......p.....Q.......#",
+        "#C...................C#",
+        "###########E###########"
+      ],
+      "props": [
+        {
+          "x": 10,
+          "y": 0,
+          "name": "spider-idol",
+          "w": 1,
+          "h": 1,
+          "blocks": true
+        },
+        {
+          "x": 8,
+          "y": 0,
+          "name": "candelabra-tall",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "light": "#FF6A3A"
+        },
+        {
+          "x": 12,
+          "y": 0,
+          "name": "candelabra-tall",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "light": "#FF6A3A"
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "name": "drow-altar-blood",
+          "w": 2,
+          "h": 1,
+          "blocks": true
+        },
+        {
+          "x": 16,
+          "y": 0,
+          "name": "drow-altar-blood",
+          "w": 2,
+          "h": 1,
+          "blocks": true
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "name": "blood-font",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "light": "#C02030",
+          "dim": true
+        },
+        {
+          "x": 19,
+          "y": 1,
+          "name": "blood-font",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "light": "#C02030",
+          "dim": true
+        },
+        {
+          "x": 4,
+          "y": 5,
+          "name": "ritual-circle",
+          "w": 2,
+          "h": 2,
+          "blocks": false,
+          "walkable": true
+        },
+        {
+          "x": 15,
+          "y": 5,
+          "name": "ritual-circle",
+          "w": 2,
+          "h": 2,
+          "blocks": false,
+          "walkable": true
+        },
+        {
+          "x": 4,
+          "y": 10,
+          "name": "ritual-circle",
+          "w": 2,
+          "h": 2,
+          "blocks": false,
+          "walkable": true
+        },
+        {
+          "x": 15,
+          "y": 10,
+          "name": "ritual-circle",
+          "w": 2,
+          "h": 2,
+          "blocks": false,
+          "walkable": true
+        },
+        {
+          "x": 7,
+          "y": 4,
+          "name": "drow-pillar",
+          "w": 1,
+          "h": 1,
+          "blocks": true
+        },
+        {
+          "x": 13,
+          "y": 4,
+          "name": "drow-pillar",
+          "w": 1,
+          "h": 1,
+          "blocks": true
+        },
+        {
+          "x": 7,
+          "y": 7,
+          "name": "drow-pillar",
+          "w": 1,
+          "h": 1,
+          "blocks": true
+        },
+        {
+          "x": 13,
+          "y": 7,
+          "name": "drow-pillar",
+          "w": 1,
+          "h": 1,
+          "blocks": true
+        },
+        {
+          "x": 7,
+          "y": 10,
+          "name": "drow-pillar",
+          "w": 1,
+          "h": 1,
+          "blocks": true
+        },
+        {
+          "x": 13,
+          "y": 10,
+          "name": "drow-pillar",
+          "w": 1,
+          "h": 1,
+          "blocks": true
+        },
+        {
+          "x": 7,
+          "y": 13,
+          "name": "drow-pillar-broken",
+          "w": 1,
+          "h": 1,
+          "blocks": true
+        },
+        {
+          "x": 13,
+          "y": 13,
+          "name": "drow-pillar",
+          "w": 1,
+          "h": 1,
+          "blocks": true
+        },
+        {
+          "x": 0,
+          "y": 14,
+          "name": "candelabra-tall",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "light": "#FF6A3A"
+        },
+        {
+          "x": 20,
+          "y": 14,
+          "name": "candelabra-tall",
+          "w": 1,
+          "h": 1,
+          "blocks": true,
+          "light": "#FF6A3A"
+        }
+      ],
+      "circles": [
+        [
+          4,
+          5
+        ],
+        [
+          15,
+          5
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          15,
+          10
+        ]
+      ],
+      "throne": [
+        10,
+        2
+      ],
+      "exit": [
+        10,
+        15
+      ],
+      "src": "js/world/biomes/underdark/deep.js:136, :239, :657-683, :699-702"
+    },
+    "caverns-maw-arena": {
+      "name": "The Deep Maw's arena (floor 15)",
+      "floors": [
+        15
+      ],
+      "chambers": [
+        {
+          "x": {
+            "roll": [
+              5,
+              7
+            ]
+          },
+          "y": {
+            "roll": [
+              9,
+              "MH-10"
+            ]
+          },
+          "rx": 3,
+          "ry": 3,
+          "role": "start"
+        },
+        {
+          "x": {
+            "roll": [
+              15,
+              19
+            ]
+          },
+          "y": {
+            "roll": [
+              7,
+              10
+            ]
+          },
+          "rx": {
+            "roll": [
+              3,
+              4
+            ]
+          },
+          "ry": {
+            "roll": [
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "x": {
+            "roll": [
+              15,
+              20
+            ]
+          },
+          "y": {
+            "roll": [
+              23,
+              26
+            ]
+          },
+          "rx": {
+            "roll": [
+              3,
+              4
+            ]
+          },
+          "ry": {
+            "roll": [
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "x": "MW-16 (40)",
+          "y": "MH>>1 (17)",
+          "rx": 12,
+          "ry": 9,
+          "arena": true
+        }
+      ],
+      "tunnels": {
+        "loops": 1,
+        "arenaFromWestCost": 100,
+        "westLimitX": 10
+      },
+      "minOpenCells": 400,
+      "rift": false,
+      "edgeLights": {
+        "piece": "torch-stand",
+        "count": 4
+      },
+      "light": {
+        "col": "#7A9CB0",
+        "r": 7,
+        "s": 0.35,
+        "at": "arena centre"
+      },
+      "src": "js/world/biomes/caverns/caverns.js:108-113, :193, :198-205, :212-221, :231, :524-543; js/world/biomes/caverns/cavernmobs.js:489-498"
+    },
+    "underdark-boss-approach": {
+      "name": "Underdark floor 20 approach",
+      "floors": [
+        20
+      ],
+      "hall": "underdark-matron-hall",
+      "minRooms": 3,
+      "minOpenCells": 330,
+      "loops": 0,
+      "hallEdgeCost": 200,
+      "region": "temple",
+      "src": "js/world/biomes/underdark/deep.js:134-145, :225, :230, :248"
+    },
+    "crypt-boss-approach": {
+      "name": "Crypt floor 10 approach",
+      "floors": [
+        10
+      ],
+      "hall": "crypt-boss-hall",
+      "monsters": 9,
+      "src": "js/world/world.js:277, :323, :441; js/world/biomes/crypt/cryptset.js:321-331"
+    },
+    "key-holder": {
+      "kind": "rule",
+      "when": "floor has an iron door",
+      "holder": "reachable non-boss foe on the key side, prefer goblin, archer or brute",
+      "suffix": " (key holder)",
+      "fallback": "iron key on a reachable free cell, 80 tries",
+      "ruled": "2026-09-17",
+      "src": "js/world/world.js:458-474"
+    },
+    "monster-population": {
+      "kind": "rule",
+      "target": {
+        "bossFloor": 9,
+        "else": "12 + 3 x biome floor (1-5) + 2 x biome index (Dungeon 0)"
+      },
+      "attempts": "4 x target",
+      "minDistanceFromStart": 12,
+      "packSpread": 2,
+      "state": {
+        "earlyFloors": {
+          "lastFloor": 2,
+          "asleepPct": 80
+        },
+        "inRoom": {
+          "asleepPct": 80,
+          "wanderPct": 20
+        },
+        "corridor": "wander"
+      },
+      "ruled": "2026-09-17",
+      "src": "js/world/world.js:442-457"
+    },
+    "rare-floor-roll": {
+      "kind": "rule",
+      "stream": "mulberry32(rare-run seed XOR salt)",
+      "never": [
+        "plane",
+        "boss floor"
+      ],
+      "floors": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          6,
+          9
+        ],
+        "3": [
+          11,
+          14
+        ],
+        "4": [
+          16,
+          19
+        ]
+      },
+      "pick": "uniform within the window",
+      "src": "js/world/rare-rooms.js:13-41"
+    },
+    "roster-caverns": {
+      "kind": "roster",
+      "biome": "caverns",
+      "floors": [
+        11,
+        15
+      ],
+      "draw": "weighted by weight among rows whose floors hold the current floor",
+      "rows": [
+        {
+          "creature": "stormbeetle",
+          "weight": 22,
+          "floors": [
+            11,
+            15
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "myconid",
+          "weight": 16,
+          "floors": [
+            11,
+            15
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "rootbound",
+          "weight": 8,
+          "floors": [
+            11,
+            15
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "caveslime",
+          "weight": 10,
+          "floors": [
+            11,
+            15
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "sporecaller",
+          "weight": 8,
+          "floors": [
+            11,
+            15
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "sparkjelly",
+          "weight": 12,
+          "floors": [
+            12,
+            15
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "crystalcrawler",
+          "weight": 9,
+          "floors": [
+            13,
+            15
+          ],
+          "pack": null,
+          "region": null
+        }
+      ],
+      "perFloor": {
+        "11": "stormbeetle:22 myconid:16 rootbound:8 caveslime:10 sporecaller:8",
+        "12": "stormbeetle:22 sparkjelly:12 myconid:16 rootbound:8 caveslime:10 sporecaller:8",
+        "13": "stormbeetle:22 sparkjelly:12 myconid:16 crystalcrawler:9 rootbound:8 caveslime:10 sporecaller:8",
+        "14": "stormbeetle:22 sparkjelly:12 myconid:16 crystalcrawler:9 rootbound:8 caveslime:10 sporecaller:8",
+        "15": "stormbeetle:22 sparkjelly:12 myconid:16 crystalcrawler:9 rootbound:8 caveslime:10 sporecaller:8"
+      },
+      "src": "js/world/world.js:1503-1515; js/world/biomes/caverns/caverns.js:66-79; js/world/biomes/underdark/deepmobs.js:64-107"
+    },
+    "roster-crypt": {
+      "kind": "roster",
+      "biome": "crypt",
+      "floors": [
+        6,
+        10
+      ],
+      "draw": "weighted by weight among rows whose floors hold the current floor",
+      "rows": [
+        {
+          "creature": "skeleton",
+          "weight": 18,
+          "floors": [
+            6,
+            10
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "shambler",
+          "weight": 16,
+          "floors": [
+            6,
+            8
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "gravebeetle",
+          "weight": 14,
+          "floors": [
+            6,
+            8
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "ghoul",
+          "weight": 10,
+          "floors": [
+            6,
+            9
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "bonearcher",
+          "weight": 14,
+          "floors": [
+            7,
+            10
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "shade",
+          "weight": 10,
+          "floors": [
+            7,
+            10
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "gravebloat",
+          "weight": 10,
+          "floors": [
+            8,
+            10
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "acolyte",
+          "weight": 8,
+          "floors": [
+            9,
+            10
+          ],
+          "pack": null,
+          "region": null
+        }
+      ],
+      "perFloor": {
+        "6": "skeleton:18 shambler:16 gravebeetle:14 ghoul:10",
+        "7": "skeleton:18 shambler:16 gravebeetle:14 bonearcher:14 shade:10 ghoul:10",
+        "8": "skeleton:18 shambler:16 gravebeetle:14 bonearcher:14 shade:10 gravebloat:10 ghoul:10",
+        "9": "skeleton:18 bonearcher:14 shade:10 gravebloat:10 acolyte:8 ghoul:10",
+        "10": "skeleton:18 bonearcher:14 shade:10 gravebloat:10 acolyte:8"
+      },
+      "src": "js/world/world.js:1503-1515; js/world/biomes/caverns/caverns.js:66-79; js/world/biomes/underdark/deepmobs.js:64-107"
+    },
+    "roster-dungeon": {
+      "kind": "roster",
+      "biome": "dungeon",
+      "floors": [
+        1,
+        5
+      ],
+      "draw": "weighted by weight among rows whose floors hold the current floor",
+      "rows": [
+        {
+          "creature": "rat",
+          "weight": 26,
+          "floors": [
+            1,
+            3
+          ],
+          "pack": [
+            2,
+            3
+          ],
+          "region": null
+        },
+        {
+          "creature": "bat",
+          "weight": 6,
+          "floors": [
+            1,
+            2
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "goblin",
+          "weight": 26,
+          "floors": [
+            1,
+            5
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "greenslime",
+          "weight": 12,
+          "floors": [
+            1,
+            4
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "archer",
+          "weight": 18,
+          "floors": [
+            2,
+            5
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "slime",
+          "weight": 12,
+          "floors": [
+            2,
+            4
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "brute",
+          "weight": 14,
+          "floors": [
+            3,
+            5
+          ],
+          "pack": null,
+          "region": null
+        },
+        {
+          "creature": "shaman",
+          "weight": 10,
+          "floors": [
+            3,
+            5
+          ],
+          "pack": null,
+          "region": null
+        }
+      ],
+      "perFloor": {
+        "1": "rat:26 bat:6 goblin:26 greenslime:12",
+        "2": "rat:26 bat:6 goblin:26 archer:18 slime:12 greenslime:12",
+        "3": "rat:26 goblin:26 archer:18 brute:14 slime:12 shaman:10 greenslime:12",
+        "4": "goblin:26 archer:18 brute:14 slime:12 shaman:10 greenslime:12",
+        "5": "goblin:26 archer:18 brute:14 shaman:10"
+      },
+      "src": "js/world/world.js:1503-1515; js/world/biomes/caverns/caverns.js:66-79; js/world/biomes/underdark/deepmobs.js:64-107"
+    },
+    "roster-rare": {
+      "kind": "roster",
+      "draw": "uniform",
+      "chancePct": {
+        "base": 30,
+        "perFloor": 5
+      },
+      "rows": [
+        {
+          "creature": "emberling",
+          "floors": [
+            2,
+            25
+          ]
+        },
+        {
+          "creature": "tideling",
+          "floors": [
+            2,
+            25
+          ]
+        },
+        {
+          "creature": "galeling",
+          "floors": [
+            2,
+            25
+          ]
+        },
+        {
+          "creature": "stoneling",
+          "floors": [
+            2,
+            25
+          ]
+        },
+        {
+          "creature": "wisp",
+          "floors": [
+            3,
+            25
+          ]
+        },
+        {
+          "creature": "lumenling",
+          "floors": [
+            3,
+            25
+          ]
+        }
+      ],
+      "placement": "14+ from the start, outside excluded rooms, wandering, 40 tries",
+      "src": "js/world/world.js:475-478, :1516-1519",
+      "scope": "per biome (ruled 2026-10-15): Dungeon and Crypt the six listed; Caverns their cave swaps (swap-caverns); the Underdark list is to be set with packet F (1.7 gives it the six listed)"
+    },
+    "roster-underdark": {
+      "kind": "roster",
+      "biome": "underdark",
+      "floors": [
+        16,
+        20
+      ],
+      "draw": "weighted by weight among rows whose floors hold the current floor",
+      "rows": [
+        {
+          "creature": "drowblade",
+          "weight": 24,
+          "floors": [
+            16,
+            20
+          ],
+          "pack": null,
+          "region": 0
+        },
+        {
+          "creature": "drowpriestess",
+          "weight": 12,
+          "floors": [
+            16,
+            20
+          ],
+          "pack": null,
+          "region": 0
+        },
+        {
+          "creature": "webspitter",
+          "weight": 18,
+          "floors": [
+            16,
+            20
+          ],
+          "pack": null,
+          "region": 1
+        },
+        {
+          "creature": "spiderling",
+          "weight": 16,
+          "floors": [
+            16,
+            20
+          ],
+          "pack": [
+            3,
+            5
+          ],
+          "region": 1
+        },
+        {
+          "creature": "fireimp",
+          "weight": 18,
+          "floors": [
+            16,
+            20
+          ],
+          "pack": null,
+          "region": 2
+        },
+        {
+          "creature": "emberspider",
+          "weight": 20,
+          "floors": [
+            16,
+            20
+          ],
+          "pack": null,
+          "region": 2
+        },
+        {
+          "creature": "thoughteater",
+          "weight": 10,
+          "floors": [
+            17,
+            20
+          ],
+          "pack": null,
+          "region": 0
+        },
+        {
+          "creature": "drider",
+          "weight": 6,
+          "floors": [
+            17,
+            20
+          ],
+          "pack": null,
+          "region": 1
+        },
+        {
+          "creature": "magmacrawler",
+          "weight": 14,
+          "floors": [
+            16,
+            20
+          ],
+          "pack": null,
+          "region": 2,
+          "ruled": "sandbox U9, Justin 2026-10-16: the Fire plane's Magma Crawler also lives in the volcanic caves"
+        }
+      ],
+      "perFloor": {
+        "16": "drowblade:24 drowpriestess:12 webspitter:18 spiderling:16 fireimp:18 emberspider:20",
+        "17": "drowblade:24 drowpriestess:12 thoughteater:10 webspitter:18 spiderling:16 drider:6 fireimp:18 emberspider:20",
+        "18": "drowblade:24 drowpriestess:12 thoughteater:10 webspitter:18 spiderling:16 drider:6 fireimp:18 emberspider:20",
+        "19": "drowblade:24 drowpriestess:12 thoughteater:10 webspitter:18 spiderling:16 drider:6 fireimp:18 emberspider:20",
+        "20": "drowblade:24 drowpriestess:12 thoughteater:10 webspitter:18 spiderling:16 drider:6 fireimp:18 emberspider:20"
+      },
+      "src": "js/world/world.js:1503-1515; js/world/biomes/caverns/caverns.js:66-79; js/world/biomes/underdark/deepmobs.js:64-107",
+      "caps": {
+        "drider": 2
+      },
+      "regions": {
+        "0": "drow temple",
+        "1": "spider Underdark",
+        "2": "volcanic"
+      }
+    },
+    "specials-count": {
+      "kind": "rule",
+      "bossFloor": 1,
+      "floor1": 2,
+      "else": {
+        "base": 2,
+        "extraChancePct": 50
+      },
+      "onceFamilies": {
+        "zoo": [
+          "zoo",
+          "myconid-nursery",
+          "beetle-nest"
+        ],
+        "ritual": [
+          "ritual"
+        ]
+      },
+      "src": "js/world/world.js:383-397"
+    },
+    "swap-caverns": {
+      "kind": "swap",
+      "biome": "caverns",
+      "map": {
+        "rat": "rootbound",
+        "bat": "rootbound",
+        "caverat": "rootbound",
+        "cavebat": "rootbound",
+        "slime": "caveslime",
+        "goblin": "stormbeetle",
+        "archer": "sparkjelly",
+        "brute": "stormbeetle",
+        "shaman": "myconid",
+        "emberling": "cinderling",
+        "tideling": "rippleling",
+        "galeling": "gustling",
+        "stoneling": "mossling",
+        "wisp": "duskling",
+        "lumenling": "gleamling"
+      },
+      "src": "js/world/biomes/caverns/cavernmobs.js:88-89"
+    },
+    "swap-crypt": {
+      "kind": "swap",
+      "biome": "crypt",
+      "map": {
+        "rat": "gravebeetle",
+        "bat": "shambler",
+        "goblin": "shambler",
+        "archer": "bonearcher",
+        "brute": "gravebloat"
+      },
+      "src": "js/world/biomes/crypt/crypt.js:78; js/engine/content-adapter.js:134"
+    },
+    "swap-underdark": {
+      "kind": "swap",
+      "biome": "underdark",
+      "map": {
+        "goblin": "drowblade",
+        "archer": "webspitter",
+        "brute": "drider",
+        "shaman": "drowpriestess",
+        "rat": "spiderling",
+        "bat": "spiderling"
+      },
+      "src": "js/world/biomes/underdark/deepmobs.js:128; js/engine/content-adapter.js:117-127"
+    },
+    "schedule": {
+      "kind": "rule",
+      "size": [
+        56,
+        34
+      ],
+      "lastFloor": 25,
+      "biomes": [
+        {
+          "biome": "dungeon",
+          "floors": [
+            1,
+            5
+          ],
+          "layout": "bsp",
+          "bossFloor": 5,
+          "bossRoom": "boss-dungeon"
+        },
+        {
+          "biome": "crypt",
+          "floors": [
+            6,
+            10
+          ],
+          "layout": "bsp",
+          "bossFloor": 10
+        },
+        {
+          "biome": "caverns",
+          "floors": [
+            11,
+            15
+          ],
+          "layout": "caves",
+          "bossFloor": 15
+        },
+        {
+          "biome": "underdark",
+          "floors": [
+            16,
+            20
+          ],
+          "layout": "regions",
+          "bossFloor": 20
+        },
+        {
+          "biome": "chaos",
+          "floors": [
+            21,
+            25
+          ],
+          "layout": "chaos-campaign",
+          "entry": "chaos-treasure-room"
+        }
+      ],
+      "src": "js/runtime/game.js:21; js/world/world.js:66-70; js/world/biomes/underdark/deep.js:38-39; js/engine/content-adapter.js:148"
+    },
+    "run-plan": {
+      "kind": "rule",
+      "src": "js/world/world.js:76-101, :220-247, :267-270"
+    },
+    "layout-bsp": {
+      "kind": "rule",
+      "area": {
+        "x": 1,
+        "y": 1,
+        "w": 54,
+        "h": 32
+      },
+      "bossArea": {
+        "dungeon": {
+          "x": 1,
+          "y": 1,
+          "w": 30,
+          "h": 22
+        },
+        "crypt": {
+          "x": 1,
+          "y": 1,
+          "w": 25,
+          "h": 22
+        }
+      },
+      "splitRounds": 6,
+      "minLeafSide": 8,
+      "splitOnlyIfSideOver": 16,
+      "splitAcrossLongSideRatio": 1.25,
+      "roomSide": {
+        "min": 4,
+        "maxInset": 3,
+        "max": 8,
+        "maxRuling": "Justin 2026-10-18: no room larger than 8 by 8 floor tiles on the BSP floors (biomes 1 and 2), \"giant empty rooms are very boring\"; applied after 1.7's size rolls, before the room's place in its leaf"
+      },
+      "bigHall": {
+        "chancePct": 25,
+        "minLeaf": [
+          11,
+          10
+        ],
+        "inset": 4
+      },
+      "roomOffset": {
+        "min": 1,
+        "maxInset": 2
+      },
+      "corridors": {
+        "order": "rooms by centre x",
+        "join": "nearest joined room by Manhattan centre distance",
+        "shape": "L, either leg first 50/50",
+        "extraLoops": 2
+      },
+      "doors": {
+        "chancePct": 70,
+        "spot": "room edge tile in a 1-wide wall gap with passage on both sides"
+      },
+      "src": "js/world/world.js:273-333; js/runtime/game.js:80-100"
+    },
+    "dungeon-improvements": {
+      "kind": "rule",
+      "does": "Justin's Dungeon improvements, floors 1-5 (improvements-dungeon.md, sandbox 2026-10-16, W66-W72; D6 declined). The numbers improve.js and generate.js read; Justin's, moved here unchanged (W5, world-28).",
+      "D3": {
+        "pillarRoom": 7,
+        "pillarsPct": 44,
+        "pillarsWhy": "sandbox lead 2026-10-18: under the 8 x 8 cap, pillars in rooms 7 or 8 across (one 2 x 2 pillar on a side of 7, two on a side of 8), a walkable lap round each, about the old pillar-room rate (0.28 a floor); Justin's pillar dancing",
+        "corner": [6, 5],
+        "cornerPct": 35
+      },
+      "D7": {
+        "moodPct": 40,
+        "lastFloor": 4,
+        "flooded": {
+          "pools": [
+            3,
+            5
+          ],
+          "poolSize": [
+            4,
+            9
+          ],
+          "puddles": 14
+        },
+        "overgrown": {
+          "roomPct": 60,
+          "overgrownPct": 50
+        },
+        "dark": {
+          "keepLightPct": 25,
+          "keepTorchPct": 34
+        },
+        "collapsed": {
+          "heaps": [
+            10,
+            16
+          ],
+          "spread": [
+            0,
+            2
+          ],
+          "rubblePct": 75,
+          "statues": [
+            1,
+            2
+          ]
+        }
+      },
+      "D8": {
+        "sideRoom": 4,
+        "offRoute": 2
+      },
+      "D9": {
+        "watch": [
+          "goblin",
+          "archer",
+          "brute",
+          "shaman"
+        ],
+        "size": [
+          2,
+          3
+        ],
+        "steps": [
+          2,
+          4
+        ]
+      }
+    },
+    "dead-end-hall": {
+      "kind": "rule",
+      "fromFloor": 6,
+      "length": [
+        3,
+        5
+      ],
+      "tries": 120,
+      "goalRoomLights": {
+        "props": [
+          "torch-stand"
+        ],
+        "count": 2
+      },
+      "src": "js/world/world.js:343, :620-649; js/world/floors.js:107-118; js/engine/content-adapter.js:149-152"
+    },
+    "generation": {
+      "kind": "rule",
+      "attempts": 8,
+      "retrySeedStep": 7919,
+      "minFreeRoomCells": {
+        "ordinary": 30,
+        "boss": 12
+      },
+      "src": "js/world/world.js:250-259, :426, :481-498; js/engine/generation-adapter.js:11-99; js/engine/generation.js:90-124; js/engine/transition-adapter.js:41"
+    },
+    "layout-attempt": {
+      "kind": "rule",
+      "steps": [
+        "layout (BSP, caves or regions)",
+        "Crypt boss hall stamp",
+        "roles",
+        "stairs or boss room",
+        "forge room",
+        "shrine room",
+        "locked vault (floor 2+)",
+        "toll room (floor 3+, 55%)",
+        "hidden room (45% or a due sigil theme)",
+        "special rooms",
+        "plain decoration",
+        "terrain patches",
+        "ordinary chests",
+        "traps",
+        "item scatter",
+        "hero start",
+        "creatures",
+        "key holder",
+        "rare creature",
+        "room residents",
+        "validation"
+      ],
+      "src": "js/world/world.js:261-499"
+    },
+    "terrain-patches": {
+      "kind": "rule",
+      "grass": {
+        "blobs": [
+          2,
+          4
+        ],
+        "size": [
+          5,
+          14
+        ],
+        "on": "bare floor in a random room"
+      },
+      "water": {
+        "blobs": [
+          1,
+          2
+        ],
+        "size": [
+          3,
+          8
+        ],
+        "notRoles": [
+          "start",
+          "boss"
+        ]
+      },
+      "groundSpots": {
+        "tries": 8,
+        "pick": [
+          "puddle",
+          "moss",
+          "moss",
+          "bones",
+          "blood"
+        ]
+      },
+      "blob": "random 4-way growth from the seed cell until size cells are painted or 3 x size steps",
+      "src": "js/world/world.js:402-406, :570-578"
+    },
+    "chests-ordinary": {
+      "kind": "rule",
+      "tries": 2,
+      "chest": "chest-wood",
+      "mimic": "loot.json mimic-chance (12% from floor 2)",
+      "src": "js/world/world.js:408-411"
+    },
+    "item-scatter": {
+      "kind": "rule",
+      "table": "loot.json floor-scatter",
+      "cells": "free room tiles, not beside a door, not in merchant, hidden-sigil or rare-event rooms",
+      "motes": "run-plan motesByBiomeFloor",
+      "src": "js/world/world.js:423-433"
+    },
+    "rare-creature": {
+      "kind": "rule",
+      "chance": {
+        "scaled": {
+          "base": 30,
+          "per": {
+            "floor": 5
+          }
+        }
+      },
+      "minDistanceFromHero": 14,
+      "tries": 40,
+      "state": "wander",
+      "roster": "roster-rare",
+      "src": "js/world/world.js:475-478"
+    },
+    "wandering-spawns": {
+      "kind": "rule",
+      "interval": [
+        45,
+        75
+      ],
+      "clock": "game-turn",
+      "maxExtraPerFloor": {
+        "scaled": {
+          "base": 3,
+          "per": {
+            "floor": 1
+          }
+        }
+      },
+      "maxLivingFoes": {
+        "base": 10,
+        "perFloor": 2,
+        "share": 0.8,
+        "rule": "round((base + perFloor x floor) x share)"
+      },
+      "minDistanceFromHero": 14,
+      "tries": 40,
+      "cell": "walkable, unseen, unoccupied, at least minDistanceFromHero (Manhattan) from the hero, not in hidden-sigil or rare-event rooms",
+      "rareChancePct": 6,
+      "state": "wander",
+      "log": "Something moves, far off.",
+      "logRare": "Something bright drifts, far off.",
+      "src": "js/combat/systems.js:810-829; js/world/world.js:438"
+    },
+    "travel": {
+      "kind": "rule",
+      "floorsKept": "leaving a floor stores it whole (map, creatures, items, explored tiles); returning restores it exactly",
+      "downLog": "You climb back down to floor N. It is as you left it.",
+      "upLog": "You climb back up to floor N. It is as you left it.",
+      "forgeReminder": "The Elemental Forge still burns on this floor.",
+      "stairsHint": "Down to floor N: > or click.",
+      "upHint": "Up to floor N: < or click.",
+      "landing": "a random reachable free tile of an ordinary room on the next floor (not special, pocket, boss, burning or clouded)",
+      "noFallOn": "boss floors and the last floor: moved to the nearest walkable tile",
+      "fallenFoes": "a fallen foe (not boss, flier, part, or on the last floor) arrives on the next floor's nearest safe floor tile outside pockets, specials and puzzles, acting 100 after the hero; a key holder drops its key first",
+      "bossExit": "the exit gate opens when the floor's core is pressed into it (packet D); stepping on the open gate descends, or wins on the last floor",
+      "src": "js/combat/systems.js:144-205, :640-648, :791-808; js/engine/transition-adapter.js:15-57; js/elements/cores.js:90-100; js/world/floors.js:140"
+    }
+  }
+}

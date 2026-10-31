@@ -1,0 +1,2044 @@
+{
+  "version": 1,
+  "rows": {
+    "grom": {
+      "uncladLooks": true,
+      "name": "Chad the Unclad",
+      "title": "god of the bare fist",
+      "color": "#C98A5A",
+      "sprite": "shrine-grom",
+      "refuses": {
+        "races": [
+          "dwarf"
+        ],
+        "classes": [
+          "mage"
+        ],
+        "courts": [],
+        "affinities": []
+      },
+      "forbiddenElements": [],
+      "conduct": {
+        "equipOnly": [
+          "holy",
+          "ring",
+          "amulet"
+        ],
+        "noSpells": false,
+        "noSigils": false
+      },
+      "invoke": "ironbody",
+      "prayers": [
+        "ironhide",
+        "pummel"
+      ],
+      "boons": [
+        {
+          "rank": 1,
+          "id": "iron-flesh",
+          "name": "Iron Flesh",
+          "effects": [
+            {
+              "verb": "modify-stat",
+              "stat": "armour",
+              "add": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 2
+                  }
+                }
+              }
+            },
+            {
+              "verb": "modify-stat",
+              "stat": "evasion",
+              "pct": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 10
+                  }
+                }
+              }
+            },
+            {
+              "verb": "cost-mod",
+              "cost": "move-time",
+              "speedUpPct": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 10
+                  }
+                }
+              },
+              "for": "all"
+            },
+            {
+              "verb": "hit-rule",
+              "parryPct": {
+                "tuning": "player-base-stats"
+              },
+              "if": {
+                "wielding": "unarmed"
+              }
+            }
+          ]
+        },
+        {
+          "rank": 3,
+          "id": "staggering-blows",
+          "name": "Staggering Blows",
+          "effects": [
+            {
+              "verb": "on-event",
+              "trigger": "on-hit",
+              "if": {
+                "wielding": "unarmed"
+              },
+              "chance": 15,
+              "effects": [
+                {
+                  "verb": "apply-status",
+                  "status": "stun",
+                  "turns": 1
+                }
+              ]
+            },
+            {
+              "verb": "cost-mod",
+              "cost": "action-time",
+              "speedUpPct": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 10
+                  }
+                }
+              },
+              "for": "unarmed"
+            }
+          ]
+        },
+        {
+          "rank": 5,
+          "id": "living-mountain",
+          "name": "Living Mountain",
+          "effects": [
+            {
+              "verb": "on-event",
+              "trigger": "on-swing",
+              "if": {
+                "wielding": "unarmed"
+              },
+              "effects": [
+                {
+                  "verb": "add-stack",
+                  "status": "livingmountain",
+                  "n": 1,
+                  "cap": 10,
+                  "turns": 6,
+                  "target": {
+                    "selector": "self"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "piety": [
+        {
+          "verb": "on-event",
+          "trigger": "on-hit",
+          "if": {
+            "all": [
+              {
+                "wielding": "unarmed"
+              },
+              {
+                "creature-flag": "foe"
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "all": [
+              {
+                "kill-side": "self"
+              },
+              {
+                "wielding": "unarmed"
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 2
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 2
+            },
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 15,
+              "if": {
+                "any": [
+                  {
+                    "creature-flag": "elite"
+                  },
+                  {
+                    "creature-flag": "boss"
+                  }
+                ]
+              }
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 15,
+              "if": {
+                "any": [
+                  {
+                    "creature-flag": "elite"
+                  },
+                  {
+                    "creature-flag": "boss"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "wrath": "wrath",
+      "text": "god.grom",
+      "src": "js/content/data.js:111-130; js/faith/gods.js:272; js/faith/religion.js:84; js/engine/stats.js:113, :146-162; js/engine/costs.js:13, :31; js/engine/actions-adapter.js:153, :383; js/engine/progression.js:51; js/runtime/recovery.js:14-21",
+      "unarmedWeaponByRank": [
+        "fists",
+        "fists-grom-1",
+        "fists-grom-2",
+        "fists-grom-3",
+        "fists-grom-4",
+        "fists-grom-5"
+      ]
+    },
+    "grumbok": {
+      "regenPerRankPct": 20,
+      "name": "Grumbok, Who Hates Wizards",
+      "title": "god of honest violence",
+      "color": "#B8453A",
+      "sprite": "shrine-grumbok",
+      "refuses": {
+        "races": [],
+        "classes": [
+          "mage"
+        ],
+        "courts": [],
+        "affinities": []
+      },
+      "forbiddenElements": [],
+      "conduct": {
+        "noSpells": true,
+        "noSigils": true,
+        "forbiddenItems": [
+          "wand"
+        ]
+      },
+      "invoke": "bellow",
+      "prayers": [
+        "rampage",
+        "trollblood"
+      ],
+      "boons": [
+        {
+          "rank": 1,
+          "id": "thick-hide",
+          "name": "Thick Hide",
+          "effects": [
+            {
+              "verb": "resist",
+              "type": "fire",
+              "add": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": -4
+                  }
+                }
+              }
+            },
+            {
+              "verb": "resist",
+              "type": "ice",
+              "add": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": -4
+                  }
+                }
+              }
+            },
+            {
+              "verb": "resist",
+              "type": "lightning",
+              "add": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": -4
+                  }
+                }
+              }
+            },
+            {
+              "verb": "resist",
+              "type": "poison",
+              "add": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": -4
+                  }
+                }
+              }
+            },
+            {
+              "verb": "resist",
+              "type": "dark",
+              "add": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": -4
+                  }
+                }
+              }
+            },
+            {
+              "verb": "resist",
+              "type": "light",
+              "add": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": -4
+                  }
+                }
+              }
+            },
+            {
+              "verb": "resist",
+              "type": "magic",
+              "add": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": -4
+                  }
+                }
+              }
+            },
+            {
+              "verb": "modify-stat",
+              "stat": "hp-regen",
+              "pct": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 20
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "rank": 3,
+          "id": "wizard-hunter",
+          "name": "Wizard Hunter",
+          "effects": [
+            {
+              "verb": "on-event",
+              "trigger": "on-damaged",
+              "if": {
+                "any": [
+                  {
+                    "not": {
+                      "damage-type": "phys"
+                    }
+                  },
+                  {
+                    "hit-was": "ranged"
+                  }
+                ]
+              },
+              "effects": [
+                {
+                  "verb": "apply-status",
+                  "status": "wizardhunter",
+                  "turns": 3,
+                  "target": {
+                    "selector": "self"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "rank": 5,
+          "id": "warriors-discipline",
+          "name": "Warrior's Discipline",
+          "effects": [
+            {
+              "verb": "on-event",
+              "trigger": "on-damaged",
+              "oncePer": "action",
+              "effects": [
+                {
+                  "verb": "add-stack",
+                  "status": "discipline",
+                  "n": 1,
+                  "cap": 5,
+                  "turns": 8,
+                  "target": {
+                    "selector": "self"
+                  }
+                },
+                {
+                  "verb": "cooldown",
+                  "ability": "all",
+                  "reduce": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "piety": [
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "all": [
+              {
+                "kill-side": "player"
+              },
+              {
+                "not": {
+                  "any": [
+                    {
+                      "creature-flag": "spellcaster"
+                    },
+                    {
+                      "creature-flag": "elemental"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 2
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "all": [
+              {
+                "kill-side": "player"
+              },
+              {
+                "any": [
+                  {
+                    "creature-flag": "spellcaster"
+                  },
+                  {
+                    "creature-flag": "elemental"
+                  }
+                ]
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 5
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "all": [
+              {
+                "kill-side": "player"
+              },
+              {
+                "any": [
+                  {
+                    "creature-flag": "elite"
+                  },
+                  {
+                    "creature-flag": "boss"
+                  }
+                ]
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 15
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 15
+            }
+          ]
+        }
+      ],
+      "wrath": "wrath",
+      "text": "god.grumbok",
+      "src": "js/content/data.js:131-149; js/faith/gods.js:18-19, :274, :384-391; js/engine/turns.js:51; js/engine/damage-adapter.js:250, :281; js/engine/progression.js:52"
+    },
+    "glimmer": {
+      "kindledAtRank": 5,
+      "name": "Saint Glimmer",
+      "title": "saint of mending light",
+      "color": "#F6E7B0",
+      "sprite": "shrine-glimmer",
+      "refuses": {
+        "races": [
+          "gloomling"
+        ],
+        "classes": [],
+        "courts": [],
+        "affinities": [
+          "shadow"
+        ],
+        "needsRoomFor": "light"
+      },
+      "forbiddenElements": [
+        "shadow"
+      ],
+      "conduct": {},
+      "invoke": "heal",
+      "prayers": [
+        "consecrate",
+        "sanctuary"
+      ],
+      "boons": [
+        {
+          "rank": 1,
+          "id": "mending-light",
+          "name": "Mending Light",
+          "effects": [
+            {
+              "verb": "heal-mod",
+              "mult": {
+                "scaled": {
+                  "base": 1,
+                  "per": {
+                    "rank": 0.1
+                  }
+                }
+              },
+              "heals": "all"
+            },
+            {
+              "verb": "modify-stat",
+              "stat": "damage-pct",
+              "pct": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 10
+                  }
+                }
+              },
+              "if": {
+                "any": [
+                  {
+                    "creature-flag": "undead"
+                  },
+                  {
+                    "creature-flag": "shadowy"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "rank": 3,
+          "id": "guiding-light",
+          "name": "Guiding Light",
+          "rule": "Smite's blind chance +5% per Glimmer rank, written on Smite's row in abilities.json (packet D)",
+          "effects": []
+        },
+        {
+          "rank": 5,
+          "id": "kindled",
+          "name": "Kindled",
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "affinity",
+              "element": "light",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "piety": [
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "all": [
+              {
+                "kill-side": "player"
+              },
+              {
+                "not": {
+                  "any": [
+                    {
+                      "creature-flag": "undead"
+                    },
+                    {
+                      "creature-flag": "shadowy"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 2
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "all": [
+              {
+                "kill-side": "player"
+              },
+              {
+                "any": [
+                  {
+                    "creature-flag": "undead"
+                  },
+                  {
+                    "creature-flag": "shadowy"
+                  }
+                ]
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 4
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 4
+            }
+          ]
+        },
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "all": [
+              {
+                "kill-side": "player"
+              },
+              {
+                "any": [
+                  {
+                    "creature-flag": "elite"
+                  },
+                  {
+                    "creature-flag": "boss"
+                  }
+                ]
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 15
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 15
+            }
+          ]
+        }
+      ],
+      "wrath": "wrath",
+      "text": "god.glimmer",
+      "src": "js/content/data.js:150-174; js/faith/religion.js:29-81; js/engine/damage.js:44; js/engine/actions-adapter.js:308; js/engine/progression-adapter.js:23-34; js/engine/progression.js:53"
+    },
+    "murk": {
+      "replacesShadowDrainAtRank": 1,
+      "name": "Mother Murk",
+      "title": "mother of the quiet dead",
+      "color": "#8A6FB0",
+      "sprite": "shrine-murk",
+      "loves": "gloomling",
+      "refuses": {
+        "races": [],
+        "classes": [],
+        "courts": [],
+        "affinities": [
+          "light"
+        ]
+      },
+      "forbiddenElements": [
+        "light"
+      ],
+      "conduct": {},
+      "invoke": "unholyaura",
+      "prayers": [
+        "raisedead",
+        "bonespear"
+      ],
+      "boons": [
+        {
+          "rank": 1,
+          "id": "life-drain",
+          "name": "Life Drain",
+          "replaces": "shadow-drain",
+          "effects": [
+            {
+              "verb": "on-event",
+              "trigger": "on-hit",
+              "if": {
+                "creature-flag": "foe"
+              },
+              "chance": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "affinity:shadow": 10,
+                    "rank": 5
+                  },
+                  "max": 100
+                }
+              },
+              "effects": [
+                {
+                  "verb": "damage",
+                  "type": "dark",
+                  "amount": {
+                    "scaled": {
+                      "base": {
+                        "roll": [
+                          6,
+                          9
+                        ]
+                      },
+                      "mult": [
+                        "divine"
+                      ],
+                      "round": true
+                    }
+                  },
+                  "tags": [
+                    "proc"
+                  ],
+                  "then": [
+                    {
+                      "verb": "drain",
+                      "ratio": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "rank": 3,
+          "id": "grave-strength",
+          "name": "Grave Strength",
+          "effects": [
+            {
+              "verb": "modify-stat",
+              "stat": "max-hp",
+              "pct": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 5
+                  }
+                }
+              },
+              "target": {
+                "selector": "own-summons"
+              }
+            },
+            {
+              "verb": "modify-stat",
+              "stat": "damage-pct",
+              "pct": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 5
+                  }
+                }
+              },
+              "target": {
+                "selector": "own-summons"
+              }
+            },
+            {
+              "verb": "cost-mod",
+              "cost": "action-time",
+              "speedUpPct": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 5
+                  }
+                }
+              },
+              "for": "all",
+              "target": {
+                "selector": "own-summons"
+              }
+            },
+            {
+              "verb": "cost-mod",
+              "cost": "move-time",
+              "speedUpPct": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 5
+                  }
+                }
+              },
+              "for": "all",
+              "target": {
+                "selector": "own-summons"
+              }
+            }
+          ]
+        },
+        {
+          "rank": 5,
+          "id": "lich",
+          "name": "Lich",
+          "effects": [
+            {
+              "verb": "modify-stat",
+              "stat": "divine",
+              "add": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "attribute:vit": 0.02
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "lichReturn": {
+        "afterActions": 1,
+        "pctMaxHp": 50,
+        "once": true,
+        "log": "Your Lich rises again at half health."
+      },
+      "piety": [
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "kill-side": "own-summon"
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 4
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 4
+            }
+          ]
+        },
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "all": [
+              {
+                "kill-side": "player"
+              },
+              {
+                "not": {
+                  "kill-side": "own-summon"
+                }
+              },
+              {
+                "not": {
+                  "creature-flag": "undead"
+                }
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 2
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "all": [
+              {
+                "kill-side": "player"
+              },
+              {
+                "any": [
+                  {
+                    "creature-flag": "elite"
+                  },
+                  {
+                    "creature-flag": "boss"
+                  }
+                ]
+              },
+              {
+                "any": [
+                  {
+                    "kill-side": "own-summon"
+                  },
+                  {
+                    "not": {
+                      "creature-flag": "undead"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 15
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 15
+            }
+          ]
+        }
+      ],
+      "wrath": "wrath",
+      "text": "god.murk",
+      "src": "js/content/data.js:175-194, :965-968; js/faith/gods.js:619-658; js/engine/stats.js:43; js/engine/actions.js:46-49; js/engine/death-adapter.js:152, :161-164; js/runtime/recovery.js:41-48; js/engine/progression.js:54-58"
+    },
+    "reginald": {
+      "name": "Sir Reginald the Unsneaky",
+      "title": "patron of the fair fight",
+      "color": "#9FB0C0",
+      "sprite": "shrine-reginald",
+      "refuses": {
+        "races": [
+          "gloomling"
+        ],
+        "classes": [
+          "mage",
+          "scoundrel"
+        ],
+        "courts": [],
+        "affinities": [
+          "shadow"
+        ]
+      },
+      "forbiddenElements": [
+        "shadow"
+      ],
+      "conduct": {
+        
+      },
+      "invoke": "lunge",
+      "prayers": [
+        "laststand",
+        "lance"
+      ],
+      "rules": [
+        {
+          "verb": "on-event",
+          "trigger": "on-world-pulse",
+          "effects": [
+            {
+              "verb": "alert",
+              "radius": 8,
+              "who": "foes",
+              "toward": "self"
+            }
+          ]
+        }
+      ],
+      "boons": [
+        {
+          "rank": 1,
+          "id": "fair-fight",
+          "name": "Fair Fight",
+          "effects": [
+            {
+              "verb": "modify-stat",
+              "stat": "accuracy",
+              "add": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 2
+                  }
+                }
+              }
+            },
+            {
+              "verb": "modify-stat",
+              "stat": "crit",
+              "add": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 2
+                  }
+                }
+              }
+            },
+            {
+              "verb": "modify-stat",
+              "stat": "armour",
+              "add": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 1
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "rank": 3,
+          "id": "cowards-mark",
+          "name": "Coward's Mark",
+          "effects": [
+            {
+              "verb": "on-event",
+              "trigger": "on-damaged",
+              "logApplied": "c-good",
+              "if": {
+                "all": [
+                  {
+                    "distance": {
+                      "min": 2
+                    }
+                  },
+                  {
+                    "creature-flag": "foe"
+                  },
+                  {
+                    "not": {
+                      "has-tag": [
+                        "proc",
+                        "periodic",
+                        "environment",
+                        "reflected",
+                        "arc",
+                        "ground"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "effects": [
+                {
+                  "verb": "apply-status",
+                  "status": "fear",
+                  "turns": 3,
+                  "target": {
+                    "selector": "source"
+                  }
+                },
+                {
+                  "verb": "apply-status",
+                  "status": "root",
+                  "turns": 3,
+                  "target": {
+                    "selector": "source"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "rank": 5,
+          "id": "perfect-counter",
+          "name": "Perfect Counter",
+          "effects": [
+            {
+              "verb": "on-event",
+              "trigger": "on-attacked",
+              "effects": [
+                {
+                  "verb": "weapon-attack",
+                  "multiplier": 1,
+                  "label": "Perfect Counter",
+                  "weapon": "main",
+                  "projected": "if-apart",
+                  "target": {
+                    "selector": "source"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "piety": [
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "all": [
+              {
+                "kill-side": "self"
+              },
+              {
+                "creature-flag": "awake"
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 2
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 2
+            },
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 15,
+              "if": {
+                "any": [
+                  {
+                    "creature-flag": "elite"
+                  },
+                  {
+                    "creature-flag": "boss"
+                  }
+                ]
+              }
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 15,
+              "if": {
+                "any": [
+                  {
+                    "creature-flag": "elite"
+                  },
+                  {
+                    "creature-flag": "boss"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "wrath": "wrath",
+      "text": "god.reginald",
+      "src": "js/content/data.js:195-213; js/faith/gods.js:697-702; js/engine/stats.js:17; js/engine/damage-adapter.js:248-260; js/engine/actions-adapter.js:11-26; js/engine/geometry.js:128; js/engine/progression.js:59"
+    },
+    "anvil": {
+      "name": "Old Anvil",
+      "title": "the smith below",
+      "color": "#E8B44A",
+      "sprite": "shrine-anvil",
+      "refuses": {
+        "races": [],
+        "classes": [],
+        "courts": [],
+        "affinities": []
+      },
+      "forbiddenElements": [],
+      "conduct": {},
+      "invoke": "temper",
+      "prayers": [
+        "fieldsmelt",
+        "anviltoll"
+      ],
+      "boons": [
+        {
+          "rank": 1,
+          "id": "smiths-blessing",
+          "name": "Smith's Blessing",
+          "effects": [
+            {
+              "verb": "modify-stat",
+              "stat": "damage",
+              "add": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 1
+                  }
+                }
+              }
+            },
+            {
+              "verb": "modify-stat",
+              "stat": "enchant-strength",
+              "pct": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 10
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "rank": 3,
+          "id": "second-heat",
+          "name": "Second Heat",
+          "effects": [
+            {
+              "verb": "on-event",
+              "trigger": "on-craft",
+              "chance": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 10
+                  },
+                  "max": 50
+                }
+              },
+              "effects": [
+                {
+                  "verb": "gain",
+                  "resource": "motes",
+                  "amount": {
+                    "from-source": "motesSpent"
+                  }
+                }
+              ],
+              "if": {
+                "any": [
+                  {
+                    "craft-was": "enchant"
+                  },
+                  {
+                    "craft-was": "carve"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "rank": 5,
+          "id": "masterwork",
+          "name": "Masterwork",
+          "effects": [
+            {
+              "verb": "cost-mod",
+              "cost": "upgrade-essence",
+              "mult": 0.7,
+              "for": "all"
+            },
+            {
+              "verb": "modify-stat",
+              "stat": "upgrade-cap",
+              "add": 1
+            }
+          ]
+        }
+      ],
+      "piety": [
+        {
+          "verb": "on-event",
+          "trigger": "on-spend",
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": {
+                "from-source": "essencePer5"
+              }
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": {
+                "from-source": "essencePer5"
+              }
+            }
+          ]
+        },
+        {
+          "verb": "on-event",
+          "trigger": "on-craft",
+          "if": {
+            "craft-was": "enchant"
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 20
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 20
+            }
+          ]
+        },
+        {
+          "verb": "on-event",
+          "trigger": "on-craft",
+          "if": {
+            "craft-was": "upgrade"
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 10
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 10
+            }
+          ]
+        }
+      ],
+      "essencePerPiety": 5,
+      "wrath": "wrath",
+      "text": "god.anvil",
+      "src": "js/content/data.js:214-233; js/faith/gods.js:20-31; js/faith/religion.js:99-105; js/engine/enchantments.js:54; js/engine/stats.js:108; js/equipment/upgrade.js:52-64; js/engine/forge-adapter.js:26, :61"
+    },
+    "vellum": {
+      "name": "Vellum, the Open Book",
+      "title": "keeper of every spell ever spoken",
+      "color": "#7FA8FF",
+      "sprite": "shrine-vellum",
+      "loves": "elf",
+      "refuses": {
+        "races": [],
+        "classes": [
+          "fighter",
+          "scoundrel"
+        ],
+        "courts": [],
+        "affinities": []
+      },
+      "forbiddenElements": [],
+      "conduct": {
+        "forbiddenItems": [
+          "shield",
+          "bow",
+          "staff",
+          "two-handed",
+          "medium-armour",
+          "heavy-armour"
+        ],
+        "allowedShields": [
+          "holy"
+        ]
+      },
+      "invoke": "arcanelance",
+      "prayers": [
+        "manaward",
+        "arcaneblink"
+      ],
+      "boons": [
+        {
+          "rank": 1,
+          "id": "repelling-force",
+          "name": "Repelling Force",
+          "effects": [
+            {
+              "verb": "on-event",
+              "trigger": "on-hit",
+              "if": {
+                "hit-was": "single-target"
+              },
+              "chance": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 10
+                  }
+                }
+              },
+              "effects": [
+                {
+                  "verb": "knockback",
+                  "tiles": 2,
+                  "from": "source",
+                  "direction": "away"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "rank": 3,
+          "id": "perfect-invocation",
+          "name": "Perfect Invocation",
+          "effects": [
+            {
+              "verb": "modify-stat",
+              "stat": "spell-power",
+              "add": {
+                "scaled": {
+                  "base": -50,
+                  "per": {
+                    "divine": 50
+                  },
+                  "min": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "rank": 5,
+          "id": "arcane-attunement",
+          "name": "Arcane Attunement",
+          "effects": [
+            {
+              "verb": "modify-stat",
+              "stat": "gear-bonus",
+              "pct": 25
+            }
+          ]
+        }
+      ],
+      "piety": [
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "all": [
+              {
+                "kill-side": "self"
+              },
+              {
+                "hit-was": "spell"
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 2
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 2
+            },
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 15,
+              "if": {
+                "any": [
+                  {
+                    "creature-flag": "elite"
+                  },
+                  {
+                    "creature-flag": "boss"
+                  }
+                ]
+              }
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 15,
+              "if": {
+                "any": [
+                  {
+                    "creature-flag": "elite"
+                  },
+                  {
+                    "creature-flag": "boss"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "verb": "on-event",
+          "trigger": "on-pay-mana",
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": {
+                "from-source": "manaPer20"
+              }
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": {
+                "from-source": "manaPer20"
+              }
+            }
+          ]
+        }
+      ],
+      "manaPerPiety": 20,
+      "manaGlobePiety": 5,
+      "wrath": "wrath",
+      "text": "god.vellum",
+      "src": "js/content/data.js:234-253; js/faith/gods.js:275, :292-305; js/engine/stats.js:45; js/engine/enchantments.js:52; js/engine/costs-adapter.js:42-47; js/elements/capstones.js:33; js/engine/progression.js:60"
+    },
+    "wobbles": {
+      "amusedByCombat": true,
+      "name": "Wobbles, the Giggling Chaos",
+      "title": "god of whatever happens next",
+      "color": "#D98BD0",
+      "sprite": "shrine-wobbles",
+      "chaos": true,
+      "refuses": {
+        "races": [],
+        "classes": [],
+        "courts": [],
+        "affinities": []
+      },
+      "forbiddenElements": [],
+      "conduct": {},
+      "invoke": "rolldice",
+      "prayers": [
+        "luckystreak",
+        "rolldice2"
+      ],
+      "amusement": "wobbles-amusement",
+      "outcome": "wobbles-outcome",
+      "boons": [
+        {
+          "rank": 1,
+          "id": "lady-luck",
+          "name": "Lady Luck",
+          "effects": [
+            {
+              "verb": "modify-stat",
+              "stat": "luck",
+              "add": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 3
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "rank": 3,
+          "id": "favorite-toy",
+          "name": "Favorite Toy",
+          "effects": [],
+          "rule": "wobbles-outcome"
+        },
+        {
+          "rank": 5,
+          "id": "last-laugh",
+          "name": "Last Laugh",
+          "effects": [
+            {
+              "verb": "on-event",
+              "trigger": "on-lethal",
+              "oncePer": "floor",
+              "effects": [
+                {
+                  "verb": "set-hp",
+                  "value": 1
+                },
+                {
+                  "verb": "choose",
+                  "by": "weight",
+                  "sfx": "wobbles-giggle",
+                  "options": [
+                    {
+                      "weight": 1,
+                      "effects": [
+                        {
+                          "verb": "heal",
+                          "amount": {
+                            "pct-of": {
+                              "stat": "max-hp",
+                              "pct": 40
+                            }
+                          }
+                        },
+                        {
+                          "verb": "remove-status",
+                          "tag": "harmful",
+                          "reason": "cleansed"
+                        }
+                      ],
+                      "log": "Last Laugh: Second Wind."
+                    },
+                    {
+                      "weight": 1,
+                      "if": {"safe-landing": true},
+                      "else": [
+                        {"verb": "heal", "amount": {"pct-of": {"stat": "max-hp", "pct": 40}}},
+                        {"verb": "remove-status", "tag": "harmful", "reason": "cleansed"}
+                      ],
+                      "elseLog": "Last Laugh: Second Wind.",
+                      "effects": [
+                        {
+                          "verb": "teleport",
+                          "who": "self",
+                          "to": "random-safe",
+                          "safe": true
+                        },
+                        {
+                          "verb": "hide",
+                          "turns": 3
+                        }
+                      ],
+                      "log": "Last Laugh: Vanishing Act."
+                    },
+                    {
+                      "weight": 1,
+                      "effects": [
+                        {
+                          "verb": "shield",
+                          "pool": "ward",
+                          "amount": {
+                            "pct-of": {
+                              "stat": "max-hp",
+                              "pct": 50
+                            }
+                          },
+                          "turns": 10
+                        }
+                      ],
+                      "log": "Last Laugh: Lucky Ward."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "piety": [
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "not": {
+              "any": [
+                {
+                  "creature-flag": "elite"
+                },
+                {
+                  "creature-flag": "boss"
+                }
+              ]
+            }
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 2
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "any": [
+              {
+                "creature-flag": "elite"
+              },
+              {
+                "creature-flag": "boss"
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 15
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 15
+            }
+          ]
+        }
+      ],
+      "wrath": "wrath",
+      "text": "god.wobbles",
+      "src": "js/content/data.js:254-273; js/faith/gods.js:42-170, :660-705; js/engine/progression.js:16-46, :61; js/engine/stats.js:168-169; js/runtime/balance-rulings.js:26-36"
+    },
+    "sylla": {
+      "name": "Sylla the Patient",
+      "title": "mother of the brood",
+      "color": "#B81A3A",
+      "sprite": "shrine-sylla",
+      "refuses": {
+        "races": [],
+        "classes": [
+          "fighter"
+        ],
+        "courts": [
+          "ember"
+        ],
+        "affinities": [
+          "fire"
+        ]
+      },
+      "forbiddenElements": [
+        "fire"
+      ],
+      "conduct": {
+        "forbiddenItems": [
+          "shield",
+          "medium-armour",
+          "heavy-armour"
+        ],
+        "allowedShields": [
+          "holy"
+        ],
+        "refuseIgniting": true
+      },
+      "invoke": "intothedark",
+      "prayers": [
+        "the-brood",
+        "venom-burst"
+      ],
+      "boons": [
+        {
+          "rank": 1,
+          "id": "web-on-hit",
+          "name": "Web on Hit",
+          "effects": [
+            {
+              "verb": "on-event",
+              "trigger": "on-hit",
+              "chance": {
+                "scaled": {
+                  "base": 0,
+                  "per": {
+                    "rank": 10
+                  }
+                }
+              },
+              "effects": [
+                {
+                  "verb": "apply-status",
+                  "status": "web",
+                  "turns": 1,
+                  "floats": [{"words": "webbed", "tone": "web", "sparkle": 12}]
+                },
+                {
+                  "verb": "apply-status",
+                  "status": "bleed",
+                  "turns": 3,
+                  "magnitude": {
+                    "scaled": {
+                      "base": 2,
+                      "per": {
+                        "rank": 1
+                      },
+                      "mult": [
+                        "divine"
+                      ],
+                      "round": true,
+                      "min": 1
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "rank": 3,
+          "id": "venomtouch",
+          "name": "Venomtouch",
+          "effects": [
+            {
+              "verb": "on-event",
+              "trigger": "on-hit",
+              "if": {"has-status": {"any": true, "beforeThisHit": true}},
+              "effects": [
+                {
+                  "verb": "damage",
+                  "type": "poison",
+                  "amount": {
+                    "scaled": {
+                      "base": 0,
+                      "per": {
+                        "rank": 2
+                      }
+                    }
+                  },
+                  "tags": [
+                    "proc"
+                  ],
+                  "if": {
+                    "has-status": {
+                      "any": true,
+                      "beforeThisHit": true
+                    }
+                  }
+                },
+                {
+                  "verb": "apply-status",
+                  "status": "poison",
+                  "turns": 3,
+                  "floats": [{"words": "poisoned", "tone": "poison"}]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "rank": 5,
+          "id": "long-patience",
+          "name": "The Long Patience",
+          "effects": [
+            {
+              "verb": "modify-duration",
+              "scope": "foe-statuses",
+              "add": 1
+            }
+          ]
+        }
+      ],
+      "piety": [
+        {
+          "verb": "on-event",
+          "trigger": "on-kill",
+          "if": {
+            "all": [
+              {
+                "kill-side": "player"
+              },
+              {
+                "any": [
+                  {
+                    "has-status": "root"
+                  },
+                  {
+                    "has-status": "slow"
+                  },
+                  {
+                    "has-status": "poison"
+                  },
+                  {
+                    "has-status": "web"
+                  }
+                ]
+              }
+            ]
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 2
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 2
+            },
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 15,
+              "if": {
+                "any": [
+                  {
+                    "creature-flag": "elite"
+                  },
+                  {
+                    "creature-flag": "boss"
+                  }
+                ]
+              }
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 15,
+              "if": {
+                "any": [
+                  {
+                    "creature-flag": "elite"
+                  },
+                  {
+                    "creature-flag": "boss"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "verb": "on-event",
+          "trigger": "on-surprise-hit",
+          "if": {
+            "not": {
+              "has-status": "hidden"
+            }
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 1
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "verb": "on-event",
+          "trigger": "on-surprise-hit",
+          "if": {
+            "has-status": "hidden"
+          },
+          "effects": [
+            {
+              "verb": "gain",
+              "resource": "piety",
+              "amount": 2
+            },
+            {
+              "verb": "gain",
+              "resource": "favor",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "wrath": "wrath",
+      "text": "god.sylla",
+      "src": "js/content/data.js:274-297; js/faith/sylla.js:29-183; js/engine/effect-adapter.js:54; js/engine/progression.js:62; Justin 2026-10-19 (item 220): \"sylass should add +2 poison weapon damage per rank on her passive to keep up with glimmer and murk\": corrected the same day: \"the +2 poison per rank from syllas was supposed to be her rank 3 boon, not starting at rank 1\": Venomtouch's weapon hits deal 2 poison a rank (rank 3 +6, rank 5 +10)"
+    }
+  }
+}

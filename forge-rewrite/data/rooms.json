@@ -1,0 +1,4034 @@
+{
+  "version": 1,
+  "rows": {
+    "adventurer-camp": {
+      "kind": "special",
+      "minFloor": 2,
+      "minArea": 20,
+      "weight": 1,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "rareEvent": true,
+      "layout": {
+        "chest": {
+          "kind": "crate-supply",
+          "at": "deepest"
+        },
+        "props": [
+          "kobold-bedroll-1",
+          "kobold-bedroll-1",
+          "kobold-campfire",
+          "kobold-crate",
+          "cl-lost-miner-1"
+        ]
+      },
+      "loot": [
+        {
+          "table": "camp-adventurer"
+        }
+      ],
+      "src": "js/world/world.js:807-814",
+      "bossOk": false
+    },
+    "armory": {
+      "kind": "special",
+      "minFloor": 2,
+      "minArea": 12,
+      "weight": 2,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "layout": {
+        "aisle": "two middle rows or columns",
+        "racks": {
+          "prop": "weapon-rack",
+          "count": "min(6, max(3, floor(cells/12)))",
+          "spacing": 2,
+          "order": "nearest the axis, then farthest from entrances"
+        },
+        "banner": {
+          "prop": "banner-stand",
+          "count": 1
+        }
+      },
+      "residents": [
+        {
+          "fromFloor": 3,
+          "creature": {
+            "uniform": [
+              "goblin",
+              "archer"
+            ]
+          },
+          "count": "population 4-7",
+          "state": "asleep",
+          "guard": true,
+          "posts": "nearest the first reward",
+          "swaps": true
+        }
+      ],
+      "loot": [
+        {
+          "give": {
+            "gear": "random"
+          },
+          "at": "cell farthest from the mouths"
+        },
+        {
+          "give": {
+            "gear": "random"
+          },
+          "at": "cell farthest from the first reward"
+        }
+      ],
+      "src": "js/world/world.js:910-943, :1478",
+      "bossOk": true,
+      "ownResidents": true
+    },
+    "barracks": {
+      "kind": "special",
+      "minFloor": 2,
+      "minArea": 16,
+      "weight": 1.5,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns"
+      ],
+      "exclude": {
+        "floors": [
+          1,
+          2
+        ]
+      },
+      "notes": "biome 4 non-boss: replaced by watchpost",
+      "layout": {
+        "reserve": "centre row or column",
+        "props": {
+          "list": [
+            "weapon-rack",
+            "table-candle",
+            "crate",
+            "barrel"
+          ],
+          "at": "long edges deepest first, then any"
+        }
+      },
+      "residents": [
+        {
+          "creature": {
+            "weighted": [
+              {
+                "goblin": 2
+              },
+              {
+                "archer": 1
+              }
+            ]
+          },
+          "count": "population 6-10",
+          "state": "asleep",
+          "posts": "deepest free cells 2 apart",
+          "swaps": true
+        }
+      ],
+      "src": "js/world/world.js:1155-1164, :1477",
+      "bossOk": true,
+      "ownResidents": true
+    },
+    "beetle-nest": {
+      "kind": "special",
+      "minFloor": 11,
+      "minArea": 20,
+      "weight": 0.6,
+      "biomes": [
+        "caverns"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "layout": {
+        "chest": {
+          "kind": "chest-gold",
+          "at": "deepest",
+          "path": "perimeter"
+        },
+        "props": {
+          "name": "rubble",
+          "max": 3
+        },
+        "ground": "bones"
+      },
+      "ambush": {
+        "creature": "stormbeetle",
+        "count": "min(9, 3 + floor + floor(w*h/16), cells)",
+        "log": "Beetles pour from the nest!",
+        "trigger": "on-chest-open"
+      },
+      "loot": [
+        {
+          "table": "chest-gold"
+        }
+      ],
+      "src": "js/world/world.js:1257-1274, :1363-1370",
+      "bossOk": false
+    },
+    "bone-gauntlet": {
+      "kind": "rare-floor",
+      "chancePctPerRun": 5,
+      "floors": [
+        6,
+        9
+      ],
+      "biomes": [
+        "crypt"
+      ],
+      "minArea": 25,
+      "host": "5x5 pocket off the host, plain door; else host becomes storage",
+      "layout": {
+        "ground": "bones",
+        "traps": {
+          "kind": "spikes",
+          "hidden": true,
+          "rows": "depth 1-3 from the door, all 5 across"
+        },
+        "chest": {
+          "kind": "chest-gold",
+          "enhanced": true,
+          "at": "depth 4, across 2"
+        }
+      },
+      "ambush": {
+        "roster": [
+          "shade",
+          "shade",
+          "acolyte",
+          "acolyte"
+        ],
+        "posts": [
+          "depth 4 across 0",
+          "depth 4 across 4",
+          "depth 0 across 0",
+          "depth 0 across 4"
+        ],
+        "log": "Two wraiths rise beside the treasure. Two acolytes appear at the entrance!"
+      },
+      "loot": [
+        {
+          "table": "chest-enhanced"
+        }
+      ],
+      "stream": "rare-run seed ^ 0x424F4E45",
+      "src": "js/world/world.js:1340-1352; js/world/rare-rooms.js:34; js/world/world.js:1341",
+      "name": "Bone gauntlet",
+      "pocket": {
+        "w": 5,
+        "h": 5,
+        "fallback": "no pocket: the host room becomes a storage room"
+      },
+      "door": "an ordinary door",
+      "map": {
+        "orientation": "row 0 is the row next to the door, row 4 the far wall; columns run across; the door sits outside row 0 at whichever column carvePocket chose",
+        "rows": [
+          "A...A",
+          "^^^^^",
+          "^^^^^",
+          "^^^^^",
+          "A.C.A"
+        ]
+      },
+      "extra": "the host room loses its special; the inside cell is added to the floor entrances"
+    },
+    "bone-vault": {
+      "kind": "special",
+      "minFloor": 2,
+      "minArea": 25,
+      "weight": 1,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true,
+        "floors": [
+          1,
+          2
+        ]
+      },
+      "layout": {
+        "chest": {
+          "kind": "chest-gold",
+          "enhanced": true,
+          "at": "deepest"
+        },
+        "ground": "bones"
+      },
+      "ambush": {
+        "rosterByBiome": {
+          "1": {
+            "picks": 1,
+            "uniform": [
+              "cinderling",
+              "rippleling",
+              "gustling",
+              "mossling",
+              "duskling",
+              "gleamling"
+            ]
+          },
+          "2": {
+            "group": [
+              [
+                "burrower",
+                "crystalgolem"
+              ],
+              [
+                "burrower",
+                "mosstroll"
+              ],
+              [
+                "dawnsentinel",
+                "halowisp"
+              ],
+              [
+                "prismscarab",
+                "dawnsentinel"
+              ],
+              [
+                "stalker",
+                "gloommoth"
+              ],
+              [
+                "umbralhound",
+                "stalker"
+              ]
+            ]
+          },
+          "3": {
+            "group": [
+              [
+                "cinderimp",
+                "magmacrawler"
+              ],
+              [
+                "flamedancer",
+                "cinderimp"
+              ],
+              [
+                "drownedone",
+                "siren"
+              ],
+              [
+                "tidecrab",
+                "drownedone"
+              ],
+              [
+                "stormhawk",
+                "thundertotem"
+              ],
+              [
+                "windwisp",
+                "stormhawk"
+              ]
+            ]
+          },
+          "4": {
+            "group": [
+              [
+                "drowpriestess",
+                "drider"
+              ],
+              [
+                "drowpriestess",
+                "drowblade"
+              ],
+              [
+                "drowpriestess",
+                "thoughteater"
+              ],
+              [
+                "drider",
+                "drowblade"
+              ],
+              [
+                "drider",
+                "thoughteater"
+              ],
+              [
+                "drowblade",
+                "thoughteater"
+              ]
+            ]
+          }
+        },
+        "planeBehaviour": true,
+        "log": "The bones stir. An ambush erupts around the opened chest!",
+        "trigger": "on-chest-open"
+      },
+      "loot": [
+        {
+          "table": "chest-enhanced"
+        }
+      ],
+      "src": "js/world/world.js:1292-1305",
+      "bossOk": false
+    },
+    "boss-dungeon": {
+      "kind": "boss",
+      "biomes": [
+        "dungeon"
+      ],
+      "floors": [
+        5
+      ],
+      "layout": {
+        "throne": {
+          "prop": "boss-throne",
+          "at": "(cx, y)"
+        },
+        "edgeProps": {
+          "cycle": [
+            "brazier-lit",
+            "banner-stand",
+            "torch-stand"
+          ],
+          "count": 5
+        },
+        "exit": {
+          "tile": "exit",
+          "at": "(cx, y+h-1)",
+          "opens": "when the warchief dies"
+        },
+        "ground": {
+          "count": 6,
+          "uniform": [
+            "bones",
+            "blood",
+            "scorch"
+          ],
+          "at": "random interior cells"
+        }
+      },
+      "residents": [
+        {
+          "creature": "warchief",
+          "state": "throne",
+          "elite": true,
+          "at": "boss post"
+        },
+        {
+          "creature": "goblin",
+          "count": 2,
+          "state": "asleep",
+          "guard": true
+        },
+        {
+          "creature": "archer",
+          "count": 1,
+          "state": "asleep",
+          "guard": true
+        }
+      ],
+      "src": "js/world/world.js:1485-1500; js/engine/content-adapter.js:153-157"
+    },
+    "crystal-resonance": {
+      "kind": "uncommon-event",
+      "minFloor": 12,
+      "minArea": 20,
+      "weight": 0.4,
+      "biomes": [
+        "caverns"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "layout": {
+        "focus": "resonance-crystal"
+      },
+      "interaction": {
+        "effects": [
+          {
+            "verb": "mana",
+            "amount": {
+              "pct-of": {
+                "pct": 100,
+                "of": "max-mp"
+              }
+            }
+          },
+          {
+            "verb": "create-item",
+            "give": {
+              "mote": "random"
+            },
+            "spot": "near"
+          },
+          {
+            "verb": "alert",
+            "radius": 8,
+            "who": "foes",
+            "toward": "source"
+          }
+        ],
+        "log": "The crystal refills your Mana and releases a mote. Its resonance draws nearby enemies.",
+        "sound": "pickup-item",
+        "trigger": "on-interact"
+      },
+      "src": "js/world/world.js:781; js/engine/sigil-adapter.js:5"
+    },
+    "dark": {
+      "kind": "special",
+      "minFloor": 3,
+      "minArea": 16,
+      "weight": 0.8,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "layout": {
+        "chest": {
+          "kind": "chest-crystal",
+          "at": "random interior cell"
+        }
+      },
+      "residents": [
+        {
+          "creature": {
+            "uniform": [
+              "goblin",
+              "bat"
+            ]
+          },
+          "count": 2,
+          "state": "asleep",
+          "swaps": true
+        }
+      ],
+      "loot": [
+        {
+          "table": "chest-crystal"
+        },
+        {
+          "give": {
+            "essence": {
+              "roll": [
+                15,
+                25
+              ]
+            }
+          }
+        }
+      ],
+      "note": "floor note: strings.json floor-note.dark",
+      "src": "js/world/world.js:1452-1456, :1484",
+      "bossOk": true,
+      "ownResidents": true
+    },
+    "dark-wizard-library": {
+      "kind": "rare-floor",
+      "chancePctPerRun": 5,
+      "floors": [
+        16,
+        19
+      ],
+      "biomes": [
+        "underdark"
+      ],
+      "minArea": 25,
+      "host": "Underdark region 0 room",
+      "layout": {
+        "shelves": {
+          "rows": "(y - room.y) % 3 == 0",
+          "max": 6,
+          "cycle": [
+            "bookshelf",
+            "bookshelf",
+            "pillar"
+          ]
+        },
+        "chest": {
+          "kind": "chest-gold",
+          "enhanced": true
+        }
+      },
+      "residents": [
+        {
+          "creature": "drowpriestess",
+          "count": 3,
+          "state": "asleep",
+          "guard": true,
+          "posts": "3 shallowest non-door cells"
+        }
+      ],
+      "loot": [
+        {
+          "give": {
+            "offhand": "tome",
+            "tier": "rolled",
+            "ruled": "2026-10-15 answer 13"
+          },
+          "at": "shallowest"
+        },
+        {
+          "give": {
+            "sigil": "transmutation"
+          }
+        },
+        {
+          "give": {
+            "sigil": "wisdom"
+          }
+        },
+        {
+          "give": {
+            "sigil": "ascension"
+          }
+        },
+        {
+          "table": "chest-enhanced"
+        }
+      ],
+      "stream": "rare-run seed ^ 0x57495A44",
+      "src": "js/world/rare-rooms.js:86-96; js/world/rare-rooms.js:39; js/world/rare-rooms.js:86",
+      "name": "Dark wizard library"
+    },
+    "drider-lair": {
+      "kind": "rare-floor",
+      "chancePctPerRun": 5,
+      "floors": [
+        16,
+        19
+      ],
+      "biomes": [
+        "underdark"
+      ],
+      "minArea": 25,
+      "layout": {
+        "chest": {
+          "kind": "chest-gold",
+          "enhanced": true,
+          "at": "deepest"
+        },
+        "ground": "web",
+        "props": [
+          "cocoon-large-1 (no hatch)",
+          "bones",
+          "bones"
+        ]
+      },
+      "residents": [
+        {
+          "creature": "drider",
+          "count": 2,
+          "state": "asleep",
+          "guard": true
+        },
+        {
+          "creature": "drowpriestess",
+          "count": 1,
+          "state": "asleep",
+          "guard": true
+        }
+      ],
+      "loot": [
+        {
+          "table": "chest-enhanced"
+        },
+        {
+          "give": {
+            "sigil": "vanish2"
+          }
+        }
+      ],
+      "stream": "rare-run seed ^ 0x44524944",
+      "src": "js/world/rare-rooms.js:72-80; js/world/rare-rooms.js:36; js/world/rare-rooms.js:76",
+      "name": "Drider lair"
+    },
+    "elemental-air": {
+      "kind": "special",
+      "minArea": 20,
+      "weight": 0.3,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true,
+        "floors": [
+          1,
+          2
+        ]
+      },
+      "tierByBiome": {
+        "1": 1,
+        "2": 1,
+        "3": 2,
+        "4": 3
+      },
+      "residents": [
+        {
+          "creatureByTier": [
+            "galeling",
+            "gustling",
+            "stormling"
+          ],
+          "count": 3,
+          "state": "asleep",
+          "guard": true,
+          "posts": "3 deepest free non-door cells"
+        }
+      ],
+      "layout": {
+        "chest": {
+          "kind": "chest-wood",
+          "at": "deepest free unreserved non-door cell"
+        },
+        "rune": "rune-stone-air",
+        "light": "crystal-air",
+        "decor": [
+          "crystal-air-small",
+          "stalagmite-air",
+          "crystal-air-small"
+        ],
+        "decorCount": "min(8, max(3, floor(cells/5))), the first is the light piece",
+        "ground": null
+      },
+      "note": "floor note: strings.json floor-note.sanctuary",
+      "loot": [
+        {
+          "table": "chest-wood"
+        }
+      ],
+      "src": "js/world/world.js:1373-1386; js/world/biomes/caverns/cavernmobs.js:77",
+      "minFloorInBiome": 3,
+      "ownResidents": true
+    },
+    "elemental-earth": {
+      "kind": "special",
+      "minArea": 20,
+      "weight": 0.3,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true,
+        "floors": [
+          1,
+          2
+        ]
+      },
+      "tierByBiome": {
+        "1": 1,
+        "2": 1,
+        "3": 2,
+        "4": 3
+      },
+      "residents": [
+        {
+          "creatureByTier": [
+            "stoneling",
+            "mossling",
+            "cragling"
+          ],
+          "count": 3,
+          "state": "asleep",
+          "guard": true,
+          "posts": "3 deepest free non-door cells"
+        }
+      ],
+      "layout": {
+        "chest": {
+          "kind": "chest-wood",
+          "at": "deepest free unreserved non-door cell"
+        },
+        "rune": "rune-stone-earth",
+        "light": "glow-mushrooms",
+        "decor": [
+          "fern",
+          "root-tangle",
+          "glow-mushrooms",
+          "fern"
+        ],
+        "decorCount": "min(8, max(3, floor(cells/5))), the first is the light piece",
+        "ground": "moss on bare floor"
+      },
+      "note": "floor note: strings.json floor-note.sanctuary",
+      "loot": [
+        {
+          "table": "chest-wood"
+        }
+      ],
+      "src": "js/world/world.js:1373-1386; js/world/biomes/caverns/cavernmobs.js:77",
+      "minFloorInBiome": 3,
+      "ownResidents": true
+    },
+    "elemental-fire": {
+      "kind": "special",
+      "minArea": 20,
+      "weight": 0.3,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true,
+        "floors": [
+          1,
+          2
+        ]
+      },
+      "tierByBiome": {
+        "1": 1,
+        "2": 1,
+        "3": 2,
+        "4": 3
+      },
+      "residents": [
+        {
+          "creatureByTier": [
+            "emberling",
+            "cinderling",
+            "pyreling"
+          ],
+          "count": 3,
+          "state": "asleep",
+          "guard": true,
+          "posts": "3 deepest free non-door cells"
+        }
+      ],
+      "layout": {
+        "chest": {
+          "kind": "chest-wood",
+          "at": "deepest free unreserved non-door cell"
+        },
+        "rune": "rune-stone-fire",
+        "light": "crystal-fire",
+        "decor": [
+          "crystal-fire-small",
+          "stalagmite-fire",
+          "crystal-fire-small"
+        ],
+        "decorCount": "min(8, max(3, floor(cells/5))), the first is the light piece",
+        "ground": null
+      },
+      "note": "floor note: strings.json floor-note.sanctuary",
+      "loot": [
+        {
+          "table": "chest-wood"
+        }
+      ],
+      "src": "js/world/world.js:1373-1386; js/world/biomes/caverns/cavernmobs.js:77",
+      "minFloorInBiome": 3,
+      "ownResidents": true
+    },
+    "elemental-light": {
+      "kind": "special",
+      "minArea": 20,
+      "weight": 0.3,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true,
+        "floors": [
+          1,
+          2
+        ]
+      },
+      "tierByBiome": {
+        "1": 1,
+        "2": 1,
+        "3": 2,
+        "4": 3
+      },
+      "residents": [
+        {
+          "creatureByTier": [
+            "lumenling",
+            "gleamling",
+            "dawnling"
+          ],
+          "count": 3,
+          "state": "asleep",
+          "guard": true,
+          "posts": "3 deepest free non-door cells"
+        }
+      ],
+      "layout": {
+        "chest": {
+          "kind": "chest-wood",
+          "at": "deepest free unreserved non-door cell"
+        },
+        "rune": "rune-stone-light",
+        "light": "crystal-gold",
+        "decor": [
+          "crystal-gold-small",
+          "stalagmite-light",
+          "crystal-gold-small"
+        ],
+        "decorCount": "min(8, max(3, floor(cells/5))), the first is the light piece",
+        "ground": null
+      },
+      "note": "floor note: strings.json floor-note.sanctuary",
+      "loot": [
+        {
+          "table": "chest-wood"
+        }
+      ],
+      "src": "js/world/world.js:1373-1386; js/world/biomes/caverns/cavernmobs.js:77",
+      "minFloorInBiome": 3,
+      "ownResidents": true
+    },
+    "elemental-shadow": {
+      "kind": "special",
+      "minArea": 20,
+      "weight": 0.3,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true,
+        "floors": [
+          1,
+          2
+        ]
+      },
+      "tierByBiome": {
+        "1": 1,
+        "2": 1,
+        "3": 2,
+        "4": 3
+      },
+      "residents": [
+        {
+          "creatureByTier": [
+            "wisp",
+            "duskling",
+            "umbraling"
+          ],
+          "count": 3,
+          "state": "asleep",
+          "guard": true,
+          "posts": "3 deepest free non-door cells"
+        }
+      ],
+      "layout": {
+        "chest": {
+          "kind": "chest-wood",
+          "at": "deepest free unreserved non-door cell"
+        },
+        "rune": "rune-stone-shadow",
+        "light": "crystal-violet",
+        "decor": [
+          "crystal-violet",
+          "stalagmite-shadow",
+          "stalagmite-shadow"
+        ],
+        "decorCount": "min(8, max(3, floor(cells/5))), the first is the light piece",
+        "ground": null
+      },
+      "note": "floor note: strings.json floor-note.sanctuary",
+      "loot": [
+        {
+          "table": "chest-wood"
+        }
+      ],
+      "src": "js/world/world.js:1373-1386; js/world/biomes/caverns/cavernmobs.js:77",
+      "minFloorInBiome": 3,
+      "ownResidents": true
+    },
+    "elemental-water": {
+      "kind": "special",
+      "minArea": 20,
+      "weight": 0.3,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true,
+        "floors": [
+          1,
+          2
+        ]
+      },
+      "tierByBiome": {
+        "1": 1,
+        "2": 1,
+        "3": 2,
+        "4": 3
+      },
+      "residents": [
+        {
+          "creatureByTier": [
+            "tideling",
+            "rippleling",
+            "tideling3"
+          ],
+          "count": 3,
+          "state": "asleep",
+          "guard": true,
+          "posts": "3 deepest free non-door cells"
+        }
+      ],
+      "layout": {
+        "chest": {
+          "kind": "chest-wood",
+          "at": "deepest free unreserved non-door cell"
+        },
+        "rune": "rune-stone-water",
+        "light": "crystal-water",
+        "decor": [
+          "crystal-water-small",
+          "stalagmite-water",
+          "crystal-water-small"
+        ],
+        "decorCount": "min(8, max(3, floor(cells/5))), the first is the light piece",
+        "ground": null
+      },
+      "note": "floor note: strings.json floor-note.sanctuary",
+      "loot": [
+        {
+          "table": "chest-wood"
+        }
+      ],
+      "src": "js/world/world.js:1373-1386; js/world/biomes/caverns/cavernmobs.js:77",
+      "minFloorInBiome": 3,
+      "ownResidents": true
+    },
+    "flooded-cache": {
+      "kind": "special",
+      "minFloor": 11,
+      "minArea": 20,
+      "weight": 1.5,
+      "biomes": [
+        "caverns"
+      ],
+      "layout": {
+        "chest": {
+          "kind": "chest-gold",
+          "at": "deepest",
+          "path": "perimeter"
+        },
+        "water": "every free unreserved non-door cell",
+        "props": {
+          "name": "kobold-crate",
+          "at": "floor cells deeper than 2"
+        }
+      },
+      "residents": null,
+      "ambush": {
+        "roster": [
+          "drownedone",
+          "rootbound",
+          "rootbound"
+        ],
+        "planeBehaviour": true,
+        "log": "The flooded cache stirs. A Drowned One and Root-bound rise to defend it!",
+        "trigger": "on-chest-open"
+      },
+      "loot": [
+        {
+          "table": "chest-gold"
+        }
+      ],
+      "src": "js/world/world.js:1257-1274, :1353-1372",
+      "bossOk": false,
+      "exclude": {
+        "bossFloor": true
+      }
+    },
+    "funeral-bell": {
+      "kind": "uncommon-event",
+      "minFloor": 7,
+      "minArea": 20,
+      "weight": 0.4,
+      "biomes": [
+        "crypt"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "layout": {
+        "focus": "crypt-funeral-bell"
+      },
+      "interaction": {
+        "effects": [
+          {
+            "verb": "summon",
+            "side": "hostile",
+            "creature": "acolyte",
+            "count": {
+              "fixed": 3
+            },
+            "placement": "room"
+          },
+          {
+            "verb": "create-item",
+            "give": {
+              "sigil": "transmutation"
+            },
+            "spot": "near"
+          },
+          {
+            "verb": "create-item",
+            "give": {
+              "essence": 50
+            },
+            "spot": "near"
+          }
+        ],
+        "log": "The funeral bell rings. Three acolytes answer; an offering appears.",
+        "sound": "crypt-bell",
+        "trigger": "on-interact"
+      },
+      "src": "js/world/world.js:734-784; js/engine/sigil-adapter.js:4"
+    },
+    "garden": {
+      "kind": "special",
+      "minFloor": 1,
+      "minArea": 9,
+      "weight": 3,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "notes": "biome 4: becomes an Underdark region theme room (deepThemeRoom special=true)",
+      "layout": {
+        "plan": true,
+        "pond": {
+          "tile": "water",
+          "at": "deepest free cell",
+          "count": 1
+        },
+        "grass": {
+          "pct": 65
+        },
+        "props": {
+          "cycle": [
+            "mushrooms",
+            "vines",
+            "mushrooms",
+            "vines"
+          ],
+          "count": {
+            "roll": [
+              2,
+              4
+            ]
+          },
+          "order": "nearest the pond"
+        }
+      },
+      "residents": null,
+      "loot": [
+        {
+          "give": {
+            "food": "random"
+          },
+          "chancePct": 50,
+          "at": "free cell nearest the pond"
+        }
+      ],
+      "src": "js/world/world.js:1193-1203",
+      "bossOk": true
+    },
+    "goblin-mine": {
+      "kind": "special",
+      "minFloor": 4,
+      "minArea": 25,
+      "weight": 1,
+      "biomes": [
+        "dungeon"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "layout": {
+        "chest": {
+          "kind": "chest-gold",
+          "at": "deepest",
+          "path": "perimeter"
+        },
+        "props": [
+          "mine-cart",
+          "kobold-pickaxe",
+          "kobold-pickaxe",
+          "kobold-campfire"
+        ],
+        "traps": {
+          "kind": "pit",
+          "hidden": true,
+          "cells": "every free unreserved non-door cell"
+        }
+      },
+      "ambush": {
+        "roster": [
+          "skeleton"
+        ],
+        "planeBehaviour": true,
+        "log": "A skeleton rises from the abandoned mine!"
+      },
+      "note": "floor note: strings.json floor-note.goblin-mine",
+      "loot": [
+        {
+          "table": "chest-gold"
+        }
+      ],
+      "src": "js/world/world.js:1275-1291",
+      "bossOk": false
+    },
+    "greedy-vault": {
+      "kind": "special",
+      "minFloor": 2,
+      "minArea": 25,
+      "weight": 1,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "host": "not a cave, square w = h >= 7, 8+ free cells",
+      "rareEvent": true,
+      "layout": {
+        "chests": [
+          {
+            "kind": "chest-gold",
+            "at": "(cx-1, cy)"
+          },
+          {
+            "kind": "chest-gold",
+            "at": "(cx+1, cy)"
+          }
+        ]
+      },
+      "interaction": {
+        
+      },
+      "loot": [
+        {
+          "table": "chest-gold"
+        },
+        {
+          "table": "chest-gold"
+        }
+      ],
+      "src": "js/world/world.js:1306-1338",
+      "bossOk": false
+    },
+    "harvester-camp": {
+      "kind": "special",
+      "minFloor": 16,
+      "minArea": 20,
+      "weight": 1,
+      "biomes": [
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "rareEvent": true,
+      "layout": {
+        "chest": {
+          "kind": "crate-supply",
+          "at": "deepest"
+        },
+        "props": [
+          "cocoon-large-1 (no hatch, touching a wall)",
+          "alchemy-table",
+          "barrel",
+          "barrel",
+          "mushrooms",
+          "mushrooms"
+        ]
+      },
+      "loot": [
+        {
+          "table": "camp-harvester"
+        }
+      ],
+      "src": "js/world/world.js:785-797",
+      "bossOk": false,
+      "ownResidents": true
+    },
+    "heroes-tomb": {
+      "kind": "pocket",
+      "minFloor": 6,
+      "minArea": 9,
+      "weight": 1,
+      "biomes": [
+        "crypt"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "host": "3x3 pocket carved off the host, secret door with a tell",
+      "layout": {
+        "door": "secret",
+        "consecrated": {
+          "power": 1,
+          "damage": 3,
+          "cells": "all"
+        },
+        "centre": "coffin",
+        "others": "grave-flowers-moss-N, N = 1 + (x+y) % 4"
+      },
+      "loot": [
+        {
+          "give": {
+            "food": "ration"
+          },
+          "at": "(cx-1, cy)"
+        },
+        {
+          "give": {
+            "food": "ration"
+          },
+          "at": "(cx+1, cy)"
+        }
+      ],
+      "note": "floor note: strings.json floor-note.heroes-tomb",
+      "src": "js/world/world.js:826-840",
+      "bossOk": false,
+      "maxFloor": 9
+    },
+    "hidden-cartographer": {
+      "kind": "hidden-sigil",
+      "name": "Cartographer's Nook",
+      "biomes": [
+        "dungeon"
+      ],
+      "chancePctPerRun": 10,
+      "floors": [
+        2,
+        4
+      ],
+      "pocket": {
+        "w": [
+          3,
+          5
+        ],
+        "h": [
+          3,
+          4
+        ]
+      },
+      "sigil": "mapping",
+      "props": [
+        "bookshelf",
+        "table-candle",
+        "bookshelf"
+      ],
+      "ground": "moss",
+      "loot": [
+        {
+          "give": {
+            "sigil": "mapping"
+          },
+          "at": "cell farthest from the door"
+        }
+      ],
+      "src": "js/world/rare-rooms.js:2-11, :19-32, :42-67; js/world/rare-rooms.js:3",
+      "layout": [
+        "the sigil on the cell farthest from the door",
+        "ground cover on every cell",
+        "props, in order, on the farthest cells not reserved, not beside a door, not the prize"
+      ]
+    },
+    "hidden-cleansing-shrine": {
+      "kind": "hidden-sigil",
+      "name": "Cleansing Shrine",
+      "biomes": [
+        "crypt"
+      ],
+      "chancePctPerRun": 10,
+      "floors": [
+        6,
+        9
+      ],
+      "pocket": {
+        "w": [
+          3,
+          5
+        ],
+        "h": [
+          3,
+          4
+        ]
+      },
+      "sigil": "purify",
+      "props": [
+        "fountain",
+        "torch-stand",
+        "statue"
+      ],
+      "ground": "moss",
+      "loot": [
+        {
+          "give": {
+            "sigil": "purify"
+          },
+          "at": "cell farthest from the door"
+        }
+      ],
+      "src": "js/world/rare-rooms.js:2-11, :19-32, :42-67; js/world/rare-rooms.js:3",
+      "fountain": "cleansing fountain",
+      "layout": [
+        "the sigil on the cell farthest from the door",
+        "ground cover on every cell",
+        "props, in order, on the farthest cells not reserved, not beside a door, not the prize"
+      ],
+      "note": "the fountain is flagged cleansingShrine"
+    },
+    "hidden-embalmer-cell": {
+      "kind": "hidden-sigil",
+      "name": "Embalmer's Cell",
+      "biomes": [
+        "crypt"
+      ],
+      "chancePctPerRun": 10,
+      "floors": [
+        6,
+        9
+      ],
+      "pocket": {
+        "w": [
+          3,
+          5
+        ],
+        "h": [
+          3,
+          4
+        ]
+      },
+      "sigil": "rot",
+      "props": [
+        "alchemy-table",
+        "urn",
+        "bones"
+      ],
+      "ground": "bones",
+      "loot": [
+        {
+          "give": {
+            "sigil": "rot"
+          },
+          "at": "cell farthest from the door"
+        }
+      ],
+      "src": "js/world/rare-rooms.js:2-11, :19-32, :42-67; js/world/rare-rooms.js:3",
+      "layout": [
+        "the sigil on the cell farthest from the door",
+        "ground cover on every cell",
+        "props, in order, on the farthest cells not reserved, not beside a door, not the prize"
+      ]
+    },
+    "hidden-folded-study": {
+      "kind": "hidden-sigil",
+      "name": "Folded Study",
+      "biomes": [
+        "underdark"
+      ],
+      "chancePctPerRun": 10,
+      "floors": [
+        16,
+        19
+      ],
+      "pocket": {
+        "w": [
+          3,
+          5
+        ],
+        "h": [
+          3,
+          4
+        ]
+      },
+      "sigil": "blink",
+      "props": [
+        "bookshelf",
+        "table-candle",
+        "crystal-violet"
+      ],
+      "ground": "moss",
+      "loot": [
+        {
+          "give": {
+            "sigil": "blink"
+          },
+          "at": "cell farthest from the door"
+        }
+      ],
+      "src": "js/world/rare-rooms.js:2-11, :19-32, :42-67; js/world/rare-rooms.js:3",
+      "layout": [
+        "the sigil on the cell farthest from the door",
+        "ground cover on every cell",
+        "props, in order, on the farthest cells not reserved, not beside a door, not the prize"
+      ]
+    },
+    "hidden-fungal-pantry": {
+      "kind": "hidden-sigil",
+      "name": "Fungal Pantry",
+      "biomes": [
+        "caverns"
+      ],
+      "chancePctPerRun": 10,
+      "floors": [
+        11,
+        14
+      ],
+      "pocket": {
+        "w": [
+          3,
+          5
+        ],
+        "h": [
+          3,
+          4
+        ]
+      },
+      "sigil": "naturesbounty",
+      "props": [
+        "glow-mushrooms",
+        "kobold-crate",
+        "mushrooms"
+      ],
+      "ground": "grass",
+      "loot": [
+        {
+          "give": {
+            "sigil": "naturesbounty"
+          },
+          "at": "cell farthest from the door"
+        },
+        {
+          "give": {
+            "food": "skewer"
+          }
+        },
+        {
+          "give": {
+            "food": "skewer"
+          }
+        },
+        {
+          "give": {
+            "food": "glowstew"
+          }
+        }
+      ],
+      "src": "js/world/rare-rooms.js:2-11, :19-32, :42-67; js/world/rare-rooms.js:3",
+      "mushrooms": {
+        "others": "mushrooms",
+        "walkable": true
+      },
+      "layout": [
+        "the sigil on the cell farthest from the door",
+        "ground cover on every cell",
+        "props, in order, on the farthest cells not reserved, not beside a door, not the prize"
+      ]
+    },
+    "hidden-last-expedition": {
+      "kind": "hidden-sigil",
+      "name": "The Last Expedition",
+      "biomes": [
+        "dungeon"
+      ],
+      "chancePctPerRun": 5,
+      "floors": [
+        2,
+        4
+      ],
+      "pocket": {
+        "w": 5,
+        "h": 4
+      },
+      "sigil": "mapping",
+      "props": [
+        "cl-lost-miner-1",
+        "cl-lost-miner-1",
+        "cl-lost-miner-1",
+        "weapon-rack",
+        "brazier-unlit",
+        "kobold-crate"
+      ],
+      "ground": "bones",
+      "loot": [
+        {
+          "give": {
+            "sigil": "mapping"
+          },
+          "at": "cell farthest from the door"
+        },
+        {
+          "table": "expedition-reward"
+        }
+      ],
+      "stream": "rare-run seed ^ 0x45585044",
+      "src": "js/world/rare-rooms.js:12, :19-21, :47-50; js/world/rare-rooms.js:12; js/engine/gear-adapter.js:3",
+      "layout": [
+        "mapping sigil on the farthest cell",
+        "two buff foods of biome 0 (different when possible) and an expedition ring (plus at least 2) on the next 3 farthest cells",
+        "bones ground; props as for hidden sigil rooms"
+      ]
+    },
+    "hidden-petrified-shrine": {
+      "kind": "hidden-sigil",
+      "name": "Petrified Shrine",
+      "biomes": [
+        "caverns"
+      ],
+      "chancePctPerRun": 10,
+      "floors": [
+        11,
+        14
+      ],
+      "pocket": {
+        "w": [
+          3,
+          5
+        ],
+        "h": [
+          3,
+          4
+        ]
+      },
+      "sigil": "stoneskin2",
+      "props": [
+        "mossy-boulder",
+        "statue-broken",
+        "rune-stone-earth"
+      ],
+      "ground": "moss",
+      "loot": [
+        {
+          "give": {
+            "sigil": "stoneskin2"
+          },
+          "at": "cell farthest from the door"
+        },
+        {
+          "give": {
+            "mote": "earth"
+          },
+          "count": 3
+        }
+      ],
+      "src": "js/world/rare-rooms.js:2-11, :19-32, :42-67; js/world/rare-rooms.js:3",
+      "layout": [
+        "the sigil on the cell farthest from the door",
+        "ground cover on every cell",
+        "props, in order, on the farthest cells not reserved, not beside a door, not the prize"
+      ]
+    },
+    "hidden-room": {
+      "kind": "hidden",
+      "chancePctPerFloor": 45,
+      "host": "pocket 2-4 wide, 2-3 high; secret door; tell on the inside cell",
+      "loot": [
+        {
+          "table": "chest-wood"
+        },
+        {
+          "give": {
+            "essence": {
+              "roll": [
+                15,
+                30
+              ]
+            }
+          }
+        }
+      ],
+      "src": "js/world/world.js:357, :841-850; js/world/world.js:840",
+      "name": "Hidden cache",
+      "perFloor": true,
+      "pocket": {
+        "w": [
+          2,
+          4
+        ],
+        "h": [
+          2,
+          3
+        ]
+      },
+      "layout": [
+        "a wooden chest on a random room cell",
+        "essence 15-30 on another"
+      ]
+    },
+    "hidden-slime-chamber": {
+      "kind": "hidden-sigil",
+      "name": "Slime Chamber",
+      "biomes": [
+        "dungeon"
+      ],
+      "chancePctPerRun": 10,
+      "floors": [
+        2,
+        4
+      ],
+      "pocket": {
+        "w": 4,
+        "h": 4
+      },
+      "sigil": "ascension",
+      "props": null,
+      "ground": "grave ooze on every cell",
+      "loot": [
+        {
+          "give": {
+            "sigil": "ascension"
+          },
+          "at": "cell farthest from the door"
+        }
+      ],
+      "src": "js/world/rare-rooms.js:2-11, :19-32, :42-67; js/world/rare-rooms.js:3",
+      "residents": [
+        {
+          "creature": "greenslime",
+          "count": "every walkable cell",
+          "state": "asleep",
+          "guard": true
+        }
+      ],
+      "layout": [
+        "ascension sigil on the farthest cell",
+        "grave ooze on every cell",
+        "residents: a sleeping guard green slime on every free walkable cell"
+      ]
+    },
+    "hidden-smuggler-hideout": {
+      "kind": "hidden-sigil",
+      "name": "Smuggler's Hideout",
+      "biomes": [
+        "underdark"
+      ],
+      "chancePctPerRun": 10,
+      "floors": [
+        16,
+        19
+      ],
+      "pocket": {
+        "w": [
+          3,
+          5
+        ],
+        "h": [
+          3,
+          4
+        ]
+      },
+      "sigil": "vanish2",
+      "props": [
+        "kobold-crate",
+        "table-candle"
+      ],
+      "ground": "moss",
+      "loot": [
+        {
+          "give": {
+            "sigil": "vanish2"
+          },
+          "at": "cell farthest from the door"
+        }
+      ],
+      "src": "js/world/rare-rooms.js:2-11, :19-32, :42-67; js/world/rare-rooms.js:3",
+      "layout": [
+        "the sigil on the cell farthest from the door",
+        "ground cover on every cell",
+        "props, in order, on the farthest cells not reserved, not beside a door, not the prize"
+      ]
+    },
+    "hungry-spider": {
+      "kind": "rare-floor",
+      "chancePctPerRun": 5,
+      "floors": [
+        6,
+        9
+      ],
+      "biomes": [
+        "crypt"
+      ],
+      "minArea": 25,
+      "layout": {
+        "ground": "web"
+      },
+      "residents": [
+        {
+          "creature": "webspitter",
+          "name": "Hungry Web Spitter",
+          "side": "neutral",
+          "state": "idle",
+          "noXp": true,
+          "noLoot": true,
+          "at": "deepest"
+        }
+      ],
+      "interaction": {
+        "onSight": {
+          "trigger": "on-sight",
+          "log": "The spider says: \"Hungry... everything dead.\""
+        },
+        "onUse": "confirm Attack: becomes hostile",
+        "onRationDropped": {
+          "result": "pet ally that follows between floors",
+          "log": "The spider eats the ration. It will follow you.",
+          "sound": "pickup-food",
+          "trigger": "on-item-dropped",
+          "filters": {
+            "give": {
+              "food": "ration"
+            },
+            "room": true
+          }
+        },
+        "provoke": "any damage from the player side"
+      },
+      "stream": "rare-run seed ^ 0x53504944",
+      "src": "js/world/rare-rooms.js:81-82, :98-123; js/world/rare-rooms.js:37; js/world/rare-rooms.js:100",
+      "name": "Hungry spider",
+      "rules": [
+        "first seen (world pulse): 'The spider says: \"Hungry... everything dead.\"'",
+        "interacting: a confirm box \"The spider watches you without attacking.\" with Attack",
+        "dropping a ration in its room while it is neutral: it eats it and becomes a pet ally that follows you across floors (\"The spider eats the ration. It will follow you.\" sfx pickup-food)",
+        "damage from you or an ally turns it hostile"
+      ]
+    },
+    "library": {
+      "kind": "special",
+      "minFloor": 1,
+      "minArea": 12,
+      "weight": 2,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "layout": {
+        "theme": {
+          "uniform": [
+            "elemental",
+            "holy",
+            "explorer",
+            "forbidden"
+          ]
+        },
+        "element": "uniform of six, elemental theme only",
+        "hub": "free cell nearest the centre; its 3x3 reserved",
+        "shelves": {
+          "prop": "bookshelf",
+          "rows": "(y - room.y) % 3 == 0",
+          "count": "min(10, max(4, floor((w+h)/2)))",
+          "order": "top-left"
+        },
+        "desk": {
+          "prop": "table-candle",
+          "within": 3,
+          "of": "hub"
+        }
+      },
+      "loot": [
+        {
+          "table": "library-reward"
+        },
+        {
+          "give": {
+            "mote": "random",
+            "note": "the room's element, else one of its theme's motes (made by the room)"
+          },
+          "chancePct": 40
+        }
+      ],
+      "lootSpot": "cells farthest from the hub, in order",
+      "themes": {
+        "elemental": {
+          "motes": [
+            "fire",
+            "water",
+            "air",
+            "earth",
+            "light",
+            "shadow"
+          ],
+          "sigils": [
+            "firestorm",
+            "identify",
+            "levitate",
+            "stoneskin",
+            "heal",
+            "vanish",
+            "firestorm2",
+            "identify2",
+            "levitate2",
+            "stoneskin2",
+            "heal2",
+            "vanish2",
+            "cinder",
+            "magma",
+            "sunburst",
+            "smoke",
+            "storm",
+            "mire",
+            "purify",
+            "mana"
+          ]
+        },
+        "holy": {
+          "motes": [
+            "light",
+            "water",
+            "earth"
+          ],
+          "sigils": [
+            "heal",
+            "identify",
+            "stoneskin",
+            "purify",
+            "heal2",
+            "stoneskin2",
+            "aegis"
+          ]
+        },
+        "explorer": {
+          "motes": [
+            "air",
+            "earth",
+            "shadow"
+          ],
+          "sigils": [
+            "levitate",
+            "stoneskin",
+            "vanish",
+            "mapping",
+            "blink",
+            "recall",
+            "haste",
+            "levitate2",
+            "stoneskin2",
+            "vanish2"
+          ]
+        },
+        "forbidden": {
+          "motes": [
+            "shadow",
+            "fire",
+            "water"
+          ],
+          "sigils": [
+            "vanish",
+            "firestorm",
+            "identify",
+            "smoke",
+            "mana",
+            "vanish2",
+            "firestorm2",
+            "identify2"
+          ]
+        }
+      },
+      "firstSigil": {
+        "gradePct": {
+          "singles": 85,
+          "pairs": 10,
+          "plus": 4,
+          "grand": 1
+        },
+        "fallback": "theme singles, then theme pool"
+      },
+      "src": "js/world/world.js:945-989",
+      "bossOk": true
+    },
+    "merchant": {
+      "kind": "rare-floor",
+      "chancePctPerRun": 30,
+      "floors": [
+        11,
+        14
+      ],
+      "biomes": [
+        "caverns"
+      ],
+      "minArea": 25,
+      "layout": {
+        "stall": {
+          "prop": "table-candle"
+        },
+        "vendor": "adjacent cell; both removable without cutting the room",
+        "props": [
+          "kobold-campfire",
+          "kobold-crate",
+          "mushrooms"
+        ]
+      },
+      "residents": [
+        {
+          "creature": "myconid",
+          "name": "Myconid Merchant",
+          "side": "neutral",
+          "state": "idle",
+          "noXp": true,
+          "noLoot": true
+        }
+      ],
+      "interaction": {
+        "log": "You need N essence.",
+        "sound": "pickup-item",
+        "trigger": "on-interact",
+        "effects": [
+          {
+            "verb": "shop",
+            "stock": "merchant",
+            "reach": 1,
+            "vendor": "Myconid Merchant"
+          }
+        ]
+      },
+      "loot": [
+        {
+          "table": "merchant"
+        }
+      ],
+      "fallback": "storage",
+      "stream": "rare-run seed ^ 0x4D455243",
+      "src": "js/world/world.js:1059-1063, :1085-1109, :1468; js/combat/systems.js:287-322"
+    },
+    "myconid-nursery": {
+      "kind": "special",
+      "minFloor": 11,
+      "minArea": 20,
+      "weight": 0.6,
+      "biomes": [
+        "caverns"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "layout": {
+        "chest": {
+          "kind": "chest-gold",
+          "at": "deepest",
+          "path": "perimeter"
+        },
+        "props": {
+          "name": "mushrooms",
+          "max": 3
+        },
+        "ground": "grass"
+      },
+      "ambush": {
+        "cycle": [
+          "myconid",
+          "myconid",
+          "shroomling"
+        ],
+        "count": "min(9, 3 + floor + floor(w*h/16), cells)",
+        "log": "The nursery stirs. Myconids close in!",
+        "trigger": "on-chest-open"
+      },
+      "loot": [
+        {
+          "table": "chest-gold"
+        }
+      ],
+      "src": "js/world/world.js:1257-1274, :1363-1370",
+      "bossOk": false
+    },
+    "nest": {
+      "kind": "special",
+      "minFloor": 1,
+      "minArea": 12,
+      "weight": 2,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "layout": {
+        "focus": "deepest cell",
+        "props": {
+          "name": "bones",
+          "max": 4,
+          "within": 3
+        }
+      },
+      "residents": [
+        {
+          "creature": "rat",
+          "count": {
+            "else": "population 6-10"
+          },
+          "state": "asleep",
+          "posts": "nearest the focus",
+          "swaps": true
+        }
+      ],
+      "loot": [
+        {
+          "give": {
+            "essence": {
+              "roll": [
+                10,
+                20
+              ]
+            }
+          },
+          "at": "focus"
+        },
+        {
+          "give": {
+            "food": "ration"
+          },
+          "at": "cell adjacent to the focus"
+        }
+      ],
+      "src": "js/world/world.js:1146-1154, :1476",
+      "bossOk": true,
+      "ownResidents": true
+    },
+    "portcullis-cache": {
+      "kind": "uncommon-event",
+      "minFloor": 2,
+      "minArea": 20,
+      "weight": 0.4,
+      "biomes": [
+        "dungeon"
+      ],
+      "exclude": {
+        "bossFloor": true,
+        "floors": [
+          1,
+          2
+        ]
+      },
+      "host": "4x4 pocket off the host, sealed door with portcullis-closed",
+      "layout": {
+        "chest": {
+          "kind": "chest-gold",
+          "enhanced": true,
+          "at": "deepest pocket cell"
+        },
+        "lever": {
+          "prop": "lever-up",
+          "where": "another plain room, free non-door cell 12+ steps from the pocket, uniform among the farthest quarter"
+        }
+      },
+      "interaction": {
+        "effects": [
+          {
+            "verb": "terrain",
+            "set": "open-door",
+            "where": "tile"
+          },
+          {
+            "verb": "summon",
+            "side": "hostile",
+            "creature": "brute",
+            "count": {
+              "fixed": 2
+            },
+            "placement": "room"
+          },
+          {
+            "verb": "summon",
+            "side": "hostile",
+            "creature": "shaman",
+            "count": {
+              "fixed": 1
+            },
+            "placement": "room"
+          }
+        ],
+        "log": "The portcullis rises. Two brutes and a shaman guard the cache.",
+        "sound": "lever",
+        "trigger": "on-interact"
+      },
+      "loot": [
+        {
+          "table": "chest-enhanced"
+        }
+      ],
+      "src": "js/world/world.js:734-767; js/engine/sigil-adapter.js:2-13"
+    },
+    "prison": {
+      "kind": "special",
+      "minFloor": 2,
+      "minArea": 12,
+      "weight": 1.5,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "layout": {
+        "cages": {
+          "prop": "cage",
+          "max": 2,
+          "spacing": 3,
+          "at": "free edge cells not beside a door, top-left order, each with a free in-room neighbour"
+        },
+        "prisoner": {
+          "chancePct": 85,
+          "creature": {
+            "uniform": [
+              "goblin",
+              "archer"
+            ]
+          },
+          "cage": "first"
+        },
+        "props": {
+          "list": [
+            "table-candle",
+            "chains",
+            "bones"
+          ],
+          "at": "free unreserved edge cells"
+        }
+      },
+      "residents": null,
+      "interaction": {
+        "outcome": {
+          "uniform": [
+            "fighter",
+            "escapee",
+            "hostile"
+          ]
+        },
+        "escapee": {
+          "hpPct": 50,
+          "armourPct": 50,
+          "evasionPct": 50,
+          "reward": "prisoner-reward",
+          "ambush": true,
+          "escort": {
+            "verb": "escort",
+            "to": "upstairs",
+            "reward": "prisoner-reward",
+            "stats": {
+              "hpPct": 50,
+              "armourPct": 50,
+              "evasionPct": 50
+            },
+            "name": "Escaping X"
+          }
+        },
+        "logs": [
+          "Escort the prisoner to the upstairs. Reward on arrival.",
+          "The escapee thanks you, leaves a reward and escapes.",
+          "The prisoner says: \"You freed me. I will fight beside you.\"",
+          "The prisoner lunges at you!",
+          "You hear a rescue patrol approaching the prison."
+        ],
+        "sound": "door-open",
+        "trigger": "on-interact"
+      },
+      "ambush": {
+        "steps": [
+          4,
+          18
+        ],
+        "packs": {
+          "1": [
+            "goblin",
+            "archer",
+            "brute",
+            "shaman"
+          ],
+          "2": [
+            "bonearcher",
+            "gravebloat",
+            "acolyte",
+            "shade"
+          ],
+          "3": [
+            "stormbeetle",
+            "stormbeetle",
+            "myconid",
+            "myconid"
+          ],
+          "4": [
+            "drowblade",
+            "drowblade",
+            "drowpriestess",
+            "drowpriestess"
+          ]
+        },
+        "crypt": "plus one ghoul emerging behind the player"
+      },
+      "loot": [
+        {
+          "table": "prisoner-reward",
+          "on": "escort"
+        }
+      ],
+      "src": "js/world/world.js:991-1014; js/combat/systems.js:350-430",
+      "bossOk": true
+    },
+    "ritual": {
+      "kind": "special",
+      "minFloor": 16,
+      "minArea": 25,
+      "weight": 1.2,
+      "biomes": [
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "host": "Underdark region 0 room",
+      "layout": {
+        "cage": {
+          "prop": "cage",
+          "prisoner": "goblin",
+          "outcome": "escapee",
+          "at": "deepest free non-door cell with a free neighbour",
+          "captive": {
+            "body": true,
+            "caged": true,
+            "untargetable": true,
+            "hp": 24
+          }
+        },
+        "altar": {
+          "setPiece": "drow-altar-blood",
+          "w": 2,
+          "h": 1,
+          "distance": [
+            2,
+            4
+          ]
+        },
+        "chest": {
+          "kind": "chest-gold",
+          "enhanced": true
+        },
+        "ground": {
+          "scorch": {
+            "within": 3
+          }
+        },
+        "props": {
+          "name": "brazier-lit",
+          "count": 2
+        }
+      },
+      "residents": [
+        {
+          "creature": "drowpriestess",
+          "count": 1,
+          "state": "asleep",
+          "guard": true,
+          "post": "priest post",
+          "swaps": false
+        },
+        {
+          "creature": "drowblade",
+          "count": 2,
+          "state": "asleep",
+          "guard": true
+        }
+      ],
+      "pulse": {
+        "trigger": "on-world-pulse",
+        "clock": "game-turn",
+        "starts": "cage or priest in sight",
+        "needs": "priest alive, not ally, not stunned/frozen/stone/feared/silenced, on her post",
+        "logs": [
+          "A priestess draws blood from a captive. The ritual has begun.",
+          "The ritual breaks. The captive is still alive.",
+          "The captive falls. A Horned Reaver and Gorehound tear through the ritual!"
+        ],
+        "sound": "portal",
+        "effects": [
+          {
+            "verb": "damage",
+            "amount": 2,
+            "premitigated": true,
+            "tags": [
+              "periodic"
+            ],
+            "target": {
+              "selector": "tile",
+              "at": "cage",
+              "side": "any"
+            }
+          }
+        ]
+      },
+      "loot": [
+        {
+          "table": "chest-enhanced"
+        }
+      ],
+      "src": "js/world/world.js:1215-1256, :1469-1474",
+      "bossOk": false,
+      "ownResidents": true
+    },
+    "ruined-treasury": {
+      "kind": "special",
+      "minFloor": 2,
+      "minArea": 25,
+      "weight": 1,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true,
+        "floors": [
+          1,
+          2
+        ]
+      },
+      "rareEvent": true,
+      "layout": {
+        "chest": {
+          "kind": "chest-gold",
+          "enhanced": true,
+          "at": "deepest"
+        },
+        "ground": "bones",
+        "props": [
+          "statue-broken",
+          "statue-broken",
+          "rubble",
+          "rubble"
+        ]
+      },
+      "residents": [
+        {
+          "creature": "roster",
+          "count": 3,
+          "state": "asleep",
+          "guard": true,
+          "posts": "next 3 deepest non-door cells"
+        }
+      ],
+      "loot": [
+        {
+          "table": "chest-enhanced"
+        }
+      ],
+      "src": "js/world/world.js:815-825",
+      "bossOk": false,
+      "ownResidents": true
+    },
+    "sacrifice": {
+      "kind": "special",
+      "minFloor": 2,
+      "minArea": 12,
+      "weight": 1.2,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns"
+      ],
+      "notes": "biome 4: removed on non-boss floors; on the boss floor the altar becomes drow-altar-blood 2x1 when the east cell is free",
+      "layout": {
+        "altar": {
+          "prop": "altar-spikes",
+          "at": "centre"
+        },
+        "props": {
+          "cycle": [
+            "brazier-lit",
+            "chains",
+            "brazier-lit"
+          ],
+          "count": 3,
+          "at": "edge"
+        }
+      },
+      "interaction": {
+        "effects": [
+          {
+            "verb": "pay-hp",
+            "amount": {
+              "pct-of": {
+                "pct": 15,
+                "of": "max-hp"
+              },
+              "round": "nearest",
+              "min": 1
+            },
+            "nonLethal": false
+          }
+        ],
+        "rewardsAt": {
+          "passes": [
+            3,
+            5,
+            7
+          ]
+        },
+        "logs": [
+          "The altar is pleased. A gift appears.",
+          "The altar drinks.",
+          "The altar is sated."
+        ],
+        "sounds": [
+          "player-hurt",
+          "shrine-convert"
+        ],
+        "trigger": "on-interact"
+      },
+      "loot": [
+        {
+          "table": "sacrifice-altar"
+        }
+      ],
+      "src": "js/world/world.js:1440-1443; js/combat/systems.js:491-516",
+      "bossOk": true
+    },
+    "sealed-lamp": {
+      "kind": "rare-floor",
+      "chancePctPerRun": 5,
+      "floors": [
+        11,
+        14
+      ],
+      "biomes": [
+        "caverns"
+      ],
+      "minArea": 25,
+      "layout": {
+        "relic": {
+          "give": {
+            "relic": "sealed-lamp"
+          },
+          "name": "Sealed Magic Lamp",
+          "at": "deepest"
+        }
+      },
+      "interaction": {
+        "logs": [
+          "The lamp shatters. A hostile Prism Seer tears free!",
+          "The lamp trembles, but its seal holds."
+        ],
+        "sound": "dark-cast"
+      },
+      "stream": "rare-run seed ^ 0x4C414D50",
+      "src": "js/world/rare-rooms.js:83-85, :124-132; js/world/rare-rooms.js:38; js/world/rare-rooms.js:124",
+      "name": "Sealed lamp",
+      "rules": [
+        "picking it up shatters it: a hostile Chaos Prism Seer appears on the room cell nearest the lamp that is free, at least 2 from you, not beside a door, with no stairs, upstairs, exit or portal within 3; \"The lamp shatters. A hostile Prism Seer tears free!\" sfx dark-cast; the floor counts as a chaos incursion",
+        "no valid cell: \"The lamp trembles, but its seal holds.\""
+      ]
+    },
+    "silk-survivor": {
+      "kind": "uncommon-event",
+      "minFloor": 17,
+      "minArea": 20,
+      "weight": 0.4,
+      "biomes": [
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "layout": {
+        "focus": "silk-wrapped-traveler"
+      },
+      "interaction": {
+        "effects": [
+          {
+            "verb": "summon",
+            "side": "ally",
+            "creature": "silk-survivor-human",
+            "count": {
+              "fixed": 1
+            },
+            "noLoot": true,
+            "noXp": true
+          },
+          {
+            "verb": "escort",
+            "to": "upstairs",
+            "reward": "escort-reward"
+          },
+          {
+            "verb": "summon",
+            "side": "hostile",
+            "creature": "spiderling",
+            "count": {
+              "fixed": 12
+            },
+            "placement": "room"
+          },
+          {
+            "verb": "summon",
+            "side": "hostile",
+            "creature": "drider",
+            "count": {
+              "fixed": 1
+            },
+            "placement": "just outside a room mouth"
+          },
+          {
+            "verb": "create-item",
+            "give": {
+              "food": "random-special",
+              "biome": 4
+            },
+            "count": {
+              "fixed": 2
+            },
+            "spot": "near"
+          },
+          {
+            "verb": "create-item",
+            "give": {
+              "sigil": "mapping"
+            },
+            "spot": "near"
+          }
+        ],
+        "log": "The traveler leaves two special foods and a mapping sigil. Spiderlings flood the room! Escort him to the upstairs for a ring or amulet.",
+        "sound": "pickup-item",
+        "trigger": "on-interact"
+      },
+      "loot": [
+        {
+          "table": "escort-reward",
+          "on": "escort"
+        }
+      ],
+      "src": "js/world/world.js:773-780; js/engine/sigil-adapter.js:6-10"
+    },
+    "statues": {
+      "kind": "special",
+      "minFloor": 3,
+      "minArea": 16,
+      "weight": 1,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "notes": "biome 4 outside region 0: Underdark theme room",
+      "layout": {
+        "reserve": "centre row (w>=h) or column",
+        "statues": {
+          "count": "min(4, floor(interior cells/3))",
+          "spacing": 2,
+          "second": "statue-broken",
+          "others": "statue",
+          "order": "nearest the axis, then deepest"
+        }
+      },
+      "loot": [
+        {
+          "give": {
+            "essence": {
+              "roll": [
+                15,
+                25
+              ]
+            }
+          },
+          "at": "deepest free cell"
+        }
+      ],
+      "src": "js/world/world.js:1204-1214",
+      "bossOk": true
+    },
+    "urn-chamber": {
+      "kind": "special",
+      "minFloor": 6,
+      "minArea": 9,
+      "weight": 3,
+      "biomes": [
+        "crypt"
+      ],
+      "bossOk": true,
+      "replaces": "storage",
+      "ruled": "2026-10-15 answer 12: the Crypt's urn chamber is its own room kind, rolled in the storage row's place (so a boss floor may hold it, as storage is bossOk; answer 10)",
+      "src": "spec/world.md Crypt 33-34; biomes.json crypt-urn-chamber (its dressing)"
+    },
+    "storage": {
+      "kind": "special",
+      "minFloor": 1,
+      "minArea": 9,
+      "weight": 3,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "notes": "biome 2 (not plane): urn chamber pass after; biome 4 outside region 0: Underdark theme room",
+      "layout": {
+        "aisle": "two middle rows (w>=h) or columns",
+        "chest": {
+          "kind": "crate-supply",
+          "at": "edge cell farthest from mouths"
+        },
+        "barrels": {
+          "count": {
+            "choose": [
+              {
+                "weight": 60,
+                "n": 1
+              },
+              {
+                "weight": 40,
+                "n": 2
+              }
+            ]
+          },
+          "kinds": [
+            "barrel-explosive",
+            "barrel-poison",
+            "barrel-water"
+          ],
+          "rules": [
+            "not reserved",
+            "not beside a door",
+            "more than 1 from the chest",
+            "no stairs, upstairs, exit, portal, forge or shrine within 3",
+            "3x3 blast never covers the hub, a mouth or the chest",
+            "every mouth and the chest keep a route to the hub around the blast",
+            "barrels more than 2 apart (Chebyshev)"
+          ],
+          "order": "nearest the aisle axis"
+        },
+        "stock": {
+          "cycle": [
+            "barrel",
+            "crate",
+            "pot",
+            "crate",
+            "barrel",
+            "pot"
+          ],
+          "count": "min(7, floor(edge cells * 0.6))",
+          "at": "free unreserved edge cells, sorted along the axis"
+        }
+      },
+      "loot": [
+        {
+          "table": "crate-supply"
+        }
+      ],
+      "src": "js/world/world.js:854-908",
+      "bossOk": true
+    },
+    "survey-camp": {
+      "kind": "special",
+      "minFloor": 11,
+      "minArea": 16,
+      "weight": 1,
+      "biomes": [
+        "caverns"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "rareEvent": true,
+      "layout": {
+        "chest": {
+          "kind": "crate-supply",
+          "at": "deepest"
+        },
+        "props": [
+          "mine-cart",
+          "kobold-pickaxe",
+          "kobold-pickaxe",
+          "kobold-bedroll-1",
+          "cl-lost-miner-1"
+        ]
+      },
+      "loot": [
+        {
+          "table": "camp-survey"
+        }
+      ],
+      "src": "js/world/world.js:798-806",
+      "bossOk": false
+    },
+    "sword-in-stone": {
+      "kind": "rare-floor",
+      "chancePctPerRun": 5,
+      "floors": [
+        2,
+        4
+      ],
+      "biomes": [
+        "dungeon"
+      ],
+      "minArea": 25,
+      "layout": {
+        "stone": {
+          "prop": "sword-in-stone",
+          "blocks": true,
+          "breakable": true,
+          "at": "free cell nearest the centre that does not cut the room"
+        },
+        "consecrated": {
+          "radius": 2,
+          "power": 1,
+          "damage": 3,
+          "ground": "moss"
+        },
+        "props": {
+          "name": "torch-stand",
+          "count": 4,
+          "beyond": 2
+        }
+      },
+      "fallback": "garden",
+      "loot": [
+        {
+          "give": {
+            "weapon": "sword",
+            "tier": "masterwork",
+            "plus": 3,
+            "enchant": "light",
+            "identified": true,
+            "cursed": false
+          },
+          "on": "on-prop-broken"
+        }
+      ],
+      "stream": "rare-run seed ^ 0x53574F52",
+      "src": "js/world/world.js:1064-1084"
+    },
+    "traps": {
+      "kind": "special",
+      "minFloor": 2,
+      "minArea": 16,
+      "weight": 1.3,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "layout": {
+        "chest": {
+          "kind": {
+            "else": "chest-iron"
+          },
+          "at": "deepest free cell",
+          "path": "perimeter route, reserved"
+        },
+        "traps": {
+          "kinds": "traps.json with minFloor <= floor, never teleport, no pit on boss floors or floor%5==0",
+          "count": "min(cells, max(6, ceil(cells*0.6)))",
+          "cells": "unreserved floor, no prop, not beside a door"
+        },
+        "ground": {
+          "count": 3,
+          "uniform": [
+            "scorch",
+            "bones"
+          ]
+        }
+      },
+      "loot": [
+        {
+          "table": "chest-ornate",
+          "or": "chest-iron",
+          "note": "the traps room picks one of the two (specials.js)"
+        },
+        {
+          "give": {
+            "essence": {
+              "roll": [
+                15,
+                30
+              ]
+            }
+          }
+        }
+      ],
+      "src": "js/world/world.js:1176-1192",
+      "bossOk": true
+    },
+    "treasury": {
+      "kind": "special",
+      "minFloor": 3,
+      "minArea": 16,
+      "weight": 1,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "caverns",
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "layout": {
+        "chest": {
+          "kind": "chest-ornate",
+          "at": "deepest free cell"
+        },
+        "props": {
+          "name": "torch-stand",
+          "count": 2
+        }
+      },
+      "residents": [
+        {
+          "creature": "brute",
+          "name": "Vault Guardian",
+          "elite": true,
+          "state": "asleep",
+          "post": "first free in-room neighbour of the chest (E, W, S, N)",
+          "swaps": true
+        },
+        {
+          "fromFloor": 3,
+          "creature": {
+            "uniform": [
+              "goblin",
+              "archer"
+            ]
+          },
+          "count": "population 3-6",
+          "state": "asleep",
+          "guard": true,
+          "posts": "nearest the chest"
+        }
+      ],
+      "loot": [
+        {
+          "table": "chest-ornate"
+        },
+        {
+          "give": {
+            "gear": "random"
+          }
+        },
+        {
+          "give": {
+            "essence": {
+              "roll": [
+                20,
+                35
+              ]
+            }
+          }
+        }
+      ],
+      "src": "js/world/world.js:1165-1175, :1479-1483",
+      "bossOk": false,
+      "ownResidents": true
+    },
+    "volatile-hoard": {
+      "kind": "rare-floor",
+      "chancePctPerRun": 5,
+      "floors": [
+        11,
+        14
+      ],
+      "biomes": [
+        "caverns"
+      ],
+      "minArea": 25,
+      "layout": {
+        "chest": {
+          "kind": "chest-gold",
+          "enhanced": true,
+          "at": "deepest"
+        },
+        "props": [
+          "barrel-explosive",
+          "barrel-explosive",
+          "barrel-explosive",
+          "barrel-explosive"
+        ]
+      },
+      "residents": [
+        {
+          "creature": "fireimp",
+          "count": 3,
+          "state": "asleep",
+          "guard": true,
+          "posts": "next 3 deepest non-door cells"
+        }
+      ],
+      "loot": [
+        {
+          "table": "chest-enhanced"
+        }
+      ],
+      "stream": "rare-run seed ^ 0x564F4C41",
+      "src": "js/world/rare-rooms.js:72-80; js/world/rare-rooms.js:35; js/world/rare-rooms.js:72",
+      "name": "Volatile hoard"
+    },
+    "watchpost": {
+      "kind": "special",
+      "minFloor": 16,
+      "minArea": 25,
+      "weight": 1.5,
+      "biomes": [
+        "underdark"
+      ],
+      "host": "Underdark region 0 room",
+      "layout": {
+        "chest": {
+          "kind": "crate-supply",
+          "at": "deepest cell with a main path of 3+ and a separate perimeter flank path"
+        },
+        "cover": {
+          "prop": "pillar",
+          "max": 2,
+          "spacing": 2,
+          "order": "nearest the centre"
+        },
+        "props": [
+          "crate",
+          "weapon-rack"
+        ]
+      },
+      "residents": [
+        {
+          "creature": "drowblade",
+          "count": "one per post (6-10 by room size)",
+          "state": "wander",
+          "guard": true,
+          "posts": "nearest the cover, 2 apart, more than 1 from the chest, up to population 6-10",
+          "swaps": false
+        }
+      ],
+      "fallback": "barracks",
+      "loot": [
+        {
+          "table": "crate-supply"
+        }
+      ],
+      "src": "js/world/world.js:1110-1122",
+      "bossOk": true,
+      "ruling": "ruled 2026-10-15: stands in for barracks on boss floor 20 too; residents equal its posts",
+      "ownResidents": true
+    },
+    "zoo": {
+      "kind": "pocket",
+      "minFloor": 2,
+      "minArea": 20,
+      "weight": 1.2,
+      "biomes": [
+        "dungeon",
+        "crypt",
+        "underdark"
+      ],
+      "exclude": {
+        "bossFloor": true,
+        "floors": [
+          1,
+          2
+        ]
+      },
+      "host": "pocket carved off the host, square side min(7, max(4, min(host w, h))); else the host becomes storage",
+      "layout": {
+        "door": "locked",
+        "chest": {
+          "kind": "chest-ornate"
+        }
+      },
+      "residents": [
+        {
+          "creature": "roster",
+          "count": "every walkable cell, at most 12",
+          "state": "asleep",
+          "packs": false,
+          "max": 12
+        }
+      ],
+      "loot": [
+        {
+          "table": "chest-ornate"
+        },
+        {
+          "give": {
+            "gear": "random"
+          }
+        },
+        {
+          "give": {
+            "mote": "random"
+          }
+        },
+        {
+          "give": {
+            "essence": {
+              "roll": [
+                15,
+                30
+              ]
+            }
+          },
+          "count": 3
+        }
+      ],
+      "note": "floor note: strings.json floor-note.zoo",
+      "src": "js/world/world.js:1124-1137, :1475",
+      "bossOk": false,
+      "ruling": "ruled 2026-10-15: at most 12 sleepers",
+      "ownResidents": true
+    },
+    "rule-rare-rolls": {
+      "kind": "rule",
+      "floors": "biome 0: floor 2, 3 or 4 (uniform); biome b>0: floor 5b+1 .. 5b+4 (uniform)",
+      "hiddenSigil": "biomes 0-3: 10% per biome per run; theme is one of the biome pair (50/50, own stream); the Last Expedition (biome 0, 5%) replaces it on its floor. Dungeon slime chamber drawn for floor 2 moves to floor 3 (and is skipped if a saved floor 2 already has it)",
+      "src": "js/world/rare-rooms.js:14; js/world/world.js:358; js/world/world.js:392; js/world/world.js:840"
+    },
+    "rule-pocket": {
+      "kind": "rule",
+      "tries": 260,
+      "host": "random room, not start or boss (and the builder's own filter)",
+      "side": "uniform of 4",
+      "door": "one wall tile on the host's edge",
+      "src": "js/world/world.js:650-673"
+    },
+    "locked-vault": {
+      "kind": "pocket",
+      "minFloor": 2,
+      "chancePct": 100,
+      "pocket": {
+        "w": [
+          3,
+          5
+        ],
+        "h": [
+          3,
+          4
+        ]
+      },
+      "door": "locked",
+      "loot": [
+        {
+          "table": "loot-room-pile",
+          "rich": true,
+          "chest": "chest-ornate"
+        }
+      ],
+      "props": [
+        {
+          "name": "torch-stand",
+          "count": 1,
+          "where": "edge"
+        }
+      ],
+      "bump": {
+        "withKey": "The iron key turns. The vault opens.",
+        "withoutKey": "Locked. An iron key would open it.",
+        "holderNote": " One is somewhere on this floor.",
+        "sounds": [
+          "door-unlock",
+          "door-locked"
+        ]
+      },
+      "src": "js/world/world.js:352, :685-697, :719-725; js/combat/systems.js:207-210",
+      "bossOk": false,
+      "exclude": {
+        "bossFloor": true
+      }
+    },
+    "toll-room": {
+      "kind": "pocket",
+      "minFloor": 3,
+      "chancePct": 55,
+      "pocket": {
+        "w": [
+          3,
+          5
+        ],
+        "h": [
+          3,
+          4
+        ]
+      },
+      "door": "toll",
+      "loot": [
+        {
+          "table": "loot-room-pile",
+          "rich": true,
+          "chest": "chest-ornate"
+        },
+        {
+          "give": {
+            "mote": "random"
+          }
+        }
+      ],
+      "bump": {
+        "title": "Spiked door",
+        "effects": [
+          {
+            "verb": "pay-hp",
+            "amount": {
+              "pct-of": {
+                "stat": "hp",
+                "pct": 50,
+                "min": 1
+              }
+            }
+          }
+        ],
+        "log": "You force your way past the spikes.",
+        "tags": [
+          "cost",
+          "spikes"
+        ]
+      },
+      "src": "js/world/world.js:357, :726-733; js/combat/systems.js:211-217",
+      "bossOk": false,
+      "exclude": {
+        "bossFloor": true
+      }
+    },
+    "forge-room": {
+      "kind": "role",
+      "minArea": 16,
+      "fallbackMinArea": 9,
+      "tile": "forge at the room centre",
+      "props": [
+        {
+          "pick": [
+            "brazier-lit",
+            "torch-stand"
+          ],
+          "count": 2,
+          "where": "edge"
+        }
+      ],
+      "src": "js/world/world.js:347"
+    },
+    "shrine-room": {
+      "kind": "role",
+      "minArea": 12,
+      "fallbackMinArea": 9,
+      "tile": "shrine at the room centre",
+      "props": [
+        {
+          "pick": [
+            "statue",
+            "banner-stand"
+          ],
+          "count": 2,
+          "where": "edge"
+        }
+      ],
+      "note": "no braziers: the shrine carries its own glow",
+      "src": "js/world/world.js:348-349"
+    },
+    "ossuary": {
+      "kind": "special",
+      "minFloor": 6,
+      "minArea": 16,
+      "weight": 1,
+      "biomes": [
+        "crypt"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "classic": false,
+      "src": "C8 (Justin 2026-10-16); src/world/biomes/crypt/rooms.js"
+    },
+    "flooded-crypt": {
+      "kind": "special",
+      "minFloor": 6,
+      "minArea": 20,
+      "weight": 0.8,
+      "biomes": [
+        "crypt"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "classic": false,
+      "src": "C8 (Justin 2026-10-16); src/world/biomes/crypt/rooms.js"
+    },
+    "choir-loft": {
+      "kind": "special",
+      "minFloor": 8,
+      "minArea": 24,
+      "weight": 0.6,
+      "biomes": [
+        "crypt"
+      ],
+      "exclude": {
+        "bossFloor": true
+      },
+      "classic": false,
+      "src": "C8 (Justin 2026-10-16); src/world/biomes/crypt/rooms.js"
+    },
+    "template-plain": {
+      "kind": "template",
+      "biome": "dungeon",
+      "weight": [
+        20,
+        18,
+        16,
+        16,
+        16
+      ],
+      "area": [
+        1,
+        64
+      ],
+      "pieces": [
+        {
+          "ids": [
+            "rubble"
+          ],
+          "count": [
+            0,
+            2
+          ],
+          "where": "inner"
+        }
+      ],
+      "ground": {
+        "greenery": "some",
+        "bushes": false,
+        "water": false,
+        "marks": [
+          "puddle",
+          "moss"
+        ]
+      },
+      "wear": "aged",
+      "walls": {
+        "ivy": false,
+        "banners": 0.35,
+        "kept": [
+          "niche-urn-2",
+          "niche-skull-1",
+          "chain-2",
+          "grate"
+        ],
+        "keep": 0.2
+      },
+      "light": "none",
+      "why": "item 233 (Justin 2026-10-19: \"limit certain props to themed rooms. I a desk shouldn't be surrounded by grass. And generate several templates of rooms in biome 1 and limit what can occur in them\"; \"otherwise the rooms read as just random nonsense\"); every room on Dungeon floors 1-5 takes exactly one template (world/templates.js), weighted by floor (weight: floors 1-5) and size (area: the cells it fits); pieces (where: wall, a run along one wall; north, against the north wall's middle; corner, heaped in corners; centre, through the middle; beside, next to the step before; inner, well inside; edge; near-water) are all that may stand in it; ground says what may grow or lie there; wear (207), walls (208, 231) and light (209) are read by their passes"
+    },
+    "template-storeroom": {
+      "kind": "template",
+      "biome": "dungeon",
+      "weight": [
+        12,
+        10,
+        9,
+        8,
+        8
+      ],
+      "area": [
+        9,
+        40
+      ],
+      "pieces": [
+        {
+          "ids": [
+            "crate",
+            "sacks",
+            "barrel",
+            "crate",
+            "pot",
+            "sacks"
+          ],
+          "count": [
+            3,
+            6
+          ],
+          "where": "corner"
+        },
+        {
+          "ids": [
+            "broken-crate"
+          ],
+          "count": [
+            0,
+            1
+          ],
+          "where": "edge"
+        },
+        {
+          "ids": [
+            "cart"
+          ],
+          "count": [
+            0,
+            1
+          ],
+          "where": "edge"
+        }
+      ],
+      "ground": {
+        "greenery": "bare",
+        "bushes": false,
+        "water": false,
+        "marks": []
+      },
+      "wear": "aged",
+      "walls": {
+        "ivy": false,
+        "banners": 0.15,
+        "kept": [
+          "niche-urn-1",
+          "grate"
+        ],
+        "keep": 0.5
+      },
+      "light": "torch"
+    },
+    "template-kitchen": {
+      "kind": "template",
+      "biome": "dungeon",
+      "weight": [
+        6,
+        6,
+        5,
+        4,
+        4
+      ],
+      "area": [
+        12,
+        40
+      ],
+      "pieces": [
+        {
+          "ids": [
+            "barrel-water",
+            "pot",
+            "sacks"
+          ],
+          "count": [
+            2,
+            3
+          ],
+          "where": "wall"
+        },
+        {
+          "ids": [
+            "table-candle"
+          ],
+          "count": [
+            1,
+            1
+          ],
+          "where": "centre"
+        },
+        {
+          "ids": [
+            "chair"
+          ],
+          "count": [
+            1,
+            1
+          ],
+          "where": "above"
+        },
+        {
+          "ids": [
+            "brazier-lit"
+          ],
+          "count": [
+            0,
+            1
+          ],
+          "where": "corner"
+        }
+      ],
+      "ground": {
+        "greenery": "bare",
+        "bushes": false,
+        "water": false,
+        "marks": [
+          "puddle"
+        ]
+      },
+      "wear": "kept",
+      "walls": {
+        "ivy": false,
+        "banners": 0.15,
+        "kept": [
+          "niche-urn-2",
+          "grate"
+        ],
+        "keep": 0.4
+      },
+      "light": "brazier"
+    },
+    "template-study": {
+      "kind": "template",
+      "biome": "dungeon",
+      "weight": [
+        6,
+        7,
+        7,
+        7,
+        7
+      ],
+      "area": [
+        12,
+        48
+      ],
+      "pieces": [
+        {
+          "ids": [
+            "bookshelf"
+          ],
+          "count": [
+            2,
+            3
+          ],
+          "where": "wall"
+        },
+        {
+          "ids": [
+            "desk"
+          ],
+          "count": [
+            1,
+            1
+          ],
+          "where": "wall"
+        },
+        {
+          "ids": [
+            "candelabra-floor"
+          ],
+          "count": [
+            1,
+            1
+          ],
+          "where": "beside"
+        },
+        {
+          "ids": [
+            "rug"
+          ],
+          "count": [
+            0,
+            1
+          ],
+          "where": "centre"
+        },
+        {
+          "ids": [
+            "book-pile"
+          ],
+          "count": [
+            0,
+            1
+          ],
+          "where": "inner"
+        }
+      ],
+      "ground": {
+        "greenery": "none",
+        "bushes": false,
+        "water": false,
+        "marks": []
+      },
+      "wear": "kept",
+      "walls": {
+        "ivy": false,
+        "banners": 0.4,
+        "kept": [
+          "niche-candle",
+          "niche-urn-1",
+          "tapestry"
+        ],
+        "keep": 0.5
+      },
+      "light": "candle"
+    },
+    "template-guardroom": {
+      "kind": "template",
+      "biome": "dungeon",
+      "weight": [
+        6,
+        8,
+        10,
+        11,
+        11
+      ],
+      "area": [
+        16,
+        64
+      ],
+      "pieces": [
+        {
+          "ids": [
+            "weapon-rack"
+          ],
+          "count": [
+            2,
+            2
+          ],
+          "where": "wall"
+        },
+        {
+          "ids": [
+            "brazier-lit"
+          ],
+          "count": [
+            1,
+            1
+          ],
+          "where": "corner"
+        },
+        {
+          "ids": [
+            "bedroll"
+          ],
+          "count": [
+            1,
+            3
+          ],
+          "where": "inner"
+        },
+        {
+          "ids": [
+            "chains"
+          ],
+          "count": [
+            0,
+            1
+          ],
+          "where": "wall"
+        }
+      ],
+      "ground": {
+        "greenery": "bare",
+        "bushes": false,
+        "water": false,
+        "marks": [
+          "blood"
+        ]
+      },
+      "wear": "aged",
+      "walls": {
+        "ivy": false,
+        "banners": 0.8,
+        "kept": [
+          "shackles-1",
+          "shackles-2",
+          "chain-1",
+          "shield"
+        ],
+        "keep": 0.6
+      },
+      "light": "brazier"
+    },
+    "template-hall": {
+      "kind": "template",
+      "biome": "dungeon",
+      "weight": [
+        6,
+        7,
+        8,
+        8,
+        8
+      ],
+      "area": [
+        30,
+        64
+      ],
+      "pieces": [
+        {
+          "ids": [
+            "banner-stand"
+          ],
+          "count": [
+            2,
+            2
+          ],
+          "where": "wall"
+        },
+        {
+          "ids": [
+            "long-table"
+          ],
+          "count": [
+            1,
+            1
+          ],
+          "where": "centre"
+        },
+        {
+          "ids": [
+            "chair"
+          ],
+          "count": [
+            1,
+            1
+          ],
+          "where": "above"
+        },
+        {
+          "ids": [
+            "candelabra-floor"
+          ],
+          "count": [
+            0,
+            2
+          ],
+          "where": "edge"
+        }
+      ],
+      "ground": {
+        "greenery": "none",
+        "bushes": false,
+        "water": false,
+        "marks": []
+      },
+      "wear": "kept",
+      "walls": {
+        "ivy": false,
+        "banners": 0.8,
+        "kept": [
+          "tapestry",
+          "shield"
+        ],
+        "keep": 0.6
+      },
+      "light": "candle"
+    },
+    "template-shrine-nook": {
+      "kind": "template",
+      "biome": "dungeon",
+      "weight": [
+        5,
+        5,
+        6,
+        6,
+        6
+      ],
+      "area": [
+        9,
+        30
+      ],
+      "pieces": [
+        {
+          "ids": [
+            "broken-shrine"
+          ],
+          "count": [
+            1,
+            1
+          ],
+          "where": "north"
+        },
+        {
+          "ids": [
+            "candelabra-floor"
+          ],
+          "count": [
+            1,
+            2
+          ],
+          "where": "beside"
+        }
+      ],
+      "ground": {
+        "greenery": "bare",
+        "bushes": false,
+        "water": false,
+        "marks": []
+      },
+      "wear": "kept",
+      "walls": {
+        "ivy": false,
+        "banners": 0.6,
+        "kept": [
+          "niche-candle",
+          "niche-skull-2"
+        ],
+        "keep": 0.6
+      },
+      "light": "candle"
+    },
+    "template-overgrown-ruin": {
+      "kind": "template",
+      "biome": "dungeon",
+      "weight": [
+        7,
+        8,
+        9,
+        10,
+        10
+      ],
+      "area": [
+        12,
+        64
+      ],
+      "moods": {
+        "overgrown": 3,
+        "collapsed": 3
+      },
+      "pieces": [
+        {
+          "ids": [
+            "debris",
+            "rubble",
+            "debris"
+          ],
+          "count": [
+            1,
+            3
+          ],
+          "where": "beside"
+        },
+        {
+          "ids": [
+            "statue-broken"
+          ],
+          "count": [
+            0,
+            1
+          ],
+          "where": "edge"
+        },
+        {
+          "ids": [
+            "reeds-and-rubble"
+          ],
+          "count": [
+            1,
+            2
+          ],
+          "where": "inner"
+        },
+        {
+          "ids": [
+            "rubble",
+            "bones"
+          ],
+          "count": [
+            0,
+            2
+          ],
+          "where": "inner"
+        }
+      ],
+      "ground": {
+        "greenery": "overgrown",
+        "bushes": true,
+        "water": false,
+        "marks": [
+          "moss"
+        ]
+      },
+      "wear": "cracked",
+      "walls": {
+        "ivy": true,
+        "banners": 0.05,
+        "kept": [
+          "niche-urn-2"
+        ],
+        "keep": 0.2
+      },
+      "light": "none"
+    },
+    "template-damp": {
+      "kind": "template",
+      "biome": "dungeon",
+      "weight": [
+        5,
+        5,
+        6,
+        6,
+        6
+      ],
+      "area": [
+        12,
+        64
+      ],
+      "moods": {
+        "flooded": 4
+      },
+      "pieces": [
+        {
+          "ids": [
+            "mossy-drain"
+          ],
+          "count": [
+            1,
+            1
+          ],
+          "where": "north"
+        },
+        {
+          "ids": [
+            "reeds-and-rubble"
+          ],
+          "count": [
+            0,
+            1
+          ],
+          "where": "near-water"
+        }
+      ],
+      "ground": {
+        "greenery": "lush",
+        "bushes": false,
+        "water": true,
+        "marks": [
+          "puddle",
+          "moss"
+        ],
+        "pool": [
+          3,
+          6
+        ]
+      },
+      "wear": "aged",
+      "walls": {
+        "ivy": true,
+        "banners": 0.15,
+        "kept": [
+          "grate",
+          "chain-2"
+        ],
+        "keep": 0.5
+      },
+      "light": "none"
+    },
+    "template-ossuary": {
+      "kind": "template",
+      "biome": "dungeon",
+      "weight": [
+        2,
+        3,
+        5,
+        6,
+        6
+      ],
+      "area": [
+        16,
+        64
+      ],
+      "pieces": [
+        {
+          "ids": [
+            "chains",
+            "brazier-unlit"
+          ],
+          "count": [
+            1,
+            2
+          ],
+          "where": "wall"
+        },
+        {
+          "ids": [
+            "bones",
+            "bones",
+            "bones",
+            "rubble"
+          ],
+          "count": [
+            3,
+            5
+          ],
+          "where": "inner"
+        }
+      ],
+      "ground": {
+        "greenery": "bare",
+        "bushes": false,
+        "water": false,
+        "marks": [
+          "bones"
+        ]
+      },
+      "wear": "cracked",
+      "walls": {
+        "ivy": false,
+        "banners": 0.1,
+        "kept": [
+          "niche-skull-1",
+          "niche-skull-2"
+        ],
+        "keep": 0.7
+      },
+      "light": "none"
+    },
+    "template-set-piece": {
+      "kind": "template",
+      "biome": "dungeon",
+      "weight": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "area": [
+        1,
+        64
+      ],
+      "pieces": [],
+      "ground": {
+        "greenery": "mood",
+        "bushes": true,
+        "water": true,
+        "marks": [
+          "puddle",
+          "moss",
+          "bones",
+          "blood"
+        ]
+      },
+      "wear": "aged",
+      "walls": {
+        "ivy": true,
+        "banners": 0.35,
+        "kept": [],
+        "keep": 0
+      },
+      "light": "own",
+      "note": "a room its own builder dressed (a role, a special, a pocket, a puzzle, a rare event): nothing scattered by a template; the ground as before (greenery by the vegetation's room moods)"
+    }
+  }
+}

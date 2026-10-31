@@ -1,0 +1,8333 @@
+{
+ "version": 1,
+ "rows": {
+  "rat": {
+   "name": "Dungeon Rat",
+   "hp": 16,
+   "dmg": [
+    3,
+    5
+   ],
+   "acc": 55,
+   "eva": 22,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 4,
+   "flags": [
+    "living"
+   ],
+   "behaviour": "hunter",
+   "drops": "kill-rat",
+   "spawn": {
+    "floors": [
+     1,
+     3
+    ],
+    "biomes": [
+     "dungeon"
+    ],
+    "weight": 26,
+    "pack": [
+     2,
+     3
+    ]
+   },
+   "look": {
+    "sheet": "m-rat",
+    "art": 0.75,
+    "clips": {"stride": true, "fidget": {"row": "sniff", "everyMs": 4000}, "strike": 4},
+    "glyph": "r",
+    "colour": "#8C7A63"
+   },
+   "sfx": "rat",
+   "text": {
+    "lore": "monster.rat.lore",
+    "hint": null
+   },
+   "src": "js/content/data.js:915-916"
+  },
+  "bat": {
+   "name": "Cave Bat",
+   "hp": 16,
+   "dmg": [
+    3,
+    4
+   ],
+   "acc": 55,
+   "eva": 44,
+   "armour": 0,
+   "speed": 200,
+   "range": 1,
+   "xp": 6,
+   "flags": [
+    "living",
+    "flying"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "erraticPct": 35
+   },
+   "drops": "kill-bat",
+   "spawn": {
+    "floors": [
+     1,
+     2
+    ],
+    "biomes": [
+     "dungeon"
+    ],
+    "weight": 6
+   },
+   "look": {
+    "air": 0.5,
+    "sheet": "m-bat",
+    "art": 0.7,
+    "clips": {"strike": 3},
+    "glyph": "b",
+    "colour": "#9E8CA8"
+   },
+   "sfx": "bat",
+   "text": {
+    "lore": "monster.bat.lore",
+    "hint": null
+   },
+   "src": "js/content/data.js:917-918; js/combat/combat.js:362"
+  },
+  "goblin": {
+   "name": "Goblin",
+   "hp": 20,
+   "dmg": [
+    3,
+    6
+   ],
+   "acc": 55,
+   "eva": 16,
+   "armour": 1,
+   "speed": 100,
+   "range": 1,
+   "xp": 8,
+   "flags": [
+    "living"
+   ],
+   "family": "goblin",
+   "behaviour": "hunter",
+   "drops": "kill-goblin",
+   "spawn": {
+    "floors": [
+     1,
+     5
+    ],
+    "weight": 26
+   },
+   "look": {
+    "sheet": "m-goblin",
+    "art": 0.9,
+    "clips": {"strike": 3},
+    "glyph": "g",
+    "colour": "#6F9350",
+    "facesLeft": true
+   },
+   "sfx": "goblin",
+   "text": {
+    "lore": "monster.goblin.lore",
+    "hint": null
+   },
+   "src": "js/content/data.js:919-920"
+  },
+  "archer": {
+   "name": "Goblin Archer",
+   "hp": 14,
+   "dmg": [
+    5,
+    7
+   ],
+   "acc": 55,
+   "eva": 18,
+   "armour": 0,
+   "speed": 100,
+   "range": 6,
+   "xp": 10,
+   "flags": [
+    "living"
+   ],
+   "family": "goblin",
+   "behaviour": "kiter",
+   "params": {
+    "fleeAdjacentPct": 50
+   },
+   "drops": "kill-archer",
+   "spawn": {
+    "floors": [
+     2,
+     5
+    ],
+    "weight": 18
+   },
+   "look": {
+    "sheet": "m-goblin-archer",
+    "art": 0.9,
+    "clips": {"strike": 6},
+    "glyph": "a",
+    "colour": "#B8894A",
+    "facesLeft": true
+   },
+   "sfx": "goblin",
+   "text": {
+    "lore": "monster.archer.lore",
+    "hint": null
+   },
+   "src": "js/content/data.js:921-922; js/combat/combat.js:353-357"
+  },
+  "brute": {
+   "name": "Goblin Brute",
+   "hp": 30,
+   "dmg": [
+    8,
+    12
+   ],
+   "acc": 55,
+   "eva": 10,
+   "armour": 6,
+   "speed": 100,
+   "range": 1,
+   "xp": 18,
+   "flags": [
+    "living"
+   ],
+   "family": "goblin",
+   "behaviour": "hunter",
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "if": {
+      "hit-was": "melee"
+     },
+     "cooldown": 4,
+     "effects": [
+      {
+       "verb": "knockback",
+       "tiles": 1,
+       "from": "source",
+       "direction": "away"
+      }
+     ]
+    }
+   ],
+   "drops": "kill-brute",
+   "spawn": {
+    "floors": [
+     3,
+     5
+    ],
+    "weight": 14
+   },
+   "look": {
+    "sheet": "m-goblin-brute",
+    "art": 1.05,
+    "clips": {"strike": 4},
+    "glyph": "G",
+    "colour": "#4E7A3C",
+    "facesLeft": true
+   },
+   "sfx": "brute",
+   "text": {
+    "lore": "monster.brute.lore",
+    "hint": "monster.brute.hint"
+   },
+   "src": "js/content/data.js:923-924; js/enemies/enemy-teamwork.js:112-121; js/engine/actions-adapter.js:432"
+  },
+  "slime": {
+   "name": "Rock Slime",
+   "hp": 30,
+   "dmg": [
+    5,
+    7
+   ],
+   "acc": 55,
+   "eva": 8,
+   "armour": 3,
+   "speed": 70,
+   "range": 1,
+   "xp": 16,
+   "flags": [],
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "root-spit",
+     "name": "Root Spit",
+     "sfx": "slime-attack",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "clear-shot",
+     "cooldown": 6,
+     "clock": "game-turn",
+     "hit": {
+      "accBonus": 0
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {
+        "from-source": "dmg"
+       },
+       "type": "phys",
+       "tags": [
+        "attack",
+        "single-target",
+        "projectile",
+        "ranged"
+       ],
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "root",
+         "turns": 2
+        }
+       ]
+      }
+     ],
+     "src": "js/combat/combat.js:289-305"
+    }
+   ],
+   "passives": [
+    {
+     "verb": "split",
+     "whenHitAtFullHp": true,
+     "child": "self",
+     "once": false,
+     "minHp": 2,
+     "noLoot": true,
+     "noXp": true
+    },
+    {
+     "verb": "on-event",
+     "trigger": "on-world-pulse",
+     "if": {
+      "all": [
+       {
+        "not": {
+         "has-status": {
+          "any": [
+           "poison",
+           "rot"
+          ]
+         }
+        }
+       },
+       {
+        "creature-flag": "hunting"
+       }
+      ]
+     },
+     "effects": [
+      {
+       "verb": "heal",
+       "amount": 2,
+       "natural": true,
+       "regen": true
+      }
+     ]
+    }
+   ],
+   "drops": "kill-slime",
+   "spawn": {
+    "floors": [
+     2,
+     4
+    ],
+    "biomes": [
+     "dungeon"
+    ],
+    "weight": 12
+   },
+   "look": {
+    "sheet": "m-rock-slime",
+    "art": 0.8,
+    "clips": {"strike": 6},
+    "glyph": "s",
+    "colour": "#7C8C9E",
+    "facesLeft": true
+   },
+   "sfx": "slime",
+   "text": {
+    "lore": "monster.slime.lore",
+    "hint": "monster.slime.hint"
+   },
+   "src": "js/content/data.js:925-927; js/enemies/green-slime.js:12, :28-46, :83-91"
+  },
+  "pebbleslime": {
+   "name": "Pebble Slime",
+   "hp": 18,
+   "dmg": [
+    3,
+    4
+   ],
+   "acc": 54,
+   "eva": 8,
+   "armour": 0,
+   "speed": 70,
+   "range": 1,
+   "xp": 8,
+   "flags": [
+    "retired"
+   ],
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "pebble-slam",
+     "name": "Pebble Slam",
+     "range": [
+      1,
+      1
+     ],
+     "needs": "clear-shot",
+     "cooldown": 0,
+     "effects": [
+      {
+       "verb": "telegraph",
+       "tiles": {
+        "selector": "tile",
+        "at": "target"
+       },
+       "delay": 1,
+       "clock": "game-turn",
+       "interruptedBy": [
+        "owner-moves",
+        "control"
+       ],
+       "warning": "warn.pebble-slam",
+       "then": [
+        {
+         "verb": "weapon-attack",
+         "weapon": "own",
+         "if": {
+          "distance": {
+           "max": 1
+          }
+         }
+        }
+       ]
+      }
+     ],
+     "src": "js/combat/combat.js:263-288"
+    }
+   ],
+   "drops": "kill-slime",
+   "spawn": {
+    "floors": [
+     1,
+     1
+    ],
+    "biomes": [
+     "dungeon"
+    ],
+    "weight": 0
+   },
+   "look": {
+    "blockColour": "#B8C8B8",
+    "sheet": "m-slime",
+    "art": 0.65,
+    "clips": {"strike": 6},
+    "glyph": "s",
+    "colour": "#7C8C9E"
+   },
+   "sfx": "slime",
+   "text": {
+    "lore": "monster.pebbleslime.lore",
+    "hint": "monster.pebbleslime.hint"
+   },
+   "src": "js/content/data.js:928-930; js/enemies/green-slime.js:10"
+  },
+  "shaman": {
+   "name": "Goblin Shaman",
+   "hp": 20,
+   "dmg": [
+    4,
+    6
+   ],
+   "acc": 55,
+   "eva": 14,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 18,
+   "element": "fire",
+   "elementalDamage": 3,
+   "flags": [
+    "living",
+    "spellcaster"
+   ],
+   "family": "goblin",
+   "caller": true,
+   "behaviour": "support-caster",
+   "params": {
+    "retreatWithin": 3,
+    "holdRange": 6,
+    "tactical": true
+   },
+   "moves": [
+    {
+     "id": "firebolt",
+     "shot": "fire",
+     "name": "Firebolt",
+     "sfx": "shaman-cast",
+     "range": [
+      1,
+      6
+     ],
+     "needs": "clear-shot",
+     "cooldown": 4,
+     "clock": "game-turn",
+     "firstReady": [
+      1,
+      3
+     ],
+     "hit": {
+      "accBonus": 10
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {"roll": [5, 8]},
+       "type": "fire",
+       "tags": [
+        "spell",
+        "single-target",
+        "projectile",
+        "ranged"
+       ],
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "burn",
+         "turns": 3,
+         "magnitude": {
+          "scaled": {
+           "base": 2,
+           "mult": [
+            "number-scale",
+            "lethality"
+           ],
+           "round": true,
+           "min": 1
+          }
+         },
+         "chance": 50
+        }
+       ]
+      }
+     ],
+     "src": "js/enemies/enemy-teamwork.js:92-104"
+    },
+    {
+     "id": "rally",
+     "name": "Rage",
+     "sfx": "shaman-cast",
+     "bolt": "fire",
+     "useFloat": {
+      "words": "Rage",
+      "tone": "fire"
+     },
+     "useLog": {
+      "words": "<b>{name}:</b> {target}: {move}{healed}.",
+      "cls": "c-you"
+     },
+     "range": [
+      0,
+      4
+     ],
+     "needs": "open-line",
+     "cooldown": 6,
+     "clock": "game-turn",
+     "idleFallback": true,
+     "target": {
+      "selector": "nearest",
+      "side": "allies",
+      "range": 4,
+      "n": 1,
+      "family": "goblin",
+      "order": "most-hurt",
+      "need": "hurt-or-unraged"
+     },
+     "effects": [
+      {
+       "verb": "heal",
+       "sparkle": {
+        "kind": "heal",
+        "n": 16
+       },
+       "amount": {
+        "pct-of": {
+         "stat": "max-hp",
+         "pct": 50,
+         "min": 1
+        }
+       }
+      },
+      {
+       "verb": "apply-status",
+       "status": "goblinrage",
+       "turns": 4,
+       "durationModifiers": false,
+       "if": {
+        "not": {
+         "has-status": "goblinrage"
+        }
+       }
+      }
+     ],
+     "src": "js/enemies/enemy-teamwork.js:44-57"
+    }
+   ],
+   "drops": "kill-shaman",
+   "spawn": {
+    "floors": [
+     3,
+     5
+    ],
+    "weight": 10
+   },
+   "look": {
+    "sheet": "m-goblin-shaman",
+    "art": 0.9,
+    "clips": {"strike": 4},
+    "glyph": "h",
+    "colour": "#C25A3A",
+    "facesLeft": true
+   },
+   "sfx": "shaman",
+   "text": {
+    "lore": "monster.shaman.lore",
+    "hint": null
+   },
+   "src": "js/content/data.js:931-932; js/enemies/enemy-teamwork.js:92-111"
+  },
+  "skeleton": {
+   "name": "Skeleton",
+   "hp": 32,
+   "dmg": [
+    8,
+    12
+   ],
+   "acc": 55,
+   "eva": 18,
+   "armour": 2,
+   "speed": 100,
+   "range": 1,
+   "xp": 18,
+   "flags": [
+    "undead",
+    "bone"
+   ],
+   "summonHp": 16,
+   "family": "crypt",
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "bone-rush",
+     "name": "Bone Rush",
+     "range": [
+      2,
+      3
+     ],
+     "needs": "clear-path",
+     "cooldown": 4,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "dash",
+       "range": 3,
+       "until": "beside-target",
+       "then": [
+        {
+         "verb": "weapon-attack",
+         "weapon": "own",
+         "label": "Bone Rush"
+        }
+       ]
+      }
+     ],
+     "src": "js/enemies/skeleton-charge.js:4-25"
+    }
+   ],
+   "passives": [
+    {
+     "verb": "damage-mod",
+     "direction": "taken",
+     "mult": 1.5,
+     "if": {
+      "all": [
+       {
+        "damage-type": "phys"
+       },
+       {
+        "wielding": {"is": ["unarmed", "mace"], "by": "source"}
+       }
+      ]
+     }
+    },
+    {
+     "verb": "damage-mod",
+     "direction": "taken",
+     "mult": 0.5,
+     "if": {
+      "all": [
+       {
+        "damage-type": "phys"
+       },
+       {
+        "wielding": {"is": ["dagger", "bow", "spear"], "by": "source"}
+       }
+      ]
+     }
+    }
+   ],
+   "drops": "kill-skeleton",
+   "spawn": {
+    "floors": [
+     6,
+     10
+    ],
+    "weight": 18
+   },
+   "look": {
+    "sheet": "m-crypt-skeleton",
+    "art": 0.95,
+    "clips": {"strike": 5},
+    "glyph": "k",
+    "colour": "#D8CEBC"
+   },
+   "sfx": "skeleton",
+   "text": {
+    "lore": "monster.skeleton.lore",
+    "hint": "monster.skeleton.hint"
+   },
+   "src": "js/content/data.js:933-934; js/world/biomes/crypt/crypt.js:15; js/engine/damage-adapter.js:78"
+  },
+  "mimic": {
+   "name": "Mimic",
+   "hp": 30,
+   "dmg": [
+    7,
+    10
+   ],
+   "acc": 64,
+   "eva": 10,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 30,
+   "flags": [],
+   "behaviour": "hunter",
+   "drops": "kill-mimic",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "a mimic chest (loot.json mimic-chance) in the dungeon",
+    "biome": "dungeon"
+   },
+   "look": {
+    "sheet": "m-mimic",
+    "art": 0.85,
+    "clips": {"strike": 4},
+    "glyph": "m",
+    "colour": "#8A5A2A"
+   },
+   "sfx": "mimic",
+   "text": {
+    "lore": "monster.mimic.lore",
+    "hint": null
+   },
+   "src": "js/content/data.js:935-936; js/combat/systems.js:684"
+  },
+  "warchief": {
+   "name": "Grukk the Warchief",
+   "hp": 143,
+   "dmg": [
+    8,
+    13
+   ],
+   "acc": 68,
+   "eva": 14,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 220,
+   "flags": [
+    "living",
+    "boss",
+    "elite"
+   ],
+   "set": "grukk",
+   "behaviour": "boss",
+   "drops": "kill-none",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "its set piece (bosses.json grukk)"
+   },
+   "look": {
+    "sheet": "m-goblin-warchief",
+    "art": 1.35,
+    "clips": {"strike": 5},
+    "glyph": "W",
+    "colour": "#A8452A",
+    "facesLeft": true
+   },
+   "sfx": "warchief",
+   "text": {
+    "lore": "monster.warchief.lore",
+    "hint": null
+   },
+   "src": "js/content/data.js:937-938"
+  },
+  "emberling": {
+   "name": "Emberling",
+   "hp": 35,
+   "dmg": [
+    6,
+    8
+   ],
+   "acc": 62,
+   "eva": 22,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 21,
+   "element": "fire",
+   "flags": [
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 1,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     2,
+     10
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-emberling",
+    "art": 0.7,
+    "clips": {"strike": 3},
+    "glyph": "*",
+    "colour": "#E2622B"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.emberling.lore",
+    "hint": "monster.emberling.hint"
+   },
+   "src": "js/content/data.js:940-945; js/world/biomes/caverns/cavernmobs.js:84"
+  },
+  "tideling": {
+   "name": "Dropling",
+   "hp": 35,
+   "dmg": [
+    6,
+    8
+   ],
+   "acc": 60,
+   "eva": 20,
+   "armour": 1,
+   "speed": 100,
+   "range": 1,
+   "xp": 21,
+   "element": "water",
+   "flags": [
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 1,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     2,
+     10
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-tideling",
+    "art": 0.7,
+    "clips": {"strike": 4},
+    "glyph": "*",
+    "colour": "#62A8D8"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.tideling.lore",
+    "hint": "monster.tideling.hint"
+   },
+   "src": "js/content/data.js:940-945; js/world/biomes/caverns/cavernmobs.js:84"
+  },
+  "galeling": {
+   "name": "Puffling",
+   "hp": 31,
+   "dmg": [
+    6,
+    8
+   ],
+   "acc": 64,
+   "eva": 30,
+   "armour": 0,
+   "speed": 140,
+   "range": 1,
+   "xp": 21,
+   "element": "air",
+   "flags": [
+    "flying",
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 1,
+   "behaviour": "hunter",
+   "params": {
+    "erraticPct": 35
+   },
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     2,
+     10
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-galeling",
+    "art": 0.7,
+    "clips": {"strike": 5},
+    "glyph": "*",
+    "colour": "#E8D27A"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.galeling.lore",
+    "hint": "monster.galeling.hint"
+   },
+   "src": "js/content/data.js:940-945; js/world/biomes/caverns/cavernmobs.js:84"
+  },
+  "stoneling": {
+   "name": "Pebbling",
+   "hp": 41,
+   "dmg": [
+    6,
+    8
+   ],
+   "acc": 56,
+   "eva": 8,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 21,
+   "element": "earth",
+   "flags": [
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 1,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     2,
+     10
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-stoneling",
+    "art": 0.7,
+    "clips": {"strike": 5},
+    "glyph": "*",
+    "colour": "#7FA05A"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.stoneling.lore",
+    "hint": "monster.stoneling.hint"
+   },
+   "src": "js/content/data.js:940-945; js/world/biomes/caverns/cavernmobs.js:84"
+  },
+  "wisp": {
+   "name": "Inking",
+   "hp": 35,
+   "dmg": [
+    6,
+    8
+   ],
+   "acc": 64,
+   "eva": 26,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 21,
+   "element": "shadow",
+   "flags": [
+    "shadowy",
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 1,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     3,
+     10
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-wisp",
+    "art": 0.7,
+    "clips": {"strike": 3},
+    "glyph": "*",
+    "colour": "#8A6FB0"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.wisp.lore",
+    "hint": "monster.wisp.hint"
+   },
+   "src": "js/content/data.js:940-945; js/world/biomes/caverns/cavernmobs.js:84"
+  },
+  "lumenling": {
+   "name": "Glimmerling",
+   "hp": 35,
+   "dmg": [
+    6,
+    8
+   ],
+   "acc": 64,
+   "eva": 24,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 24,
+   "element": "light",
+   "flags": [
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 1,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     3,
+     10
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-lumenling",
+    "art": 0.7,
+    "clips": {"strike": 5},
+    "glyph": "*",
+    "colour": "#F6E7B0"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.lumenling.lore",
+    "hint": "monster.lumenling.hint"
+   },
+   "src": "js/content/data.js:940-945; js/world/biomes/caverns/cavernmobs.js:84"
+  },
+  "silk-survivor-human": {
+   "name": "Freed Traveler",
+   "hp": 40,
+   "dmg": [
+    1,
+    1
+   ],
+   "acc": 40,
+   "eva": 10,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 0,
+   "flags": [],
+   "behaviour": "npc",
+   "drops": "kill-none",
+   "spawn": {
+    "floors": null,
+    "weight": 0
+   },
+   "look": {
+    "sheet": "cast-human-m",
+    "art": 1,
+    "glyph": "@",
+    "colour": "#B99D72"
+   },
+   "sfx": null,
+   "text": {
+    "lore": "monster.silk-survivor-human.lore",
+    "hint": null
+   },
+   "src": "js/content/data.js:946"
+  },
+  "shambler": {
+   "name": "Shambler",
+   "hp": 48,
+   "dmg": [
+    9,
+    13
+   ],
+   "acc": 55,
+   "eva": 8,
+   "armour": 1,
+   "speed": 100,
+   "range": 1,
+   "xp": 22,
+   "flags": [
+    "undead"
+   ],
+   "family": "crypt",
+   "behaviour": "hunter",
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit-by",
+     "if": {
+      "target-is": "player"
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "rot",
+       "turns": 30
+      }
+     ]
+    },
+    {
+     "verb": "on-event",
+     "trigger": "on-death",
+     "if": {
+      "not": {
+       "any": [
+        {
+         "damage-type": [
+          "fire",
+          "light"
+         ]
+        },
+        {
+         "has-status": "burn"
+        }
+       ]
+      }
+     },
+     "effects": [
+      {
+       "verb": "revive",
+       "delay": 3,
+       "clock": "action",
+       "pctMaxHp": 50,
+       "once": true
+      }
+     ]
+    }
+   ],
+   "drops": "kill-shambler",
+   "spawn": {
+    "floors": [
+     6,
+     8
+    ],
+    "weight": 16
+   },
+   "look": {
+    "sheet": "m-shambler",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "z",
+    "colour": "#8FA37A"
+   },
+   "sfx": "zombie",
+   "text": {
+    "lore": "monster.shambler.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/crypt/crypt.js:11-12; js/engine/death-adapter.js:44-48; js/world/biomes/crypt/crypt.js:244-257, :402-414"
+  },
+  "gravebeetle": {
+   "name": "Grave Beetle",
+   "hp": 48,
+   "dmg": [
+    8,
+    11
+   ],
+   "acc": 55,
+   "eva": 12,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 20,
+   "flags": [
+    "living",
+    "gas-immune"
+   ],
+   "family": "crypt",
+   "behaviour": "hunter",
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-melee-hit-taken",
+     "if": {
+      "target-is": "player"
+     },
+     "cooldown": 2,
+     "clock": "action",
+     "effects": [
+      {
+       "verb": "field",
+       "field": "gas",
+       "shape": {
+        "selector": "radius",
+        "centre": "self",
+        "n": 1
+       },
+       "turns": 6,
+       "clock": "action",
+       "side": "all",
+       "each": [
+        {
+         "verb": "damage",
+         "amount": 3,
+         "type": "poison",
+         "tags": [
+          "periodic",
+          "environment"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "drops": "kill-gravebeetle",
+   "spawn": {
+    "floors": [
+     6,
+     8
+    ],
+    "weight": 14
+   },
+   "look": {
+    "sheet": "m-grave-beetle",
+    "art": 0.8,
+    "clips": {"strike": 3},
+    "glyph": "b",
+    "colour": "#3E5A3A"
+   },
+   "sfx": "slime",
+   "text": {
+    "lore": "monster.gravebeetle.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/crypt/crypt.js:13-14, :82-102; js/engine/actions-adapter.js:155; js/enemies/ghoul.js:7"
+  },
+  "bonearcher": {
+   "name": "Bone Archer",
+   "hp": 43,
+   "dmg": [
+    9,
+    13
+   ],
+   "acc": 58,
+   "eva": 16,
+   "armour": 1,
+   "speed": 100,
+   "range": 6,
+   "xp": 26,
+   "flags": [
+    "undead"
+   ],
+   "family": "crypt",
+   "behaviour": "hunter",
+   "params": {
+    "reloadAfterRanged": true
+   },
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "if": {
+      "hit-was": "ranged"
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "root",
+       "turns": 1
+      }
+     ]
+    },
+    {
+     "verb": "on-event",
+     "trigger": "on-hit-by",
+     "if": {
+      "all": [
+       {
+        "target-is": "player"
+       },
+       {
+        "not": {
+         "has-status": "poison"
+        }
+       },
+       {
+        "not": {
+         "affinity-at-least": {
+          "earth": 6
+         }
+        }
+       }
+      ]
+     },
+     "chance": 100,
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "poison",
+       "turns": 4,
+       "tickDamage": 2
+      }
+     ]
+    }
+   ],
+   "drops": "kill-bonearcher",
+   "spawn": {
+    "floors": [
+     7,
+     10
+    ],
+    "weight": 14
+   },
+   "look": {
+    "sheet": "m-bone-archer",
+    "art": 0.95,
+    "clips": {"strike": 3},
+    "glyph": "a",
+    "colour": "#D8CEBC"
+   },
+   "sfx": "skeleton",
+   "text": {
+    "lore": "monster.bonearcher.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/crypt/crypt.js:18-19; js/engine/actions-adapter.js:156; js/engine/damage-adapter.js:274; js/combat/combat.js:507"
+  },
+  "shade": {
+   "name": "Shade",
+   "hp": 48,
+   "dmg": [
+    7,
+    10
+   ],
+   "acc": 58,
+   "eva": 42,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 30,
+   "element": "shadow",
+   "elementalDamage": 3,
+   "attackType": "ice",
+   "flags": [
+    "undead",
+    "shadowy"
+   ],
+   "family": "crypt",
+   "behaviour": "hunter",
+   "passives": [
+    {
+     "verb": "movement-mode",
+     "mode": "phase"
+    },
+    {
+     "verb": "damage-mod",
+     "direction": "taken",
+     "mult": 0.5,
+     "if": {
+      "damage-type": "phys"
+     }
+    },
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "if": {
+      "hit-was": "melee"
+     },
+     "effects": [
+      {
+       "verb": "add-stack",
+       "status": "chill",
+       "n": 1
+      }
+     ]
+    },
+    {
+     "verb": "on-event",
+     "trigger": "on-hit-by",
+     "if": {
+      "target-is": "player"
+     },
+     "effects": [
+      {
+       "verb": "mana",
+       "amount": -4
+      }
+     ]
+    }
+   ],
+   "drops": "kill-shade",
+   "spawn": {
+    "floors": [
+     7,
+     10
+    ],
+    "weight": 10
+   },
+   "look": {
+    "sheet": "m-shade",
+    "art": 0.95,
+    "clips": {"strike": 5},
+    "glyph": "S",
+    "colour": "#5A3E7A"
+   },
+   "sfx": "wisp",
+   "text": {
+    "lore": "monster.shade.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/crypt/crypt.js:20-21, :220-235; js/engine/damage-adapter.js:79, :275; js/engine/actions-adapter.js:159; js/presentation/render/renderer.js:250-262"
+  },
+  "gravebloat": {
+   "name": "Grave Bloat",
+   "hp": 90,
+   "dmg": [
+    12,
+    18
+   ],
+   "acc": 58,
+   "eva": 4,
+   "armour": 2,
+   "speed": 100,
+   "range": 1,
+   "xp": 38,
+   "flags": [
+    "undead",
+    "gas-immune"
+   ],
+   "family": "crypt",
+   "behaviour": "hunter",
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit-by",
+     "if": {
+      "target-is": "player"
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "rot",
+       "turns": 30
+      }
+     ]
+    },
+    {
+     "verb": "on-event",
+     "trigger": "on-death",
+     "effects": [
+      {
+       "verb": "field",
+       "field": "gas",
+       "shape": {
+        "selector": "radius",
+        "centre": "self",
+        "n": 1
+       },
+       "turns": 6,
+       "clock": "action",
+       "side": "all",
+       "each": [
+        {
+         "verb": "damage",
+         "amount": 4,
+         "type": "poison",
+         "tags": [
+          "periodic",
+          "environment"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "drops": "kill-gravebloat",
+   "spawn": {
+    "floors": [
+     8,
+     10
+    ],
+    "weight": 10
+   },
+   "look": {
+    "sheet": "m-grave-bloat",
+    "art": 1.1,
+    "clips": {"strike": 6},
+    "glyph": "B",
+    "colour": "#9FBF7A"
+   },
+   "sfx": "zombie",
+   "text": {
+    "lore": "monster.gravebloat.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/crypt/crypt.js:22-23; js/engine/death-adapter.js:49; js/engine/damage-adapter.js:276"
+  },
+  "acolyte": {
+   "name": "Necro-Acolyte",
+   "hp": 43,
+   "dmg": [
+    6,
+    9
+   ],
+   "acc": 58,
+   "eva": 14,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 40,
+   "flags": [
+    "living",
+    "spellcaster"
+   ],
+   "family": "crypt",
+   "caller": true,
+   "behaviour": "support-caster",
+   "params": {
+    "retreatWithin": 3,
+    "holdRange": 5
+   },
+   "moves": [
+    {
+     "id": "raise-skeleton",
+     "name": "Raise Skeleton",
+     "range": [
+      0,
+      99
+     ],
+     "needs": "none",
+     "cooldown": 6,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "summon",
+       "side": "hostile",
+       "creature": "skeleton",
+       "count": 1,
+       "placement": "near-source",
+       "stats": {
+        "hp": "summonHp"
+       },
+       "cap": 1,
+       "noLoot": true
+      }
+     ],
+     "src": "js/world/biomes/crypt/crypt.js:203-205"
+    },
+    {
+     "id": "bone-ward",
+     "name": "Bone Ward",
+     "range": [
+      0,
+      4
+     ],
+     "needs": "open-line",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "idleFallback": true,
+     "target": {
+      "selector": "radius",
+      "centre": "self",
+      "n": 4,
+      "side": "allies",
+      "family": "crypt",
+      "flag": "undead",
+      "need": "hunting-without-bone-ward"
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "boneward",
+       "turns": null
+      }
+     ],
+     "src": "js/enemies/enemy-teamwork.js:58-66"
+    },
+    {
+     "id": "grave-bolt",
+     "shot": "dark",
+     "name": "Grave Bolt",
+     "range": [
+      1,
+      5
+     ],
+     "needs": "clear-shot",
+     "cooldown": 3,
+     "clock": "game-turn",
+     "hit": {
+      "accBonus": 8
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {"roll": [6, 9]},
+       "type": "dark",
+       "tags": [
+        "spell",
+        "single-target",
+        "projectile",
+        "ranged"
+       ],
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "fear",
+         "turns": 1
+        }
+       ]
+      }
+     ],
+     "src": "js/world/biomes/crypt/crypt.js:208-214"
+    }
+   ],
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "fear",
+       "turns": 1
+      }
+     ]
+    }
+   ],
+   "drops": "kill-acolyte",
+   "spawn": {
+    "floors": [
+     9,
+     10
+    ],
+    "weight": 8
+   },
+   "look": {
+    "sheet": "m-necro-acolyte",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "n",
+    "colour": "#6A3E8A"
+   },
+   "sfx": "shaman",
+   "text": {
+    "lore": "monster.acolyte.lore",
+    "hint": "monster.acolyte.hint"
+   },
+   "src": "js/world/biomes/crypt/crypt.js:24-25, :191-218; js/engine/actions-adapter.js:161"
+  },
+  "morty": {
+   "name": "Morty the Mostly-Dead",
+   "hp": 170,
+   "dmg": [
+    12,
+    18
+   ],
+   "acc": 65,
+   "eva": 18,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 450,
+   "flags": [
+    "undead",
+    "spellcaster",
+    "boss",
+    "elite"
+   ],
+   "set": "morty",
+   "behaviour": "boss",
+   "drops": "kill-none",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "its set piece (bosses.json morty)"
+   },
+   "look": {
+    "sheet": "m-morty",
+    "art": 1.2,
+    "clips": {"strike": 5},
+    "glyph": "M",
+    "colour": "#7A4FB0"
+   },
+   "sfx": "morty",
+   "text": {
+    "lore": "monster.morty.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/crypt/crypt.js:26-27"
+  },
+  "phylactery": {
+   "name": "Phylactery",
+   "hp": 60,
+   "dmg": [
+    0,
+    0
+   ],
+   "acc": 0,
+   "eva": 0,
+   "armour": 12,
+   "speed": 100,
+   "range": 0,
+   "xp": 60,
+   "flags": [
+    "object",
+    "still"
+   ],
+   "set": "morty",
+   "behaviour": "object",
+   "passives": [
+    {
+     "verb": "damage-mod",
+     "direction": "taken",
+     "mult": 2,
+     "if": {
+      "damage-type": [
+       "light",
+       "fire"
+      ]
+     }
+    },
+    {
+     "verb": "damage-mod",
+     "direction": "taken",
+     "mult": 0.25,
+     "if": {
+      "not": {
+       "damage-type": [
+        "light",
+        "fire"
+       ]
+      }
+     }
+    }
+   ],
+   "drops": "kill-none",
+   "spawn": {
+    "weight": 0
+   },
+   "look": {
+    "sheet": "m-phylactery",
+    "art": 0.9,
+    "clips": {"strike": 6},
+    "glyph": "&",
+    "colour": "#6FE08A"
+   },
+   "sfx": null,
+   "text": {
+    "lore": "monster.phylactery.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/crypt/crypt.js:28-29; js/engine/damage-adapter.js:80"
+  },
+  "dawnsentinel": {
+   "name": "Dawn Sentinel",
+   "hp": 75,
+   "dmg": [
+    10,
+    14
+   ],
+   "acc": 60,
+   "eva": 12,
+   "armour": 5,
+   "speed": 100,
+   "range": 1,
+   "xp": 42,
+   "element": "light",
+   "elementalDamage": [3, 4],
+   "flags": [],
+   "behaviour": "hunter",
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-damaged",
+     "if": {
+      "all": [
+       {
+        "target-is": "player"
+       },
+       {
+        "any": [
+         {
+          "not": {
+           "damage-type": "phys"
+          }
+         },
+         {
+          "distance": {
+           "min": 2
+          }
+         }
+        ]
+       }
+      ]
+     },
+     "effects": [
+      {
+       "verb": "damage-mod",
+       "direction": "taken",
+       "reducePct": 50
+      },
+      {
+       "verb": "damage-from-packet",
+       "packet": "taken",
+       "flat": 4,
+       "type": "same",
+       "to": {
+        "selector": "source"
+       },
+       "tags": [
+        "reflected"
+       ],
+       "if": {
+        "not": {
+         "has-tag": [
+          "periodic",
+          "arc",
+          "proc",
+          "reflected"
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "light",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-dawn-sentinel",
+    "art": 1.3,
+    "clips": {"strike": 5},
+    "glyph": "D",
+    "colour": "#F6E7B0"
+   },
+   "sfx": "golem",
+   "text": {
+    "lore": "monster.dawnsentinel.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/portals.js:247; js/engine/damage-adapter.js:68-76"
+  },
+  "halowisp": {
+   "name": "Halo Wisp",
+   "hp": 24,
+   "dmg": [
+    4,
+    6
+   ],
+   "acc": 55,
+   "eva": 34,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 30,
+   "element": "light",
+   "elementalDamage": 2,
+   "flags": [
+    "flying"
+   ],
+   "behaviour": "caster",
+   "params": {
+    "fleeWithin": 3
+   },
+   "moves": [
+    {
+     "id": "mend",
+     "name": "Mend",
+     "range": [
+      0,
+      4
+     ],
+     "needs": "none",
+     "cooldown": 2,
+     "clock": "game-turn",
+     "target": {
+      "selector": "nearest",
+      "side": "allies",
+      "range": 4,
+      "n": 1,
+      "order": "most-hurt",
+      "need": "hurt"
+     },
+     "effects": [
+      {
+       "verb": "heal",
+       "amount": 8
+      }
+     ],
+     "src": "js/world/planes/portals.js:332-336"
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "light",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-halo-wisp",
+    "art": 0.75,
+    "clips": {"strike": 4},
+    "glyph": "w",
+    "colour": "#FFE08A"
+   },
+   "sfx": "wisp",
+   "text": {
+    "lore": "monster.halowisp.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/portals.js:248"
+  },
+  "prismscarab": {
+   "name": "Prism Scarab",
+   "hp": 55,
+   "dmg": [
+    6,
+    9
+   ],
+   "acc": 60,
+   "eva": 14,
+   "armour": 3,
+   "speed": 100,
+   "range": 4,
+   "xp": 36,
+   "element": "light",
+   "elementalDamage": [3, 4],
+   "flags": [],
+   "behaviour": "hunter",
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "light",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-prism-scarab",
+    "art": 0.85,
+    "clips": {"strike": 4},
+    "glyph": "p",
+    "colour": "#C8F0FF"
+   },
+   "sfx": "spider",
+   "text": {
+    "lore": "monster.prismscarab.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/portals.js:249; js/engine/actions-adapter.js:111-116",
+   "moves": [
+    {
+     "id": "split-beam",
+     "name": "Split Beam",
+     "range": [
+      2,
+      4
+     ],
+     "needs": "straight-lane",
+     "cooldown": 0,
+     "effects": [
+      {
+       "verb": "weapon-attack",
+       "weapon": "own",
+       "projected": true,
+       "splitTo": {
+        "selector": "nearest",
+        "side": "allies-of-target",
+        "range": 3,
+        "n": 1,
+        "visibleFromOwner": true
+       },
+       "splitMult": 0.7
+      }
+     ],
+     "src": "js/engine/actions-adapter.js:111-116"
+    }
+   ]
+  },
+  "radiantwarden": {
+   "name": "Radiant Warden",
+   "hp": 160,
+   "dmg": [
+    12,
+    16
+   ],
+   "acc": 65,
+   "eva": 18,
+   "armour": 5,
+   "speed": 100,
+   "range": 1,
+   "xp": 300,
+   "element": "light",
+   "elementalDamage": [4, 5],
+   "flags": [
+    "elite"
+   ],
+   "set": "radiant-warden",
+   "behaviour": "boss",
+   "drops": "kill-plane-elite",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "its set piece (bosses.json radiant-warden)"
+   },
+   "look": {
+    "sheet": "m-radiant-warden",
+    "art": 1.3,
+    "clips": {"strike": 3},
+    "glyph": "R",
+    "colour": "#FFD24A"
+   },
+   "sfx": "radiant-warden",
+   "text": {
+    "lore": "monster.radiantwarden.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/portals.js:251"
+  },
+  "stalker": {
+   "name": "Stalker",
+   "hp": 75,
+   "dmg": [
+    10,
+    14
+   ],
+   "acc": 65,
+   "eva": 38,
+   "armour": 1,
+   "speed": 100,
+   "range": 1,
+   "xp": 40,
+   "flags": [
+    "shadowy"
+   ],
+   "behaviour": "ambusher",
+   "params": {
+    "entry": "unseen-until-adjacent"
+   },
+   "passives": [
+    {
+     "verb": "damage-mod",
+     "direction": "dealt",
+     "mult": 2,
+     "if": {
+      "target-is": "player"
+     },
+     "uses": 1
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "shadow",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-stalker",
+    "art": 1,
+    "clips": {"strike": 4},
+    "glyph": "s",
+    "colour": "#2A2436"
+   },
+   "sfx": "hound",
+   "text": {
+    "lore": "monster.stalker.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/portals.js:252; js/engine/actions-adapter.js:102; js/world/planes/portals.js:657"
+  },
+  "gloommoth": {
+   "name": "Gloom Moth",
+   "hp": 24,
+   "dmg": [
+    6,
+    9
+   ],
+   "acc": 60,
+   "eva": 44,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 30,
+   "flags": [
+    "flying"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "erraticPct": 35
+   },
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-attacked",
+     "if": {
+      "target-is": "player"
+     },
+     "effects": [
+      {
+       "verb": "light-radius",
+       "set": 2,
+       "turns": 5,
+       "clock": "action"
+      }
+     ]
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "shadow",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-gloom-moth",
+    "art": 0.85,
+    "clips": {"strike": 4},
+    "glyph": "m",
+    "colour": "#6A4F8A"
+   },
+   "sfx": "wisp",
+   "text": {
+    "lore": "monster.gloommoth.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/portals.js:253; js/engine/damage-adapter.js:277; js/world/planes/portals.js:317-318"
+  },
+  "umbralhound": {
+   "name": "Umbral Hound",
+   "hp": 55,
+   "dmg": [
+    10,
+    14
+   ],
+   "acc": 60,
+   "eva": 20,
+   "armour": 1,
+   "speed": 100,
+   "range": 1,
+   "xp": 34,
+   "flags": [
+    "shadowy"
+   ],
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "howl",
+     "name": "Howl",
+     "range": [
+      0,
+      99
+     ],
+     "needs": "sight",
+     "uses": 1,
+     "effects": [
+      {
+       "verb": "alert",
+       "radius": 14,
+       "who": {
+        "selector": "radius",
+        "centre": "self",
+        "n": 14,
+        "side": "allies"
+       },
+       "toward": "player"
+      }
+     ],
+     "src": "js/world/planes/portals.js:338"
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "shadow",
+    "role": "resident",
+    "pairs": true
+   },
+   "look": {
+    "sheet": "m-umbral-hound",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "h",
+    "colour": "#2A2436"
+   },
+   "sfx": "hound",
+   "text": {
+    "lore": "monster.umbralhound.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/portals.js:254"
+  },
+  "nightwarden": {
+   "name": "Night Warden",
+   "hp": 160,
+   "dmg": [
+    14,
+    20
+   ],
+   "acc": 65,
+   "eva": 20,
+   "armour": 4,
+   "speed": 100,
+   "range": 1,
+   "xp": 300,
+   "flags": [
+    "shadowy",
+    "elite"
+   ],
+   "set": "night-warden",
+   "behaviour": "boss",
+   "drops": "kill-plane-elite",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "its set piece (bosses.json night-warden)"
+   },
+   "look": {
+    "sheet": "m-night-warden",
+    "art": 1.2,
+    "clips": {"strike": 5},
+    "glyph": "W",
+    "colour": "#B8B0D8"
+   },
+   "sfx": "night-warden",
+   "text": {
+    "lore": "monster.nightwarden.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/portals.js:255"
+  },
+  "burrower": {
+   "name": "Burrower",
+   "hp": 55,
+   "dmg": [
+    12,
+    16
+   ],
+   "acc": 60,
+   "eva": 10,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 38,
+   "flags": [],
+   "behaviour": "burrower",
+   "params": {
+    "diveWhenFartherThan": 2,
+    "emergeAdjacentOrAfter": 3
+   },
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "earth",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-burrower",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "b",
+    "colour": "#8A6A4A"
+   },
+   "sfx": "golem",
+   "text": {
+    "lore": "monster.burrower.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/portals.js:256, :339-348; js/engine/damage-adapter.js:64"
+  },
+  "crystalgolem": {
+   "name": "Crystal Golem",
+   "hp": 100,
+   "dmg": [
+    12,
+    16
+   ],
+   "acc": 55,
+   "eva": 4,
+   "armour": 10,
+   "speed": 100,
+   "range": 1,
+   "xp": 46,
+   "element": "earth",
+   "elementalDamage": [3, 4],
+   "flags": [],
+   "behaviour": "hunter",
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-death",
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": 6,
+       "type": "phys",
+       "target": {
+        "selector": "adjacent",
+        "centre": "self",
+        "side": "foes"
+       }
+      }
+     ]
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "earth",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-crystal-golem",
+    "art": 1.05,
+    "clips": {"strike": 4},
+    "glyph": "G",
+    "colour": "#9A8AC0"
+   },
+   "sfx": "golem",
+   "text": {
+    "lore": "monster.crystalgolem.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/portals.js:257; js/engine/death-adapter.js:39-41"
+  },
+  "mosstroll": {
+   "name": "Moss Troll",
+   "hp": 100,
+   "dmg": [
+    14,
+    20
+   ],
+   "acc": 55,
+   "eva": 8,
+   "armour": 2,
+   "speed": 100,
+   "range": 1,
+   "xp": 46,
+   "flags": [
+    "living"
+   ],
+   "behaviour": "hunter",
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-action",
+     "if": {
+      "all": [
+       {
+        "hp-below-pct": {
+         "body": "self",
+         "pct": 100
+        }
+       },
+       {
+        "not": {
+         "burned-within": {
+          "turns": 5
+         }
+        }
+       }
+      ]
+     },
+     "effects": [
+      {
+       "verb": "heal",
+       "amount": 4,
+       "natural": true,
+       "regen": true
+      }
+     ]
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "earth",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-moss-troll",
+    "art": 1.1,
+    "clips": {"strike": 4},
+    "glyph": "T",
+    "colour": "#6F8A44"
+   },
+   "sfx": "brute",
+   "text": {
+    "lore": "monster.mosstroll.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/portals.js:258, :316-323; js/engine/damage-adapter.js:67"
+  },
+  "mountainheart": {
+   "name": "Heart of the Mountain",
+   "hp": 160,
+   "dmg": [
+    14,
+    20
+   ],
+   "acc": 60,
+   "eva": 0,
+   "armour": 6,
+   "speed": 100,
+   "range": 1,
+   "xp": 320,
+   "element": "earth",
+   "elementalDamage": [4, 5],
+   "flags": [
+    "elite",
+    "still"
+   ],
+   "footprint": 2,
+   "set": "heart-of-the-mountain",
+   "behaviour": "boss",
+   "drops": "kill-plane-elite",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "its set piece (bosses.json heart-of-the-mountain)"
+   },
+   "look": {
+    "pose": "heart",
+    "sheet": "m-mountain-heart",
+    "art": 1.9,
+    "glyph": "M",
+    "colour": "#C08A40"
+   },
+   "sfx": "heart",
+   "text": {
+    "lore": "monster.mountainheart.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/portals.js:262"
+  },
+  "crystalnode": {
+   "name": "Crystal Node",
+   "hp": 30,
+   "dmg": [
+    0,
+    0
+   ],
+   "acc": 0,
+   "eva": 0,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 20,
+   "flags": [
+    "object"
+   ],
+   "set": "heart-of-the-mountain",
+   "behaviour": "object",
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "earth",
+    "role": "heart-node"
+   },
+   "look": {
+    "sheet": "m-crystal-golem",
+    "art": 0.6,
+    "clips": {"strike": 4},
+    "glyph": "*",
+    "colour": "#C8A0FF"
+   },
+   "sfx": "golem",
+   "text": {
+    "lore": "monster.crystalnode.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/portals.js:263; js/engine/death-adapter.js:42"
+  },
+  "stormbeetle": {
+   "name": "Storm Beetle",
+   "hp": 126,
+   "dmg": [
+    9,
+    13
+   ],
+   "acc": 70,
+   "eva": 8,
+   "armour": 5,
+   "speed": 100,
+   "range": 1,
+   "xp": 40,
+   "flags": [
+    "living",
+    "grounded"
+   ],
+   "family": "cavern",
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "storm-charge",
+     "shot": "lightning",
+     "name": "Storm Charge",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "straight-lane",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "telegraph",
+       "tiles": {
+        "selector": "line",
+        "n": 5,
+        "toward": "target"
+       },
+       "delay": 1,
+       "clock": "game-turn",
+       "interruptedBy": [
+        "control"
+       ],
+       "warning": "warn.storm-charge",
+       "then": [
+        {
+         "verb": "dash",
+         "range": 5,
+         "until": "range",
+         "then": [
+          {
+           "verb": "field",
+           "field": "static",
+           "shape": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 1
+           },
+           "turns": 3,
+           "clock": "action",
+           "side": "player-and-allies",
+           "each": [
+            {
+             "verb": "damage",
+             "amount": {
+              "scaled": {
+               "base": {
+                "roll": [
+                 6,
+                 10
+                ]
+               },
+               "mult": [
+                "number-scale",
+                "lethality"
+               ],
+               "round": true,
+               "min": 1
+              }
+             },
+             "type": "lightning",
+             "tags": [
+              "environment",
+              "area"
+             ]
+            },
+            {
+             "verb": "apply-status",
+             "status": "stun",
+             "turns": 1,
+             "chance": 25,
+             "if": {
+              "not": {
+               "has-status": "stun"
+              }
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "src": "js/world/biomes/caverns/cavernmobs.js:236-267, :281-291"
+    }
+   ],
+   "passives": [
+    {
+     "verb": "resist",
+     "type": "lightning",
+     "mult": 0.5
+    },
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "oncePer": "action",
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {
+        "scaled": {
+         "base": {
+          "roll": [
+           3,
+           5
+          ]
+         },
+         "mult": [
+          "number-scale",
+          "lethality"
+         ],
+         "round": true,
+         "min": 1
+        }
+       },
+       "type": "lightning",
+       "target": {
+        "selector": "adjacent",
+        "of": {
+         "selector": "radius",
+         "centre": "self",
+         "n": 3,
+         "kind": "stormbeetle",
+         "side": "allies"
+        },
+        "side": "foes",
+        "n": 1
+       }
+      }
+     ]
+    }
+   ],
+   "drops": "kill-stormbeetle",
+   "spawn": {
+    "floors": [
+     11,
+     15
+    ],
+    "weight": 22
+   },
+   "look": {
+    "sheet": "m-storm-beetle",
+    "art": 0.95,
+    "clips": {"strike": 6},
+    "glyph": "b",
+    "colour": "#3A4A7A",
+    "facesLeft": true
+   },
+   "sfx": "slime",
+   "text": {
+    "lore": "monster.stormbeetle.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:19-20, :134-155; js/engine/damage-adapter.js:46"
+  },
+  "sparkjelly": {
+   "name": "Spark Jelly",
+   "hp": 61,
+   "dmg": [
+    4,
+    6
+   ],
+   "acc": 65,
+   "eva": 28,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 36,
+   "element": "air",
+   "flags": [
+    "living",
+    "flying"
+   ],
+   "family": "cavern",
+   "behaviour": "hunter",
+   "params": {
+    "erraticPct": 35
+   },
+   "moves": [
+    {
+     "id": "spark-bolt",
+     "shot": "lightning",
+     "name": "Spark Bolt",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "straight-lane",
+     "cooldown": 3,
+     "clock": "game-turn",
+     "hit": {
+      "accBonus": 5
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {
+        "scaled": {
+         "base": {
+          "roll": [
+           5,
+           8
+          ]
+         },
+         "mult": [
+          "number-scale",
+          "lethality"
+         ],
+         "round": true,
+         "min": 1
+        }
+       },
+       "type": "lightning",
+       "tags": [
+        "attack",
+        "spell",
+        "ranged"
+       ]
+      }
+     ],
+     "src": "js/world/biomes/caverns/cavernmobs.js:268-280"
+    }
+   ],
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {
+        "scaled": {
+         "base": {
+          "roll": [
+           3,
+           5
+          ]
+         },
+         "mult": [
+          "number-scale",
+          "lethality"
+         ],
+         "round": true,
+         "min": 1
+        }
+       },
+       "type": "lightning",
+       "target": {
+        "selector": "chain",
+        "n": 2,
+        "range": 2,
+        "side": "foes",
+        "visible": true,
+        "notKind": "sparkjelly"
+       }
+      }
+     ]
+    }
+   ],
+   "drops": "kill-sparkjelly",
+   "spawn": {
+    "floors": [
+     12,
+     15
+    ],
+    "weight": 12
+   },
+   "look": {
+    "sheet": "m-spark-jelly",
+    "art": 0.85,
+    "clips": {"strike": 4},
+    "glyph": "j",
+    "colour": "#8FD8FF",
+    "glow": "#7FD0FF"
+   },
+   "sfx": "bat",
+   "text": {
+    "lore": "monster.sparkjelly.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:21-22, :157-169"
+  },
+  "shockeel": {
+   "name": "Shock Eel",
+   "hp": 70,
+   "dmg": [
+    6,
+    9
+   ],
+   "acc": 65,
+   "eva": 18,
+   "armour": 1,
+   "speed": 100,
+   "range": 1,
+   "xp": 40,
+   "element": "air",
+   "flags": [
+    "living",
+    "aquatic"
+   ],
+   "family": "cavern",
+   "behaviour": "aquatic",
+   "moves": [
+    {
+     "id": "water-zap",
+     "shot": "lightning",
+     "name": "Water Zap",
+     "range": [
+      0,
+      6
+     ],
+     "needs": "in-water",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "firstReady": 2,
+     "effects": [
+      {
+       "verb": "telegraph",
+       "tiles": {
+        "selector": "radius",
+        "centre": "self",
+        "n": 4,
+        "through": "connected-water"
+       },
+       "delay": 1,
+       "clock": "game-turn",
+       "warning": "warn.shock-eel",
+       "then": [
+        {
+         "verb": "damage",
+         "amount": {"roll": [6, 9]},
+         "type": "lightning",
+         "target": {
+          "selector": "tile",
+          "side": "any"
+         },
+         "tags": [
+          "area"
+         ]
+        }
+       ]
+      }
+     ],
+     "src": "js/world/biomes/caverns/cavernmobs.js:371-402"
+    }
+   ],
+   "drops": "kill-shockeel",
+   "spawn": {
+    "floors": [
+     11,
+     14
+    ],
+    "weight": 0
+   },
+   "look": {
+    "faintInWater": true,
+    "sheet": "m-shock-eel",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "e",
+    "colour": "#3F7A6A",
+    "facesLeft": true
+   },
+   "sfx": "slime",
+   "text": {
+    "lore": "monster.shockeel.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:23-24, :366-458"
+  },
+  "myconid": {
+   "name": "Myconid",
+   "hp": 70,
+   "dmg": [
+    6,
+    9
+   ],
+   "acc": 65,
+   "eva": 10,
+   "armour": 1,
+   "speed": 100,
+   "range": 1,
+   "xp": 38,
+   "element": "earth",
+   "flags": [
+    "living",
+    "spellcaster",
+    "sporeproof"
+   ],
+   "family": "cavern",
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "spore-lob",
+     "shot": "poison",
+     "name": "Spores",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "sight",
+     "cooldown": 4,
+     "clock": "game-turn",
+     "firstReady": 1,
+     "effects": [
+      {
+       "verb": "field",
+       "field": "spores",
+       "shape": {
+        "selector": "radius",
+        "centre": "target",
+        "n": 1
+       },
+       "turns": 5,
+       "clock": "action",
+       "side": "all",
+       "each": [
+        {
+         "verb": "damage",
+         "amount": 4,
+         "type": "poison",
+         "tags": [
+          "periodic",
+          "environment"
+         ]
+        }
+       ]
+      }
+     ],
+     "src": "js/world/biomes/caverns/cavernmobs.js:326-350; js/world/biomes/crypt/crypt.js:82-102"
+    },
+    {
+     "id": "sprout",
+     "name": "Sprout Shroomling",
+     "range": [
+      2,
+      99
+     ],
+     "needs": "sight",
+     "cooldown": 6,
+     "clock": "game-turn",
+     "firstReady": 3,
+     "effects": [
+      {
+       "verb": "summon",
+       "side": "hostile",
+       "creature": "shroomling",
+       "count": 1,
+       "placement": "near-target",
+       "cap": 2,
+       "floorCap": 6,
+       "noLoot": true
+      }
+     ],
+     "src": "js/world/biomes/caverns/cavernmobs.js:172-189, :340-347"
+    }
+   ],
+   "drops": "kill-myconid",
+   "spawn": {
+    "floors": [
+     11,
+     15
+    ],
+    "weight": 16
+   },
+   "look": {
+    "sheet": "m-myconid",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "f",
+    "colour": "#7FA8A0",
+    "facesLeft": true
+   },
+   "sfx": "shaman",
+   "text": {
+    "lore": "monster.myconid.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:25-26, :326-351"
+  },
+  "shroomling": {
+   "name": "Shroomling",
+   "hp": 21,
+   "dmg": [
+    4,
+    6
+   ],
+   "acc": 60,
+   "eva": 12,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 6,
+   "flags": [
+    "living",
+    "tiny",
+    "sporeproof"
+   ],
+   "family": "cavern",
+   "behaviour": "hunter",
+   "drops": "kill-none",
+   "spawn": {
+    "floors": [
+     0,
+     0
+    ],
+    "weight": 0
+   },
+   "look": {
+    "sheet": "m-myconid",
+    "art": 0.5,
+    "clips": {"strike": 4},
+    "glyph": "f",
+    "colour": "#9FC0B0",
+    "facesLeft": true
+   },
+   "sfx": "slime",
+   "text": {
+    "lore": "monster.shroomling.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:27-28"
+  },
+  "wormtender": {
+   "name": "Worm Tender",
+   "hp": 63,
+   "dmg": [
+    6,
+    9
+   ],
+   "acc": 65,
+   "eva": 10,
+   "armour": 1,
+   "speed": 100,
+   "range": 1,
+   "xp": 38,
+   "element": "earth",
+   "flags": [
+    "living",
+    "spellcaster",
+    "sporeproof"
+   ],
+   "family": "cavern",
+   "set": "deep-maw",
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "spore-lob",
+     "shot": "poison",
+     "name": "Spores",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "sight",
+     "cooldown": 4,
+     "clock": "game-turn",
+     "firstReady": 1,
+     "effects": [
+      {
+       "verb": "field",
+       "field": "spores",
+       "shape": {
+        "selector": "radius",
+        "centre": "target",
+        "n": 1
+       },
+       "turns": 5,
+       "clock": "action",
+       "side": "all",
+       "each": [
+        {
+         "verb": "damage",
+         "amount": 4,
+         "type": "poison",
+         "tags": [
+          "periodic",
+          "environment"
+         ]
+        }
+       ]
+      }
+     ],
+     "src": "js/world/biomes/caverns/cavernmobs.js:326-350; js/world/biomes/crypt/crypt.js:82-102"
+    },
+    {
+     "id": "sprout",
+     "name": "Sprout Shroomling",
+     "range": [
+      2,
+      99
+     ],
+     "needs": "sight",
+     "cooldown": 6,
+     "clock": "game-turn",
+     "firstReady": 3,
+     "effects": [
+      {
+       "verb": "summon",
+       "side": "hostile",
+       "creature": "shroomling",
+       "count": 1,
+       "placement": "near-target",
+       "cap": 2,
+       "floorCap": 6,
+       "noLoot": true
+      }
+     ],
+     "src": "js/world/biomes/caverns/cavernmobs.js:172-189, :340-347"
+    }
+   ],
+   "drops": "kill-none",
+   "spawn": {
+    "floors": [
+     0,
+     0
+    ],
+    "weight": 0
+   },
+   "look": {
+    "sheet": "m-worm-tender",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "f",
+    "colour": "#A8705A",
+    "facesLeft": true
+   },
+   "sfx": "shaman",
+   "text": {
+    "lore": "monster.wormtender.lore",
+    "hint": "monster.wormtender.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:31-32"
+  },
+  "crystalcrawler": {
+   "name": "Cavern Rock Slime",
+   "hp": 91,
+   "dmg": [
+    7,
+    10
+   ],
+   "acc": 70,
+   "eva": 8,
+   "armour": 5,
+   "speed": 70,
+   "range": 1,
+   "xp": 38,
+   "flags": [],
+   "family": "cavern",
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "root-spit",
+     "name": "Root Spit",
+     "sfx": "slime-attack",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "clear-shot",
+     "cooldown": 6,
+     "clock": "game-turn",
+     "hit": {
+      "accBonus": 0
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {
+        "from-source": "dmg"
+       },
+       "type": "phys",
+       "tags": [
+        "attack",
+        "single-target",
+        "projectile",
+        "ranged"
+       ],
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "root",
+         "turns": 2
+        }
+       ]
+      }
+     ],
+     "src": "js/combat/combat.js:289-305"
+    }
+   ],
+   "passives": [
+    {
+     "verb": "split",
+     "whenHitAtFullHp": true,
+     "child": "self",
+     "once": false,
+     "minHp": 2,
+     "noLoot": true,
+     "noXp": true
+    },
+    {
+     "verb": "on-event",
+     "trigger": "on-world-pulse",
+     "if": {
+      "all": [
+       {
+        "not": {
+         "has-status": {
+          "any": [
+           "poison",
+           "rot"
+          ]
+         }
+        }
+       },
+       {
+        "creature-flag": "hunting"
+       }
+      ]
+     },
+     "effects": [
+      {
+       "verb": "heal",
+       "amount": 2,
+       "natural": true,
+       "regen": true
+      }
+     ]
+    }
+   ],
+   "drops": "kill-crystalcrawler",
+   "spawn": {
+    "floors": [
+     13,
+     15
+    ],
+    "weight": 9
+   },
+   "look": {
+    "sheet": "m-rock-slime",
+    "art": 1,
+    "clips": {"strike": 6},
+    "glyph": "s",
+    "colour": "#8A6AD0",
+    "facesLeft": true
+   },
+   "sfx": "slime",
+   "text": {
+    "lore": "monster.crystalcrawler.lore",
+    "hint": "monster.crystalcrawler.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:35-37"
+  },
+  "rootbound": {
+   "name": "Root-bound",
+   "hp": 89,
+   "dmg": [
+    8,
+    12
+   ],
+   "acc": 68,
+   "eva": 8,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 42,
+   "flags": [
+    "living",
+    "spellcaster"
+   ],
+   "family": "cavern",
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "earth-root",
+     "name": "Earth Root",
+     "range": [
+      1,
+      4
+     ],
+     "needs": "clear-shot",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "hit": {
+      "accBonus": 10
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {"roll": [14, 22]},
+       "type": "phys",
+       "tags": [
+        "spell",
+        "single-target",
+        "projectile",
+        "ranged"
+       ],
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "root",
+         "turns": 2
+        }
+       ]
+      }
+     ],
+     "src": "js/world/biomes/caverns/cavernmobs.js:208-234; js/content/data.js:399-414"
+    }
+   ],
+   "drops": "kill-rootbound",
+   "spawn": {
+    "floors": [
+     11,
+     15
+    ],
+    "weight": 8
+   },
+   "look": {
+    "sheet": "m-rootbound",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "r",
+    "colour": "#879567"
+   },
+   "sfx": "shaman",
+   "text": {
+    "lore": "monster.rootbound.lore",
+    "hint": "monster.rootbound.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:38-40"
+  },
+  "caverat": {
+   "name": "Cave Rat",
+   "hp": 42,
+   "dmg": [
+    6,
+    9
+   ],
+   "acc": 66,
+   "eva": 24,
+   "armour": 0,
+   "speed": 135,
+   "range": 1,
+   "xp": 30,
+   "flags": [
+    "living",
+    "retired"
+   ],
+   "family": "cavern",
+   "behaviour": "hunter",
+   "drops": "kill-rat",
+   "spawn": {
+    "floors": [
+     11,
+     13
+    ],
+    "weight": 0,
+    "pack": [
+     2,
+     3
+    ]
+   },
+   "look": {
+    "sheet": "m-rat",
+    "art": 0.85,
+    "clips": {"stride": true, "fidget": {"row": "sniff", "everyMs": 4000}, "strike": 4},
+    "glyph": "r",
+    "colour": "#8C7A63"
+   },
+   "sfx": "rat",
+   "text": {
+    "lore": "monster.caverat.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:42; js/enemies/sporecaller.js:12"
+  },
+  "cavebat": {
+   "name": "Grotto Bat",
+   "hp": 33,
+   "dmg": [
+    4,
+    6
+   ],
+   "acc": 66,
+   "eva": 28,
+   "armour": 0,
+   "speed": 130,
+   "range": 1,
+   "xp": 28,
+   "flags": [
+    "living",
+    "flying",
+    "retired"
+   ],
+   "family": "cavern",
+   "behaviour": "hunter",
+   "params": {
+    "erraticPct": 35
+   },
+   "drops": "kill-bat",
+   "spawn": {
+    "floors": [
+     11,
+     12
+    ],
+    "weight": 0
+   },
+   "look": {
+    "air": 0.5,
+    "sheet": "m-bat",
+    "art": 0.85,
+    "clips": {"strike": 3},
+    "glyph": "b",
+    "colour": "#9E8CA8"
+   },
+   "sfx": "bat",
+   "text": {
+    "lore": "monster.cavebat.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:43; js/enemies/sporecaller.js:12"
+  },
+  "caveslime": {
+   "name": "Basalt Slime",
+   "hp": 91,
+   "dmg": [
+    7,
+    10
+   ],
+   "acc": 65,
+   "eva": 8,
+   "armour": 5,
+   "speed": 70,
+   "range": 1,
+   "xp": 38,
+   "flags": [],
+   "family": "cavern",
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "root-spit",
+     "name": "Root Spit",
+     "sfx": "slime-attack",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "clear-shot",
+     "cooldown": 6,
+     "clock": "game-turn",
+     "hit": {
+      "accBonus": 0
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {
+        "from-source": "dmg"
+       },
+       "type": "phys",
+       "tags": [
+        "attack",
+        "single-target",
+        "projectile",
+        "ranged"
+       ],
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "root",
+         "turns": 2
+        }
+       ]
+      }
+     ],
+     "src": "js/combat/combat.js:289-305"
+    }
+   ],
+   "passives": [
+    {
+     "verb": "split",
+     "whenHitAtFullHp": true,
+     "child": "self",
+     "once": false,
+     "minHp": 2,
+     "noLoot": true,
+     "noXp": true
+    },
+    {
+     "verb": "on-event",
+     "trigger": "on-world-pulse",
+     "if": {
+      "all": [
+       {
+        "not": {
+         "has-status": {
+          "any": [
+           "poison",
+           "rot"
+          ]
+         }
+        }
+       },
+       {
+        "creature-flag": "hunting"
+       }
+      ]
+     },
+     "effects": [
+      {
+       "verb": "heal",
+       "amount": 2,
+       "natural": true,
+       "regen": true
+      }
+     ]
+    }
+   ],
+   "drops": "kill-slime",
+   "spawn": {
+    "floors": [
+     11,
+     15
+    ],
+    "weight": 10
+   },
+   "look": {
+    "blockColour": "#A995CA",
+    "sheet": "m-rock-slime",
+    "art": 1,
+    "clips": {"strike": 6},
+    "glyph": "s",
+    "colour": "#7C8C9E",
+    "facesLeft": true
+   },
+   "sfx": "slime",
+   "text": {
+    "lore": "monster.caveslime.lore",
+    "hint": "monster.caveslime.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:45-47, :64"
+  },
+  "deepmaw": {
+   "name": "The Deep Maw",
+   "hp": 828,
+   "dmg": [
+    24,
+    34
+   ],
+   "acc": 75,
+   "eva": 0,
+   "armour": 4,
+   "speed": 100,
+   "range": 1,
+   "xp": 600,
+   "flags": [
+    "living",
+    "heavy",
+    "boss",
+    "elite"
+   ],
+   "footprint": 2,
+   "set": "deep-maw",
+   "behaviour": "boss",
+   "drops": "kill-none",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "its set piece (bosses.json deep-maw)"
+   },
+   "look": {
+    "burrower": true,
+    "sheet": "m-deep-maw",
+    "art": 2,
+    "clips": {"strike": 6},
+    "glyph": "W",
+    "colour": "#B07A4A",
+    "facesLeft": true,
+    "bigScale": 1.5
+   },
+   "sfx": "maw",
+   "text": {
+    "lore": "monster.deepmaw.lore",
+    "hint": "monster.deepmaw.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:49-51"
+  },
+  "mawlimb": {
+   "name": "The Deep Maw",
+   "hp": 9999,
+   "dmg": [
+    0,
+    0
+   ],
+   "acc": 0,
+   "eva": 0,
+   "armour": 4,
+   "speed": 100,
+   "range": 0,
+   "xp": 0,
+   "flags": [
+    "object"
+   ],
+   "partOf": "deepmaw",
+   "behaviour": "object",
+   "drops": "kill-none",
+   "spawn": {
+    "floors": [
+     0,
+     0
+    ],
+    "weight": 0
+   },
+   "look": {
+    "sheet": "m-deep-maw",
+    "art": 0.1,
+    "clips": {"strike": 6},
+    "glyph": "W",
+    "colour": "#B07A4A"
+   },
+   "sfx": null,
+   "text": {
+    "lore": "monster.mawlimb.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:52-53"
+  },
+  "cinderling": {
+   "name": "Cinderling",
+   "hp": 102,
+   "dmg": [
+    6,
+    9
+   ],
+   "acc": 67,
+   "eva": 22,
+   "armour": 2,
+   "speed": 100,
+   "range": 1,
+   "xp": 55,
+   "element": "fire",
+   "flags": [
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 2,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     11,
+     15
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-cinderling",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "*",
+    "colour": "#E2622B"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.cinderling.lore",
+    "hint": "monster.cinderling.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:70-74, :84"
+  },
+  "rippleling": {
+   "name": "Rippleling",
+   "hp": 102,
+   "dmg": [
+    6,
+    9
+   ],
+   "acc": 65,
+   "eva": 20,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 55,
+   "element": "water",
+   "flags": [
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 2,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     11,
+     15
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-rippleling",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "*",
+    "colour": "#62A8D8"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.rippleling.lore",
+    "hint": "monster.rippleling.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:70-74, :84"
+  },
+  "gustling": {
+   "name": "Gustling",
+   "hp": 92,
+   "dmg": [
+    6,
+    9
+   ],
+   "acc": 69,
+   "eva": 30,
+   "armour": 2,
+   "speed": 140,
+   "range": 1,
+   "xp": 55,
+   "element": "air",
+   "flags": [
+    "flying",
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 2,
+   "behaviour": "hunter",
+   "params": {
+    "erraticPct": 35
+   },
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     11,
+     15
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-gustling",
+    "art": 0.95,
+    "clips": {"strike": 2},
+    "glyph": "*",
+    "colour": "#E8D27A"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.gustling.lore",
+    "hint": "monster.gustling.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:70-74, :84"
+  },
+  "mossling": {
+   "name": "Mossling",
+   "hp": 122,
+   "dmg": [
+    6,
+    9
+   ],
+   "acc": 61,
+   "eva": 8,
+   "armour": 5,
+   "speed": 100,
+   "range": 1,
+   "xp": 55,
+   "element": "earth",
+   "flags": [
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 2,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     11,
+     15
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-mossling",
+    "art": 0.95,
+    "clips": {"strike": 5},
+    "glyph": "*",
+    "colour": "#7FA05A"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.mossling.lore",
+    "hint": "monster.mossling.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:70-74, :84"
+  },
+  "duskling": {
+   "name": "Duskling",
+   "hp": 102,
+   "dmg": [
+    6,
+    9
+   ],
+   "acc": 69,
+   "eva": 26,
+   "armour": 2,
+   "speed": 100,
+   "range": 1,
+   "xp": 55,
+   "element": "shadow",
+   "flags": [
+    "shadowy",
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 2,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     11,
+     15
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-duskling",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "*",
+    "colour": "#8A6FB0"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.duskling.lore",
+    "hint": "monster.duskling.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:70-74, :84"
+  },
+  "gleamling": {
+   "name": "Gleamling",
+   "hp": 102,
+   "dmg": [
+    6,
+    9
+   ],
+   "acc": 69,
+   "eva": 24,
+   "armour": 2,
+   "speed": 100,
+   "range": 1,
+   "xp": 55,
+   "element": "light",
+   "flags": [
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 2,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     11,
+     15
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-gleamling",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "*",
+    "colour": "#F6E7B0"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.gleamling.lore",
+    "hint": "monster.gleamling.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:70-74, :84"
+  },
+  "pyreling": {
+   "name": "Pyreling",
+   "hp": 186,
+   "dmg": [
+    15,
+    19
+   ],
+   "acc": 70,
+   "eva": 22,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 85,
+   "element": "fire",
+   "flags": [
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 3,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     16,
+     25
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-pyreling",
+    "art": 1.05,
+    "clips": {"strike": 5},
+    "glyph": "*",
+    "colour": "#E2622B"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.pyreling.lore",
+    "hint": "monster.pyreling.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:77-85"
+  },
+  "tideling3": {
+   "name": "Tideling",
+   "hp": 186,
+   "dmg": [
+    15,
+    19
+   ],
+   "acc": 68,
+   "eva": 20,
+   "armour": 4,
+   "speed": 100,
+   "range": 1,
+   "xp": 85,
+   "element": "water",
+   "flags": [
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 3,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     16,
+     25
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-tideling-tier3",
+    "art": 1.05,
+    "clips": {"strike": 3},
+    "glyph": "*",
+    "colour": "#62A8D8"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.tideling3.lore",
+    "hint": "monster.tideling3.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:77-85"
+  },
+  "stormling": {
+   "name": "Stormling",
+   "hp": 168,
+   "dmg": [
+    15,
+    19
+   ],
+   "acc": 72,
+   "eva": 30,
+   "armour": 3,
+   "speed": 140,
+   "range": 1,
+   "xp": 85,
+   "element": "air",
+   "flags": [
+    "flying",
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 3,
+   "behaviour": "hunter",
+   "params": {
+    "erraticPct": 35
+   },
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     16,
+     25
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-stormling",
+    "art": 1.05,
+    "clips": {"strike": 3},
+    "glyph": "*",
+    "colour": "#E8D27A"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.stormling.lore",
+    "hint": "monster.stormling.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:77-85"
+  },
+  "cragling": {
+   "name": "Cragling",
+   "hp": 224,
+   "dmg": [
+    15,
+    19
+   ],
+   "acc": 64,
+   "eva": 8,
+   "armour": 6,
+   "speed": 100,
+   "range": 1,
+   "xp": 85,
+   "element": "earth",
+   "flags": [
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 3,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     16,
+     25
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-cragling",
+    "art": 1.05,
+    "clips": {"strike": 5},
+    "glyph": "*",
+    "colour": "#7FA05A"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.cragling.lore",
+    "hint": "monster.cragling.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:77-85"
+  },
+  "umbraling": {
+   "name": "Umbraling",
+   "hp": 186,
+   "dmg": [
+    15,
+    19
+   ],
+   "acc": 72,
+   "eva": 26,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 85,
+   "element": "shadow",
+   "flags": [
+    "shadowy",
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 3,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     16,
+     25
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-umbraling",
+    "art": 1.05,
+    "clips": {"strike": 6},
+    "glyph": "*",
+    "colour": "#8A6FB0"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.umbraling.lore",
+    "hint": "monster.umbraling.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:77-85"
+  },
+  "dawnling": {
+   "name": "Dawnling",
+   "hp": 186,
+   "dmg": [
+    15,
+    19
+   ],
+   "acc": 72,
+   "eva": 24,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 85,
+   "element": "light",
+   "flags": [
+    "rare"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 3,
+   "behaviour": "hunter",
+   "drops": {
+    "mote": "own-element"
+   },
+   "spawn": {
+    "floors": [
+     16,
+     25
+    ],
+    "weight": 0,
+    "rare": true,
+    "ruled": "2026-10-16"
+   },
+   "look": {
+    "sheet": "m-dawnling",
+    "art": 1.05,
+    "clips": {"strike": 4},
+    "glyph": "*",
+    "colour": "#F6E7B0"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.dawnling.lore",
+    "hint": "monster.dawnling.hint"
+   },
+   "src": "js/world/biomes/caverns/cavernmobs.js:77-85"
+  },
+  "drowblade": {
+   "name": "Drow Blade",
+   "hp": 163,
+   "dmg": [
+    24,
+    34
+   ],
+   "acc": 80,
+   "eva": 24,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 48,
+   "flags": [
+    "living",
+    "darksight"
+   ],
+   "abilityScale": 1.25,
+   "family": "underdark",
+   "conceal": {
+    "rule": "until-revealed"
+   },
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "darkness",
+     "shot": "dark",
+     "name": "Globe of Darkness",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "straight-lane",
+     "cooldown": [
+      10,
+      14
+     ],
+     "clock": "game-turn",
+     "firstReady": [
+      1,
+      3
+     ],
+     "if": {
+      "not": {
+       "standing-on": {
+        "field": "darkness"
+       }
+      }
+     },
+     "effects": [
+      {
+       "verb": "field",
+       "field": "darkness",
+       "shape": {
+        "selector": "square",
+        "n": 3,
+        "centre": "target"
+       },
+       "turns": 5,
+       "clock": "action",
+       "side": "all"
+      }
+     ],
+     "src": "js/world/biomes/underdark/deepmobs.js:197-206, :250-257"
+    }
+   ],
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "chance": 50,
+     "if": {
+      "creature-flag": "living"
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "bleed",
+       "turns": 4,
+       "magnitude": 4
+      }
+     ]
+    }
+   ],
+   "drops": "kill-drowblade",
+   "spawn": {
+    "floors": [
+     16,
+     20
+    ],
+    "weight": 24,
+    "region": "temple"
+   },
+   "look": {
+    "sheet": "m-drow-blade",
+    "art": 0.95,
+    "clips": {"strike": 5},
+    "glyph": "d",
+    "colour": "#6A3A5A",
+    "facesLeft": true
+   },
+   "sfx": "drow",
+   "text": {
+    "lore": "monster.drowblade.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/underdark/deepmobs.js:29-30"
+  },
+  "drowpriestess": {
+   "name": "Drow Priestess",
+   "hp": 126,
+   "dmg": [
+    22,
+    28
+   ],
+   "acc": 75,
+   "eva": 18,
+   "armour": 1,
+   "speed": 100,
+   "range": 1,
+   "xp": 56,
+   "flags": [
+    "living",
+    "spellcaster",
+    "darksight"
+   ],
+   "abilityScale": 1.25,
+   "family": "underdark",
+   "caller": true,
+   "behaviour": "support-caster",
+   "params": {
+    "retreatWithin": 3,
+    "holdRange": 6,
+    "tactical": true
+   },
+   "moves": [
+    {
+     "id": "blood-heal",
+     "name": "Heal",
+     "range": [
+      0,
+      6
+     ],
+     "needs": "open-line",
+     "cooldown": 4,
+     "clock": "game-turn",
+     "idleFallback": "any-hurt",
+     "target": {
+      "selector": "nearest",
+      "side": "allies",
+      "range": 6,
+      "n": 1,
+      "family": "underdark",
+      "order": "most-hurt",
+      "need": "below-65-pct"
+     },
+     "effects": [
+      {
+       "verb": "heal",
+       "amount": {
+        "pct-of": {
+         "stat": "max-hp",
+         "pct": 50
+        }
+       }
+      },
+      {
+       "verb": "remove-status",
+       "statuses": [
+        "bleed"
+       ],
+       "reason": "stanched"
+      }
+     ],
+     "src": "js/world/biomes/underdark/deepmobs.js:263-285"
+    },
+    {
+     "id": "call-spiderlings",
+     "name": "Call Spiderlings",
+     "range": [
+      0,
+      99
+     ],
+     "needs": "none",
+     "cooldown": 9,
+     "clock": "game-turn",
+     "firstReady": 1,
+     "effects": [
+      {
+       "verb": "summon",
+       "side": "hostile",
+       "creature": "spiderling",
+       "count": {
+        "roll": [
+         1,
+         2
+        ]
+       },
+       "placement": "near-source",
+       "cap": 2,
+       "floorCap": 8,
+       "noLoot": true
+      }
+     ],
+     "src": "js/world/biomes/underdark/deepmobs.js:287-300"
+    },
+    {
+     "id": "blood-ward",
+     "name": "Blood Ward",
+     "range": [
+      0,
+      6
+     ],
+     "needs": "open-line",
+     "cooldown": 7,
+     "clock": "game-turn",
+     "firstReady": 2,
+     "idleFallback": true,
+     "target": {
+      "selector": "nearest",
+      "side": "allies",
+      "range": 6,
+      "n": 1,
+      "family": "underdark",
+      "order": "nearest-to-target",
+      "need": "without-blood-ward",
+      "notSelf": true
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "wardshield",
+       "turns": 8,
+       "durationModifiers": false,
+       "magnitude": 17
+      }
+     ],
+     "src": "js/world/biomes/underdark/deepmobs.js:263-285"
+    },
+    {
+     "id": "blood-bolt",
+     "shot": "blood",
+     "name": "Blood Bolt",
+     "range": [
+      1,
+      6
+     ],
+     "needs": "clear-shot",
+     "cooldown": 0,
+     "hit": {
+      "accBonus": 6
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {"roll": [22, 28]},
+       "type": "dark",
+       "tags": [
+        "attack",
+        "spell",
+        "ranged"
+       ],
+       "then": [
+        {
+         "verb": "drain",
+         "ratio": 1
+        }
+       ]
+      }
+     ],
+     "src": "js/world/biomes/underdark/deepmobs.js:302-313"
+    }
+   ],
+   "drops": "kill-drowpriestess",
+   "spawn": {
+    "floors": [
+     16,
+     20
+    ],
+    "weight": 12,
+    "region": "temple"
+   },
+   "look": {
+    "sheet": "m-drow-priestess",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "p",
+    "colour": "#9A2A4A",
+    "facesLeft": true
+   },
+   "sfx": "shaman",
+   "text": {
+    "lore": "monster.drowpriestess.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/underdark/deepmobs.js:31-32, :259-315"
+  },
+  "thoughteater": {
+   "name": "Thought Eater",
+   "hp": 99,
+   "dmg": [
+    17,
+    21
+   ],
+   "acc": 75,
+   "eva": 28,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 50,
+   "element": "shadow",
+   "flags": [
+    "living",
+    "flying",
+    "hover",
+    "spellcaster"
+   ],
+   "abilityScale": 1.25,
+   "family": "underdark",
+   "behaviour": "caster",
+   "params": {
+    "fleeWithin": 2
+   },
+   "moves": [
+    {
+     "id": "mind-sap",
+     "shot": "magic",
+     "name": "Mana Sap",
+     "range": [
+      2,
+      6
+     ],
+     "needs": "straight-lane",
+     "cooldown": 3,
+     "clock": "game-turn",
+     "firstReady": 1,
+     "hit": {
+      "accBonus": 10
+     },
+     "effects": [
+      {
+       "verb": "choose",
+       "by": "weight",
+       "options": [
+        {
+         "weight": 1,
+         "if": {
+          "has-mana": {
+           "body": "target",
+           "atLeast": 1
+          }
+         },
+         "effects": [
+          {
+           "verb": "mana",
+           "amount": -16,
+           "convertTo": "heal-source",
+           "ratio": 2,
+           "damageType": "magic",
+           "damageRatio": 0.625
+          }
+         ],
+         "else": [
+          {
+           "verb": "apply-status",
+           "status": "stun",
+           "turns": 1
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "src": "js/world/biomes/underdark/deepmobs.js:316-338"
+    },
+    {
+     "id": "mind-lash",
+     "shot": "magic",
+     "name": "Mind Lash",
+     "range": [
+      2,
+      6
+     ],
+     "needs": "straight-lane",
+     "cooldown": 0,
+     "hit": {
+      "accBonus": 10
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {"roll": [10, 16]},
+       "type": "magic",
+       "tags": [
+        "attack",
+        "spell",
+        "ranged"
+       ]
+      }
+     ],
+     "src": "js/world/biomes/underdark/deepmobs.js:316-341"
+    }
+   ],
+   "drops": "kill-thoughteater",
+   "spawn": {
+    "floors": [
+     17,
+     20
+    ],
+    "weight": 10,
+    "region": "temple"
+   },
+   "look": {
+    "sheet": "m-thought-eater",
+    "art": 0.8,
+    "clips": {"strike": 4},
+    "glyph": "t",
+    "colour": "#C89AD0",
+    "facesLeft": true
+   },
+   "sfx": "imp",
+   "text": {
+    "lore": "monster.thoughteater.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/underdark/deepmobs.js:33-34"
+  },
+  "webspitter": {
+   "name": "Web Spitter",
+   "hp": 126,
+   "dmg": [
+    20,
+    28
+   ],
+   "acc": 75,
+   "eva": 20,
+   "armour": 2,
+   "speed": 100,
+   "range": 1,
+   "xp": 40,
+   "flags": [
+    "living",
+    "spider"
+   ],
+   "abilityScale": 1.25,
+   "family": "underdark",
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "web-shot",
+     "shot": "web",
+     "name": "Web",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "straight-lane",
+     "cooldown": 4,
+     "clock": "game-turn",
+     "firstReady": 1,
+     "if": {
+      "not": {
+       "has-status": "root"
+      }
+     },
+     "hit": {
+      "accBonus": 8
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "web",
+       "turns": 1
+      },
+      {
+       "verb": "field",
+       "field": "web",
+       "shape": {
+        "selector": "square",
+        "n": 3,
+        "centre": "target"
+       },
+       "turns": 10,
+       "side": "all"
+      }
+     ],
+     "onMiss": [
+      {
+       "verb": "field",
+       "field": "web",
+       "shape": {
+        "selector": "square",
+        "n": 3,
+        "centre": "beside-target"
+       },
+       "turns": 10,
+       "side": "all"
+      }
+     ],
+     "src": "js/world/biomes/underdark/deepmobs.js:232-247; js/enemies/enemy-fields.js:15"
+    }
+   ],
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "chance": 35,
+     "if": {
+      "creature-flag": "living"
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "bleed",
+       "turns": 4,
+       "magnitude": 3
+      }
+     ]
+    }
+   ],
+   "drops": "kill-webspitter",
+   "spawn": {
+    "floors": [
+     16,
+     20
+    ],
+    "weight": 18,
+    "region": "spider"
+   },
+   "look": {
+    "sheet": "m-web-spitter",
+    "art": 0.85,
+    "clips": {"strike": 5},
+    "glyph": "w",
+    "colour": "#4A3A5A",
+    "facesLeft": true
+   },
+   "sfx": "spider",
+   "text": {
+    "lore": "monster.webspitter.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/underdark/deepmobs.js:35-36, :342-349"
+  },
+  "spiderling": {
+   "name": "Spiderling",
+   "hp": 23,
+   "dmg": [
+    11,
+    12
+   ],
+   "acc": 65,
+   "eva": 26,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 8,
+   "flags": [
+    "living",
+    "tiny",
+    "spider"
+   ],
+   "abilityScale": 1.25,
+   "family": "underdark",
+   "behaviour": "hunter",
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "chance": 30,
+     "if": {
+      "creature-flag": "living"
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "bleed",
+       "turns": 4,
+       "magnitude": 2
+      }
+     ]
+    }
+   ],
+   "drops": "kill-spiderling",
+   "spawn": {
+    "floors": [
+     16,
+     20
+    ],
+    "weight": 16,
+    "pack": [
+     3,
+     5
+    ],
+    "region": "spider"
+   },
+   "look": {
+    "sheet": "m-spiderling",
+    "art": 0.5,
+    "clips": {"strike": 4},
+    "glyph": "s",
+    "colour": "#5A3A4A",
+    "facesLeft": true
+   },
+   "sfx": "spider",
+   "text": {
+    "lore": "monster.spiderling.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/underdark/deepmobs.js:37-38"
+  },
+  "drider": {
+   "name": "Drider",
+   "hp": 324,
+   "dmg": [
+    23,
+    29
+   ],
+   "acc": 80,
+   "eva": 14,
+   "armour": 4,
+   "speed": 100,
+   "range": 6,
+   "xp": 120,
+   "element": "earth",
+   "elementalDamage": 5,
+   "flags": [
+    "living",
+    "heavy",
+    "spider",
+    "darksight",
+    "elite"
+   ],
+   "abilityScale": 1.25,
+   "family": "underdark",
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "web-shot",
+     "shot": "web",
+     "name": "Web",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "straight-lane",
+     "cooldown": 6,
+     "clock": "game-turn",
+     "firstReady": 3,
+     "if": {
+      "not": {
+       "has-status": "root"
+      }
+     },
+     "hit": {
+      "accBonus": 8
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "web",
+       "turns": 1
+      },
+      {
+       "verb": "field",
+       "field": "web",
+       "shape": {
+        "selector": "square",
+        "n": 3,
+        "centre": "target"
+       },
+       "turns": 10,
+       "side": "all"
+      }
+     ],
+     "onMiss": [
+      {
+       "verb": "field",
+       "field": "web",
+       "shape": {
+        "selector": "square",
+        "n": 3,
+        "centre": "beside-target"
+       },
+       "turns": 10,
+       "side": "all"
+      }
+     ],
+     "src": "js/world/biomes/underdark/deepmobs.js:232-247; js/enemies/enemy-fields.js:15"
+    }
+   ],
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "chance": 35,
+     "if": {
+      "hit-was": "melee"
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "poison",
+       "turns": 4,
+       "magnitude": {
+        "scaled": {
+         "base": 3,
+         "mult": [
+          "number-scale",
+          "lethality",
+          "ability-scale"
+         ],
+         "round": true,
+         "min": 1
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "drops": "kill-drider",
+   "spawn": {
+    "floors": [
+     17,
+     20
+    ],
+    "weight": 6,
+    "region": "spider",
+    "floorCap": 2
+   },
+   "look": {
+    "sheet": "m-drider",
+    "art": 1.4,
+    "clips": {"strike": 4},
+    "glyph": "D",
+    "colour": "#3A2A3A",
+    "facesLeft": true
+   },
+   "sfx": "brute",
+   "text": {
+    "lore": "monster.drider.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/underdark/deepmobs.js:39-40, :350-357; js/engine/actions-adapter.js:162"
+  },
+  "fireimp": {
+   "name": "Fire Imp",
+   "hp": 108,
+   "dmg": [
+    22,
+    28
+   ],
+   "acc": 75,
+   "eva": 30,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 42,
+   "element": "fire",
+   "flags": [
+    "living",
+    "flying",
+    "hover",
+    "spellcaster"
+   ],
+   "abilityScale": 1.25,
+   "family": "underdark",
+   "behaviour": "caster",
+   "params": {
+    "fleeWithin": 1
+   },
+   "moves": [
+    {
+     "id": "imp-bolt",
+     "shot": "fire",
+     "name": "Fire Bolt",
+     "range": [
+      2,
+      6
+     ],
+     "needs": "straight-lane",
+     "cooldown": 1,
+     "clock": "game-turn",
+     "firstReady": 1,
+     "hit": {
+      "accBonus": 6
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {"roll": [12, 18]},
+       "type": "fire",
+       "tags": [
+        "attack",
+        "spell",
+        "ranged"
+       ],
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "burn",
+         "turns": 3,
+         "magnitude": 3
+        },
+        {
+         "verb": "terrain",
+         "set": "fire",
+         "where": {
+          "selector": "tile",
+          "at": "target"
+         }
+        }
+       ]
+      }
+     ],
+     "onMiss": [
+      {
+       "verb": "terrain",
+       "set": "fire",
+       "where": {
+        "selector": "tile",
+        "at": "beside-target"
+       }
+      }
+     ],
+     "src": "js/world/biomes/underdark/deepmobs.js:358-377"
+    }
+   ],
+   "drops": "kill-fireimp",
+   "spawn": {
+    "floors": [
+     16,
+     20
+    ],
+    "weight": 18,
+    "region": "volcanic"
+   },
+   "look": {
+    "sheet": "m-fire-imp",
+    "art": 0.75,
+    "clips": {"strike": 4},
+    "glyph": "i",
+    "colour": "#E2522B",
+    "facesLeft": true
+   },
+   "sfx": "imp",
+   "text": {
+    "lore": "monster.fireimp.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/underdark/deepmobs.js:41-42"
+  },
+  "emberspider": {
+   "name": "Ember Spider",
+   "hp": 163,
+   "dmg": [
+    20,
+    28
+   ],
+   "acc": 75,
+   "eva": 18,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 46,
+   "element": "fire",
+   "elementalDamage": 4,
+   "flags": [
+    "living",
+    "spider"
+   ],
+   "abilityScale": 1.25,
+   "family": "underdark",
+   "behaviour": "hunter",
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "chance": 30,
+     "if": {
+      "not": {
+       "has-status": "burn"
+      }
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "burn",
+       "turns": 3,
+       "magnitude": 3
+      }
+     ]
+    }
+   ],
+   "drops": "kill-emberspider",
+   "spawn": {
+    "floors": [
+     16,
+     20
+    ],
+    "weight": 20,
+    "region": "volcanic"
+   },
+   "look": {
+    "sheet": "m-ember-spider",
+    "art": 0.9,
+    "clips": {"strike": 4},
+    "glyph": "e",
+    "colour": "#B8482A",
+    "facesLeft": true
+   },
+   "sfx": "spider",
+   "text": {
+    "lore": "monster.emberspider.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/underdark/deepmobs.js:43-44; js/engine/actions-adapter.js:163"
+  },
+  "matron": {
+   "name": "The Matron of the Web",
+   "hp": 570,
+   "dmg": [
+    26,
+    33
+   ],
+   "acc": 80,
+   "eva": 12,
+   "armour": 5,
+   "speed": 100,
+   "range": 1,
+   "xp": 900,
+   "flags": [
+    "living",
+    "heavy",
+    "spellcaster",
+    "spider",
+    "darksight",
+    "boss",
+    "elite"
+   ],
+   "abilityScale": 1.25,
+   "set": "matron",
+   "behaviour": "boss",
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "chance": 50,
+     "if": {
+      "creature-flag": "living"
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "bleed",
+       "turns": 4,
+       "magnitude": 4
+      }
+     ]
+    }
+   ],
+   "drops": "kill-none",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "its set piece (bosses.json matron)"
+   },
+   "look": {
+    "pose": "matron",
+    "channels": true,
+    "sheet": "m-matron",
+    "art": 2.1,
+    "clips": {"strike": 5},
+    "glyph": "M",
+    "colour": "#8A1A3A",
+    "facesLeft": true
+   },
+   "sfx": "matron",
+   "text": {
+    "lore": "monster.matron.lore",
+    "hint": null
+   },
+   "src": "js/world/biomes/underdark/deepmobs.js:46-47"
+  },
+  "cinderimp": {
+   "name": "Cinder Imp",
+   "hp": 130,
+   "dmg": [
+    17,
+    22
+   ],
+   "acc": 78,
+   "eva": 30,
+   "armour": 1,
+   "speed": 100,
+   "range": 1,
+   "xp": 85,
+   "element": "fire",
+   "flags": [
+    "living"
+   ],
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "cinder-hop",
+     "name": "Leap",
+     "range": [
+      2,
+      4
+     ],
+     "needs": "sight",
+     "cooldown": 3,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "terrain",
+       "set": "fire",
+       "where": {
+        "selector": "self"
+       }
+      },
+      {
+       "verb": "teleport",
+       "who": {
+        "selector": "self"
+       },
+       "to": "beside-target",
+       "rules": [
+        "empty",
+        "walkable"
+       ]
+      },
+      {
+       "verb": "terrain",
+       "set": "fire",
+       "where": {
+        "selector": "self"
+       }
+      }
+     ],
+     "src": "js/world/planes/planesfwa.js:412-422"
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "fire",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-cinder-imp",
+    "art": 0.75,
+    "clips": {"strike": 4},
+    "glyph": "i",
+    "colour": "#FF8A3A"
+   },
+   "sfx": "imp",
+   "text": {
+    "lore": "monster.cinderimp.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/planesfwa.js:109-110",
+   "tuned": {
+    "ruled": "2026-10-16",
+    "by": "Justin, sandbox P4: \"those enemies are too easy now\""
+   }
+  },
+  "magmacrawler": {
+   "name": "Magma Crawler",
+   "hp": 240,
+   "dmg": [
+    21,
+    27
+   ],
+   "acc": 75,
+   "eva": 4,
+   "armour": 12,
+   "speed": 70,
+   "range": 1,
+   "xp": 110,
+   "element": "fire",
+   "elementalDamage": 5,
+   "flags": [],
+   "behaviour": "hunter",
+   "passives": [
+    {
+     "verb": "resist",
+     "type": "fire",
+     "absorb": 1
+    },
+    {
+     "verb": "on-event",
+     "trigger": "on-damaged",
+     "if": {
+      "not": {
+       "has-tag": [
+        "periodic",
+        "environment"
+       ]
+      }
+     },
+     "effects": [
+      {
+       "verb": "terrain",
+       "set": "fire",
+       "where": {
+        "selector": "square",
+        "n": 3,
+        "centre": "self"
+       }
+      }
+     ]
+    },
+    {
+     "verb": "on-event",
+     "trigger": "on-death",
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {
+        "roll": [
+         14,
+         20
+        ]
+       },
+       "type": "fire",
+       "target": {
+        "selector": "adjacent",
+        "centre": "self",
+        "side": "non-natives"
+       },
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "burn",
+         "turns": 2,
+         "magnitude": {
+          "scaled": {
+           "base": 3,
+           "mult": [
+            "number-scale",
+            "lethality"
+           ],
+           "round": true,
+           "min": 1
+          }
+         }
+        }
+       ]
+      },
+      {
+       "verb": "terrain",
+       "set": "fire",
+       "where": {
+        "selector": "square",
+        "n": 3,
+        "centre": "self"
+       },
+       "chance": 50,
+       "perTile": true
+      }
+     ]
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "fire",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-magma-crawler",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "c",
+    "colour": "#D8541E"
+   },
+   "sfx": "spider",
+   "text": {
+    "lore": "monster.magmacrawler.lore",
+    "hint": "monster.magmacrawler.hint"
+   },
+   "src": "js/world/planes/planesfwa.js:111-112; js/engine/damage-adapter.js:376-390; js/enemies/enemy-fields.js:37-42; js/engine/death-adapter.js:15-19",
+   "tuned": {
+    "ruled": "2026-10-16",
+    "by": "Justin, sandbox P4: \"those enemies are too easy now\""
+   }
+  },
+  "flamedancer": {
+   "name": "Flame Dancer",
+   "hp": 130,
+   "dmg": [
+    17,
+    22
+   ],
+   "acc": 80,
+   "eva": 38,
+   "armour": 2,
+   "speed": 100,
+   "range": 1,
+   "xp": 100,
+   "element": "fire",
+   "flags": [],
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "sidestep",
+     "name": "Spin Aside",
+     "range": [
+      1,
+      1
+     ],
+     "needs": "sight",
+     "chance": 35,
+     "effects": [
+      {
+       "verb": "teleport",
+       "who": {
+        "selector": "self"
+       },
+       "to": "distance-band",
+       "min": 1,
+       "max": 2,
+       "from": "target",
+       "rules": [
+        "adjacent-step",
+        "empty",
+        "walkable"
+       ]
+      }
+     ],
+     "src": "js/world/planes/planesfwa.js:423-431"
+    }
+   ],
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit-by",
+     "if": {
+      "target-is": "player"
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "burn",
+       "turns": 3,
+       "magnitude": {
+        "scaled": {
+         "base": 3,
+         "mult": [
+          "number-scale",
+          "lethality"
+         ],
+         "round": true,
+         "min": 1
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "fire",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-flame-dancer",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "f",
+    "colour": "#FFB066"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.flamedancer.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/planesfwa.js:113-114; js/engine/damage-adapter.js:279",
+   "tuned": {
+    "ruled": "2026-10-16",
+    "by": "Justin, sandbox P4: \"those enemies are too easy now\""
+   }
+  },
+  "emberlord": {
+   "name": "The Emberlord",
+   "hp": 460,
+   "dmg": [
+    25,
+    32
+   ],
+   "acc": 80,
+   "eva": 14,
+   "armour": 7,
+   "speed": 100,
+   "range": 1,
+   "xp": 700,
+   "element": "fire",
+   "flags": [
+    "elite"
+   ],
+   "set": "emberlord",
+   "behaviour": "boss",
+   "drops": "kill-plane-elite",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "its set piece (bosses.json emberlord)"
+   },
+   "look": {
+    "sheet": "m-emberlord",
+    "art": 1.5,
+    "clips": {"strike": 4},
+    "glyph": "E",
+    "colour": "#FF6A18"
+   },
+   "sfx": "emberlord",
+   "text": {
+    "lore": "monster.emberlord.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/planesfwa.js:115-116",
+   "tuned": {
+    "ruled": "2026-10-16",
+    "by": "Justin, sandbox P4: \"those enemies are too easy now\""
+   }
+  },
+  "tidecrab": {
+   "name": "Tide Crab",
+   "hp": 240,
+   "dmg": [
+    21,
+    27
+   ],
+   "acc": 78,
+   "eva": 8,
+   "armour": 10,
+   "speed": 100,
+   "range": 1,
+   "xp": 105,
+   "flags": [
+    "living"
+   ],
+   "behaviour": "hunter",
+   "passives": [
+    {
+     "verb": "damage-mod",
+     "direction": "taken",
+     "reducePct": 100,
+     "cooldown": 100,
+     "uses": 3
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "water",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-tide-crab",
+    "art": 1,
+    "clips": {"strike": 6},
+    "glyph": "C",
+    "colour": "#5CC8D8"
+   },
+   "sfx": "spider",
+   "text": {
+    "lore": "monster.tidecrab.lore",
+    "hint": "monster.tidecrab.hint"
+   },
+   "src": "js/world/planes/planesfwa.js:118-120; js/engine/damage-adapter.js:29-35",
+   "tuned": {
+    "ruled": "2026-10-16",
+    "by": "Justin, sandbox P4: \"those enemies are too easy now\""
+   }
+  },
+  "siren": {
+   "name": "Siren",
+   "hp": 130,
+   "dmg": [
+    17,
+    22
+   ],
+   "acc": 75,
+   "eva": 26,
+   "armour": 1,
+   "speed": 100,
+   "range": 5,
+   "xp": 110,
+   "flags": [
+    "living",
+    "spellcaster"
+   ],
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "siren-song",
+     "shot": "none",
+     "name": "Siren Song",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "straight-lane",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "sharedRecovery": {
+      "key": "water-pull",
+      "turns": 2
+     },
+     "effects": [
+      {
+       "verb": "pull",
+       "tiles": 1
+      }
+     ],
+     "src": "js/world/planes/planesfwa.js:430-447"
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "water",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-siren",
+    "art": 0.95,
+    "clips": {"strike": 5},
+    "glyph": "S",
+    "colour": "#9FF0E8"
+   },
+   "sfx": "shaman",
+   "text": {
+    "lore": "monster.siren.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/planesfwa.js:124-125",
+   "tuned": {
+    "ruled": "2026-10-16",
+    "by": "Justin, sandbox P4: \"those enemies are too easy now\""
+   }
+  },
+  "drownedone": {
+   "name": "Drowned One",
+   "hp": 140,
+   "dmg": [
+    18,
+    23
+   ],
+   "acc": 78,
+   "eva": 14,
+   "armour": 4,
+   "speed": 100,
+   "range": 1,
+   "xp": 100,
+   "flags": [],
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "drag",
+     "shot": "none",
+     "name": "Drag",
+     "range": [
+      2,
+      4
+     ],
+     "needs": "straight-lane",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "sharedRecovery": {
+      "key": "water-pull",
+      "turns": 2
+     },
+     "effects": [
+      {
+       "verb": "pull",
+       "tiles": 1
+      }
+     ],
+     "src": "js/world/planes/planesfwa.js:430-447"
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "water",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-drowned-one",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "d",
+    "colour": "#4E667C"
+   },
+   "sfx": "zombie",
+   "text": {
+    "lore": "monster.drownedone.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/planesfwa.js:126-127",
+   "tuned": {
+    "ruled": "2026-10-16",
+    "by": "Justin, sandbox P4: \"those enemies are too easy now\""
+   }
+  },
+  "leviathaneel": {
+   "name": "The Leviathan Eel",
+   "hp": 460,
+   "dmg": [
+    25,
+    32
+   ],
+   "acc": 80,
+   "eva": 18,
+   "armour": 5,
+   "speed": 100,
+   "range": 1,
+   "xp": 700,
+   "element": "water",
+   "flags": [
+    "living",
+    "elite"
+   ],
+   "set": "leviathan",
+   "behaviour": "boss",
+   "drops": "kill-plane-elite",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "its set piece (bosses.json leviathan)"
+   },
+   "look": {
+    "sheet": "m-leviathan-eel",
+    "art": 1.5,
+    "clips": {"strike": 4},
+    "glyph": "L",
+    "colour": "#2E86A8"
+   },
+   "sfx": "leviathan",
+   "text": {
+    "lore": "monster.leviathaneel.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/planesfwa.js:128-129",
+   "tuned": {
+    "ruled": "2026-10-16",
+    "by": "Justin, sandbox P4: \"those enemies are too easy now\""
+   }
+  },
+  "stormhawk": {
+   "name": "Storm Hawk",
+   "hp": 120,
+   "dmg": [
+    17,
+    22
+   ],
+   "acc": 80,
+   "eva": 34,
+   "armour": 0,
+   "speed": 130,
+   "range": 1,
+   "xp": 95,
+   "flags": [
+    "living",
+    "flying",
+    "hover"
+   ],
+   "behaviour": "hunter",
+   "moves": [
+    {
+     "id": "swoop",
+     "name": "Swoop",
+     "range": [
+      3,
+      5
+     ],
+     "needs": "sight",
+     "cooldown": 4,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "teleport",
+       "who": {
+        "selector": "self"
+       },
+       "to": "beside-target",
+       "rules": [
+        "empty",
+        "walkable"
+       ]
+      },
+      {
+       "verb": "damage",
+       "amount": {
+        "from-source": "dmg"
+       },
+       "type": "phys",
+       "tags": [
+        "attack",
+        "melee"
+       ],
+       "then": [
+        {
+         "verb": "knockback",
+         "tiles": 1,
+         "from": "source"
+        }
+       ]
+      }
+     ],
+     "src": "js/world/planes/planesfwa.js:448-456"
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "air",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-storm-hawk",
+    "art": 0.85,
+    "clips": {"strike": 4},
+    "glyph": "h",
+    "colour": "#BFE4FF"
+   },
+   "sfx": "bat",
+   "text": {
+    "lore": "monster.stormhawk.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/planesfwa.js:131-132",
+   "tuned": {
+    "ruled": "2026-10-16",
+    "by": "Justin, sandbox P4: \"those enemies are too easy now\""
+   }
+  },
+  "thundertotem": {
+   "name": "Thunder Totem",
+   "hp": 200,
+   "dmg": [
+    19,
+    25
+   ],
+   "acc": 70,
+   "eva": 0,
+   "armour": 8,
+   "speed": 100,
+   "range": 6,
+   "xp": 90,
+   "flags": [],
+   "behaviour": "stationary",
+   "params": {
+    "wake": "sight",
+    "wakeRange": 7
+   },
+   "moves": [
+    {
+     "id": "totem-zap",
+     "shot": "lightning",
+     "name": "Lightning",
+     "range": [
+      1,
+      6
+     ],
+     "needs": "same-row-or-column",
+     "cooldown": 2,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {"roll": [19, 25]},
+       "type": "lightning",
+       "tags": [
+        "attack",
+        "ranged"
+       ],
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "stun",
+         "turns": 1,
+         "chance": 25
+        }
+       ]
+      }
+     ],
+     "src": "js/world/planes/planesfwa.js:396-411"
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "air",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-thunder-totem",
+    "art": 1,
+    "clips": {"strike": 4},
+    "glyph": "T",
+    "colour": "#E2BE60"
+   },
+   "sfx": "shaman",
+   "text": {
+    "lore": "monster.thundertotem.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/planesfwa.js:133-134",
+   "tuned": {
+    "ruled": "2026-10-16",
+    "by": "Justin, sandbox P4: \"those enemies are too easy now\""
+   }
+  },
+  "windwisp": {
+   "name": "Wind Wisp",
+   "hp": 60,
+   "dmg": [
+    11,
+    14
+   ],
+   "acc": 75,
+   "eva": 40,
+   "armour": 0,
+   "speed": 140,
+   "range": 1,
+   "xp": 85,
+   "element": "air",
+   "flags": [
+    "flying"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "erraticPct": 35
+   },
+   "moves": [
+    {
+     "id": "gust",
+     "name": "Gust",
+     "range": [
+      0,
+      2
+     ],
+     "needs": "sight",
+     "cooldown": 3,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "knockback",
+       "tiles": 1,
+       "from": "source"
+      }
+     ],
+     "src": "js/world/planes/planesfwa.js:457-464"
+    }
+   ],
+   "drops": "kill-plane",
+   "spawn": {
+    "plane": "air",
+    "role": "resident"
+   },
+   "look": {
+    "sheet": "m-wind-wisp",
+    "art": 0.75,
+    "clips": {"strike": 4},
+    "glyph": "w",
+    "colour": "#E8F4FF"
+   },
+   "sfx": "wisp",
+   "text": {
+    "lore": "monster.windwisp.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/planesfwa.js:135-136",
+   "tuned": {
+    "ruled": "2026-10-16",
+    "by": "Justin, sandbox P4: \"those enemies are too easy now\""
+   }
+  },
+  "tempestdjinn": {
+   "name": "The Tempest Djinn",
+   "hp": 460,
+   "dmg": [
+    25,
+    32
+   ],
+   "acc": 80,
+   "eva": 22,
+   "armour": 4,
+   "speed": 100,
+   "range": 1,
+   "xp": 700,
+   "element": "air",
+   "flags": [
+    "flying",
+    "hover",
+    "elite"
+   ],
+   "set": "djinn",
+   "behaviour": "boss",
+   "drops": "kill-plane-elite",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "its set piece (bosses.json djinn)"
+   },
+   "look": {
+    "sheet": "m-tempest-djinn",
+    "art": 1.5,
+    "clips": {"strike": 3},
+    "glyph": "D",
+    "colour": "#A8D8FF"
+   },
+   "sfx": "djinn",
+   "text": {
+    "lore": "monster.tempestdjinn.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/planesfwa.js:137-138",
+   "tuned": {
+    "ruled": "2026-10-16",
+    "by": "Justin, sandbox P4: \"those enemies are too easy now\""
+   }
+  },
+  "sporecaller": {
+   "callFloat": "Spore call",
+   "name": "Myconid Sporecaller",
+   "hp": 70,
+   "dmg": [
+    3,
+    5
+   ],
+   "acc": 60,
+   "eva": 10,
+   "armour": 1,
+   "speed": 100,
+   "range": 1,
+   "xp": 40,
+   "element": "earth",
+   "flags": [
+    "living",
+    "spellcaster",
+    "sporeproof"
+   ],
+   "family": "cavern",
+   "caller": true,
+   "behaviour": "support-caster",
+   "params": {
+    "retreatWithin": 3,
+    "holdRange": 5
+   },
+   "moves": [
+    {
+     "id": "spore-field",
+     "name": "Spore Field",
+     "range": [
+      0,
+      5
+     ],
+     "needs": "open-line",
+     "cooldown": 6,
+     "clock": "game-turn",
+     "floorCap": 2,
+     "effects": [
+      {
+       "verb": "telegraph",
+       "tiles": {
+        "selector": "square",
+        "n": 3,
+        "centre": "target-stepped-toward-owner"
+       },
+       "delay": 1,
+       "clock": "game-turn",
+       "interruptedBy": [
+        "owner-dead",
+        "owner-not-hunting",
+        "control",
+        "fear"
+       ],
+       "warning": "warn.spore-field",
+       "then": [
+        {
+         "verb": "summon",
+         "side": "hostile",
+         "creature": "shroomling",
+         "count": 2,
+         "placement": "field-tiles",
+         "cap": 2,
+         "floorCap": 6,
+         "noLoot": true
+        },
+        {
+         "verb": "field",
+         "field": "spores",
+         "shape": {
+          "selector": "tile",
+          "at": "telegraphed"
+         },
+         "turns": 3,
+         "side": "player-and-allies",
+         "each": [
+          {"verb": "apply-status", "status": "poison", "turns": 2, "if": {"not": {"has-status": "poison"}}, "tickDamage": 1}
+         ],
+         "eachOnce": [
+          {
+           "verb": "apply-status",
+           "status": "root",
+           "turns": 1
+          }
+         ]
+        },
+        {
+         "verb": "terrain",
+         "set": "mushrooms",
+         "where": {
+          "selector": "tile",
+          "at": "telegraphed"
+         }
+        }
+       ]
+      }
+     ],
+     "src": "js/enemies/sporecaller.js:32-44, :71-100"
+    },
+    {
+     "id": "sporecoat",
+     "name": "Sporecoat",
+     "bolt": "poison",
+     "range": [
+      0,
+      4
+     ],
+     "needs": "open-line",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "idleFallback": true,
+     "target": {
+      "selector": "nearest",
+      "side": "allies",
+      "range": 4,
+      "n": 1,
+      "family": "cavern",
+      "order": "most-hurt",
+      "need": "hurt-or-uncoated",
+      "notKind": "sporecaller"
+     },
+     "effects": [
+      {
+       "verb": "heal",
+       "amount": {
+        "pct-of": {
+         "stat": "max-hp",
+         "pct": 50,
+         "min": 1
+        }
+       }
+      },
+      {
+       "verb": "apply-status",
+       "status": "sporecoat",
+       "turns": 3,
+       "durationModifiers": false,
+       "magnitude": {
+        "pct-of": {
+         "stat": "max-hp",
+         "pct": 15,
+         "min": 3,
+         "max": 12
+        }
+       },
+       "if": {
+        "not": {
+         "has-status": "sporecoat"
+        }
+       }
+      }
+     ],
+     "src": "js/enemies/sporecaller.js:45-60"
+    }
+   ],
+   "drops": "kill-myconid",
+   "spawn": {
+    "floors": [
+     11,
+     15
+    ],
+    "weight": 8
+   },
+   "look": {
+    "blockGlyph": "F",
+    "sheet": "m-sporecaller",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "f",
+    "colour": "#7FA8A0",
+    "facesLeft": true
+   },
+   "sfx": "shaman",
+   "text": {
+    "lore": "monster.sporecaller.lore",
+    "hint": "monster.sporecaller.hint"
+   },
+   "src": "js/enemies/sporecaller.js:5-12, :61-70"
+  },
+  "greenslime": {
+   "name": "Green Slime",
+   "hp": 20,
+   "dmg": [
+    1,
+    2
+   ],
+   "acc": 48,
+   "eva": 0,
+   "armour": 0,
+   "speed": 70,
+   "range": 1,
+   "xp": 10,
+   "flags": [
+    "living",
+    "sporeproof"
+   ],
+   "behaviour": "hunter",
+   "trail": "slime",
+   "passives": [
+    {
+     "verb": "split",
+     "whenHitAtFullHp": true,
+     "child": "self",
+     "once": false,
+     "minHp": 2,
+     "noLoot": true,
+     "noXp": true
+    },
+    {
+     "verb": "on-event",
+     "trigger": "on-world-pulse",
+     "if": {
+      "all": [
+       {
+        "not": {
+         "has-status": {
+          "any": [
+           "poison",
+           "rot"
+          ]
+         }
+        }
+       },
+       {
+        "creature-flag": "hunting"
+       }
+      ]
+     },
+     "effects": [
+      {
+       "verb": "heal",
+       "amount": 2,
+       "natural": true,
+       "regen": true
+      }
+     ]
+    }
+   ],
+   "drops": "kill-greenslime",
+   "spawn": {
+    "floors": [
+     1,
+     4
+    ],
+    "biomes": [
+     "dungeon"
+    ],
+    "weight": 12
+   },
+   "look": {
+    "sheet": "m-green-slime",
+    "art": 0.7,
+    "clips": {"strike": 1},
+    "glyph": "s",
+    "colour": "#75a64e",
+    "facesLeft": true
+   },
+   "sfx": "slime",
+   "text": {
+    "lore": "monster.greenslime.lore",
+    "hint": "monster.greenslime.hint"
+   },
+   "src": "js/enemies/green-slime.js:5-9, :12, :28-57, :83-105"
+  },
+  "ghoul": {
+   "name": "Buried Ghoul",
+   "hp": 77,
+   "dmg": [
+    8,
+    12
+   ],
+   "acc": 55,
+   "eva": 12,
+   "armour": 0,
+   "speed": 130,
+   "range": 1,
+   "xp": 26,
+   "flags": [
+    "undead"
+   ],
+   "family": "crypt",
+   "behaviour": "ambusher",
+   "params": {
+    "entry": "buried"
+   },
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "if": {
+      "hit-was": "melee"
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "bleed",
+       "turns": 3,
+       "magnitude": {
+        "scaled": {
+         "base": 2,
+         "mult": [
+          "number-scale",
+          "lethality"
+         ],
+         "round": true,
+         "min": 1
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "drops": "kill-ghoul",
+   "spawn": {
+    "floors": [
+     6,
+     9
+    ],
+    "biomes": [
+     "crypt"
+    ],
+    "weight": 10
+   },
+   "look": {
+    "sheet": "m-ghoul",
+    "art": 0.85,
+    "clips": {"strike": 5},
+    "glyph": "g",
+    "colour": "#988398",
+    "facesLeft": true
+   },
+   "sfx": "zombie",
+   "text": {
+    "lore": "monster.ghoul.lore",
+    "hint": "monster.ghoul.hint"
+   },
+   "src": "js/enemies/ghoul.js:4-30; js/engine/actions-adapter.js:160"
+  },
+  "chaos-prism-seer": {
+   "name": "Prism Seer",
+   "hp": 225,
+   "dmg": [
+    18,
+    26
+   ],
+   "acc": 76,
+   "eva": 22,
+   "armour": 2,
+   "speed": 95,
+   "range": 1,
+   "xp": 68,
+   "flags": [
+    "living",
+    "spellcaster"
+   ],
+   "immune": [
+    "blind"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square",
+    "fleeWithin": 2
+   },
+   "moves": [
+    {
+     "id": "prism-ray",
+     "name": "Prism Ray",
+     "range": [
+      1,
+      6
+     ],
+     "needs": "region-line",
+     "cooldown": 6,
+     "clock": "game-turn",
+     "hit": {
+      "accBonus": 0
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {
+        "scaled": {
+         "base": 36,
+         "mult": [
+          "number-scale",
+          "lethality"
+         ],
+         "round": true,
+         "min": 1
+        }
+       },
+       "type": "cycle",
+       "tags": [
+        "spell",
+        "ranged"
+       ],
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "frozen",
+         "turns": 1,
+         "if": {
+          "damage-type": "ice"
+         }
+        }
+       ],
+       "cycleTypes": [
+        "fire",
+        "ice",
+        "lightning"
+       ]
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:218-226, :301"
+    },
+    {
+     "id": "prism-bolt",
+     "name": "Prism Bolt",
+     "range": [
+      1,
+      6
+     ],
+     "needs": "region-line",
+     "cooldown": 0,
+     "hit": {
+      "accBonus": 0
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {
+        "scaled": {
+         "base": 24,
+         "mult": [
+          "number-scale",
+          "lethality"
+         ],
+         "round": true,
+         "min": 1
+        }
+       },
+       "type": "cycle",
+       "tags": [
+        "spell",
+        "ranged"
+       ],
+       "cycleTypes": [
+        "fire",
+        "ice",
+        "lightning"
+       ]
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:257-268"
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "prism-archives",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-prism-seer",
+    "art": 1.05,
+    "clips": {"strike": 3},
+    "glyph": "P",
+    "colour": "#84CCEE"
+   },
+   "sfx": "wisp",
+   "text": {
+    "lore": "monster.chaos-prism-seer.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:13"
+  },
+  "chaos-folded-horror": {
+   "name": "Folded Horror",
+   "hp": 270,
+   "dmg": [
+    27,
+    38
+   ],
+   "acc": 73,
+   "eva": 14,
+   "armour": 4,
+   "speed": 85,
+   "range": 1,
+   "xp": 81,
+   "flags": [
+    "living"
+   ],
+   "immune": [
+    "fear"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square",
+    "reach": 2
+   },
+   "moves": [
+    {
+     "id": "heavy-reach",
+     "shot": "none",
+     "name": "Heavy Reach",
+     "range": [
+      1,
+      2
+     ],
+     "needs": "region-line",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "weapon-attack",
+       "weapon": "own",
+       "multiplier": 1.35,
+       "label": "Heavy Reach",
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "fear",
+         "turns": 2
+        }
+       ]
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:231-237, :302"
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "prism-archives",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-folded-horror",
+    "art": 1.18,
+    "clips": {"strike": 4},
+    "glyph": "F",
+    "colour": "#84CCEE"
+   },
+   "sfx": "mimic",
+   "text": {
+    "lore": "monster.chaos-folded-horror.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:14"
+  },
+  "chaos-rift-skitter": {
+   "name": "Rift Skitter",
+   "hp": 225,
+   "dmg": [
+    15,
+    23
+   ],
+   "acc": 75,
+   "eva": 48,
+   "armour": 1,
+   "speed": 135,
+   "range": 1,
+   "xp": 68,
+   "flags": [
+    "living"
+   ],
+   "immune": [
+    "slow"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square"
+   },
+   "moves": [
+    {
+     "id": "rift-blink",
+     "name": "Blink",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "sight",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "teleport",
+       "who": {
+        "selector": "self"
+       },
+       "to": "distance-band",
+       "min": 2,
+       "max": 2,
+       "rules": [
+        "visible",
+        "empty",
+        "same-region",
+        "within-3-steps",
+        "clear-shot",
+        "not-farther"
+       ]
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:241-252, :303"
+    }
+   ],
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "cooldown": 3,
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "slow",
+       "turns": 2
+      }
+     ]
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "prism-archives",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-rift-skitter",
+    "art": 0.75,
+    "clips": {"strike": 4},
+    "glyph": "R",
+    "colour": "#84CCEE"
+   },
+   "sfx": "imp",
+   "text": {
+    "lore": "monster.chaos-rift-skitter.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:15, :352"
+  },
+  "chaos-lens-bearer": {
+   "name": "Lens Bearer",
+   "hp": 225,
+   "dmg": [
+    11,
+    15
+   ],
+   "acc": 69,
+   "eva": 15,
+   "armour": 4,
+   "speed": 90,
+   "range": 1,
+   "xp": 68,
+   "element": "light",
+   "flags": [
+    "living"
+   ],
+   "immune": [
+    "stun"
+   ],
+   "caller": true,
+   "behaviour": "support-caster",
+   "params": {
+    "retreatWithin": 3,
+    "holdRange": 6
+   },
+   "moves": [
+    {
+     "id": "lens-shield",
+     "name": "Lens Shield",
+     "range": [
+      0,
+      4
+     ],
+     "needs": "clear-shot",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "idleFallback": true,
+     "target": {
+      "selector": "nearest",
+      "side": "allies",
+      "range": 4,
+      "n": 1,
+      "order": "nearest-to-target",
+      "need": "hunting-without-lens",
+      "notKind": "chaos-lens-bearer"
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "chaoslens",
+       "turns": 4,
+       "durationModifiers": false,
+       "refresh": "replace",
+       "magnitude": {
+        "scaled": {
+         "base": 35,
+         "mult": [
+          "number-scale"
+         ],
+         "round": true,
+         "min": 1
+        }
+       }
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:157-164"
+    },
+    {
+     "id": "lens-beam",
+     "name": "Lens Beam",
+     "range": [
+      1,
+      6
+     ],
+     "needs": "region-line",
+     "cooldown": 6,
+     "clock": "game-turn",
+     "hit": {
+      "accBonus": 0
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {
+        "scaled": {
+         "base": 24,
+         "mult": [
+          "number-scale",
+          "lethality"
+         ],
+         "round": true,
+         "min": 1
+        }
+       },
+       "type": "light",
+       "tags": [
+        "spell",
+        "ranged"
+       ],
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "blind",
+         "turns": 2
+        }
+       ]
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:148-156"
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "prism-archives",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-lens-bearer",
+    "art": 1.05,
+    "clips": {"strike": 3},
+    "glyph": "L",
+    "colour": "#84CCEE"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.chaos-lens-bearer.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:16, :104-118, :334-345"
+  },
+  "chaos-plague-bloat": {
+   "name": "Plague Bloat",
+   "hp": 390,
+   "dmg": [
+    30,
+    42
+   ],
+   "acc": 70,
+   "eva": 9,
+   "armour": 3,
+   "speed": 65,
+   "range": 1,
+   "xp": 117,
+   "flags": [
+    "living"
+   ],
+   "immune": [
+    "poison",
+    "slow"
+   ],
+   "trail": "plague",
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square"
+   },
+   "moves": [
+    {
+     "id": "vent",
+     "shot": "none",
+     "name": "Vent Poison",
+     "range": [
+      0,
+      2
+     ],
+     "needs": "none",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "field",
+       "field": "chaos-hazard",
+       "turns": 3,
+       "side": "foes",
+       "each": [
+        {
+         "verb": "damage",
+         "amount": {
+          "scaled": {
+           "base": 14,
+           "mult": [
+            "number-scale",
+            "lethality"
+           ],
+           "round": true,
+           "min": 1
+          }
+         },
+         "type": "poison",
+         "tags": [
+          "area"
+         ]
+        }
+       ],
+       "shape": {
+        "selector": "square",
+        "n": 3,
+        "centre": "self"
+       },
+       "cap": 8,
+       "perSource": 1
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:227-231, :306"
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "rot-hollows",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-plague-bloat",
+    "art": 1.28,
+    "clips": {"strike": 4},
+    "glyph": "P",
+    "colour": "#A0C85A"
+   },
+   "sfx": "zombie",
+   "text": {
+    "lore": "monster.chaos-plague-bloat.lore",
+    "hint": "monster.chaos-plague-bloat.hint"
+   },
+   "src": "js/world/chaos/chaos-enemies.js:17; js/enemies/green-slime.js:5, :47-56"
+  },
+  "chaos-brood-carrier": {
+   "name": "Brood Carrier",
+   "hp": 285,
+   "dmg": [
+    14,
+    21
+   ],
+   "acc": 69,
+   "eva": 12,
+   "armour": 3,
+   "speed": 85,
+   "range": 1,
+   "xp": 86,
+   "flags": [
+    "living"
+   ],
+   "immune": [
+    "poison",
+    "fear"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square"
+   },
+   "moves": [
+    {
+     "id": "throw-brood",
+     "name": "Throw Brood",
+     "range": [
+      0,
+      6
+     ],
+     "needs": "region-line",
+     "cooldown": 2,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "summon",
+       "side": "hostile",
+       "creature": "chaos-rotling",
+       "count": 1,
+       "placement": "thrown-near-target",
+       "cap": 3,
+       "noLoot": true
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:165-189, :307-308"
+    },
+    {
+     "id": "infectious-bile",
+     "shot": "poison",
+     "name": "Infectious Poison",
+     "range": [
+      0,
+      5
+     ],
+     "needs": "clear-shot",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "field",
+       "field": "chaos-hazard",
+       "turns": 3,
+       "side": "foes",
+       "each": [
+        {
+         "verb": "damage",
+         "amount": {
+          "scaled": {
+           "base": 14,
+           "mult": [
+            "number-scale",
+            "lethality"
+           ],
+           "round": true,
+           "min": 1
+          }
+         },
+         "type": "poison",
+         "tags": [
+          "area"
+         ]
+        },
+        {
+         "verb": "apply-status",
+         "status": "poison",
+         "turns": 4,
+         "scale": 1.5
+        }
+       ],
+       "shape": {
+        "selector": "square",
+        "n": 3,
+        "centre": "target"
+       },
+       "cap": 8,
+       "perSource": 1
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:309"
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "rot-hollows",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-brood-carrier",
+    "art": 1.14,
+    "clips": {"strike": 5},
+    "glyph": "B",
+    "colour": "#A0C85A"
+   },
+   "sfx": "slime",
+   "text": {
+    "lore": "monster.chaos-brood-carrier.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:18"
+  },
+  "chaos-bile-spitter": {
+   "name": "Bile Spitter",
+   "hp": 225,
+   "dmg": [
+    9,
+    15
+   ],
+   "acc": 73,
+   "eva": 20,
+   "armour": 2,
+   "speed": 95,
+   "range": 1,
+   "xp": 68,
+   "flags": [
+    "living"
+   ],
+   "immune": [
+    "poison",
+    "blind"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square",
+    "fleeWithin": 2
+   },
+   "moves": [
+    {
+     "id": "bile-patch",
+     "shot": "poison",
+     "name": "Bile Patch",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "clear-shot",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "field",
+       "field": "chaos-hazard",
+       "turns": 3,
+       "side": "foes",
+       "each": [
+        {
+         "verb": "damage",
+         "amount": {
+          "scaled": {
+           "base": 11,
+           "mult": [
+            "number-scale",
+            "lethality"
+           ],
+           "round": true,
+           "min": 1
+          }
+         },
+         "type": "poison",
+         "tags": [
+          "area"
+         ]
+        }
+       ],
+       "shape": {
+        "selector": "square",
+        "n": 3,
+        "centre": "target"
+       },
+       "cap": 8,
+       "perSource": 1
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:310"
+    },
+    {
+     "id": "bile-spit",
+     "shot": "poison",
+     "name": "Bile",
+     "range": [
+      1,
+      5
+     ],
+     "needs": "region-line",
+     "cooldown": 0,
+     "hit": {
+      "accBonus": 0
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {
+        "scaled": {
+         "base": 15,
+         "mult": [
+          "number-scale",
+          "lethality"
+         ],
+         "round": true,
+         "min": 1
+        }
+       },
+       "type": "poison",
+       "tags": [
+        "spell",
+        "ranged"
+       ],
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "blind",
+         "turns": 2,
+         "cooldown": 3
+        }
+       ]
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:257-268"
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "rot-hollows",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "blockGlyph": "b",
+    "sheet": "m-chaos-bile-spitter",
+    "art": 0.9,
+    "clips": {"strike": 4},
+    "glyph": "B",
+    "colour": "#A0C85A"
+   },
+   "sfx": "slime",
+   "text": {
+    "lore": "monster.chaos-bile-spitter.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:19"
+  },
+  "chaos-rotling": {
+   "name": "Rotling",
+   "hp": 32,
+   "dmg": [
+    11,
+    15
+   ],
+   "acc": 70,
+   "eva": 26,
+   "armour": 0,
+   "speed": 125,
+   "range": 1,
+   "xp": 19,
+   "flags": [
+    "living",
+    "tiny"
+   ],
+   "immune": [
+    "poison",
+    "fear"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square"
+   },
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit-by",
+     "if": {
+      "target-is": "player"
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "rot",
+       "turns": 30
+      }
+     ]
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "rot-hollows",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-rotling",
+    "art": 0.64,
+    "clips": {"strike": 4},
+    "glyph": "R",
+    "colour": "#A0C85A"
+   },
+   "sfx": "imp",
+   "text": {
+    "lore": "monster.chaos-rotling.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:20"
+  },
+  "chaos-horned-reaver": {
+   "name": "Horned Reaver",
+   "hp": 263,
+   "dmg": [
+    27,
+    38
+   ],
+   "acc": 75,
+   "eva": 18,
+   "armour": 4,
+   "speed": 95,
+   "range": 1,
+   "xp": 79,
+   "flags": [
+    "living"
+   ],
+   "immune": [
+    "fear"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square"
+   },
+   "moves": [
+    {
+     "id": "frontal-cleave",
+     "shot": "none",
+     "name": "Frontal Cleave",
+     "range": [
+      1,
+      1
+     ],
+     "needs": "none",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "weapon-attack",
+       "weapon": "own",
+       "multiplier": 1.35,
+       "label": "Frontal Cleave",
+       "target": {
+        "selector": "cone",
+        "toward": "target",
+        "n": 1,
+        "side": "foes"
+       },
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "stun",
+         "turns": 1
+        }
+       ]
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:311"
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "cinder-bastion",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-horned-reaver",
+    "art": 1.08,
+    "clips": {"strike": 4},
+    "glyph": "H",
+    "colour": "#D97555"
+   },
+   "sfx": "brute",
+   "text": {
+    "lore": "monster.chaos-horned-reaver.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:21"
+  },
+  "chaos-gorehound": {
+   "name": "Gorehound",
+   "hp": 225,
+   "dmg": [
+    21,
+    30
+   ],
+   "acc": 74,
+   "eva": 24,
+   "armour": 3,
+   "speed": 110,
+   "range": 1,
+   "xp": 68,
+   "flags": [
+    "living"
+   ],
+   "immune": [
+    "fear"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square"
+   },
+   "moves": [
+    {
+     "id": "pounce",
+     "name": "Pounce",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "region-line",
+     "cooldown": 4,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "dash",
+       "range": 5,
+       "until": "beside-target",
+       "then": [
+        {
+         "verb": "weapon-attack",
+         "weapon": "own",
+         "multiplier": 1.2,
+         "label": "Pounce"
+        }
+       ]
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:277-297, :312-313"
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "cinder-bastion",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-gorehound",
+    "art": 1,
+    "clips": {"strike": 4},
+    "glyph": "G",
+    "colour": "#D97555"
+   },
+   "sfx": "hound",
+   "text": {
+    "lore": "monster.chaos-gorehound.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:22"
+  },
+  "chaos-ironbound": {
+   "name": "Ironbound",
+   "hp": 368,
+   "dmg": [
+    18,
+    26
+   ],
+   "acc": 71,
+   "eva": 10,
+   "armour": 9,
+   "speed": 75,
+   "range": 1,
+   "xp": 110,
+   "flags": [
+    "living"
+   ],
+   "immune": [
+    "stun",
+    "knockback"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square"
+   },
+   "moves": [
+    {
+     "id": "iron-brace",
+     "shot": "none",
+     "name": "Iron Brace",
+     "range": [
+      0,
+      4
+     ],
+     "needs": "none",
+     "cooldown": 7,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "chaosbrace",
+       "turns": 2,
+       "durationModifiers": false,
+       "refresh": "replace"
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:314"
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "cinder-bastion",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-ironbound",
+    "art": 1.16,
+    "clips": {"strike": 4},
+    "glyph": "I",
+    "colour": "#D97555"
+   },
+   "sfx": "golem",
+   "text": {
+    "lore": "monster.chaos-ironbound.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:23"
+  },
+  "chaos-chain-reaver": {
+   "name": "Chain Reaver",
+   "hp": 225,
+   "dmg": [
+    17,
+    26
+   ],
+   "acc": 77,
+   "eva": 21,
+   "armour": 3,
+   "speed": 95,
+   "range": 1,
+   "xp": 68,
+   "flags": [
+    "living"
+   ],
+   "immune": [
+    "root"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square"
+   },
+   "moves": [
+    {
+     "id": "harpoon",
+     "shot": "phys",
+     "name": "Hooked Harpoon",
+     "range": [
+      2,
+      6
+     ],
+     "needs": "region-line",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "weapon-attack",
+       "weapon": "own",
+       "multiplier": 1.15,
+       "label": "Harpoon",
+       "projected": true,
+       "then": [
+        {
+         "verb": "pull",
+         "tiles": 2
+        }
+       ]
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:196-203, :213-214, :315"
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "cinder-bastion",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-chain-reaver",
+    "art": 1.03,
+    "clips": {"strike": 4},
+    "glyph": "C",
+    "colour": "#D97555"
+   },
+   "sfx": "brute",
+   "text": {
+    "lore": "monster.chaos-chain-reaver.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:24"
+  },
+  "chaos-lash-dancer": {
+   "name": "Lash Dancer",
+   "conceal": {
+    "rule": "until-revealed"
+   },
+   "hp": 225,
+   "dmg": [
+    18,
+    26
+   ],
+   "acc": 78,
+   "eva": 42,
+   "armour": 2,
+   "speed": 110,
+   "range": 1,
+   "xp": 68,
+   "flags": [
+    "living"
+   ],
+   "immune": [
+    "fear"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square",
+    "reach": 2
+   },
+   "moves": [
+    {
+     "id": "barbed-lash",
+     "shot": "none",
+     "name": "Barbed Lash",
+     "range": [
+      1,
+      2
+     ],
+     "needs": "region-line",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "weapon-attack",
+       "weapon": "own",
+       "multiplier": 1.1,
+       "label": "Barbed Lash",
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "bleed",
+         "turns": 3,
+         "magnitude": {
+          "scaled": {
+           "base": 8,
+           "mult": [
+            "number-scale",
+            "lethality"
+           ],
+           "round": true,
+           "min": 1
+          }
+         }
+        }
+       ]
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:232-236, :316"
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "violet-warrens",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-lash-dancer",
+    "art": 1.02,
+    "clips": {"strike": 5},
+    "glyph": "L",
+    "colour": "#C998E8"
+   },
+   "sfx": "drow",
+   "text": {
+    "lore": "monster.chaos-lash-dancer.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:25, :51"
+  },
+  "chaos-razor-dancer": {
+   "name": "Razor Dancer",
+   "conceal": {
+    "rule": "until-revealed"
+   },
+   "hp": 225,
+   "dmg": [
+    18,
+    26
+   ],
+   "acc": 77,
+   "eva": 46,
+   "armour": 2,
+   "speed": 130,
+   "range": 1,
+   "xp": 68,
+   "flags": [
+    "living"
+   ],
+   "immune": [
+    "slow"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square"
+   },
+   "passives": [
+    {
+     "verb": "damage-mod",
+     "direction": "dealt",
+     "mult": 1.3,
+     "if": {
+      "has-status": "bleed"
+     }
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "violet-warrens",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-razor-dancer",
+    "art": 0.95,
+    "clips": {"strike": 4},
+    "glyph": "R",
+    "colour": "#C998E8"
+   },
+   "sfx": "drow",
+   "text": {
+    "lore": "monster.chaos-razor-dancer.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:26, :51, :98-99, :351"
+  },
+  "chaos-silk-weaver": {
+   "name": "Silk Weaver",
+   "hp": 225,
+   "dmg": [
+    9,
+    15
+   ],
+   "acc": 74,
+   "eva": 22,
+   "armour": 2,
+   "speed": 90,
+   "range": 1,
+   "xp": 68,
+   "flags": [
+    "living",
+    "spider"
+   ],
+   "immune": [
+    "root"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square",
+    "fleeWithin": 2
+   },
+   "moves": [
+    {
+     "id": "weave-brood",
+     "name": "Throw Brood",
+     "range": [
+      0,
+      6
+     ],
+     "needs": "region-line",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "effects": [
+      {
+       "verb": "summon",
+       "side": "hostile",
+       "creature": "chaos-spiderling",
+       "count": 3,
+       "placement": "thrown-near-target",
+       "cap": 3,
+       "noLoot": true
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:317"
+    },
+    {
+     "id": "silver-web",
+     "name": "Silver Web",
+     "range": [
+      2,
+      5
+     ],
+     "needs": "region-line",
+     "cooldown": 5,
+     "clock": "game-turn",
+     "if": {
+      "not": {
+       "has-status": [
+        "root",
+        "slow"
+       ]
+      }
+     },
+     "hit": {
+      "accBonus": 0
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "web",
+       "turns": 1
+      },
+      {
+       "verb": "field",
+       "field": "web",
+       "shape": {
+        "selector": "square",
+        "n": 3,
+        "centre": "target"
+       },
+       "turns": 10,
+       "side": "all"
+      }
+     ],
+     "src": "js/world/chaos/chaos-enemies.js:318-319"
+    }
+   ],
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "violet-warrens",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-silk-weaver",
+    "art": 0.93,
+    "clips": {"strike": 4},
+    "glyph": "S",
+    "colour": "#C998E8"
+   },
+   "sfx": "spider",
+   "text": {
+    "lore": "monster.chaos-silk-weaver.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:27"
+  },
+  "chaos-hookfang": {
+   "name": "Hookfang",
+   "hp": 240,
+   "dmg": [
+    24,
+    33
+   ],
+   "acc": 74,
+   "eva": 18,
+   "armour": 4,
+   "speed": 100,
+   "range": 1,
+   "xp": 72,
+   "flags": [
+    "living",
+    "spider"
+   ],
+   "immune": [
+    "fear"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    "approach": "free-attack-square"
+   },
+   "drops": "kill-chaos",
+   "spawn": {
+    "chaosIsland": "violet-warrens",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "sheet": "m-chaos-hookfang",
+    "art": 1.04,
+    "clips": {"strike": 5},
+    "glyph": "H",
+    "colour": "#C998E8"
+   },
+   "sfx": "spider",
+   "text": {
+    "lore": "monster.chaos-hookfang.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:28"
+  },
+  "chaos-spiderling": {
+   "name": "Spiderling",
+   "hp": 15,
+   "dmg": [
+    3,
+    4
+   ],
+   "acc": 64,
+   "eva": 26,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 8,
+   "flags": [
+    "living",
+    "tiny",
+    "spider"
+   ],
+   "behaviour": "hunter",
+   "params": {
+    
+   },
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "chance": 30,
+     "if": {
+      "creature-flag": "living"
+     },
+     "effects": [
+      {
+       "verb": "apply-status",
+       "status": "bleed",
+       "turns": 4,
+       "magnitude": {
+        "scaled": {
+         "base": 8,
+         "mult": [
+          "number-scale",
+          "lethality"
+         ],
+         "round": true,
+         "min": 1
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "drops": "kill-spiderling",
+   "spawn": {
+    "chaosIsland": "violet-warrens",
+    "weight": 0,
+    "src": "js/world/chaos/chaos-encounters.js:5-10"
+   },
+   "look": {
+    "blockColour": "#C59BF0",
+    "sheet": "m-chaos-spiderling",
+    "art": 0.5,
+    "clips": {"strike": 4},
+    "glyph": "s",
+    "colour": "#5A3A4A",
+    "facesLeft": true
+   },
+   "sfx": "spider",
+   "text": {
+    "lore": "monster.chaos-spiderling.lore",
+    "hint": null
+   },
+   "src": "js/world/chaos/chaos-enemies.js:60-61"
+  },
+  "unmaker-tyrant": {
+   "name": "The Unmaker, Crowned Tyrant",
+   "hp": 4500,
+   "dmg": [
+    42,
+    62
+   ],
+   "acc": 85,
+   "eva": 24,
+   "armour": 10,
+   "speed": 100,
+   "range": 1,
+   "xp": 1500,
+   "flags": [
+    "living",
+    "boss"
+   ],
+   "immune": [
+    "fear",
+    "stun"
+   ],
+   "footprint": 2,
+   "set": "unmaker",
+   "behaviour": "boss",
+   "drops": "kill-none",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "its set piece (bosses.json unmaker)"
+   },
+   "look": {
+    "specialClip": "cast",
+    "sheet": "m-unmaker-tyrant",
+    "art": 1.8,
+    "clips": {"strike": 5},
+    "glyph": "U",
+    "colour": "#DFAC75"
+   },
+   "sfx": null,
+   "text": {
+    "lore": "monster.unmaker-tyrant.lore",
+    "hint": "monster.unmaker-tyrant.hint"
+   },
+   "src": "js/world/chaos/unmaker-encounter.js:7-11, :22-27"
+  },
+  "unmaker-unbound": {
+   "name": "The Unmaker, the Unbound",
+   "hp": 4500,
+   "dmg": [
+    32,
+    48
+   ],
+   "acc": 85,
+   "eva": 24,
+   "armour": 7,
+   "speed": 110,
+   "range": 1,
+   "xp": 1500,
+   "flags": [
+    "living",
+    "boss"
+   ],
+   "immune": [
+    "fear",
+    "stun"
+   ],
+   "footprint": 2,
+   "set": "unmaker",
+   "behaviour": "boss",
+   "drops": "kill-none",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "its set piece (bosses.json unmaker)"
+   },
+   "look": {
+    "specialClip": "cast",
+    "sheet": "m-unmaker-unbound",
+    "art": 1.8,
+    "clips": {"strike": 3},
+    "glyph": "U",
+    "colour": "#BFA0F0"
+   },
+   "sfx": null,
+   "text": {
+    "lore": "monster.unmaker-unbound.lore",
+    "hint": "monster.unmaker-unbound.hint"
+   },
+   "src": "js/world/chaos/unmaker-encounter.js:7-11, :22-27"
+  },
+  "unmaker-heart": {
+   "name": "The Unmaker, Heart of Discord",
+   "hp": 4500,
+   "dmg": [
+    44,
+    62
+   ],
+   "acc": 85,
+   "eva": 24,
+   "armour": 5,
+   "speed": 110,
+   "range": 1,
+   "xp": 1500,
+   "flags": [
+    "living",
+    "boss"
+   ],
+   "immune": [
+    "fear",
+    "stun"
+   ],
+   "footprint": 2,
+   "set": "unmaker",
+   "behaviour": "boss",
+   "drops": "kill-none",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "its set piece (bosses.json unmaker)"
+   },
+   "look": {
+    "specialClip": "cast",
+    "sheet": "m-unmaker-heart",
+    "art": 1.8,
+    "clips": {"strike": 5},
+    "glyph": "U",
+    "colour": "#F4D5FF"
+   },
+   "sfx": null,
+   "text": {
+    "lore": "monster.unmaker-heart.lore",
+    "hint": "monster.unmaker-heart.hint"
+   },
+   "src": "js/world/chaos/unmaker-encounter.js:7-11, :22-27"
+  },
+  "vault-guardian": {
+   "name": "Vault Guardian",
+   "hp": 42,
+   "dmg": [
+    8,
+    11
+   ],
+   "acc": 58,
+   "eva": 10,
+   "armour": 6,
+   "speed": 100,
+   "range": 1,
+   "xp": 18,
+   "flags": [
+    "living",
+    "elite"
+   ],
+   "family": "goblin",
+   "behaviour": "hunter",
+   "passives": [
+    {
+     "verb": "on-event",
+     "trigger": "on-hit",
+     "if": {
+      "hit-was": "melee"
+     },
+     "cooldown": 4,
+     "effects": [
+      {
+       "verb": "knockback",
+       "tiles": 1,
+       "from": "source",
+       "direction": "away"
+      }
+     ]
+    }
+   ],
+   "drops": "kill-brute",
+   "spawn": {
+    "weight": 0
+   },
+   "look": {
+    "sheet": "m-goblin-brute",
+    "art": 1.05,
+    "clips": {"strike": 4},
+    "glyph": "G",
+    "colour": "#4E7A3C",
+    "facesLeft": true
+   },
+   "sfx": "brute",
+   "text": {
+    "lore": "monster.vault-guardian.lore",
+    "hint": "monster.brute.hint"
+   },
+   "src": "js/world/world.js:1480-1483 (ruled 2026-10-16: its own row)"
+  },
+  "heartlimb": {
+   "name": "Heart of the Mountain",
+   "hp": 1,
+   "dmg": [
+    0,
+    0
+   ],
+   "acc": 0,
+   "eva": 0,
+   "armour": 6,
+   "speed": 100,
+   "range": 0,
+   "xp": 0,
+   "element": "earth",
+   "flags": [
+    "object",
+    "still"
+   ],
+   "partOf": "mountainheart",
+   "set": "heart-of-the-mountain",
+   "behaviour": "object",
+   "drops": "kill-none",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "the Heart, on the other three tiles of its 2x2"
+   },
+   "look": {
+    "sheet": "m-mountain-heart",
+    "art": 0.1,
+    "glyph": "M",
+    "colour": "#C08A40"
+   },
+   "sfx": null,
+   "text": {
+    "lore": "monster.mountainheart.lore",
+    "hint": null
+   },
+   "src": "js/world/planes/portals.js:543-550 (ruled 2026-10-16: limbs pass hits to the body, as the Maw's)"
+  },
+  "mimic-crypt": {
+   "name": "Mimic",
+   "hp": 30,
+   "dmg": [7, 10],
+   "acc": 64,
+   "eva": 10,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 30,
+   "flags": [],
+   "behaviour": "hunter",
+   "drops": "kill-mimic",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "a mimic chest (loot.json mimic-chance) in the crypt",
+    "biome": "crypt"
+   },
+   "look": {
+    "sheet": "m-mimic",
+    "art": 0.85,
+    "clips": {"strike": 4},
+    "glyph": "m",
+    "colour": "#8A5A2A"
+   },
+   "sfx": "mimic",
+   "text": {
+    "lore": "monster.mimic.lore",
+    "hint": null
+   },
+   "src": "js/content/data.js:935-936; js/combat/systems.js:684 (one row per biome, ruled 2026-10-16)"
+  },
+  "mimic-caverns": {
+   "name": "Mimic",
+   "hp": 30,
+   "dmg": [7, 10],
+   "acc": 64,
+   "eva": 10,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 30,
+   "flags": [],
+   "behaviour": "hunter",
+   "drops": "kill-mimic",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "a mimic chest (loot.json mimic-chance) in the caverns",
+    "biome": "caverns"
+   },
+   "look": {
+    "sheet": "m-mimic",
+    "art": 0.85,
+    "clips": {"strike": 4},
+    "glyph": "m",
+    "colour": "#8A5A2A"
+   },
+   "sfx": "mimic",
+   "text": {
+    "lore": "monster.mimic.lore",
+    "hint": null
+   },
+   "src": "js/content/data.js:935-936; js/combat/systems.js:684 (one row per biome, ruled 2026-10-16)"
+  },
+  "mimic-underdark": {
+   "name": "Mimic",
+   "hp": 30,
+   "dmg": [7, 10],
+   "acc": 64,
+   "eva": 10,
+   "armour": 3,
+   "speed": 100,
+   "range": 1,
+   "xp": 30,
+   "flags": [],
+   "behaviour": "hunter",
+   "drops": "kill-mimic",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "a mimic chest (loot.json mimic-chance) in the underdark",
+    "biome": "underdark"
+   },
+   "look": {
+    "sheet": "m-mimic",
+    "art": 0.85,
+    "clips": {"strike": 4},
+    "glyph": "m",
+    "colour": "#8A5A2A"
+   },
+   "sfx": "mimic",
+   "text": {
+    "lore": "monster.mimic.lore",
+    "hint": null
+   },
+   "src": "js/content/data.js:935-936; js/combat/systems.js:684 (one row per biome, ruled 2026-10-16)"
+  },
+  "shade-swarm": {
+   "name": "Shade",
+   "hp": 10,
+   "dmg": [
+    10,
+    10
+   ],
+   "acc": 64,
+   "eva": 26,
+   "armour": 0,
+   "speed": 100,
+   "range": 1,
+   "xp": 0,
+   "element": "shadow",
+   "attackType": "dark",
+   "flags": [
+    "shadowy"
+   ],
+   "elementProcPct": 30,
+   "elementTier": 1,
+   "behaviour": "ally",
+   "drops": "kill-none",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "Shadow Swarm (abilities.json shadowswarm); HP, damage and life come from the spell"
+   },
+   "look": {
+    "sheet": "m-shade",
+    "art": 0.8,
+    "clips": {"strike": 5},
+    "glyph": "*",
+    "colour": "#8A6FB0"
+   },
+   "sfx": "wisp",
+   "text": {
+    "lore": "monster.shade-swarm.lore",
+    "hint": null
+   },
+   "src": "js/elements/elements.js:42-45, :368-378; js/engine/actions-adapter.js:352; js/content/data.js:944 (the Inking it is built from) (own row, Justin 2026-10-16, magic.md answer 7)"
+  },
+  "living-flame": {
+   "name": "Living Flame",
+   "hp": 28,
+   "dmg": [
+    5,
+    9
+   ],
+   "acc": 62,
+   "eva": 22,
+   "armour": 0,
+   "speed": 100,
+   "range": 6,
+   "xp": 0,
+   "element": "fire",
+   "flags": [],
+   "behaviour": "ally",
+   "params": {
+    "noMelee": true
+   },
+   "moves": [
+    {
+     "id": "flame-shot",
+     "shot": "fire",
+     "name": "Flame Shot",
+     "range": [
+      1,
+      6
+     ],
+     "needs": "clear-shot",
+     "cooldown": 0,
+     "alsoEveryNth": {
+      "n": 3,
+      "effects": [
+       {
+        "verb": "damage-from-packet",
+        "packet": "raw",
+        "ratio": 0.5,
+        "type": "fire",
+        "to": {
+         "selector": "adjacent",
+         "centre": "target",
+         "side": "foes"
+        }
+       }
+      ]
+     },
+     "effects": [
+      {
+       "verb": "damage",
+       "amount": {
+        "from-source": "dmg"
+       },
+       "type": "fire",
+       "tags": [
+        "ranged",
+        "single-target"
+       ],
+       "then": [
+        {
+         "verb": "apply-status",
+         "status": "burn",
+         "turns": 3,
+         "chance": 22,
+         "magnitude": {
+          "scaled": {
+           "base": 2,
+           "per": {
+            "affinity:fire": 1
+           },
+           "mult": [
+            "number-scale",
+            "lethality"
+           ],
+           "round": true,
+           "min": 1
+          }
+         }
+        }
+       ]
+      }
+     ],
+     "src": "js/elements/elements.js:190-206"
+    }
+   ],
+   "drops": "kill-none",
+   "spawn": {
+    "weight": 0,
+    "placedBy": "Living Flame (abilities.json livingflame); HP, damage and life come from the spell"
+   },
+   "look": {
+    "sheet": "living-flame",
+    "art": 0.7,
+    "glyph": "*",
+    "colour": "#E2622B"
+   },
+   "sfx": "elementaling",
+   "text": {
+    "lore": "monster.living-flame.lore",
+    "hint": null
+   },
+   "src": "js/elements/elements.js:182, :190-206, :379-391; js/content/data.js:940 (the Emberling it is built from) (own row, Justin 2026-10-16, magic.md answer 7)"
+  }
+ }
+}

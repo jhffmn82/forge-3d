@@ -1,0 +1,4751 @@
+{
+ "version": 2,
+ "source": {
+  "repo": "C:/Users/jhffm/Documents/Codex/2026-10-11/claude-17-review/work/forge-ui-integration",
+  "rev": "bf96833",
+  "commit": "bf96833723ab538f337a6b2894586eda48398299"
+ },
+ "budgets": {
+  "beforeTitle": {
+   "limit": 5000000,
+   "groups": [
+    "boot",
+    "audio-boot",
+    "title-glimmer"
+   ],
+   "bytes": 885448,
+   "note": "title- counts the largest one"
+  },
+  "beforeFloor1": {
+   "limit": 15000000,
+   "groups": [
+    "boot",
+    "audio-boot",
+    "title-glimmer",
+    "creation",
+    "creation-fae-air-f",
+    "play",
+    "audio-play",
+    "look-fae-air-f",
+    "body-elf-m",
+    "biome-dungeon",
+    "audio-biome-dungeon"
+   ],
+   "bytes": 13020769,
+   "note": "new game; title-, creation-, look- and body- count the largest one"
+  },
+  "beforeFloor1Continue": {
+   "limit": 15000000,
+   "groups": [
+    "boot",
+    "audio-boot",
+    "title-glimmer",
+    "play",
+    "audio-play",
+    "look-fae-air-f",
+    "body-elf-m",
+    "biome-dungeon",
+    "audio-biome-dungeon"
+   ],
+   "bytes": 11843808,
+   "note": "continuing a saved run: no creation"
+  }
+ },
+ "groups": {
+  "boot": {
+   "when": "before the title: fonts, UI plates",
+   "bytes": 433170,
+   "sheets": [],
+   "files": [
+    "fonts/grenze-gotisch-500.woff2",
+    "fonts/grenze-gotisch-700.woff2",
+    "fonts/ibm-plex-mono-400.woff2",
+    "fonts/ibm-plex-mono-600.woff2",
+    "fonts/spectral-400-italic.woff2",
+    "fonts/spectral-400.woff2",
+    "fonts/spectral-600.woff2",
+    "images/ui/button-raised-prominent-clean-v2.webp",
+    "images/ui/button-raised-subdued-clean-v3.webp",
+    "images/ui/close-x-v2.webp",
+    "images/ui/heading-steel-six-gems-v1.webp",
+    "images/ui/window-plain-v1.webp"
+   ]
+  },
+  "audio-boot": {
+   "when": "before the title: UI clicks",
+   "bytes": 14280,
+   "sheets": [],
+   "files": [
+    "audio/ui-click.mp3",
+    "audio/ui-close.mp3",
+    "audio/ui-error.mp3",
+    "audio/ui-open.mp3"
+   ]
+  },
+  "music-boot": {
+   "when": "streamed from the title: the title track fades in when it arrives, nothing waits for it",
+   "bytes": 1152670,
+   "sheets": [],
+   "files": [
+    "audio/music-title.mp3"
+   ]
+  },
+  "title-anvil": {
+   "when": "with the title, which picks one of the nine at random each launch: the still of that god (it fades in when it arrives)",
+   "bytes": 201694,
+   "sheets": [],
+   "files": [
+    "images/title/title-anvil.webp"
+   ]
+  },
+  "title-glimmer": {
+   "when": "with the title, which picks one of the nine at random each launch: the still of that god (it fades in when it arrives)",
+   "bytes": 437998,
+   "sheets": [],
+   "files": [
+    "images/title/title-glimmer.webp"
+   ]
+  },
+  "title-grom": {
+   "when": "with the title, which picks one of the nine at random each launch: the still of that god (it fades in when it arrives)",
+   "bytes": 143284,
+   "sheets": [],
+   "files": [
+    "images/title/title-grom.webp"
+   ]
+  },
+  "title-grumbok": {
+   "when": "with the title, which picks one of the nine at random each launch: the still of that god (it fades in when it arrives)",
+   "bytes": 253002,
+   "sheets": [],
+   "files": [
+    "images/title/title-grumbok.webp"
+   ]
+  },
+  "title-murk": {
+   "when": "with the title, which picks one of the nine at random each launch: the still of that god (it fades in when it arrives)",
+   "bytes": 181212,
+   "sheets": [],
+   "files": [
+    "images/title/title-murk.webp"
+   ]
+  },
+  "title-reginald": {
+   "when": "with the title, which picks one of the nine at random each launch: the still of that god (it fades in when it arrives)",
+   "bytes": 267160,
+   "sheets": [],
+   "files": [
+    "images/title/title-reginald.webp"
+   ]
+  },
+  "title-sylla": {
+   "when": "with the title, which picks one of the nine at random each launch: the still of that god (it fades in when it arrives)",
+   "bytes": 293740,
+   "sheets": [],
+   "files": [
+    "images/title/title-sylla.webp"
+   ]
+  },
+  "title-vellum": {
+   "when": "with the title, which picks one of the nine at random each launch: the still of that god (it fades in when it arrives)",
+   "bytes": 313968,
+   "sheets": [],
+   "files": [
+    "images/title/title-vellum.webp"
+   ]
+  },
+  "title-wobbles": {
+   "when": "with the title, which picks one of the nine at random each launch: the still of that god (it fades in when it arrives)",
+   "bytes": 155406,
+   "sheets": [],
+   "files": [
+    "images/title/title-wobbles.webp"
+   ]
+  },
+  "creation": {
+   "when": "when New game is chosen, together with play (held gear, icons and frames live there): the bare figure of every body (the race and court steps) and creation UI; the hall also loads look-dwarf-m-tourist",
+   "bytes": 975283,
+   "sheets": [
+    "images/creation/bases.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/bases.webp",
+    "images/title/creation-firepit.webp",
+    "images/title/creation-floor.webp",
+    "images/title/creation-wall.webp",
+    "images/ui/chevron-raised-prominent-repeat-v1.webp",
+    "images/ui/chevron-raised-prominent-start-v1.webp",
+    "images/ui/chevron-raised-subdued-repeat-v1.webp",
+    "images/ui/chevron-raised-subdued-start-v1.webp",
+    "images/ui/forge-heading-bar-v1.webp"
+   ]
+  },
+  "creation-dwarf-f": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 207325,
+   "sheets": [
+    "images/creation/dwarf-f.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/dwarf-f.webp"
+   ]
+  },
+  "creation-dwarf-m": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 200911,
+   "sheets": [
+    "images/creation/dwarf-m.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/dwarf-m.webp"
+   ]
+  },
+  "creation-elf-f": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 220153,
+   "sheets": [
+    "images/creation/elf-f.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/elf-f.webp"
+   ]
+  },
+  "creation-elf-m": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 210169,
+   "sheets": [
+    "images/creation/elf-m.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/elf-m.webp"
+   ]
+  },
+  "creation-fae-air-f": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 240415,
+   "sheets": [
+    "images/creation/fae-air-f.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/fae-air-f.webp"
+   ]
+  },
+  "creation-fae-air-m": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 215669,
+   "sheets": [
+    "images/creation/fae-air-m.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/fae-air-m.webp"
+   ]
+  },
+  "creation-fae-earth-f": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 197061,
+   "sheets": [
+    "images/creation/fae-earth-f.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/fae-earth-f.webp"
+   ]
+  },
+  "creation-fae-earth-m": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 194121,
+   "sheets": [
+    "images/creation/fae-earth-m.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/fae-earth-m.webp"
+   ]
+  },
+  "creation-fae-fire-f": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 226011,
+   "sheets": [
+    "images/creation/fae-fire-f.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/fae-fire-f.webp"
+   ]
+  },
+  "creation-fae-fire-m": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 191659,
+   "sheets": [
+    "images/creation/fae-fire-m.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/fae-fire-m.webp"
+   ]
+  },
+  "creation-fae-water-f": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 202609,
+   "sheets": [
+    "images/creation/fae-water-f.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/fae-water-f.webp"
+   ]
+  },
+  "creation-fae-water-m": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 202415,
+   "sheets": [
+    "images/creation/fae-water-m.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/fae-water-m.webp"
+   ]
+  },
+  "creation-gloomling-f": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 175421,
+   "sheets": [
+    "images/creation/gloomling-f.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/gloomling-f.webp"
+   ]
+  },
+  "creation-gloomling-m": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 186121,
+   "sheets": [
+    "images/creation/gloomling-m.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/gloomling-m.webp"
+   ]
+  },
+  "creation-human-f": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 196431,
+   "sheets": [
+    "images/creation/human-f.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/human-f.webp"
+   ]
+  },
+  "creation-human-m": {
+   "when": "once its body is picked in creation: the painted outfits of that body (the class, god and name steps)",
+   "bytes": 214695,
+   "sheets": [
+    "images/creation/human-m.json"
+   ],
+   "files": [
+    "catalogs/creation.json",
+    "images/creation/human-m.webp"
+   ]
+  },
+  "play": {
+   "when": "before floor 1, and with creation: shared map art, props, items, held gear, icons, window frames, summons",
+   "bytes": 5428972,
+   "sheets": [
+    "sheets/debris.json",
+    "sheets/environment-deco.json",
+    "sheets/environment-ground-bones.json",
+    "sheets/environment-items.json",
+    "sheets/environment-mushroom-spreads.json",
+    "sheets/environment-prop-banner-stand.json",
+    "sheets/environment-prop-exit-gate.json",
+    "sheets/environment-prop-lever-down.json",
+    "sheets/environment-prop-lever-up.json",
+    "sheets/environment-prop-table-candle.json",
+    "sheets/environment-props-chests.json",
+    "sheets/environment-props-fluid-barrels.json",
+    "sheets/environment-props-pillar.json",
+    "sheets/environment-props-props.json",
+    "sheets/environment-props-set.json",
+    "sheets/environment-props-structures.json",
+    "sheets/environment-props-traps.json",
+    "sheets/environment-terrain-fluid-detail.json",
+    "sheets/environment-terrain-stone-detail.json",
+    "sheets/environment-vegetation-clusters.json",
+    "sheets/environment-vegetation.json",
+    "sheets/fx-hook.json",
+    "sheets/map-hawaiian-shirt.json",
+    "sheets/map-held.json",
+    "sheets/map-icons.json",
+    "sheets/map-items.json",
+    "sheets/map-props.json",
+    "sheets/map-rack.json",
+    "sheets/map-set.json",
+    "sheets/map-stairs.json",
+    "sheets/mob-m-lich.json",
+    "sheets/mob-m-mimic.json",
+    "sheets/mob-m-shade.json"
+   ],
+   "files": [
+    "catalogs/play.json",
+    "images/abilities/pr-arcanelance.webp",
+    "images/abilities/pr-bonespear.webp",
+    "images/effects/web-ground.webp",
+    "images/ui/frame6/anvil.webp",
+    "images/ui/frame6/bl.webp",
+    "images/ui/frame6/bottom.webp",
+    "images/ui/frame6/br.webp",
+    "images/ui/frame6/face.webp",
+    "images/ui/frame6/gem-left.webp",
+    "images/ui/frame6/gem-right.webp",
+    "images/ui/frame6/left.webp",
+    "images/ui/frame6/right.webp",
+    "images/ui/frame6/tl.webp",
+    "images/ui/frame6/top.webp",
+    "images/ui/frame6/tr.webp",
+    "images/ui/tab-steel-v1.webp",
+    "sheets/debris.webp",
+    "sheets/environment-deco.webp",
+    "sheets/environment-ground-bones.webp",
+    "sheets/environment-items.webp",
+    "sheets/environment-mushroom-spreads.webp",
+    "sheets/environment-prop-banner-stand.webp",
+    "sheets/environment-prop-exit-gate.webp",
+    "sheets/environment-prop-lever-down.webp",
+    "sheets/environment-prop-lever-up.webp",
+    "sheets/environment-prop-table-candle.webp",
+    "sheets/environment-props-chests.webp",
+    "sheets/environment-props-fluid-barrels.webp",
+    "sheets/environment-props-pillar.webp",
+    "sheets/environment-props-props.webp",
+    "sheets/environment-props-set.webp",
+    "sheets/environment-props-structures.webp",
+    "sheets/environment-props-traps.webp",
+    "sheets/environment-terrain-fluid-detail.webp",
+    "sheets/environment-terrain-stone-detail.webp",
+    "sheets/environment-vegetation-clusters.webp",
+    "sheets/environment-vegetation.webp",
+    "sheets/fx-hook.webp",
+    "sheets/living-flame.webp",
+    "sheets/map-hawaiian-shirt.webp",
+    "sheets/map-held.webp",
+    "sheets/map-icons.webp",
+    "sheets/map-items.webp",
+    "sheets/map-props.webp",
+    "sheets/map-rack.webp",
+    "sheets/map-set.webp",
+    "sheets/map-stairs.webp",
+    "sheets/mob-m-lich.webp",
+    "sheets/mob-m-mimic.webp",
+    "sheets/mob-m-shade.webp",
+    "sheets/normals/normal-mob-m-lich.webp",
+    "sheets/normals/normal-mob-m-mimic.webp",
+    "sheets/normals/normal-mob-m-shade.webp"
+   ]
+  },
+  "audio-play": {
+   "when": "before floor 1: effects heard on any floor",
+   "bytes": 2225607,
+   "sheets": [],
+   "files": [
+    "audio/ally-death.mp3",
+    "audio/amb-dungeon.mp3",
+    "audio/amb-fire.mp3",
+    "audio/arrow-hit.mp3",
+    "audio/bat-alert.mp3",
+    "audio/bat-attack.mp3",
+    "audio/bat-death.mp3",
+    "audio/block.mp3",
+    "audio/bow-shot.mp3",
+    "audio/brute-alert.mp3",
+    "audio/brute-attack.mp3",
+    "audio/brute-death.mp3",
+    "audio/charge.mp3",
+    "audio/chest-open.mp3",
+    "audio/crate-break.mp3",
+    "audio/dark-cast.mp3",
+    "audio/djinn-attack.mp3",
+    "audio/door-close.mp3",
+    "audio/door-locked.mp3",
+    "audio/door-open.mp3",
+    "audio/door-secret.mp3",
+    "audio/door-unlock.mp3",
+    "audio/drow-alert.mp3",
+    "audio/drow-attack.mp3",
+    "audio/drow-death.mp3",
+    "audio/earth-cast.mp3",
+    "audio/earth-hit.mp3",
+    "audio/eat.mp3",
+    "audio/elementaling-alert.mp3",
+    "audio/elementaling-attack.mp3",
+    "audio/elementaling-death.mp3",
+    "audio/equip-armor.mp3",
+    "audio/equip-weapon.mp3",
+    "audio/explosion.mp3",
+    "audio/fire-cast.mp3",
+    "audio/fire-hit.mp3",
+    "audio/fire-ignite.mp3",
+    "audio/forge-craft.mp3",
+    "audio/forge-enchant.mp3",
+    "audio/forge-fuse.mp3",
+    "audio/forge-open.mp3",
+    "audio/goblin-alert.mp3",
+    "audio/golem-alert.mp3",
+    "audio/golem-attack.mp3",
+    "audio/golem-death.mp3",
+    "audio/heal.mp3",
+    "audio/hit-armor.mp3",
+    "audio/hit-crit.mp3",
+    "audio/hit-flesh.mp3",
+    "audio/hound-alert.mp3",
+    "audio/hound-attack.mp3",
+    "audio/hound-death.mp3",
+    "audio/hungry.mp3",
+    "audio/ice-cast.mp3",
+    "audio/ice-hit.mp3",
+    "audio/ice-melt.mp3",
+    "audio/identify.mp3",
+    "audio/imp-alert.mp3",
+    "audio/imp-attack.mp3",
+    "audio/imp-death.mp3",
+    "audio/inventory-full.mp3",
+    "audio/knock-thud.mp3",
+    "audio/level-up.mp3",
+    "audio/lever.mp3",
+    "audio/light-cast.mp3",
+    "audio/light-hit.mp3",
+    "audio/lightning-cast.mp3",
+    "audio/lightning-hit.mp3",
+    "audio/magic-missile-hit.mp3",
+    "audio/magic-missile.mp3",
+    "audio/mimic-alert.mp3",
+    "audio/mimic-attack.mp3",
+    "audio/mimic-death.mp3",
+    "audio/mimic-reveal.mp3",
+    "audio/miss.mp3",
+    "audio/new-ability.mp3",
+    "audio/night-warden-attack.mp3",
+    "audio/no-mana.mp3",
+    "audio/parry.mp3",
+    "audio/pickup-essence.mp3",
+    "audio/pickup-item.mp3",
+    "audio/pickup-key.mp3",
+    "audio/pickup-mote.mp3",
+    "audio/piety-rank.mp3",
+    "audio/player-death.mp3",
+    "audio/player-hurt.mp3",
+    "audio/portal.mp3",
+    "audio/pot-break.mp3",
+    "audio/pray.mp3",
+    "audio/puzzle-solved.mp3",
+    "audio/radiant-warden-attack.mp3",
+    "audio/rat-attack.mp3",
+    "audio/rat-death.mp3",
+    "audio/sap.mp3",
+    "audio/shadow-cast.mp3",
+    "audio/shadow-hit.mp3",
+    "audio/shaman-attack.mp3",
+    "audio/shaman-cast.mp3",
+    "audio/shaman-death.mp3",
+    "audio/shrine-convert.mp3",
+    "audio/shrine-open.mp3",
+    "audio/sigil-aegis.mp3",
+    "audio/sigil-ascension.mp3",
+    "audio/sigil-blink.mp3",
+    "audio/sigil-cinder.mp3",
+    "audio/sigil-firestorm.mp3",
+    "audio/sigil-haste.mp3",
+    "audio/sigil-heal.mp3",
+    "audio/sigil-identify.mp3",
+    "audio/sigil-levitate.mp3",
+    "audio/sigil-magma.mp3",
+    "audio/sigil-mana.mp3",
+    "audio/sigil-mapping.mp3",
+    "audio/sigil-mire.mp3",
+    "audio/sigil-naturesbounty.mp3",
+    "audio/sigil-purify.mp3",
+    "audio/sigil-recall.mp3",
+    "audio/sigil-rot.mp3",
+    "audio/sigil-smoke.mp3",
+    "audio/sigil-stoneskin.mp3",
+    "audio/sigil-storm.mp3",
+    "audio/sigil-sunburst.mp3",
+    "audio/sigil-transmutation.mp3",
+    "audio/sigil-use.mp3",
+    "audio/sigil-vanish.mp3",
+    "audio/sigil-wisdom.mp3",
+    "audio/skeleton-attack.mp3",
+    "audio/skeleton-death.mp3",
+    "audio/skeleton-rattle.mp3",
+    "audio/slime-alert.mp3",
+    "audio/slime-attack.mp3",
+    "audio/slime-death.mp3",
+    "audio/slime-split.mp3",
+    "audio/spell-chainbolt-cast.mp3",
+    "audio/spell-chainbolt-hit.mp3",
+    "audio/spell-dawn-cast.mp3",
+    "audio/spell-earthquake-cast.mp3",
+    "audio/spell-fireball-cast.mp3",
+    "audio/spell-fireball-hit.mp3",
+    "audio/spell-firebolt-cast.mp3",
+    "audio/spell-firebolt-hit.mp3",
+    "audio/spell-frostcone-cast.mp3",
+    "audio/spell-frostcone-hit.mp3",
+    "audio/spell-frostshard-cast.mp3",
+    "audio/spell-frostshard-hit.mp3",
+    "audio/spell-glacialtomb-cast.mp3",
+    "audio/spell-glacialtomb-hit.mp3",
+    "audio/spell-livingflame-cast.mp3",
+    "audio/spell-missile-cast.mp3",
+    "audio/spell-missile-hit.mp3",
+    "audio/spell-radiantbeam-cast.mp3",
+    "audio/spell-radiantbeam-hit.mp3",
+    "audio/spell-root-cast.mp3",
+    "audio/spell-root-hit.mp3",
+    "audio/spell-shadowbolt-cast.mp3",
+    "audio/spell-shadowbolt-hit.mp3",
+    "audio/spell-shadowswarm-cast.mp3",
+    "audio/spell-smite-cast.mp3",
+    "audio/spell-smite-hit.mp3",
+    "audio/spell-spark-cast.mp3",
+    "audio/spell-spark-hit.mp3",
+    "audio/spell-stormform-cast.mp3",
+    "audio/spell-umbral-cast.mp3",
+    "audio/spell-upheaval-cast.mp3",
+    "audio/spell-upheaval-hit.mp3",
+    "audio/spider-alert.mp3",
+    "audio/spider-attack.mp3",
+    "audio/spider-death.mp3",
+    "audio/stairs.mp3",
+    "audio/stat-point.mp3",
+    "audio/status-bleed.mp3",
+    "audio/status-blind.mp3",
+    "audio/status-burn.mp3",
+    "audio/status-fear.mp3",
+    "audio/status-freeze.mp3",
+    "audio/status-poison.mp3",
+    "audio/status-root.mp3",
+    "audio/status-slow.mp3",
+    "audio/status-stun.mp3",
+    "audio/step-grass.mp3",
+    "audio/step-stone-1.mp3",
+    "audio/step-stone-2.mp3",
+    "audio/step-stone-3.mp3",
+    "audio/step-stone.mp3",
+    "audio/step-water.mp3",
+    "audio/summon.mp3",
+    "audio/swing.mp3",
+    "audio/trap-alarm.mp3",
+    "audio/trap-dart.mp3",
+    "audio/trap-fire.mp3",
+    "audio/trap-frost.mp3",
+    "audio/trap-gas.mp3",
+    "audio/trap-pit.mp3",
+    "audio/trap-spark.mp3",
+    "audio/trap-spot.mp3",
+    "audio/trap-teleport.mp3",
+    "audio/trap-web.mp3",
+    "audio/vanish.mp3",
+    "audio/victory.mp3",
+    "audio/warchief-roar.mp3",
+    "audio/wisp-alert.mp3",
+    "audio/wisp-attack.mp3",
+    "audio/wisp-death.mp3",
+    "audio/wobbles-giggle.mp3",
+    "audio/wrath.mp3",
+    "audio/zombie-alert.mp3",
+    "audio/zombie-attack.mp3",
+    "audio/zombie-death.mp3"
+   ]
+  },
+  "look-dwarf-f": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 629623,
+   "sheets": [
+    "sheets/cast-dwarf-f-doll.json",
+    "sheets/cast-dwarf-f.json"
+   ],
+   "files": [
+    "catalogs/hero-dwarf-f.json",
+    "sheets/cast-dwarf-f-doll.webp",
+    "sheets/cast-dwarf-f.webp"
+   ]
+  },
+  "look-dwarf-f-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 580183,
+   "sheets": [
+    "sheets/cast-dwarf-f-tourist-doll.json",
+    "sheets/cast-dwarf-f-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-dwarf-f.json",
+    "sheets/cast-dwarf-f-tourist-doll.webp",
+    "sheets/cast-dwarf-f-tourist.webp"
+   ]
+  },
+  "look-dwarf-m": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 605410,
+   "sheets": [
+    "sheets/cast-dwarf-m-doll.json",
+    "sheets/cast-dwarf-m.json"
+   ],
+   "files": [
+    "catalogs/hero-dwarf-m.json",
+    "sheets/cast-dwarf-m-doll.webp",
+    "sheets/cast-dwarf-m.webp"
+   ]
+  },
+  "look-dwarf-m-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 655890,
+   "sheets": [
+    "sheets/cast-dwarf-m-tourist-doll.json",
+    "sheets/cast-dwarf-m-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-dwarf-m.json",
+    "sheets/cast-dwarf-m-tourist-doll.webp",
+    "sheets/cast-dwarf-m-tourist.webp"
+   ]
+  },
+  "look-elf-f": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 617724,
+   "sheets": [
+    "sheets/cast-elf-f-doll.json",
+    "sheets/cast-elf-f.json"
+   ],
+   "files": [
+    "catalogs/hero-elf-f.json",
+    "sheets/cast-elf-f-doll.webp",
+    "sheets/cast-elf-f.webp"
+   ]
+  },
+  "look-elf-f-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 579230,
+   "sheets": [
+    "sheets/cast-elf-f-tourist-doll.json",
+    "sheets/cast-elf-f-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-elf-f.json",
+    "sheets/cast-elf-f-tourist-doll.webp",
+    "sheets/cast-elf-f-tourist.webp"
+   ]
+  },
+  "look-elf-f-unclad": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 522940,
+   "sheets": [
+    "sheets/cast-elf-f-unclad-doll.json",
+    "sheets/cast-elf-f-unclad.json"
+   ],
+   "files": [
+    "catalogs/hero-elf-f.json",
+    "sheets/cast-elf-f-unclad-doll.webp",
+    "sheets/cast-elf-f-unclad.webp"
+   ]
+  },
+  "look-elf-m": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 552260,
+   "sheets": [
+    "sheets/cast-elf-m-doll.json",
+    "sheets/cast-elf-m.json"
+   ],
+   "files": [
+    "catalogs/hero-elf-m.json",
+    "sheets/cast-elf-m-doll.webp",
+    "sheets/cast-elf-m.webp"
+   ]
+  },
+  "look-elf-m-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 490914,
+   "sheets": [
+    "sheets/cast-elf-m-tourist-doll.json",
+    "sheets/cast-elf-m-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-elf-m.json",
+    "sheets/cast-elf-m-tourist-doll.webp",
+    "sheets/cast-elf-m-tourist.webp"
+   ]
+  },
+  "look-elf-m-unclad": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 455552,
+   "sheets": [
+    "sheets/cast-elf-m-unclad-doll.json",
+    "sheets/cast-elf-m-unclad.json"
+   ],
+   "files": [
+    "catalogs/hero-elf-m.json",
+    "sheets/cast-elf-m-unclad-doll.webp",
+    "sheets/cast-elf-m-unclad.webp"
+   ]
+  },
+  "look-fae-air-f": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 663006,
+   "sheets": [
+    "sheets/cast-fae-air-f-doll.json",
+    "sheets/cast-fae-air-f.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-air-f.json",
+    "sheets/cast-fae-air-f-doll.webp",
+    "sheets/cast-fae-air-f.webp"
+   ]
+  },
+  "look-fae-air-f-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 636904,
+   "sheets": [
+    "sheets/cast-fae-air-f-tourist-doll.json",
+    "sheets/cast-fae-air-f-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-air-f.json",
+    "sheets/cast-fae-air-f-tourist-doll.webp",
+    "sheets/cast-fae-air-f-tourist.webp"
+   ]
+  },
+  "look-fae-air-f-unclad": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 594310,
+   "sheets": [
+    "sheets/cast-fae-air-f-unclad-doll.json",
+    "sheets/cast-fae-air-f-unclad.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-air-f.json",
+    "sheets/cast-fae-air-f-unclad-doll.webp",
+    "sheets/cast-fae-air-f-unclad.webp"
+   ]
+  },
+  "look-fae-air-m": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 545244,
+   "sheets": [
+    "sheets/cast-fae-air-m-doll.json",
+    "sheets/cast-fae-air-m.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-air-m.json",
+    "sheets/cast-fae-air-m-doll.webp",
+    "sheets/cast-fae-air-m.webp"
+   ]
+  },
+  "look-fae-air-m-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 482386,
+   "sheets": [
+    "sheets/cast-fae-air-m-tourist-doll.json",
+    "sheets/cast-fae-air-m-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-air-m.json",
+    "sheets/cast-fae-air-m-tourist-doll.webp",
+    "sheets/cast-fae-air-m-tourist.webp"
+   ]
+  },
+  "look-fae-air-m-unclad": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 492092,
+   "sheets": [
+    "sheets/cast-fae-air-m-unclad-doll.json",
+    "sheets/cast-fae-air-m-unclad.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-air-m.json",
+    "sheets/cast-fae-air-m-unclad-doll.webp",
+    "sheets/cast-fae-air-m-unclad.webp"
+   ]
+  },
+  "look-fae-earth-f": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 529736,
+   "sheets": [
+    "sheets/cast-fae-earth-f-doll.json",
+    "sheets/cast-fae-earth-f.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-earth-f.json",
+    "sheets/cast-fae-earth-f-doll.webp",
+    "sheets/cast-fae-earth-f.webp"
+   ]
+  },
+  "look-fae-earth-f-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 534526,
+   "sheets": [
+    "sheets/cast-fae-earth-f-tourist-doll.json",
+    "sheets/cast-fae-earth-f-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-earth-f.json",
+    "sheets/cast-fae-earth-f-tourist-doll.webp",
+    "sheets/cast-fae-earth-f-tourist.webp"
+   ]
+  },
+  "look-fae-earth-f-unclad": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 483712,
+   "sheets": [
+    "sheets/cast-fae-earth-f-unclad-doll.json",
+    "sheets/cast-fae-earth-f-unclad.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-earth-f.json",
+    "sheets/cast-fae-earth-f-unclad-doll.webp",
+    "sheets/cast-fae-earth-f-unclad.webp"
+   ]
+  },
+  "look-fae-earth-m": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 487527,
+   "sheets": [
+    "sheets/cast-fae-earth-m-doll.json",
+    "sheets/cast-fae-earth-m.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-earth-m.json",
+    "sheets/cast-fae-earth-m-doll.webp",
+    "sheets/cast-fae-earth-m.webp"
+   ]
+  },
+  "look-fae-earth-m-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 489959,
+   "sheets": [
+    "sheets/cast-fae-earth-m-tourist-doll.json",
+    "sheets/cast-fae-earth-m-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-earth-m.json",
+    "sheets/cast-fae-earth-m-tourist-doll.webp",
+    "sheets/cast-fae-earth-m-tourist.webp"
+   ]
+  },
+  "look-fae-earth-m-unclad": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 455857,
+   "sheets": [
+    "sheets/cast-fae-earth-m-unclad-doll.json",
+    "sheets/cast-fae-earth-m-unclad.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-earth-m.json",
+    "sheets/cast-fae-earth-m-unclad-doll.webp",
+    "sheets/cast-fae-earth-m-unclad.webp"
+   ]
+  },
+  "look-fae-fire-f": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 637657,
+   "sheets": [
+    "sheets/cast-fae-fire-f-doll.json",
+    "sheets/cast-fae-fire-f.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-fire-f.json",
+    "sheets/cast-fae-fire-f-doll.webp",
+    "sheets/cast-fae-fire-f.webp"
+   ]
+  },
+  "look-fae-fire-f-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 658749,
+   "sheets": [
+    "sheets/cast-fae-fire-f-tourist-doll.json",
+    "sheets/cast-fae-fire-f-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-fire-f.json",
+    "sheets/cast-fae-fire-f-tourist-doll.webp",
+    "sheets/cast-fae-fire-f-tourist.webp"
+   ]
+  },
+  "look-fae-fire-f-unclad": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 557627,
+   "sheets": [
+    "sheets/cast-fae-fire-f-unclad-doll.json",
+    "sheets/cast-fae-fire-f-unclad.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-fire-f.json",
+    "sheets/cast-fae-fire-f-unclad-doll.webp",
+    "sheets/cast-fae-fire-f-unclad.webp"
+   ]
+  },
+  "look-fae-fire-m": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 513157,
+   "sheets": [
+    "sheets/cast-fae-fire-m-doll.json",
+    "sheets/cast-fae-fire-m.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-fire-m.json",
+    "sheets/cast-fae-fire-m-doll.webp",
+    "sheets/cast-fae-fire-m.webp"
+   ]
+  },
+  "look-fae-fire-m-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 481393,
+   "sheets": [
+    "sheets/cast-fae-fire-m-tourist-doll.json",
+    "sheets/cast-fae-fire-m-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-fire-m.json",
+    "sheets/cast-fae-fire-m-tourist-doll.webp",
+    "sheets/cast-fae-fire-m-tourist.webp"
+   ]
+  },
+  "look-fae-fire-m-unclad": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 449227,
+   "sheets": [
+    "sheets/cast-fae-fire-m-unclad-doll.json",
+    "sheets/cast-fae-fire-m-unclad.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-fire-m.json",
+    "sheets/cast-fae-fire-m-unclad-doll.webp",
+    "sheets/cast-fae-fire-m-unclad.webp"
+   ]
+  },
+  "look-fae-water-f": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 577506,
+   "sheets": [
+    "sheets/cast-fae-water-f-doll.json",
+    "sheets/cast-fae-water-f.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-water-f.json",
+    "sheets/cast-fae-water-f-doll.webp",
+    "sheets/cast-fae-water-f.webp"
+   ]
+  },
+  "look-fae-water-f-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 575784,
+   "sheets": [
+    "sheets/cast-fae-water-f-tourist-doll.json",
+    "sheets/cast-fae-water-f-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-water-f.json",
+    "sheets/cast-fae-water-f-tourist-doll.webp",
+    "sheets/cast-fae-water-f-tourist.webp"
+   ]
+  },
+  "look-fae-water-f-unclad": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 484524,
+   "sheets": [
+    "sheets/cast-fae-water-f-unclad-doll.json",
+    "sheets/cast-fae-water-f-unclad.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-water-f.json",
+    "sheets/cast-fae-water-f-unclad-doll.webp",
+    "sheets/cast-fae-water-f-unclad.webp"
+   ]
+  },
+  "look-fae-water-m": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 579054,
+   "sheets": [
+    "sheets/cast-fae-water-m-doll.json",
+    "sheets/cast-fae-water-m.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-water-m.json",
+    "sheets/cast-fae-water-m-doll.webp",
+    "sheets/cast-fae-water-m.webp"
+   ]
+  },
+  "look-fae-water-m-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 524890,
+   "sheets": [
+    "sheets/cast-fae-water-m-tourist-doll.json",
+    "sheets/cast-fae-water-m-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-water-m.json",
+    "sheets/cast-fae-water-m-tourist-doll.webp",
+    "sheets/cast-fae-water-m-tourist.webp"
+   ]
+  },
+  "look-fae-water-m-unclad": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 472592,
+   "sheets": [
+    "sheets/cast-fae-water-m-unclad-doll.json",
+    "sheets/cast-fae-water-m-unclad.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-water-m.json",
+    "sheets/cast-fae-water-m-unclad-doll.webp",
+    "sheets/cast-fae-water-m-unclad.webp"
+   ]
+  },
+  "look-gloomling-f": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 534082,
+   "sheets": [
+    "sheets/cast-gloomling-f-doll.json",
+    "sheets/cast-gloomling-f.json"
+   ],
+   "files": [
+    "catalogs/hero-gloomling-f.json",
+    "sheets/cast-gloomling-f-doll.webp",
+    "sheets/cast-gloomling-f.webp"
+   ]
+  },
+  "look-gloomling-f-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 490244,
+   "sheets": [
+    "sheets/cast-gloomling-f-tourist-doll.json",
+    "sheets/cast-gloomling-f-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-gloomling-f.json",
+    "sheets/cast-gloomling-f-tourist-doll.webp",
+    "sheets/cast-gloomling-f-tourist.webp"
+   ]
+  },
+  "look-gloomling-f-unclad": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 441420,
+   "sheets": [
+    "sheets/cast-gloomling-f-unclad-doll.json",
+    "sheets/cast-gloomling-f-unclad.json"
+   ],
+   "files": [
+    "catalogs/hero-gloomling-f.json",
+    "sheets/cast-gloomling-f-unclad-doll.webp",
+    "sheets/cast-gloomling-f-unclad.webp"
+   ]
+  },
+  "look-gloomling-m": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 485758,
+   "sheets": [
+    "sheets/cast-gloomling-m-doll.json",
+    "sheets/cast-gloomling-m.json"
+   ],
+   "files": [
+    "catalogs/hero-gloomling-m.json",
+    "sheets/cast-gloomling-m-doll.webp",
+    "sheets/cast-gloomling-m.webp"
+   ]
+  },
+  "look-gloomling-m-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 471420,
+   "sheets": [
+    "sheets/cast-gloomling-m-tourist-doll.json",
+    "sheets/cast-gloomling-m-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-gloomling-m.json",
+    "sheets/cast-gloomling-m-tourist-doll.webp",
+    "sheets/cast-gloomling-m-tourist.webp"
+   ]
+  },
+  "look-gloomling-m-unclad": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 429502,
+   "sheets": [
+    "sheets/cast-gloomling-m-unclad-doll.json",
+    "sheets/cast-gloomling-m-unclad.json"
+   ],
+   "files": [
+    "catalogs/hero-gloomling-m.json",
+    "sheets/cast-gloomling-m-unclad-doll.webp",
+    "sheets/cast-gloomling-m-unclad.webp"
+   ]
+  },
+  "look-human-f": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 521559,
+   "sheets": [
+    "sheets/cast-human-f-doll.json",
+    "sheets/cast-human-f.json"
+   ],
+   "files": [
+    "catalogs/hero-human-f.json",
+    "sheets/cast-human-f-doll.webp",
+    "sheets/cast-human-f.webp"
+   ]
+  },
+  "look-human-f-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 485071,
+   "sheets": [
+    "sheets/cast-human-f-tourist-doll.json",
+    "sheets/cast-human-f-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-human-f.json",
+    "sheets/cast-human-f-tourist-doll.webp",
+    "sheets/cast-human-f-tourist.webp"
+   ]
+  },
+  "look-human-f-unclad": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 456667,
+   "sheets": [
+    "sheets/cast-human-f-unclad-doll.json",
+    "sheets/cast-human-f-unclad.json"
+   ],
+   "files": [
+    "catalogs/hero-human-f.json",
+    "sheets/cast-human-f-unclad-doll.webp",
+    "sheets/cast-human-f-unclad.webp"
+   ]
+  },
+  "look-human-m": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 586648,
+   "sheets": [
+    "sheets/cast-human-m-doll.json",
+    "sheets/cast-human-m.json"
+   ],
+   "files": [
+    "catalogs/hero-human-m.json",
+    "sheets/cast-human-m-doll.webp",
+    "sheets/cast-human-m.webp"
+   ]
+  },
+  "look-human-m-tourist": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 497742,
+   "sheets": [
+    "sheets/cast-human-m-tourist-doll.json",
+    "sheets/cast-human-m-tourist.json"
+   ],
+   "files": [
+    "catalogs/hero-human-m.json",
+    "sheets/cast-human-m-tourist-doll.webp",
+    "sheets/cast-human-m-tourist.webp"
+   ]
+  },
+  "look-human-m-unclad": {
+   "when": "before floor 1, only the chosen look (race, sex, outfit) and its paper doll",
+   "bytes": 456142,
+   "sheets": [
+    "sheets/cast-human-m-unclad-doll.json",
+    "sheets/cast-human-m-unclad.json"
+   ],
+   "files": [
+    "catalogs/hero-human-m.json",
+    "sheets/cast-human-m-unclad-doll.webp",
+    "sheets/cast-human-m-unclad.webp"
+   ]
+  },
+  "body-dwarf-f": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 295427,
+   "sheets": [
+    "images/portraits/dwarf-f-hurt.json",
+    "images/portraits/dwarf-f-quiet.json",
+    "images/portraits/dwarf-f-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-dwarf-f.json",
+    "images/portraits/dwarf-f-hurt.webp",
+    "images/portraits/dwarf-f-quiet.webp",
+    "images/portraits/dwarf-f-turn.webp",
+    "images/portraits/dwarf-f.webp"
+   ]
+  },
+  "body-dwarf-m": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 276096,
+   "sheets": [
+    "images/portraits/dwarf-m-hurt.json",
+    "images/portraits/dwarf-m-quiet.json",
+    "images/portraits/dwarf-m-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-dwarf-m.json",
+    "images/portraits/dwarf-m-hurt.webp",
+    "images/portraits/dwarf-m-quiet.webp",
+    "images/portraits/dwarf-m-turn.webp",
+    "images/portraits/dwarf-m.webp"
+   ]
+  },
+  "body-elf-f": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 342280,
+   "sheets": [
+    "images/portraits/elf-f-hurt.json",
+    "images/portraits/elf-f-quiet.json",
+    "images/portraits/elf-f-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-elf-f.json",
+    "images/portraits/elf-f-hurt.webp",
+    "images/portraits/elf-f-quiet.webp",
+    "images/portraits/elf-f-turn.webp",
+    "images/portraits/elf-f.webp"
+   ]
+  },
+  "body-elf-m": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 502928,
+   "sheets": [
+    "images/portraits/elf-m-hurt.json",
+    "images/portraits/elf-m-quiet.json",
+    "images/portraits/elf-m-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-elf-m.json",
+    "images/portraits/elf-m-hurt.webp",
+    "images/portraits/elf-m-quiet.webp",
+    "images/portraits/elf-m-turn.webp",
+    "images/portraits/elf-m.webp"
+   ]
+  },
+  "body-fae-air-f": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 277938,
+   "sheets": [
+    "images/portraits/fae-air-f-hurt.json",
+    "images/portraits/fae-air-f-quiet.json",
+    "images/portraits/fae-air-f-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-air-f.json",
+    "images/portraits/fae-air-f-hurt.webp",
+    "images/portraits/fae-air-f-quiet.webp",
+    "images/portraits/fae-air-f-turn.webp",
+    "images/portraits/fae-air-f.webp"
+   ]
+  },
+  "body-fae-air-m": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 302080,
+   "sheets": [
+    "images/portraits/fae-air-m-hurt.json",
+    "images/portraits/fae-air-m-quiet.json",
+    "images/portraits/fae-air-m-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-air-m.json",
+    "images/portraits/fae-air-m-hurt.webp",
+    "images/portraits/fae-air-m-quiet.webp",
+    "images/portraits/fae-air-m-turn.webp",
+    "images/portraits/fae-air-m.webp"
+   ]
+  },
+  "body-fae-earth-f": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 372912,
+   "sheets": [
+    "images/portraits/fae-earth-f-hurt.json",
+    "images/portraits/fae-earth-f-quiet.json",
+    "images/portraits/fae-earth-f-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-earth-f.json",
+    "images/portraits/fae-earth-f-hurt.webp",
+    "images/portraits/fae-earth-f-quiet.webp",
+    "images/portraits/fae-earth-f-turn.webp",
+    "images/portraits/fae-earth-f.webp"
+   ]
+  },
+  "body-fae-earth-m": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 309613,
+   "sheets": [
+    "images/portraits/fae-earth-m-hurt.json",
+    "images/portraits/fae-earth-m-quiet.json",
+    "images/portraits/fae-earth-m-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-earth-m.json",
+    "images/portraits/fae-earth-m-hurt.webp",
+    "images/portraits/fae-earth-m-quiet.webp",
+    "images/portraits/fae-earth-m-turn.webp",
+    "images/portraits/fae-earth-m.webp"
+   ]
+  },
+  "body-fae-fire-f": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 353287,
+   "sheets": [
+    "images/portraits/fae-fire-f-hurt.json",
+    "images/portraits/fae-fire-f-quiet.json",
+    "images/portraits/fae-fire-f-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-fire-f.json",
+    "images/portraits/fae-fire-f-hurt.webp",
+    "images/portraits/fae-fire-f-quiet.webp",
+    "images/portraits/fae-fire-f-turn.webp",
+    "images/portraits/fae-fire-f.webp"
+   ]
+  },
+  "body-fae-fire-m": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 315251,
+   "sheets": [
+    "images/portraits/fae-fire-m-hurt.json",
+    "images/portraits/fae-fire-m-quiet.json",
+    "images/portraits/fae-fire-m-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-fire-m.json",
+    "images/portraits/fae-fire-m-hurt.webp",
+    "images/portraits/fae-fire-m-quiet.webp",
+    "images/portraits/fae-fire-m-turn.webp",
+    "images/portraits/fae-fire-m.webp"
+   ]
+  },
+  "body-fae-water-f": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 416186,
+   "sheets": [
+    "images/portraits/fae-water-f-hurt.json",
+    "images/portraits/fae-water-f-quiet.json",
+    "images/portraits/fae-water-f-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-water-f.json",
+    "images/portraits/fae-water-f-hurt.webp",
+    "images/portraits/fae-water-f-quiet.webp",
+    "images/portraits/fae-water-f-turn.webp",
+    "images/portraits/fae-water-f.webp"
+   ]
+  },
+  "body-fae-water-m": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 310612,
+   "sheets": [
+    "images/portraits/fae-water-m-hurt.json",
+    "images/portraits/fae-water-m-quiet.json",
+    "images/portraits/fae-water-m-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-fae-water-m.json",
+    "images/portraits/fae-water-m-hurt.webp",
+    "images/portraits/fae-water-m-quiet.webp",
+    "images/portraits/fae-water-m-turn.webp",
+    "images/portraits/fae-water-m.webp"
+   ]
+  },
+  "body-gloomling-f": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 393396,
+   "sheets": [
+    "images/portraits/gloomling-f-hurt.json",
+    "images/portraits/gloomling-f-quiet.json",
+    "images/portraits/gloomling-f-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-gloomling-f.json",
+    "images/portraits/gloomling-f-hurt.webp",
+    "images/portraits/gloomling-f-quiet.webp",
+    "images/portraits/gloomling-f-turn.webp",
+    "images/portraits/gloomling-f.webp"
+   ]
+  },
+  "body-gloomling-m": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 374240,
+   "sheets": [
+    "images/portraits/gloomling-m-hurt.json",
+    "images/portraits/gloomling-m-quiet.json",
+    "images/portraits/gloomling-m-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-gloomling-m.json",
+    "images/portraits/gloomling-m-hurt.webp",
+    "images/portraits/gloomling-m-quiet.webp",
+    "images/portraits/gloomling-m-turn.webp",
+    "images/portraits/gloomling-m.webp"
+   ]
+  },
+  "body-human-f": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 318827,
+   "sheets": [
+    "images/portraits/human-f-hurt.json",
+    "images/portraits/human-f-quiet.json",
+    "images/portraits/human-f-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-human-f.json",
+    "images/portraits/human-f-hurt.webp",
+    "images/portraits/human-f-quiet.webp",
+    "images/portraits/human-f-turn.webp",
+    "images/portraits/human-f.webp"
+   ]
+  },
+  "body-human-m": {
+   "when": "before floor 1, only the chosen body: HUD portrait and its animations",
+   "bytes": 321012,
+   "sheets": [
+    "images/portraits/human-m-hurt.json",
+    "images/portraits/human-m-quiet.json",
+    "images/portraits/human-m-turn.json"
+   ],
+   "files": [
+    "catalogs/hero-human-m.json",
+    "images/portraits/human-m-hurt.webp",
+    "images/portraits/human-m-quiet.webp",
+    "images/portraits/human-m-turn.webp",
+    "images/portraits/human-m.webp"
+   ]
+  },
+  "biome-dungeon": {
+   "when": "on entering biome dungeon",
+   "bytes": 2126161,
+   "sheets": [
+    "sheets/environment-prop-candelabra-floor.json",
+    "sheets/environment-props-dungeon.json",
+    "sheets/environment-props-sword-in-stone.json",
+    "sheets/environment-terrain-dungeon-face-ends.json",
+    "sheets/environment-terrain-dungeon-face.json",
+    "sheets/environment-terrain-dungeon-floor.json",
+    "sheets/environment-terrain-dungeon-rim-n.json",
+    "sheets/environment-terrain-dungeon-rim-v.json",
+    "sheets/environment-terrain-dungeon-top.json",
+    "sheets/environment-wall-dressing.json",
+    "sheets/environment-walls-doors.json",
+    "sheets/mob-m-bat.json",
+    "sheets/mob-m-goblin.json",
+    "sheets/mob-m-green-slime.json",
+    "sheets/mob-m-rat.json",
+    "sheets/mob-m-rock-slime.json",
+    "sheets/mob-m-slime.json"
+   ],
+   "files": [
+    "catalogs/biome-dungeon.json",
+    "sheets/environment-prop-candelabra-floor.webp",
+    "sheets/environment-props-dungeon.webp",
+    "sheets/environment-props-sword-in-stone.webp",
+    "sheets/environment-terrain-dungeon-face-ends.webp",
+    "sheets/environment-terrain-dungeon-face.webp",
+    "sheets/environment-terrain-dungeon-floor.webp",
+    "sheets/environment-terrain-dungeon-rim-n.webp",
+    "sheets/environment-terrain-dungeon-rim-v.webp",
+    "sheets/environment-terrain-dungeon-top.webp",
+    "sheets/environment-wall-dressing.webp",
+    "sheets/environment-walls-doors.webp",
+    "sheets/mob-m-bat.webp",
+    "sheets/mob-m-goblin.webp",
+    "sheets/mob-m-green-slime.webp",
+    "sheets/mob-m-rat.webp",
+    "sheets/mob-m-rock-slime.webp",
+    "sheets/mob-m-slime.webp",
+    "sheets/normals/normal-mob-m-bat.webp",
+    "sheets/normals/normal-mob-m-goblin.webp",
+    "sheets/normals/normal-mob-m-rat.webp",
+    "sheets/normals/normal-mob-m-rock-slime.webp",
+    "sheets/normals/normal-mob-m-slime.webp",
+    "sheets/surface-deco.webp",
+    "sheets/surface-face.webp",
+    "sheets/surface-floor.webp",
+    "sheets/surface-rim-n.webp",
+    "sheets/surface-rim-v.webp",
+    "sheets/surface-top.webp"
+   ]
+  },
+  "audio-biome-dungeon": {
+   "when": "with biome-dungeon",
+   "bytes": 11686,
+   "sheets": [],
+   "files": [
+    "audio/goblin-attack.mp3",
+    "audio/goblin-death.mp3"
+   ]
+  },
+  "music-biome-dungeon": {
+   "when": "streamed with biome-dungeon; the track fades in when it arrives, nothing waits for it",
+   "bytes": 1152670,
+   "sheets": [],
+   "files": [
+    "audio/music-dungeon.mp3"
+   ]
+  },
+  "biome-dungeon-deep": {
+   "when": "from Dungeon floor 2, asked for as the floor ahead while floor 1 is up: the Dungeon creatures that never spawn on floor 1",
+   "bytes": 1715886,
+   "sheets": [
+    "sheets/mob-m-emberling.json",
+    "sheets/mob-m-galeling.json",
+    "sheets/mob-m-goblin-archer.json",
+    "sheets/mob-m-goblin-brute.json",
+    "sheets/mob-m-goblin-shaman.json",
+    "sheets/mob-m-lumenling.json",
+    "sheets/mob-m-stoneling.json",
+    "sheets/mob-m-tideling.json",
+    "sheets/mob-m-wisp.json"
+   ],
+   "files": [
+    "catalogs/biome-dungeon-deep.json",
+    "sheets/mob-m-emberling.webp",
+    "sheets/mob-m-galeling.webp",
+    "sheets/mob-m-goblin-archer.webp",
+    "sheets/mob-m-goblin-brute.webp",
+    "sheets/mob-m-goblin-shaman.webp",
+    "sheets/mob-m-lumenling.webp",
+    "sheets/mob-m-stoneling.webp",
+    "sheets/mob-m-tideling.webp",
+    "sheets/mob-m-wisp.webp",
+    "sheets/normals/normal-mob-m-emberling.webp",
+    "sheets/normals/normal-mob-m-galeling.webp",
+    "sheets/normals/normal-mob-m-goblin-archer.webp",
+    "sheets/normals/normal-mob-m-goblin-brute.webp",
+    "sheets/normals/normal-mob-m-goblin-shaman.webp",
+    "sheets/normals/normal-mob-m-lumenling.webp",
+    "sheets/normals/normal-mob-m-stoneling.webp",
+    "sheets/normals/normal-mob-m-tideling.webp",
+    "sheets/normals/normal-mob-m-wisp.webp"
+   ]
+  },
+  "normals": {
+   "when": "after floor 1 shows: optional normal maps for lighting relief (1.7 falls back without them)",
+   "bytes": 1763492,
+   "sheets": [],
+   "files": [
+    "sheets/normals/generated-2.json",
+    "sheets/normals/generated.json",
+    "sheets/normals/normal-cast-human-f-idle-run.webp",
+    "sheets/normals/normal-crystal.webp",
+    "sheets/normals/normal-dungeon-cap.webp",
+    "sheets/normals/normal-dungeon-rim-n.webp",
+    "sheets/normals/normal-dungeon-rim-v.webp",
+    "sheets/normals/normal-face-ends.webp",
+    "sheets/normals/normal-fix-alchemy-table.webp",
+    "sheets/normals/normal-fix-banner-stand-loop.webp",
+    "sheets/normals/normal-fix-banner-stand.webp",
+    "sheets/normals/normal-fix-blood-font.webp",
+    "sheets/normals/normal-fix-bookshelf.webp",
+    "sheets/normals/normal-fix-boss-throne.webp",
+    "sheets/normals/normal-fix-candelabra-floor-loop.webp",
+    "sheets/normals/normal-fix-candelabra-tall.webp",
+    "sheets/normals/normal-fix-candelabra.webp",
+    "sheets/normals/normal-fix-cart.webp",
+    "sheets/normals/normal-fix-chest-crystal.webp",
+    "sheets/normals/normal-fix-chest-iron.webp",
+    "sheets/normals/normal-fix-chest-ornate.webp",
+    "sheets/normals/normal-fix-chest-plane.webp",
+    "sheets/normals/normal-fix-chest-wood-open.webp",
+    "sheets/normals/normal-fix-chest-wood.webp",
+    "sheets/normals/normal-fix-coffin.webp",
+    "sheets/normals/normal-fix-crate-supply.webp",
+    "sheets/normals/normal-fix-crate.webp",
+    "sheets/normals/normal-fix-crypt-funeral-bell.webp",
+    "sheets/normals/normal-fix-dais-sarcophagus.webp",
+    "sheets/normals/normal-fix-drow-obelisk.webp",
+    "sheets/normals/normal-fix-drow-pillar-broken.webp",
+    "sheets/normals/normal-fix-drow-pillar.webp",
+    "sheets/normals/normal-fix-exit-gate-loop.webp",
+    "sheets/normals/normal-fix-exit-gate.webp",
+    "sheets/normals/normal-fix-grave-monument.webp",
+    "sheets/normals/normal-fix-grave-pillar.webp",
+    "sheets/normals/normal-fix-grave-post.webp",
+    "sheets/normals/normal-fix-ice-block.webp",
+    "sheets/normals/normal-fix-kobold-crate.webp",
+    "sheets/normals/normal-fix-lever-down.webp",
+    "sheets/normals/normal-fix-lever-up.webp",
+    "sheets/normals/normal-fix-mine-cart.webp",
+    "sheets/normals/normal-fix-mine-support.webp",
+    "sheets/normals/normal-fix-pillar.webp",
+    "sheets/normals/normal-fix-portal-arch.webp",
+    "sheets/normals/normal-fix-shrine-anvil.webp",
+    "sheets/normals/normal-fix-shrine-glimmer.webp",
+    "sheets/normals/normal-fix-shrine-grom.webp",
+    "sheets/normals/normal-fix-shrine-grumbok.webp",
+    "sheets/normals/normal-fix-shrine-murk.webp",
+    "sheets/normals/normal-fix-shrine-reginald.webp",
+    "sheets/normals/normal-fix-shrine-sylla.webp",
+    "sheets/normals/normal-fix-shrine-vellum.webp",
+    "sheets/normals/normal-fix-shrine-wobbles.webp",
+    "sheets/normals/normal-fix-silk-banner-1-loop.webp",
+    "sheets/normals/normal-fix-silk-banner-1.webp",
+    "sheets/normals/normal-fix-silk-banner-2-loop.webp",
+    "sheets/normals/normal-fix-silk-banner-2.webp",
+    "sheets/normals/normal-fix-spider-idol.webp",
+    "sheets/normals/normal-fix-statue-broken.webp",
+    "sheets/normals/normal-fix-statue.webp",
+    "sheets/normals/normal-fix-stepping-stone.webp",
+    "sheets/normals/normal-fix-table-candle-loop.webp",
+    "sheets/normals/normal-fix-table-candle.webp",
+    "sheets/normals/normal-fix-tomb-crumbled-v.webp",
+    "sheets/normals/normal-fix-tomb-rune.webp",
+    "sheets/normals/normal-fix-tomb-v.webp",
+    "sheets/normals/normal-fix-torch-stand.webp",
+    "sheets/normals/normal-fix-weapon-rack.webp",
+    "sheets/normals/normal-floor.webp",
+    "sheets/normals/normal-forge.webp",
+    "sheets/normals/normal-fx-hook.webp",
+    "sheets/normals/normal-prop-brazier-lit-2-366-100-88.webp",
+    "sheets/normals/normal-prop-stairs-down-2-134-124-106.webp",
+    "sheets/normals/normal-prop-wall-sconce-0-0-128-128.webp",
+    "sheets/normals/normal-props-dungeon.webp",
+    "sheets/normals/normal-wall-dressing.webp",
+    "sheets/normals/normal-wall.webp",
+    "sheets/normals/normals.json"
+   ]
+  },
+  "chasm": {
+   "when": "on demand: cave props and bridges that Dungeon and Crypt use only for chasm puzzles and one rare room; part of the Caverns",
+   "bytes": 736576,
+   "sheets": [
+    "sheets/environment-props-cave.json",
+    "sheets/map-cave.json"
+   ],
+   "files": [
+    "catalogs/chasm.json",
+    "sheets/cave-bridge-master.webp",
+    "sheets/environment-props-cave.webp",
+    "sheets/map-cave.webp"
+   ]
+  },
+  "boss-dungeon": {
+   "when": "on the boss floor (or streamed during the biome): boss sheet and boss cues",
+   "bytes": 436234,
+   "sheets": [
+    "sheets/mob-m-goblin-warchief.json"
+   ],
+   "files": [
+    "catalogs/boss-dungeon.json",
+    "sheets/mob-m-goblin-warchief.webp",
+    "sheets/normals/normal-mob-m-goblin-warchief.webp"
+   ]
+  },
+  "audio-boss-dungeon": {
+   "when": "with boss-dungeon",
+   "bytes": 35823,
+   "sheets": [],
+   "files": [
+    "audio/warchief-death.mp3",
+    "audio/warchief-slam.mp3"
+   ]
+  },
+  "music-boss-dungeon": {
+   "when": "streamed with boss-dungeon; the track fades in when it arrives, nothing waits for it",
+   "bytes": 2720957,
+   "sheets": [],
+   "files": [
+    "audio/music-boss-grukk.mp3"
+   ]
+  },
+  "biome-crypt": {
+   "when": "on entering biome crypt",
+   "bytes": 3092215,
+   "sheets": [
+    "sheets/environment-mushroom-props.json",
+    "sheets/environment-prop-crypt-funeral-bell.json",
+    "sheets/environment-terrain-crypt-face.json",
+    "sheets/environment-terrain-crypt-floor.json",
+    "sheets/environment-terrain-crypt-rim-n.json",
+    "sheets/environment-terrain-crypt-rim-v.json",
+    "sheets/environment-terrain-crypt-top.json",
+    "sheets/mob-m-bone-archer.json",
+    "sheets/mob-m-crypt-skeleton.json",
+    "sheets/mob-m-ghoul.json",
+    "sheets/mob-m-grave-beetle.json",
+    "sheets/mob-m-grave-bloat.json",
+    "sheets/mob-m-necro-acolyte.json",
+    "sheets/mob-m-shambler.json",
+    "sheets/mob-m-web-spitter.json"
+   ],
+   "files": [
+    "catalogs/biome-crypt.json",
+    "sheets/environment-mushroom-props.webp",
+    "sheets/environment-prop-crypt-funeral-bell.webp",
+    "sheets/environment-terrain-crypt-face.webp",
+    "sheets/environment-terrain-crypt-floor.webp",
+    "sheets/environment-terrain-crypt-rim-n.webp",
+    "sheets/environment-terrain-crypt-rim-v.webp",
+    "sheets/environment-terrain-crypt-top.webp",
+    "sheets/mob-m-bone-archer.webp",
+    "sheets/mob-m-crypt-skeleton.webp",
+    "sheets/mob-m-ghoul.webp",
+    "sheets/mob-m-grave-beetle.webp",
+    "sheets/mob-m-grave-bloat.webp",
+    "sheets/mob-m-necro-acolyte.webp",
+    "sheets/mob-m-shambler.webp",
+    "sheets/mob-m-web-spitter.webp",
+    "sheets/normals/normal-mob-m-bone-archer.webp",
+    "sheets/normals/normal-mob-m-crypt-skeleton.webp",
+    "sheets/normals/normal-mob-m-ghoul.webp",
+    "sheets/normals/normal-mob-m-grave-beetle.webp",
+    "sheets/normals/normal-mob-m-grave-bloat.webp",
+    "sheets/normals/normal-mob-m-necro-acolyte.webp",
+    "sheets/normals/normal-mob-m-shambler.webp",
+    "sheets/normals/normal-mob-m-web-spitter.webp",
+    "sheets/surface-crypt-deco.webp",
+    "sheets/surface-crypt-face.webp",
+    "sheets/surface-crypt-floor.webp",
+    "sheets/surface-crypt-rim-n.webp",
+    "sheets/surface-crypt-rim-v.webp",
+    "sheets/surface-crypt-top.webp"
+   ]
+  },
+  "audio-biome-crypt": {
+   "when": "with biome-crypt",
+   "bytes": 29510,
+   "sheets": [],
+   "files": [
+    "audio/crypt-bell.mp3"
+   ]
+  },
+  "music-biome-crypt": {
+   "when": "streamed with biome-crypt; the track fades in when it arrives, nothing waits for it",
+   "bytes": 1152670,
+   "sheets": [],
+   "files": [
+    "audio/music-crypt.mp3"
+   ]
+  },
+  "normals-crypt": {
+   "when": "with its biome: generated normal maps for the floors and walls of that biome (the lighting fetches them by path when the floor is lit)",
+   "bytes": 1124818,
+   "sheets": [],
+   "files": [
+    "sheets/normals/normal-crypt-face.webp",
+    "sheets/normals/normal-crypt-floor.webp"
+   ]
+  },
+  "boss-crypt": {
+   "when": "on the boss floor (or streamed during the biome): boss sheet and boss cues",
+   "bytes": 466164,
+   "sheets": [
+    "sheets/mob-m-morty.json",
+    "sheets/mob-m-phylactery.json"
+   ],
+   "files": [
+    "catalogs/boss-crypt.json",
+    "sheets/mob-m-morty.webp",
+    "sheets/mob-m-phylactery.webp",
+    "sheets/normals/normal-mob-m-morty.webp",
+    "sheets/normals/normal-mob-m-phylactery.webp"
+   ]
+  },
+  "audio-boss-crypt": {
+   "when": "with boss-crypt",
+   "bytes": 42136,
+   "sheets": [],
+   "files": [
+    "audio/morty-attack.mp3",
+    "audio/morty-death.mp3",
+    "audio/morty-intro.mp3"
+   ]
+  },
+  "music-boss-crypt": {
+   "when": "streamed with boss-crypt; the track fades in when it arrives, nothing waits for it",
+   "bytes": 1152670,
+   "sheets": [],
+   "files": [
+    "audio/music-boss-morty.mp3"
+   ]
+  },
+  "normals-rock": {
+   "when": "with the first plane (light, shadow or earth, from the Crypt) or the Caverns, whichever comes first: normal maps for the natural rock the Caverns and all six planes draw",
+   "bytes": 384072,
+   "sheets": [],
+   "files": [
+    "sheets/normals/normal-cave-rock.webp",
+    "sheets/normals/normal-stone-detail.webp"
+   ]
+  },
+  "plane-light": {
+   "when": "on entering plane light",
+   "bytes": 1795793,
+   "sheets": [
+    "sheets/environment-props-planeset.json",
+    "sheets/environment-terrain-cave-rock.json",
+    "sheets/mob-m-dawn-sentinel.json",
+    "sheets/mob-m-halo-wisp.json",
+    "sheets/mob-m-prism-scarab.json",
+    "sheets/mob-m-radiant-warden.json"
+   ],
+   "files": [
+    "catalogs/plane-light.json",
+    "sheets/environment-props-planeset.webp",
+    "sheets/environment-terrain-cave-rock.webp",
+    "sheets/mob-m-dawn-sentinel.webp",
+    "sheets/mob-m-halo-wisp.webp",
+    "sheets/mob-m-prism-scarab.webp",
+    "sheets/mob-m-radiant-warden.webp",
+    "sheets/normals/normal-mob-m-dawn-sentinel.webp",
+    "sheets/normals/normal-mob-m-halo-wisp.webp",
+    "sheets/normals/normal-mob-m-prism-scarab.webp",
+    "sheets/normals/normal-mob-m-radiant-warden.webp"
+   ]
+  },
+  "audio-plane-light": {
+   "when": "with plane-light",
+   "bytes": 30808,
+   "sheets": [],
+   "files": [
+    "audio/radiant-warden-death.mp3",
+    "audio/radiant-warden-intro.mp3"
+   ]
+  },
+  "music-plane-light": {
+   "when": "streamed with plane-light; the track fades in when it arrives, nothing waits for it",
+   "bytes": 1152670,
+   "sheets": [],
+   "files": [
+    "audio/music-plane-light.mp3"
+   ]
+  },
+  "plane-shadow": {
+   "when": "on entering plane shadow",
+   "bytes": 599374,
+   "sheets": [
+    "sheets/mob-m-gloom-moth.json",
+    "sheets/mob-m-night-warden.json",
+    "sheets/mob-m-stalker.json",
+    "sheets/mob-m-umbral-hound.json"
+   ],
+   "files": [
+    "catalogs/plane-shadow.json",
+    "sheets/mob-m-gloom-moth.webp",
+    "sheets/mob-m-night-warden.webp",
+    "sheets/mob-m-stalker.webp",
+    "sheets/mob-m-umbral-hound.webp",
+    "sheets/normals/normal-mob-m-gloom-moth.webp",
+    "sheets/normals/normal-mob-m-night-warden.webp",
+    "sheets/normals/normal-mob-m-stalker.webp",
+    "sheets/normals/normal-mob-m-umbral-hound.webp"
+   ]
+  },
+  "audio-plane-shadow": {
+   "when": "with plane-shadow",
+   "bytes": 30808,
+   "sheets": [],
+   "files": [
+    "audio/night-warden-death.mp3",
+    "audio/night-warden-intro.mp3"
+   ]
+  },
+  "music-plane-shadow": {
+   "when": "streamed with plane-shadow; the track fades in when it arrives, nothing waits for it",
+   "bytes": 1152670,
+   "sheets": [],
+   "files": [
+    "audio/music-plane-shadow.mp3"
+   ]
+  },
+  "plane-earth": {
+   "when": "on entering plane earth",
+   "bytes": 856706,
+   "sheets": [
+    "sheets/mob-m-burrower.json",
+    "sheets/mob-m-crystal-golem.json",
+    "sheets/mob-m-moss-troll.json",
+    "sheets/mob-m-mountain-heart.json"
+   ],
+   "files": [
+    "catalogs/plane-earth.json",
+    "sheets/mob-m-burrower.webp",
+    "sheets/mob-m-crystal-golem.webp",
+    "sheets/mob-m-moss-troll.webp",
+    "sheets/mob-m-mountain-heart.webp",
+    "sheets/normals/normal-mob-m-burrower.webp",
+    "sheets/normals/normal-mob-m-crystal-golem.webp",
+    "sheets/normals/normal-mob-m-moss-troll.webp",
+    "sheets/normals/normal-mob-m-mountain-heart.webp"
+   ]
+  },
+  "audio-plane-earth": {
+   "when": "with plane-earth",
+   "bytes": 37704,
+   "sheets": [],
+   "files": [
+    "audio/heart-death.mp3",
+    "audio/heart-intro.mp3"
+   ]
+  },
+  "music-plane-earth": {
+   "when": "streamed with plane-earth; the track fades in when it arrives, nothing waits for it",
+   "bytes": 1152670,
+   "sheets": [],
+   "files": [
+    "audio/music-plane-earth.mp3"
+   ]
+  },
+  "biome-caverns": {
+   "when": "on entering biome caverns",
+   "bytes": 3487550,
+   "sheets": [
+    "sheets/environment-items-sealed-lamp.json",
+    "sheets/environment-prop-resonance-crystal.json",
+    "sheets/mob-m-chaos-prism-seer.json",
+    "sheets/mob-m-cinderling.json",
+    "sheets/mob-m-duskling.json",
+    "sheets/mob-m-fire-imp.json",
+    "sheets/mob-m-gleamling.json",
+    "sheets/mob-m-gustling.json",
+    "sheets/mob-m-mossling.json",
+    "sheets/mob-m-myconid-merchant.json",
+    "sheets/mob-m-myconid.json",
+    "sheets/mob-m-rippleling.json",
+    "sheets/mob-m-rootbound.json",
+    "sheets/mob-m-shock-eel.json",
+    "sheets/mob-m-spark-jelly.json",
+    "sheets/mob-m-sporecaller.json",
+    "sheets/mob-m-storm-beetle.json",
+    "sheets/mob-m-worm-tender.json"
+   ],
+   "files": [
+    "catalogs/biome-caverns.json",
+    "sheets/environment-items-sealed-lamp.webp",
+    "sheets/environment-prop-resonance-crystal.webp",
+    "sheets/mob-m-chaos-prism-seer.webp",
+    "sheets/mob-m-cinderling.webp",
+    "sheets/mob-m-duskling.webp",
+    "sheets/mob-m-fire-imp.webp",
+    "sheets/mob-m-gleamling.webp",
+    "sheets/mob-m-gustling.webp",
+    "sheets/mob-m-mossling.webp",
+    "sheets/mob-m-myconid-merchant.webp",
+    "sheets/mob-m-myconid.webp",
+    "sheets/mob-m-rippleling.webp",
+    "sheets/mob-m-rootbound.webp",
+    "sheets/mob-m-shock-eel.webp",
+    "sheets/mob-m-spark-jelly.webp",
+    "sheets/mob-m-sporecaller.webp",
+    "sheets/mob-m-storm-beetle.webp",
+    "sheets/mob-m-worm-tender.webp",
+    "sheets/normals/normal-mob-m-chaos-prism-seer.webp",
+    "sheets/normals/normal-mob-m-cinderling.webp",
+    "sheets/normals/normal-mob-m-fire-imp.webp",
+    "sheets/normals/normal-mob-m-gleamling.webp",
+    "sheets/normals/normal-mob-m-gustling.webp",
+    "sheets/normals/normal-mob-m-mossling.webp",
+    "sheets/normals/normal-mob-m-myconid.webp",
+    "sheets/normals/normal-mob-m-rippleling.webp",
+    "sheets/normals/normal-mob-m-rootbound.webp",
+    "sheets/normals/normal-mob-m-shock-eel.webp",
+    "sheets/normals/normal-mob-m-spark-jelly.webp",
+    "sheets/normals/normal-mob-m-sporecaller.webp",
+    "sheets/normals/normal-mob-m-storm-beetle.webp",
+    "sheets/normals/normal-mob-m-worm-tender.webp"
+   ]
+  },
+  "music-biome-caverns": {
+   "when": "streamed with biome-caverns; the track fades in when it arrives, nothing waits for it",
+   "bytes": 1152670,
+   "sheets": [],
+   "files": [
+    "audio/music-caverns.mp3"
+   ]
+  },
+  "boss-caverns": {
+   "when": "on the boss floor (or streamed during the biome): boss sheet and boss cues",
+   "bytes": 629472,
+   "sheets": [
+    "sheets/mob-m-deep-maw.json"
+   ],
+   "files": [
+    "catalogs/boss-caverns.json",
+    "sheets/mob-m-deep-maw.webp",
+    "sheets/normals/normal-mob-m-deep-maw.webp"
+   ]
+  },
+  "audio-boss-caverns": {
+   "when": "with boss-caverns",
+   "bytes": 45898,
+   "sheets": [],
+   "files": [
+    "audio/maw-attack.mp3",
+    "audio/maw-death.mp3",
+    "audio/maw-intro.mp3"
+   ]
+  },
+  "music-boss-caverns": {
+   "when": "streamed with boss-caverns; the track fades in when it arrives, nothing waits for it",
+   "bytes": 1152670,
+   "sheets": [],
+   "files": [
+    "audio/music-boss-maw.mp3"
+   ]
+  },
+  "biome-underdark": {
+   "when": "on entering biome underdark",
+   "bytes": 7696254,
+   "sheets": [
+    "sheets/environment-prop-silk-banner-1.json",
+    "sheets/environment-prop-silk-banner-2.json",
+    "sheets/environment-prop-silk-wrapped-traveler.json",
+    "sheets/environment-props-deep.json",
+    "sheets/environment-terrain-lava-flow.json",
+    "sheets/environment-terrain-temple-face.json",
+    "sheets/environment-terrain-temple-floor.json",
+    "sheets/environment-terrain-temple-rim-n.json",
+    "sheets/environment-terrain-temple-rim-v.json",
+    "sheets/environment-terrain-temple-top.json",
+    "sheets/environment-terrain-underdark-face.json",
+    "sheets/environment-terrain-underdark-floor.json",
+    "sheets/environment-terrain-volcanic-face.json",
+    "sheets/environment-terrain-volcanic-floor.json",
+    "sheets/mob-m-chaos-gorehound.json",
+    "sheets/mob-m-chaos-horned-reaver.json",
+    "sheets/mob-m-cragling.json",
+    "sheets/mob-m-dawnling.json",
+    "sheets/mob-m-drider.json",
+    "sheets/mob-m-drow-blade.json",
+    "sheets/mob-m-drow-priestess.json",
+    "sheets/mob-m-ember-spider.json",
+    "sheets/mob-m-pyreling.json",
+    "sheets/mob-m-spiderling.json",
+    "sheets/mob-m-stormling.json",
+    "sheets/mob-m-thought-eater.json",
+    "sheets/mob-m-tideling-tier3.json",
+    "sheets/mob-m-umbraling.json"
+   ],
+   "files": [
+    "catalogs/biome-underdark.json",
+    "sheets/environment-prop-silk-banner-1.webp",
+    "sheets/environment-prop-silk-banner-2.webp",
+    "sheets/environment-prop-silk-wrapped-traveler.webp",
+    "sheets/environment-props-deep.webp",
+    "sheets/environment-terrain-lava-flow.webp",
+    "sheets/environment-terrain-temple-face.webp",
+    "sheets/environment-terrain-temple-floor.webp",
+    "sheets/environment-terrain-temple-rim-n.webp",
+    "sheets/environment-terrain-temple-rim-v.webp",
+    "sheets/environment-terrain-temple-top.webp",
+    "sheets/environment-terrain-underdark-face.webp",
+    "sheets/environment-terrain-underdark-floor.webp",
+    "sheets/environment-terrain-volcanic-face.webp",
+    "sheets/environment-terrain-volcanic-floor.webp",
+    "sheets/mob-m-chaos-gorehound.webp",
+    "sheets/mob-m-chaos-horned-reaver.webp",
+    "sheets/mob-m-cragling.webp",
+    "sheets/mob-m-dawnling.webp",
+    "sheets/mob-m-drider.webp",
+    "sheets/mob-m-drow-blade.webp",
+    "sheets/mob-m-drow-priestess.webp",
+    "sheets/mob-m-ember-spider.webp",
+    "sheets/mob-m-pyreling.webp",
+    "sheets/mob-m-spiderling.webp",
+    "sheets/mob-m-stormling.webp",
+    "sheets/mob-m-thought-eater.webp",
+    "sheets/mob-m-tideling-tier3.webp",
+    "sheets/mob-m-umbraling.webp",
+    "sheets/normals/normal-mob-m-chaos-gorehound.webp",
+    "sheets/normals/normal-mob-m-chaos-horned-reaver.webp",
+    "sheets/normals/normal-mob-m-cragling.webp",
+    "sheets/normals/normal-mob-m-dawnling.webp",
+    "sheets/normals/normal-mob-m-drider.webp",
+    "sheets/normals/normal-mob-m-drow-blade.webp",
+    "sheets/normals/normal-mob-m-drow-priestess.webp",
+    "sheets/normals/normal-mob-m-ember-spider.webp",
+    "sheets/normals/normal-mob-m-pyreling.webp",
+    "sheets/normals/normal-mob-m-spiderling.webp",
+    "sheets/normals/normal-mob-m-stormling.webp",
+    "sheets/normals/normal-mob-m-thought-eater.webp",
+    "sheets/normals/normal-mob-m-tideling-tier3.webp",
+    "sheets/surface-lava.webp",
+    "sheets/surface-temple-deco.webp",
+    "sheets/surface-temple-face.webp",
+    "sheets/surface-temple-floor.webp",
+    "sheets/surface-temple-rim-n.webp",
+    "sheets/surface-temple-rim-v.webp",
+    "sheets/surface-temple-top.webp",
+    "sheets/surface-underdark-deco.webp",
+    "sheets/surface-underdark-face.webp",
+    "sheets/surface-underdark-floor.webp",
+    "sheets/surface-underdark-rim-n.webp",
+    "sheets/surface-underdark-rim-v.webp",
+    "sheets/surface-underdark-top.webp",
+    "sheets/surface-volcanic-deco.webp",
+    "sheets/surface-volcanic-face.webp",
+    "sheets/surface-volcanic-floor.webp",
+    "sheets/surface-volcanic-rim-n.webp",
+    "sheets/surface-volcanic-rim-v.webp",
+    "sheets/surface-volcanic-top.webp"
+   ]
+  },
+  "music-biome-underdark": {
+   "when": "streamed with biome-underdark; the track fades in when it arrives, nothing waits for it",
+   "bytes": 1152670,
+   "sheets": [],
+   "files": [
+    "audio/music-underdark.mp3"
+   ]
+  },
+  "normals-underdark": {
+   "when": "with its biome: generated normal maps for the floors and walls of that biome (the lighting fetches them by path when the floor is lit)",
+   "bytes": 5581208,
+   "sheets": [],
+   "files": [
+    "sheets/normals/normal-temple-face.webp",
+    "sheets/normals/normal-temple-floor.webp",
+    "sheets/normals/normal-underdark-face.webp",
+    "sheets/normals/normal-underdark-floor.webp",
+    "sheets/normals/normal-volcanic-face.webp",
+    "sheets/normals/normal-volcanic-floor.webp"
+   ]
+  },
+  "boss-underdark": {
+   "when": "on the boss floor (or streamed during the biome): boss sheet and boss cues",
+   "bytes": 1136537,
+   "sheets": [
+    "sheets/mob-m-matron.json"
+   ],
+   "files": [
+    "catalogs/boss-underdark.json",
+    "sheets/mob-m-matron.webp",
+    "sheets/normals/normal-mob-m-matron.webp"
+   ]
+  },
+  "audio-boss-underdark": {
+   "when": "with boss-underdark",
+   "bytes": 45898,
+   "sheets": [],
+   "files": [
+    "audio/matron-attack.mp3",
+    "audio/matron-death.mp3",
+    "audio/matron-intro.mp3"
+   ]
+  },
+  "music-boss-underdark": {
+   "when": "streamed with boss-underdark; the track fades in when it arrives, nothing waits for it",
+   "bytes": 1152670,
+   "sheets": [],
+   "files": [
+    "audio/music-boss-matron.mp3"
+   ]
+  },
+  "plane-fire": {
+   "when": "on entering plane fire",
+   "bytes": 1693859,
+   "sheets": [
+    "sheets/map-planeset-anim.json",
+    "sheets/mob-m-cinder-imp.json",
+    "sheets/mob-m-emberlord.json",
+    "sheets/mob-m-flame-dancer.json",
+    "sheets/mob-m-magma-crawler.json"
+   ],
+   "files": [
+    "catalogs/plane-fire.json",
+    "sheets/map-planeset-anim.webp",
+    "sheets/mob-m-cinder-imp.webp",
+    "sheets/mob-m-emberlord.webp",
+    "sheets/mob-m-flame-dancer.webp",
+    "sheets/mob-m-magma-crawler.webp",
+    "sheets/normals/normal-mob-m-cinder-imp.webp",
+    "sheets/normals/normal-mob-m-emberlord.webp",
+    "sheets/normals/normal-mob-m-flame-dancer.webp",
+    "sheets/normals/normal-mob-m-magma-crawler.webp"
+   ]
+  },
+  "audio-plane-fire": {
+   "when": "with plane-fire",
+   "bytes": 37704,
+   "sheets": [],
+   "files": [
+    "audio/emberlord-death.mp3",
+    "audio/emberlord-intro.mp3"
+   ]
+  },
+  "music-plane-fire": {
+   "when": "streamed with plane-fire; the track fades in when it arrives, nothing waits for it",
+   "bytes": 1152670,
+   "sheets": [],
+   "files": [
+    "audio/music-plane-fire.mp3"
+   ]
+  },
+  "plane-water": {
+   "when": "on entering plane water",
+   "bytes": 1199534,
+   "sheets": [
+    "sheets/mob-m-drowned-one.json",
+    "sheets/mob-m-leviathan-eel.json",
+    "sheets/mob-m-siren.json",
+    "sheets/mob-m-tide-crab.json"
+   ],
+   "files": [
+    "catalogs/plane-water.json",
+    "sheets/mob-m-drowned-one.webp",
+    "sheets/mob-m-leviathan-eel.webp",
+    "sheets/mob-m-siren.webp",
+    "sheets/mob-m-tide-crab.webp",
+    "sheets/normals/normal-mob-m-drowned-one.webp",
+    "sheets/normals/normal-mob-m-leviathan-eel.webp",
+    "sheets/normals/normal-mob-m-siren.webp",
+    "sheets/normals/normal-mob-m-tide-crab.webp"
+   ]
+  },
+  "audio-plane-water": {
+   "when": "with plane-water",
+   "bytes": 290717,
+   "sheets": [],
+   "files": [
+    "audio/amb-water.mp3",
+    "audio/leviathan-death.mp3",
+    "audio/leviathan-intro.mp3"
+   ]
+  },
+  "music-plane-water": {
+   "when": "streamed with plane-water; the track fades in when it arrives, nothing waits for it",
+   "bytes": 1152670,
+   "sheets": [],
+   "files": [
+    "audio/music-plane-water.mp3"
+   ]
+  },
+  "plane-air": {
+   "when": "on entering plane air",
+   "bytes": 1186944,
+   "sheets": [
+    "sheets/mob-m-storm-hawk.json",
+    "sheets/mob-m-tempest-djinn.json",
+    "sheets/mob-m-thunder-totem.json",
+    "sheets/mob-m-wind-wisp.json"
+   ],
+   "files": [
+    "catalogs/plane-air.json",
+    "sheets/mob-m-storm-hawk.webp",
+    "sheets/mob-m-tempest-djinn.webp",
+    "sheets/mob-m-thunder-totem.webp",
+    "sheets/mob-m-wind-wisp.webp",
+    "sheets/normals/normal-mob-m-storm-hawk.webp",
+    "sheets/normals/normal-mob-m-thunder-totem.webp",
+    "sheets/normals/normal-mob-m-wind-wisp.webp"
+   ]
+  },
+  "audio-plane-air": {
+   "when": "with plane-air",
+   "bytes": 37704,
+   "sheets": [],
+   "files": [
+    "audio/djinn-death.mp3",
+    "audio/djinn-intro.mp3"
+   ]
+  },
+  "music-plane-air": {
+   "when": "streamed with plane-air; the track fades in when it arrives, nothing waits for it",
+   "bytes": 1152670,
+   "sheets": [],
+   "files": [
+    "audio/music-plane-air.mp3"
+   ]
+  },
+  "chaos": {
+   "when": "on entering chaos",
+   "bytes": 11060875,
+   "sheets": [
+    "sheets/environment-terrain-cinder-face.json",
+    "sheets/environment-terrain-cinder-floor.json",
+    "sheets/environment-terrain-cinder-rim-n.json",
+    "sheets/environment-terrain-cinder-rim-v.json",
+    "sheets/environment-terrain-cinder-top.json",
+    "sheets/environment-terrain-prism-face.json",
+    "sheets/environment-terrain-prism-floor.json",
+    "sheets/environment-terrain-prism-rim-n.json",
+    "sheets/environment-terrain-prism-rim-v.json",
+    "sheets/environment-terrain-prism-top.json",
+    "sheets/map-cinder-anvil.json",
+    "sheets/map-cinder-furnace-idle.json",
+    "sheets/map-cinder-portal-idle.json",
+    "sheets/map-cinder-shields-idle.json",
+    "sheets/map-final-forge-idle.json",
+    "sheets/map-prism-astrolabe-idle.json",
+    "sheets/map-prism-bookcase.json",
+    "sheets/map-prism-lectern-idle.json",
+    "sheets/map-prism-lens-idle.json",
+    "sheets/map-prism-portal-idle.json",
+    "sheets/map-prism-tree-idle.json",
+    "sheets/map-rot-canopy-idle.json",
+    "sheets/map-rot-portal-idle.json",
+    "sheets/map-rot-puffballs-idle.json",
+    "sheets/map-violet-eggs-idle.json",
+    "sheets/map-violet-loom-idle.json",
+    "sheets/map-violet-loom.json",
+    "sheets/map-violet-pavilion-idle.json",
+    "sheets/map-violet-portal-idle.json",
+    "sheets/mob-m-chaos-bile-spitter.json",
+    "sheets/mob-m-chaos-brood-carrier.json",
+    "sheets/mob-m-chaos-chain-reaver.json",
+    "sheets/mob-m-chaos-folded-horror.json",
+    "sheets/mob-m-chaos-hookfang.json",
+    "sheets/mob-m-chaos-ironbound.json",
+    "sheets/mob-m-chaos-lash-dancer.json",
+    "sheets/mob-m-chaos-lens-bearer.json",
+    "sheets/mob-m-chaos-plague-bloat.json",
+    "sheets/mob-m-chaos-razor-dancer.json",
+    "sheets/mob-m-chaos-rift-skitter.json",
+    "sheets/mob-m-chaos-rotling.json",
+    "sheets/mob-m-chaos-silk-weaver.json",
+    "sheets/mob-m-chaos-spiderling.json",
+    "sheets/mob-m-unmaker-heart.json",
+    "sheets/mob-m-unmaker-tyrant.json",
+    "sheets/mob-m-unmaker-unbound.json",
+    "sheets/unmaker-pylon-animation.json"
+   ],
+   "files": [
+    "catalogs/chaos.json",
+    "sheets/environment-terrain-cinder-face.webp",
+    "sheets/environment-terrain-cinder-floor.webp",
+    "sheets/environment-terrain-cinder-rim-n.webp",
+    "sheets/environment-terrain-cinder-rim-v.webp",
+    "sheets/environment-terrain-cinder-top.webp",
+    "sheets/environment-terrain-prism-face.webp",
+    "sheets/environment-terrain-prism-floor.webp",
+    "sheets/environment-terrain-prism-rim-n.webp",
+    "sheets/environment-terrain-prism-rim-v.webp",
+    "sheets/environment-terrain-prism-top.webp",
+    "sheets/map-cinder-anvil.webp",
+    "sheets/map-cinder-furnace-idle.webp",
+    "sheets/map-cinder-portal-idle.webp",
+    "sheets/map-cinder-shields-idle.webp",
+    "sheets/map-final-forge-idle.webp",
+    "sheets/map-material-gateway.webp",
+    "sheets/map-prism-astrolabe-idle.webp",
+    "sheets/map-prism-bookcase.webp",
+    "sheets/map-prism-lectern-idle.webp",
+    "sheets/map-prism-lens-idle.webp",
+    "sheets/map-prism-portal-idle.webp",
+    "sheets/map-prism-tree-idle.webp",
+    "sheets/map-rot-canopy-idle.webp",
+    "sheets/map-rot-portal-idle.webp",
+    "sheets/map-rot-puffballs-idle.webp",
+    "sheets/map-violet-eggs-idle.webp",
+    "sheets/map-violet-loom-idle.webp",
+    "sheets/map-violet-loom.webp",
+    "sheets/map-violet-pavilion-idle.webp",
+    "sheets/map-violet-portal-idle.webp",
+    "sheets/mob-m-chaos-bile-spitter.webp",
+    "sheets/mob-m-chaos-brood-carrier.webp",
+    "sheets/mob-m-chaos-chain-reaver.webp",
+    "sheets/mob-m-chaos-folded-horror.webp",
+    "sheets/mob-m-chaos-hookfang.webp",
+    "sheets/mob-m-chaos-ironbound.webp",
+    "sheets/mob-m-chaos-lash-dancer.webp",
+    "sheets/mob-m-chaos-lens-bearer.webp",
+    "sheets/mob-m-chaos-plague-bloat.webp",
+    "sheets/mob-m-chaos-razor-dancer.webp",
+    "sheets/mob-m-chaos-rift-skitter.webp",
+    "sheets/mob-m-chaos-rotling.webp",
+    "sheets/mob-m-chaos-silk-weaver.webp",
+    "sheets/mob-m-chaos-spiderling.webp",
+    "sheets/mob-m-unmaker-heart.webp",
+    "sheets/mob-m-unmaker-tyrant.webp",
+    "sheets/mob-m-unmaker-unbound.webp",
+    "sheets/normals/normal-mob-m-chaos-bile-spitter.webp",
+    "sheets/normals/normal-mob-m-chaos-brood-carrier.webp",
+    "sheets/normals/normal-mob-m-chaos-chain-reaver.webp",
+    "sheets/normals/normal-mob-m-chaos-folded-horror.webp",
+    "sheets/normals/normal-mob-m-chaos-hookfang.webp",
+    "sheets/normals/normal-mob-m-chaos-ironbound.webp",
+    "sheets/normals/normal-mob-m-chaos-lash-dancer.webp",
+    "sheets/normals/normal-mob-m-chaos-lens-bearer.webp",
+    "sheets/normals/normal-mob-m-chaos-plague-bloat.webp",
+    "sheets/normals/normal-mob-m-chaos-razor-dancer.webp",
+    "sheets/normals/normal-mob-m-chaos-rift-skitter.webp",
+    "sheets/normals/normal-mob-m-chaos-rotling.webp",
+    "sheets/normals/normal-mob-m-chaos-silk-weaver.webp",
+    "sheets/normals/normal-mob-m-chaos-spiderling.webp",
+    "sheets/normals/normal-mob-m-unmaker-heart.webp",
+    "sheets/normals/normal-mob-m-unmaker-tyrant.webp",
+    "sheets/normals/normal-mob-m-unmaker-unbound.webp",
+    "sheets/surface-light-deco.webp",
+    "sheets/surface-light-face.webp",
+    "sheets/surface-light-floor.webp",
+    "sheets/surface-light-rim-n.webp",
+    "sheets/surface-light-rim-v.webp",
+    "sheets/surface-light-top.webp",
+    "sheets/unmaker-pylon-animation.webp"
+   ]
+  },
+  "music-chaos": {
+   "when": "streamed with chaos; the track fades in when it arrives, nothing waits for it",
+   "bytes": 3721674,
+   "sheets": [],
+   "files": [
+    "audio/music-boss-unmaker.mp3",
+    "audio/music-chaos.mp3"
+   ]
+  },
+  "normals-chaos": {
+   "when": "with its biome: generated normal maps for the floors and walls of that biome (the lighting fetches them by path when the floor is lit)",
+   "bytes": 2169556,
+   "sheets": [],
+   "files": [
+    "sheets/normals/normal-cinder-face.webp",
+    "sheets/normals/normal-cinder-floor.webp",
+    "sheets/normals/normal-prism-face.webp",
+    "sheets/normals/normal-prism-floor.webp"
+   ]
+  },
+  "pwa": {
+   "when": "never by the game; the browser reads them for the home-screen icon",
+   "bytes": 814118,
+   "sheets": [],
+   "files": [
+    "images/icons/apple-touch-icon-152.png",
+    "images/icons/apple-touch-icon-167.png",
+    "images/icons/apple-touch-icon-180.png",
+    "images/icons/icon-192.png",
+    "images/icons/icon-512.png"
+   ]
+  }
+ },
+ "sheetCatalogs": {
+  "images/creation/bases.json": "catalogs/creation.json",
+  "images/creation/dwarf-f.json": "catalogs/creation.json",
+  "images/creation/dwarf-m.json": "catalogs/creation.json",
+  "images/creation/elf-f.json": "catalogs/creation.json",
+  "images/creation/elf-m.json": "catalogs/creation.json",
+  "images/creation/fae-air-f.json": "catalogs/creation.json",
+  "images/creation/fae-air-m.json": "catalogs/creation.json",
+  "images/creation/fae-earth-f.json": "catalogs/creation.json",
+  "images/creation/fae-earth-m.json": "catalogs/creation.json",
+  "images/creation/fae-fire-f.json": "catalogs/creation.json",
+  "images/creation/fae-fire-m.json": "catalogs/creation.json",
+  "images/creation/fae-water-f.json": "catalogs/creation.json",
+  "images/creation/fae-water-m.json": "catalogs/creation.json",
+  "images/creation/gloomling-f.json": "catalogs/creation.json",
+  "images/creation/gloomling-m.json": "catalogs/creation.json",
+  "images/creation/human-f.json": "catalogs/creation.json",
+  "images/creation/human-m.json": "catalogs/creation.json",
+  "images/portraits/dwarf-f-hurt.json": "catalogs/hero-dwarf-f.json",
+  "images/portraits/dwarf-f-quiet.json": "catalogs/hero-dwarf-f.json",
+  "images/portraits/dwarf-f-turn.json": "catalogs/hero-dwarf-f.json",
+  "images/portraits/dwarf-m-hurt.json": "catalogs/hero-dwarf-m.json",
+  "images/portraits/dwarf-m-quiet.json": "catalogs/hero-dwarf-m.json",
+  "images/portraits/dwarf-m-turn.json": "catalogs/hero-dwarf-m.json",
+  "images/portraits/elf-f-hurt.json": "catalogs/hero-elf-f.json",
+  "images/portraits/elf-f-quiet.json": "catalogs/hero-elf-f.json",
+  "images/portraits/elf-f-turn.json": "catalogs/hero-elf-f.json",
+  "images/portraits/elf-m-hurt.json": "catalogs/hero-elf-m.json",
+  "images/portraits/elf-m-quiet.json": "catalogs/hero-elf-m.json",
+  "images/portraits/elf-m-turn.json": "catalogs/hero-elf-m.json",
+  "images/portraits/fae-air-f-hurt.json": "catalogs/hero-fae-air-f.json",
+  "images/portraits/fae-air-f-quiet.json": "catalogs/hero-fae-air-f.json",
+  "images/portraits/fae-air-f-turn.json": "catalogs/hero-fae-air-f.json",
+  "images/portraits/fae-air-m-hurt.json": "catalogs/hero-fae-air-m.json",
+  "images/portraits/fae-air-m-quiet.json": "catalogs/hero-fae-air-m.json",
+  "images/portraits/fae-air-m-turn.json": "catalogs/hero-fae-air-m.json",
+  "images/portraits/fae-earth-f-hurt.json": "catalogs/hero-fae-earth-f.json",
+  "images/portraits/fae-earth-f-quiet.json": "catalogs/hero-fae-earth-f.json",
+  "images/portraits/fae-earth-f-turn.json": "catalogs/hero-fae-earth-f.json",
+  "images/portraits/fae-earth-m-hurt.json": "catalogs/hero-fae-earth-m.json",
+  "images/portraits/fae-earth-m-quiet.json": "catalogs/hero-fae-earth-m.json",
+  "images/portraits/fae-earth-m-turn.json": "catalogs/hero-fae-earth-m.json",
+  "images/portraits/fae-fire-f-hurt.json": "catalogs/hero-fae-fire-f.json",
+  "images/portraits/fae-fire-f-quiet.json": "catalogs/hero-fae-fire-f.json",
+  "images/portraits/fae-fire-f-turn.json": "catalogs/hero-fae-fire-f.json",
+  "images/portraits/fae-fire-m-hurt.json": "catalogs/hero-fae-fire-m.json",
+  "images/portraits/fae-fire-m-quiet.json": "catalogs/hero-fae-fire-m.json",
+  "images/portraits/fae-fire-m-turn.json": "catalogs/hero-fae-fire-m.json",
+  "images/portraits/fae-water-f-hurt.json": "catalogs/hero-fae-water-f.json",
+  "images/portraits/fae-water-f-quiet.json": "catalogs/hero-fae-water-f.json",
+  "images/portraits/fae-water-f-turn.json": "catalogs/hero-fae-water-f.json",
+  "images/portraits/fae-water-m-hurt.json": "catalogs/hero-fae-water-m.json",
+  "images/portraits/fae-water-m-quiet.json": "catalogs/hero-fae-water-m.json",
+  "images/portraits/fae-water-m-turn.json": "catalogs/hero-fae-water-m.json",
+  "images/portraits/gloomling-f-hurt.json": "catalogs/hero-gloomling-f.json",
+  "images/portraits/gloomling-f-quiet.json": "catalogs/hero-gloomling-f.json",
+  "images/portraits/gloomling-f-turn.json": "catalogs/hero-gloomling-f.json",
+  "images/portraits/gloomling-m-hurt.json": "catalogs/hero-gloomling-m.json",
+  "images/portraits/gloomling-m-quiet.json": "catalogs/hero-gloomling-m.json",
+  "images/portraits/gloomling-m-turn.json": "catalogs/hero-gloomling-m.json",
+  "images/portraits/human-f-hurt.json": "catalogs/hero-human-f.json",
+  "images/portraits/human-f-quiet.json": "catalogs/hero-human-f.json",
+  "images/portraits/human-f-turn.json": "catalogs/hero-human-f.json",
+  "images/portraits/human-m-hurt.json": "catalogs/hero-human-m.json",
+  "images/portraits/human-m-quiet.json": "catalogs/hero-human-m.json",
+  "images/portraits/human-m-turn.json": "catalogs/hero-human-m.json",
+  "sheets/cast-dwarf-f-doll.json": "catalogs/hero-dwarf-f.json",
+  "sheets/cast-dwarf-f-tourist-doll.json": "catalogs/hero-dwarf-f.json",
+  "sheets/cast-dwarf-f-tourist.json": "catalogs/hero-dwarf-f.json",
+  "sheets/cast-dwarf-f.json": "catalogs/hero-dwarf-f.json",
+  "sheets/cast-dwarf-m-doll.json": "catalogs/hero-dwarf-m.json",
+  "sheets/cast-dwarf-m-tourist-doll.json": "catalogs/hero-dwarf-m.json",
+  "sheets/cast-dwarf-m-tourist.json": "catalogs/hero-dwarf-m.json",
+  "sheets/cast-dwarf-m.json": "catalogs/hero-dwarf-m.json",
+  "sheets/cast-elf-f-doll.json": "catalogs/hero-elf-f.json",
+  "sheets/cast-elf-f-tourist-doll.json": "catalogs/hero-elf-f.json",
+  "sheets/cast-elf-f-tourist.json": "catalogs/hero-elf-f.json",
+  "sheets/cast-elf-f-unclad-doll.json": "catalogs/hero-elf-f.json",
+  "sheets/cast-elf-f-unclad.json": "catalogs/hero-elf-f.json",
+  "sheets/cast-elf-f.json": "catalogs/hero-elf-f.json",
+  "sheets/cast-elf-m-doll.json": "catalogs/hero-elf-m.json",
+  "sheets/cast-elf-m-tourist-doll.json": "catalogs/hero-elf-m.json",
+  "sheets/cast-elf-m-tourist.json": "catalogs/hero-elf-m.json",
+  "sheets/cast-elf-m-unclad-doll.json": "catalogs/hero-elf-m.json",
+  "sheets/cast-elf-m-unclad.json": "catalogs/hero-elf-m.json",
+  "sheets/cast-elf-m.json": "catalogs/hero-elf-m.json",
+  "sheets/cast-fae-air-f-doll.json": "catalogs/hero-fae-air-f.json",
+  "sheets/cast-fae-air-f-tourist-doll.json": "catalogs/hero-fae-air-f.json",
+  "sheets/cast-fae-air-f-tourist.json": "catalogs/hero-fae-air-f.json",
+  "sheets/cast-fae-air-f-unclad-doll.json": "catalogs/hero-fae-air-f.json",
+  "sheets/cast-fae-air-f-unclad.json": "catalogs/hero-fae-air-f.json",
+  "sheets/cast-fae-air-f.json": "catalogs/hero-fae-air-f.json",
+  "sheets/cast-fae-air-m-doll.json": "catalogs/hero-fae-air-m.json",
+  "sheets/cast-fae-air-m-tourist-doll.json": "catalogs/hero-fae-air-m.json",
+  "sheets/cast-fae-air-m-tourist.json": "catalogs/hero-fae-air-m.json",
+  "sheets/cast-fae-air-m-unclad-doll.json": "catalogs/hero-fae-air-m.json",
+  "sheets/cast-fae-air-m-unclad.json": "catalogs/hero-fae-air-m.json",
+  "sheets/cast-fae-air-m.json": "catalogs/hero-fae-air-m.json",
+  "sheets/cast-fae-earth-f-doll.json": "catalogs/hero-fae-earth-f.json",
+  "sheets/cast-fae-earth-f-tourist-doll.json": "catalogs/hero-fae-earth-f.json",
+  "sheets/cast-fae-earth-f-tourist.json": "catalogs/hero-fae-earth-f.json",
+  "sheets/cast-fae-earth-f-unclad-doll.json": "catalogs/hero-fae-earth-f.json",
+  "sheets/cast-fae-earth-f-unclad.json": "catalogs/hero-fae-earth-f.json",
+  "sheets/cast-fae-earth-f.json": "catalogs/hero-fae-earth-f.json",
+  "sheets/cast-fae-earth-m-doll.json": "catalogs/hero-fae-earth-m.json",
+  "sheets/cast-fae-earth-m-tourist-doll.json": "catalogs/hero-fae-earth-m.json",
+  "sheets/cast-fae-earth-m-tourist.json": "catalogs/hero-fae-earth-m.json",
+  "sheets/cast-fae-earth-m-unclad-doll.json": "catalogs/hero-fae-earth-m.json",
+  "sheets/cast-fae-earth-m-unclad.json": "catalogs/hero-fae-earth-m.json",
+  "sheets/cast-fae-earth-m.json": "catalogs/hero-fae-earth-m.json",
+  "sheets/cast-fae-fire-f-doll.json": "catalogs/hero-fae-fire-f.json",
+  "sheets/cast-fae-fire-f-tourist-doll.json": "catalogs/hero-fae-fire-f.json",
+  "sheets/cast-fae-fire-f-tourist.json": "catalogs/hero-fae-fire-f.json",
+  "sheets/cast-fae-fire-f-unclad-doll.json": "catalogs/hero-fae-fire-f.json",
+  "sheets/cast-fae-fire-f-unclad.json": "catalogs/hero-fae-fire-f.json",
+  "sheets/cast-fae-fire-f.json": "catalogs/hero-fae-fire-f.json",
+  "sheets/cast-fae-fire-m-doll.json": "catalogs/hero-fae-fire-m.json",
+  "sheets/cast-fae-fire-m-tourist-doll.json": "catalogs/hero-fae-fire-m.json",
+  "sheets/cast-fae-fire-m-tourist.json": "catalogs/hero-fae-fire-m.json",
+  "sheets/cast-fae-fire-m-unclad-doll.json": "catalogs/hero-fae-fire-m.json",
+  "sheets/cast-fae-fire-m-unclad.json": "catalogs/hero-fae-fire-m.json",
+  "sheets/cast-fae-fire-m.json": "catalogs/hero-fae-fire-m.json",
+  "sheets/cast-fae-water-f-doll.json": "catalogs/hero-fae-water-f.json",
+  "sheets/cast-fae-water-f-tourist-doll.json": "catalogs/hero-fae-water-f.json",
+  "sheets/cast-fae-water-f-tourist.json": "catalogs/hero-fae-water-f.json",
+  "sheets/cast-fae-water-f-unclad-doll.json": "catalogs/hero-fae-water-f.json",
+  "sheets/cast-fae-water-f-unclad.json": "catalogs/hero-fae-water-f.json",
+  "sheets/cast-fae-water-f.json": "catalogs/hero-fae-water-f.json",
+  "sheets/cast-fae-water-m-doll.json": "catalogs/hero-fae-water-m.json",
+  "sheets/cast-fae-water-m-tourist-doll.json": "catalogs/hero-fae-water-m.json",
+  "sheets/cast-fae-water-m-tourist.json": "catalogs/hero-fae-water-m.json",
+  "sheets/cast-fae-water-m-unclad-doll.json": "catalogs/hero-fae-water-m.json",
+  "sheets/cast-fae-water-m-unclad.json": "catalogs/hero-fae-water-m.json",
+  "sheets/cast-fae-water-m.json": "catalogs/hero-fae-water-m.json",
+  "sheets/cast-gloomling-f-doll.json": "catalogs/hero-gloomling-f.json",
+  "sheets/cast-gloomling-f-tourist-doll.json": "catalogs/hero-gloomling-f.json",
+  "sheets/cast-gloomling-f-tourist.json": "catalogs/hero-gloomling-f.json",
+  "sheets/cast-gloomling-f-unclad-doll.json": "catalogs/hero-gloomling-f.json",
+  "sheets/cast-gloomling-f-unclad.json": "catalogs/hero-gloomling-f.json",
+  "sheets/cast-gloomling-f.json": "catalogs/hero-gloomling-f.json",
+  "sheets/cast-gloomling-m-doll.json": "catalogs/hero-gloomling-m.json",
+  "sheets/cast-gloomling-m-tourist-doll.json": "catalogs/hero-gloomling-m.json",
+  "sheets/cast-gloomling-m-tourist.json": "catalogs/hero-gloomling-m.json",
+  "sheets/cast-gloomling-m-unclad-doll.json": "catalogs/hero-gloomling-m.json",
+  "sheets/cast-gloomling-m-unclad.json": "catalogs/hero-gloomling-m.json",
+  "sheets/cast-gloomling-m.json": "catalogs/hero-gloomling-m.json",
+  "sheets/cast-human-f-doll.json": "catalogs/hero-human-f.json",
+  "sheets/cast-human-f-tourist-doll.json": "catalogs/hero-human-f.json",
+  "sheets/cast-human-f-tourist.json": "catalogs/hero-human-f.json",
+  "sheets/cast-human-f-unclad-doll.json": "catalogs/hero-human-f.json",
+  "sheets/cast-human-f-unclad.json": "catalogs/hero-human-f.json",
+  "sheets/cast-human-f.json": "catalogs/hero-human-f.json",
+  "sheets/cast-human-m-doll.json": "catalogs/hero-human-m.json",
+  "sheets/cast-human-m-tourist-doll.json": "catalogs/hero-human-m.json",
+  "sheets/cast-human-m-tourist.json": "catalogs/hero-human-m.json",
+  "sheets/cast-human-m-unclad-doll.json": "catalogs/hero-human-m.json",
+  "sheets/cast-human-m-unclad.json": "catalogs/hero-human-m.json",
+  "sheets/cast-human-m.json": "catalogs/hero-human-m.json",
+  "sheets/debris.json": "catalogs/play.json",
+  "sheets/environment-deco.json": "catalogs/play.json",
+  "sheets/environment-ground-bones.json": "catalogs/play.json",
+  "sheets/environment-items-sealed-lamp.json": "catalogs/biome-caverns.json",
+  "sheets/environment-items.json": "catalogs/play.json",
+  "sheets/environment-mushroom-props.json": "catalogs/biome-crypt.json",
+  "sheets/environment-mushroom-spreads.json": "catalogs/play.json",
+  "sheets/environment-prop-banner-stand.json": "catalogs/play.json",
+  "sheets/environment-prop-candelabra-floor.json": "catalogs/biome-dungeon.json",
+  "sheets/environment-prop-crypt-funeral-bell.json": "catalogs/biome-crypt.json",
+  "sheets/environment-prop-exit-gate.json": "catalogs/play.json",
+  "sheets/environment-prop-lever-down.json": "catalogs/play.json",
+  "sheets/environment-prop-lever-up.json": "catalogs/play.json",
+  "sheets/environment-prop-resonance-crystal.json": "catalogs/biome-caverns.json",
+  "sheets/environment-prop-silk-banner-1.json": "catalogs/biome-underdark.json",
+  "sheets/environment-prop-silk-banner-2.json": "catalogs/biome-underdark.json",
+  "sheets/environment-prop-silk-wrapped-traveler.json": "catalogs/biome-underdark.json",
+  "sheets/environment-prop-table-candle.json": "catalogs/play.json",
+  "sheets/environment-props-cave.json": "catalogs/chasm.json",
+  "sheets/environment-props-chests.json": "catalogs/play.json",
+  "sheets/environment-props-deep.json": "catalogs/biome-underdark.json",
+  "sheets/environment-props-dungeon.json": "catalogs/biome-dungeon.json",
+  "sheets/environment-props-fluid-barrels.json": "catalogs/play.json",
+  "sheets/environment-props-pillar.json": "catalogs/play.json",
+  "sheets/environment-props-planeset.json": "catalogs/plane-light.json",
+  "sheets/environment-props-props.json": "catalogs/play.json",
+  "sheets/environment-props-set.json": "catalogs/play.json",
+  "sheets/environment-props-structures.json": "catalogs/play.json",
+  "sheets/environment-props-sword-in-stone.json": "catalogs/biome-dungeon.json",
+  "sheets/environment-props-traps.json": "catalogs/play.json",
+  "sheets/environment-terrain-cave-rock.json": "catalogs/plane-light.json",
+  "sheets/environment-terrain-cinder-face.json": "catalogs/chaos.json",
+  "sheets/environment-terrain-cinder-floor.json": "catalogs/chaos.json",
+  "sheets/environment-terrain-cinder-rim-n.json": "catalogs/chaos.json",
+  "sheets/environment-terrain-cinder-rim-v.json": "catalogs/chaos.json",
+  "sheets/environment-terrain-cinder-top.json": "catalogs/chaos.json",
+  "sheets/environment-terrain-crypt-face.json": "catalogs/biome-crypt.json",
+  "sheets/environment-terrain-crypt-floor.json": "catalogs/biome-crypt.json",
+  "sheets/environment-terrain-crypt-rim-n.json": "catalogs/biome-crypt.json",
+  "sheets/environment-terrain-crypt-rim-v.json": "catalogs/biome-crypt.json",
+  "sheets/environment-terrain-crypt-top.json": "catalogs/biome-crypt.json",
+  "sheets/environment-terrain-dungeon-face-ends.json": "catalogs/biome-dungeon.json",
+  "sheets/environment-terrain-dungeon-face.json": "catalogs/biome-dungeon.json",
+  "sheets/environment-terrain-dungeon-floor.json": "catalogs/biome-dungeon.json",
+  "sheets/environment-terrain-dungeon-rim-n.json": "catalogs/biome-dungeon.json",
+  "sheets/environment-terrain-dungeon-rim-v.json": "catalogs/biome-dungeon.json",
+  "sheets/environment-terrain-dungeon-top.json": "catalogs/biome-dungeon.json",
+  "sheets/environment-terrain-fluid-detail.json": "catalogs/play.json",
+  "sheets/environment-terrain-lava-flow.json": "catalogs/biome-underdark.json",
+  "sheets/environment-terrain-prism-face.json": "catalogs/chaos.json",
+  "sheets/environment-terrain-prism-floor.json": "catalogs/chaos.json",
+  "sheets/environment-terrain-prism-rim-n.json": "catalogs/chaos.json",
+  "sheets/environment-terrain-prism-rim-v.json": "catalogs/chaos.json",
+  "sheets/environment-terrain-prism-top.json": "catalogs/chaos.json",
+  "sheets/environment-terrain-stone-detail.json": "catalogs/play.json",
+  "sheets/environment-terrain-temple-face.json": "catalogs/biome-underdark.json",
+  "sheets/environment-terrain-temple-floor.json": "catalogs/biome-underdark.json",
+  "sheets/environment-terrain-temple-rim-n.json": "catalogs/biome-underdark.json",
+  "sheets/environment-terrain-temple-rim-v.json": "catalogs/biome-underdark.json",
+  "sheets/environment-terrain-temple-top.json": "catalogs/biome-underdark.json",
+  "sheets/environment-terrain-underdark-face.json": "catalogs/biome-underdark.json",
+  "sheets/environment-terrain-underdark-floor.json": "catalogs/biome-underdark.json",
+  "sheets/environment-terrain-volcanic-face.json": "catalogs/biome-underdark.json",
+  "sheets/environment-terrain-volcanic-floor.json": "catalogs/biome-underdark.json",
+  "sheets/environment-vegetation-clusters.json": "catalogs/play.json",
+  "sheets/environment-vegetation.json": "catalogs/play.json",
+  "sheets/environment-wall-dressing.json": "catalogs/biome-dungeon.json",
+  "sheets/environment-walls-doors.json": "catalogs/biome-dungeon.json",
+  "sheets/fx-hook.json": "catalogs/play.json",
+  "sheets/map-cave.json": "catalogs/chasm.json",
+  "sheets/map-cinder-anvil.json": "catalogs/chaos.json",
+  "sheets/map-cinder-furnace-idle.json": "catalogs/chaos.json",
+  "sheets/map-cinder-portal-idle.json": "catalogs/chaos.json",
+  "sheets/map-cinder-shields-idle.json": "catalogs/chaos.json",
+  "sheets/map-final-forge-idle.json": "catalogs/chaos.json",
+  "sheets/map-hawaiian-shirt.json": "catalogs/play.json",
+  "sheets/map-held.json": "catalogs/play.json",
+  "sheets/map-icons.json": "catalogs/play.json",
+  "sheets/map-items.json": "catalogs/play.json",
+  "sheets/map-planeset-anim.json": "catalogs/plane-fire.json",
+  "sheets/map-prism-astrolabe-idle.json": "catalogs/chaos.json",
+  "sheets/map-prism-bookcase.json": "catalogs/chaos.json",
+  "sheets/map-prism-lectern-idle.json": "catalogs/chaos.json",
+  "sheets/map-prism-lens-idle.json": "catalogs/chaos.json",
+  "sheets/map-prism-portal-idle.json": "catalogs/chaos.json",
+  "sheets/map-prism-tree-idle.json": "catalogs/chaos.json",
+  "sheets/map-props.json": "catalogs/play.json",
+  "sheets/map-rack.json": "catalogs/play.json",
+  "sheets/map-rot-canopy-idle.json": "catalogs/chaos.json",
+  "sheets/map-rot-portal-idle.json": "catalogs/chaos.json",
+  "sheets/map-rot-puffballs-idle.json": "catalogs/chaos.json",
+  "sheets/map-set.json": "catalogs/play.json",
+  "sheets/map-stairs.json": "catalogs/play.json",
+  "sheets/map-violet-eggs-idle.json": "catalogs/chaos.json",
+  "sheets/map-violet-loom-idle.json": "catalogs/chaos.json",
+  "sheets/map-violet-loom.json": "catalogs/chaos.json",
+  "sheets/map-violet-pavilion-idle.json": "catalogs/chaos.json",
+  "sheets/map-violet-portal-idle.json": "catalogs/chaos.json",
+  "sheets/mob-m-bat.json": "catalogs/biome-dungeon.json",
+  "sheets/mob-m-bone-archer.json": "catalogs/biome-crypt.json",
+  "sheets/mob-m-burrower.json": "catalogs/plane-earth.json",
+  "sheets/mob-m-chaos-bile-spitter.json": "catalogs/chaos.json",
+  "sheets/mob-m-chaos-brood-carrier.json": "catalogs/chaos.json",
+  "sheets/mob-m-chaos-chain-reaver.json": "catalogs/chaos.json",
+  "sheets/mob-m-chaos-folded-horror.json": "catalogs/chaos.json",
+  "sheets/mob-m-chaos-gorehound.json": "catalogs/biome-underdark.json",
+  "sheets/mob-m-chaos-hookfang.json": "catalogs/chaos.json",
+  "sheets/mob-m-chaos-horned-reaver.json": "catalogs/biome-underdark.json",
+  "sheets/mob-m-chaos-ironbound.json": "catalogs/chaos.json",
+  "sheets/mob-m-chaos-lash-dancer.json": "catalogs/chaos.json",
+  "sheets/mob-m-chaos-lens-bearer.json": "catalogs/chaos.json",
+  "sheets/mob-m-chaos-plague-bloat.json": "catalogs/chaos.json",
+  "sheets/mob-m-chaos-prism-seer.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-chaos-razor-dancer.json": "catalogs/chaos.json",
+  "sheets/mob-m-chaos-rift-skitter.json": "catalogs/chaos.json",
+  "sheets/mob-m-chaos-rotling.json": "catalogs/chaos.json",
+  "sheets/mob-m-chaos-silk-weaver.json": "catalogs/chaos.json",
+  "sheets/mob-m-chaos-spiderling.json": "catalogs/chaos.json",
+  "sheets/mob-m-cinder-imp.json": "catalogs/plane-fire.json",
+  "sheets/mob-m-cinderling.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-cragling.json": "catalogs/biome-underdark.json",
+  "sheets/mob-m-crypt-skeleton.json": "catalogs/biome-crypt.json",
+  "sheets/mob-m-crystal-golem.json": "catalogs/plane-earth.json",
+  "sheets/mob-m-dawn-sentinel.json": "catalogs/plane-light.json",
+  "sheets/mob-m-dawnling.json": "catalogs/biome-underdark.json",
+  "sheets/mob-m-deep-maw.json": "catalogs/boss-caverns.json",
+  "sheets/mob-m-drider.json": "catalogs/biome-underdark.json",
+  "sheets/mob-m-drow-blade.json": "catalogs/biome-underdark.json",
+  "sheets/mob-m-drow-priestess.json": "catalogs/biome-underdark.json",
+  "sheets/mob-m-drowned-one.json": "catalogs/plane-water.json",
+  "sheets/mob-m-duskling.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-ember-spider.json": "catalogs/biome-underdark.json",
+  "sheets/mob-m-emberling.json": "catalogs/biome-dungeon-deep.json",
+  "sheets/mob-m-emberlord.json": "catalogs/plane-fire.json",
+  "sheets/mob-m-fire-imp.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-flame-dancer.json": "catalogs/plane-fire.json",
+  "sheets/mob-m-galeling.json": "catalogs/biome-dungeon-deep.json",
+  "sheets/mob-m-ghoul.json": "catalogs/biome-crypt.json",
+  "sheets/mob-m-gleamling.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-gloom-moth.json": "catalogs/plane-shadow.json",
+  "sheets/mob-m-goblin-archer.json": "catalogs/biome-dungeon-deep.json",
+  "sheets/mob-m-goblin-brute.json": "catalogs/biome-dungeon-deep.json",
+  "sheets/mob-m-goblin-shaman.json": "catalogs/biome-dungeon-deep.json",
+  "sheets/mob-m-goblin-warchief.json": "catalogs/boss-dungeon.json",
+  "sheets/mob-m-goblin.json": "catalogs/biome-dungeon.json",
+  "sheets/mob-m-grave-beetle.json": "catalogs/biome-crypt.json",
+  "sheets/mob-m-grave-bloat.json": "catalogs/biome-crypt.json",
+  "sheets/mob-m-green-slime.json": "catalogs/biome-dungeon.json",
+  "sheets/mob-m-gustling.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-halo-wisp.json": "catalogs/plane-light.json",
+  "sheets/mob-m-leviathan-eel.json": "catalogs/plane-water.json",
+  "sheets/mob-m-lich.json": "catalogs/play.json",
+  "sheets/mob-m-lumenling.json": "catalogs/biome-dungeon-deep.json",
+  "sheets/mob-m-magma-crawler.json": "catalogs/plane-fire.json",
+  "sheets/mob-m-matron.json": "catalogs/boss-underdark.json",
+  "sheets/mob-m-mimic.json": "catalogs/play.json",
+  "sheets/mob-m-morty.json": "catalogs/boss-crypt.json",
+  "sheets/mob-m-moss-troll.json": "catalogs/plane-earth.json",
+  "sheets/mob-m-mossling.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-mountain-heart.json": "catalogs/plane-earth.json",
+  "sheets/mob-m-myconid-merchant.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-myconid.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-necro-acolyte.json": "catalogs/biome-crypt.json",
+  "sheets/mob-m-night-warden.json": "catalogs/plane-shadow.json",
+  "sheets/mob-m-phylactery.json": "catalogs/boss-crypt.json",
+  "sheets/mob-m-prism-scarab.json": "catalogs/plane-light.json",
+  "sheets/mob-m-pyreling.json": "catalogs/biome-underdark.json",
+  "sheets/mob-m-radiant-warden.json": "catalogs/plane-light.json",
+  "sheets/mob-m-rat.json": "catalogs/biome-dungeon.json",
+  "sheets/mob-m-rippleling.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-rock-slime.json": "catalogs/biome-dungeon.json",
+  "sheets/mob-m-rootbound.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-shade.json": "catalogs/play.json",
+  "sheets/mob-m-shambler.json": "catalogs/biome-crypt.json",
+  "sheets/mob-m-shock-eel.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-siren.json": "catalogs/plane-water.json",
+  "sheets/mob-m-slime.json": "catalogs/biome-dungeon.json",
+  "sheets/mob-m-spark-jelly.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-spiderling.json": "catalogs/biome-underdark.json",
+  "sheets/mob-m-sporecaller.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-stalker.json": "catalogs/plane-shadow.json",
+  "sheets/mob-m-stoneling.json": "catalogs/biome-dungeon-deep.json",
+  "sheets/mob-m-storm-beetle.json": "catalogs/biome-caverns.json",
+  "sheets/mob-m-storm-hawk.json": "catalogs/plane-air.json",
+  "sheets/mob-m-stormling.json": "catalogs/biome-underdark.json",
+  "sheets/mob-m-tempest-djinn.json": "catalogs/plane-air.json",
+  "sheets/mob-m-thought-eater.json": "catalogs/biome-underdark.json",
+  "sheets/mob-m-thunder-totem.json": "catalogs/plane-air.json",
+  "sheets/mob-m-tide-crab.json": "catalogs/plane-water.json",
+  "sheets/mob-m-tideling-tier3.json": "catalogs/biome-underdark.json",
+  "sheets/mob-m-tideling.json": "catalogs/biome-dungeon-deep.json",
+  "sheets/mob-m-umbral-hound.json": "catalogs/plane-shadow.json",
+  "sheets/mob-m-umbraling.json": "catalogs/biome-underdark.json",
+  "sheets/mob-m-unmaker-heart.json": "catalogs/chaos.json",
+  "sheets/mob-m-unmaker-tyrant.json": "catalogs/chaos.json",
+  "sheets/mob-m-unmaker-unbound.json": "catalogs/chaos.json",
+  "sheets/mob-m-web-spitter.json": "catalogs/biome-crypt.json",
+  "sheets/mob-m-wind-wisp.json": "catalogs/plane-air.json",
+  "sheets/mob-m-wisp.json": "catalogs/biome-dungeon-deep.json",
+  "sheets/mob-m-worm-tender.json": "catalogs/biome-caverns.json",
+  "sheets/unmaker-pylon-animation.json": "catalogs/chaos.json"
+ },
+ "sounds": {
+  "ally-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/ally-death.mp3"
+   ]
+  },
+  "amb-dungeon": {
+   "kind": "ambience",
+   "group": "audio-play",
+   "files": [
+    "audio/amb-dungeon.mp3"
+   ]
+  },
+  "amb-fire": {
+   "kind": "ambience",
+   "group": "audio-play",
+   "files": [
+    "audio/amb-fire.mp3"
+   ]
+  },
+  "amb-water": {
+   "kind": "ambience",
+   "group": "audio-plane-water",
+   "files": [
+    "audio/amb-water.mp3"
+   ]
+  },
+  "arrow-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/arrow-hit.mp3"
+   ]
+  },
+  "bat-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/bat-alert.mp3"
+   ]
+  },
+  "bat-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/bat-attack.mp3"
+   ]
+  },
+  "bat-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/bat-death.mp3"
+   ]
+  },
+  "block": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/block.mp3"
+   ]
+  },
+  "boss-grukk": {
+   "kind": "music",
+   "group": "music-boss-dungeon",
+   "files": [
+    "audio/music-boss-grukk.mp3"
+   ]
+  },
+  "boss-matron": {
+   "kind": "music",
+   "group": "music-boss-underdark",
+   "files": [
+    "audio/music-boss-matron.mp3"
+   ]
+  },
+  "boss-maw": {
+   "kind": "music",
+   "group": "music-boss-caverns",
+   "files": [
+    "audio/music-boss-maw.mp3"
+   ]
+  },
+  "boss-morty": {
+   "kind": "music",
+   "group": "music-boss-crypt",
+   "files": [
+    "audio/music-boss-morty.mp3"
+   ]
+  },
+  "boss-unmaker": {
+   "kind": "music",
+   "group": "music-chaos",
+   "files": [
+    "audio/music-boss-unmaker.mp3"
+   ]
+  },
+  "bow-shot": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/bow-shot.mp3"
+   ]
+  },
+  "brute-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/brute-alert.mp3"
+   ]
+  },
+  "brute-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/brute-attack.mp3"
+   ]
+  },
+  "brute-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/brute-death.mp3"
+   ]
+  },
+  "caverns": {
+   "kind": "music",
+   "group": "music-biome-caverns",
+   "files": [
+    "audio/music-caverns.mp3"
+   ]
+  },
+  "chaos": {
+   "kind": "music",
+   "group": "music-chaos",
+   "files": [
+    "audio/music-chaos.mp3"
+   ]
+  },
+  "charge": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/charge.mp3"
+   ]
+  },
+  "chest-open": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/chest-open.mp3"
+   ]
+  },
+  "crate-break": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/crate-break.mp3"
+   ]
+  },
+  "crypt": {
+   "kind": "music",
+   "group": "music-biome-crypt",
+   "files": [
+    "audio/music-crypt.mp3"
+   ]
+  },
+  "crypt-bell": {
+   "kind": "effect",
+   "group": "audio-biome-crypt",
+   "files": [
+    "audio/crypt-bell.mp3"
+   ]
+  },
+  "dark-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/dark-cast.mp3"
+   ]
+  },
+  "djinn-alert": {
+   "kind": "effect",
+   "group": "audio-plane-air",
+   "files": [
+    "audio/djinn-intro.mp3"
+   ]
+  },
+  "djinn-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/djinn-attack.mp3"
+   ]
+  },
+  "djinn-death": {
+   "kind": "effect",
+   "group": "audio-plane-air",
+   "files": [
+    "audio/djinn-death.mp3"
+   ]
+  },
+  "door-close": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/door-close.mp3"
+   ]
+  },
+  "door-locked": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/door-locked.mp3"
+   ]
+  },
+  "door-open": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/door-open.mp3"
+   ]
+  },
+  "door-secret": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/door-secret.mp3"
+   ]
+  },
+  "door-unlock": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/door-unlock.mp3"
+   ]
+  },
+  "drow-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/drow-alert.mp3"
+   ]
+  },
+  "drow-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/drow-attack.mp3"
+   ]
+  },
+  "drow-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/drow-death.mp3"
+   ]
+  },
+  "dungeon": {
+   "kind": "music",
+   "group": "music-biome-dungeon",
+   "files": [
+    "audio/music-dungeon.mp3"
+   ]
+  },
+  "earth-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/earth-cast.mp3"
+   ]
+  },
+  "earth-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/earth-hit.mp3"
+   ]
+  },
+  "eat": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/eat.mp3"
+   ]
+  },
+  "elementaling-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/elementaling-alert.mp3"
+   ]
+  },
+  "elementaling-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/elementaling-attack.mp3"
+   ]
+  },
+  "elementaling-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/elementaling-death.mp3"
+   ]
+  },
+  "emberlord-alert": {
+   "kind": "effect",
+   "group": "audio-plane-fire",
+   "files": [
+    "audio/emberlord-intro.mp3"
+   ]
+  },
+  "emberlord-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/brute-attack.mp3"
+   ]
+  },
+  "emberlord-death": {
+   "kind": "effect",
+   "group": "audio-plane-fire",
+   "files": [
+    "audio/emberlord-death.mp3"
+   ]
+  },
+  "equip-armor": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/equip-armor.mp3"
+   ]
+  },
+  "equip-weapon": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/equip-weapon.mp3"
+   ]
+  },
+  "explosion": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/explosion.mp3"
+   ]
+  },
+  "fire-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/fire-cast.mp3"
+   ]
+  },
+  "fire-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/fire-hit.mp3"
+   ]
+  },
+  "fire-ignite": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/fire-ignite.mp3"
+   ]
+  },
+  "forge-craft": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/forge-craft.mp3"
+   ]
+  },
+  "forge-enchant": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/forge-enchant.mp3"
+   ]
+  },
+  "forge-fuse": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/forge-fuse.mp3"
+   ]
+  },
+  "forge-open": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/forge-open.mp3"
+   ]
+  },
+  "goblin-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/goblin-alert.mp3"
+   ]
+  },
+  "goblin-attack": {
+   "kind": "effect",
+   "group": "audio-biome-dungeon",
+   "files": [
+    "audio/goblin-attack.mp3"
+   ]
+  },
+  "goblin-death": {
+   "kind": "effect",
+   "group": "audio-biome-dungeon",
+   "files": [
+    "audio/goblin-death.mp3"
+   ]
+  },
+  "golem-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/golem-alert.mp3"
+   ]
+  },
+  "golem-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/golem-attack.mp3"
+   ]
+  },
+  "golem-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/golem-death.mp3"
+   ]
+  },
+  "heal": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/heal.mp3"
+   ]
+  },
+  "heart-alert": {
+   "kind": "effect",
+   "group": "audio-plane-earth",
+   "files": [
+    "audio/heart-intro.mp3"
+   ]
+  },
+  "heart-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/golem-attack.mp3"
+   ]
+  },
+  "heart-death": {
+   "kind": "effect",
+   "group": "audio-plane-earth",
+   "files": [
+    "audio/heart-death.mp3"
+   ]
+  },
+  "heart-intro": {
+   "kind": "effect",
+   "group": "audio-plane-earth",
+   "files": [
+    "audio/heart-intro.mp3"
+   ]
+  },
+  "hit-armor": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/hit-armor.mp3"
+   ]
+  },
+  "hit-crit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/hit-crit.mp3"
+   ]
+  },
+  "hit-flesh": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/hit-flesh.mp3"
+   ]
+  },
+  "hound-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/hound-alert.mp3"
+   ]
+  },
+  "hound-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/hound-attack.mp3"
+   ]
+  },
+  "hound-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/hound-death.mp3"
+   ]
+  },
+  "hungry": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/hungry.mp3"
+   ]
+  },
+  "ice-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/ice-cast.mp3"
+   ]
+  },
+  "ice-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/ice-hit.mp3"
+   ]
+  },
+  "ice-melt": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/ice-melt.mp3"
+   ]
+  },
+  "identify": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/identify.mp3"
+   ]
+  },
+  "imp-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/imp-alert.mp3"
+   ]
+  },
+  "imp-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/imp-attack.mp3"
+   ]
+  },
+  "imp-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/imp-death.mp3"
+   ]
+  },
+  "inventory-full": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/inventory-full.mp3"
+   ]
+  },
+  "knock-thud": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/knock-thud.mp3"
+   ]
+  },
+  "level-up": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/level-up.mp3"
+   ]
+  },
+  "lever": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/lever.mp3"
+   ]
+  },
+  "leviathan-alert": {
+   "kind": "effect",
+   "group": "audio-plane-water",
+   "files": [
+    "audio/leviathan-intro.mp3"
+   ]
+  },
+  "leviathan-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/brute-attack.mp3"
+   ]
+  },
+  "leviathan-death": {
+   "kind": "effect",
+   "group": "audio-plane-water",
+   "files": [
+    "audio/leviathan-death.mp3"
+   ]
+  },
+  "light-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/light-cast.mp3"
+   ]
+  },
+  "light-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/light-hit.mp3"
+   ]
+  },
+  "lightning-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/lightning-cast.mp3"
+   ]
+  },
+  "lightning-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/lightning-hit.mp3"
+   ]
+  },
+  "magic-missile": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/magic-missile.mp3"
+   ]
+  },
+  "magic-missile-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/magic-missile-hit.mp3"
+   ]
+  },
+  "matron-alert": {
+   "kind": "effect",
+   "group": "audio-boss-underdark",
+   "files": [
+    "audio/matron-intro.mp3"
+   ]
+  },
+  "matron-attack": {
+   "kind": "effect",
+   "group": "audio-boss-underdark",
+   "files": [
+    "audio/matron-attack.mp3"
+   ]
+  },
+  "matron-death": {
+   "kind": "effect",
+   "group": "audio-boss-underdark",
+   "files": [
+    "audio/matron-death.mp3"
+   ]
+  },
+  "matron-intro": {
+   "kind": "effect",
+   "group": "audio-boss-underdark",
+   "files": [
+    "audio/matron-intro.mp3"
+   ]
+  },
+  "maw-alert": {
+   "kind": "effect",
+   "group": "audio-boss-caverns",
+   "files": [
+    "audio/maw-intro.mp3"
+   ]
+  },
+  "maw-attack": {
+   "kind": "effect",
+   "group": "audio-boss-caverns",
+   "files": [
+    "audio/maw-attack.mp3"
+   ]
+  },
+  "maw-death": {
+   "kind": "effect",
+   "group": "audio-boss-caverns",
+   "files": [
+    "audio/maw-death.mp3"
+   ]
+  },
+  "maw-intro": {
+   "kind": "effect",
+   "group": "audio-boss-caverns",
+   "files": [
+    "audio/maw-intro.mp3"
+   ]
+  },
+  "mimic-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/mimic-alert.mp3"
+   ]
+  },
+  "mimic-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/mimic-attack.mp3"
+   ]
+  },
+  "mimic-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/mimic-death.mp3"
+   ]
+  },
+  "mimic-reveal": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/mimic-reveal.mp3"
+   ]
+  },
+  "miss": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/miss.mp3"
+   ]
+  },
+  "morty-alert": {
+   "kind": "effect",
+   "group": "audio-boss-crypt",
+   "files": [
+    "audio/morty-intro.mp3"
+   ]
+  },
+  "morty-attack": {
+   "kind": "effect",
+   "group": "audio-boss-crypt",
+   "files": [
+    "audio/morty-attack.mp3"
+   ]
+  },
+  "morty-death": {
+   "kind": "effect",
+   "group": "audio-boss-crypt",
+   "files": [
+    "audio/morty-death.mp3"
+   ]
+  },
+  "morty-intro": {
+   "kind": "effect",
+   "group": "audio-boss-crypt",
+   "files": [
+    "audio/morty-intro.mp3"
+   ]
+  },
+  "new-ability": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/new-ability.mp3"
+   ]
+  },
+  "night-warden-alert": {
+   "kind": "effect",
+   "group": "audio-plane-shadow",
+   "files": [
+    "audio/night-warden-intro.mp3"
+   ]
+  },
+  "night-warden-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/night-warden-attack.mp3"
+   ]
+  },
+  "night-warden-death": {
+   "kind": "effect",
+   "group": "audio-plane-shadow",
+   "files": [
+    "audio/night-warden-death.mp3"
+   ]
+  },
+  "no-mana": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/no-mana.mp3"
+   ]
+  },
+  "parry": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/parry.mp3"
+   ]
+  },
+  "pickup-essence": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/pickup-essence.mp3"
+   ]
+  },
+  "pickup-food": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/eat.mp3"
+   ]
+  },
+  "pickup-item": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/pickup-item.mp3"
+   ]
+  },
+  "pickup-key": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/pickup-key.mp3"
+   ]
+  },
+  "pickup-mote": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/pickup-mote.mp3"
+   ]
+  },
+  "piety-rank": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/piety-rank.mp3"
+   ]
+  },
+  "plane-air": {
+   "kind": "music",
+   "group": "music-plane-air",
+   "files": [
+    "audio/music-plane-air.mp3"
+   ]
+  },
+  "plane-earth": {
+   "kind": "music",
+   "group": "music-plane-earth",
+   "files": [
+    "audio/music-plane-earth.mp3"
+   ]
+  },
+  "plane-fire": {
+   "kind": "music",
+   "group": "music-plane-fire",
+   "files": [
+    "audio/music-plane-fire.mp3"
+   ]
+  },
+  "plane-light": {
+   "kind": "music",
+   "group": "music-plane-light",
+   "files": [
+    "audio/music-plane-light.mp3"
+   ]
+  },
+  "plane-shadow": {
+   "kind": "music",
+   "group": "music-plane-shadow",
+   "files": [
+    "audio/music-plane-shadow.mp3"
+   ]
+  },
+  "plane-water": {
+   "kind": "music",
+   "group": "music-plane-water",
+   "files": [
+    "audio/music-plane-water.mp3"
+   ]
+  },
+  "player-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/player-death.mp3"
+   ]
+  },
+  "player-hurt": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/player-hurt.mp3"
+   ]
+  },
+  "portal": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/portal.mp3"
+   ]
+  },
+  "pot-break": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/pot-break.mp3"
+   ]
+  },
+  "pray": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/pray.mp3"
+   ]
+  },
+  "puzzle-solved": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/puzzle-solved.mp3"
+   ]
+  },
+  "radiant-warden-alert": {
+   "kind": "effect",
+   "group": "audio-plane-light",
+   "files": [
+    "audio/radiant-warden-intro.mp3"
+   ]
+  },
+  "radiant-warden-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/radiant-warden-attack.mp3"
+   ]
+  },
+  "radiant-warden-death": {
+   "kind": "effect",
+   "group": "audio-plane-light",
+   "files": [
+    "audio/radiant-warden-death.mp3"
+   ]
+  },
+  "rat-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/rat-attack.mp3"
+   ]
+  },
+  "rat-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/rat-attack.mp3"
+   ]
+  },
+  "rat-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/rat-death.mp3"
+   ]
+  },
+  "sap": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sap.mp3"
+   ]
+  },
+  "shadow-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/shadow-cast.mp3"
+   ]
+  },
+  "shadow-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/shadow-hit.mp3"
+   ]
+  },
+  "shaman-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/goblin-alert.mp3"
+   ]
+  },
+  "shaman-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/shaman-attack.mp3"
+   ]
+  },
+  "shaman-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/shaman-cast.mp3"
+   ]
+  },
+  "shaman-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/shaman-death.mp3"
+   ]
+  },
+  "shrine-convert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/shrine-convert.mp3"
+   ]
+  },
+  "shrine-open": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/shrine-open.mp3"
+   ]
+  },
+  "sigil-use": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-use.mp3"
+   ]
+  },
+  "skeleton-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/skeleton-rattle.mp3"
+   ]
+  },
+  "skeleton-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/skeleton-attack.mp3"
+   ]
+  },
+  "skeleton-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/skeleton-death.mp3"
+   ]
+  },
+  "slime-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/slime-alert.mp3"
+   ]
+  },
+  "slime-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/slime-attack.mp3"
+   ]
+  },
+  "slime-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/slime-death.mp3"
+   ]
+  },
+  "slime-split": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/slime-split.mp3"
+   ]
+  },
+  "spider-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spider-alert.mp3"
+   ]
+  },
+  "spider-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spider-attack.mp3"
+   ]
+  },
+  "spider-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spider-death.mp3"
+   ]
+  },
+  "stairs": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/stairs.mp3"
+   ]
+  },
+  "stat-point": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/stat-point.mp3"
+   ]
+  },
+  "status-bleed": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/status-bleed.mp3"
+   ]
+  },
+  "status-blind": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/status-blind.mp3"
+   ]
+  },
+  "status-burn": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/status-burn.mp3"
+   ]
+  },
+  "status-fear": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/status-fear.mp3"
+   ]
+  },
+  "status-freeze": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/status-freeze.mp3"
+   ]
+  },
+  "status-poison": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/status-poison.mp3"
+   ]
+  },
+  "status-root": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/status-root.mp3"
+   ]
+  },
+  "status-slow": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/status-slow.mp3"
+   ]
+  },
+  "status-stun": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/status-stun.mp3"
+   ]
+  },
+  "step-grass": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/step-grass.mp3"
+   ]
+  },
+  "step-stone": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/step-stone.mp3",
+    "audio/step-stone-1.mp3",
+    "audio/step-stone-3.mp3",
+    "audio/step-stone-2.mp3"
+   ]
+  },
+  "step-water": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/step-water.mp3"
+   ]
+  },
+  "summon": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/summon.mp3"
+   ]
+  },
+  "swing": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/swing.mp3"
+   ]
+  },
+  "title": {
+   "kind": "music",
+   "group": "music-boot",
+   "files": [
+    "audio/music-title.mp3"
+   ]
+  },
+  "trap-alarm": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/trap-alarm.mp3"
+   ]
+  },
+  "trap-dart": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/trap-dart.mp3"
+   ]
+  },
+  "trap-fire": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/trap-fire.mp3"
+   ]
+  },
+  "trap-frost": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/trap-frost.mp3"
+   ]
+  },
+  "trap-gas": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/trap-gas.mp3"
+   ]
+  },
+  "trap-pit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/trap-pit.mp3"
+   ]
+  },
+  "trap-spark": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/trap-spark.mp3"
+   ]
+  },
+  "trap-spot": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/trap-spot.mp3"
+   ]
+  },
+  "trap-teleport": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/trap-teleport.mp3"
+   ]
+  },
+  "trap-web": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/trap-web.mp3"
+   ]
+  },
+  "ui-click": {
+   "kind": "effect",
+   "group": "audio-boot",
+   "files": [
+    "audio/ui-click.mp3"
+   ]
+  },
+  "ui-close": {
+   "kind": "effect",
+   "group": "audio-boot",
+   "files": [
+    "audio/ui-close.mp3"
+   ]
+  },
+  "ui-error": {
+   "kind": "effect",
+   "group": "audio-boot",
+   "files": [
+    "audio/ui-error.mp3"
+   ]
+  },
+  "ui-open": {
+   "kind": "effect",
+   "group": "audio-boot",
+   "files": [
+    "audio/ui-open.mp3"
+   ]
+  },
+  "underdark": {
+   "kind": "music",
+   "group": "music-biome-underdark",
+   "files": [
+    "audio/music-underdark.mp3"
+   ]
+  },
+  "vanish": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/vanish.mp3"
+   ]
+  },
+  "victory": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/victory.mp3"
+   ]
+  },
+  "warchief-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/warchief-roar.mp3"
+   ]
+  },
+  "warchief-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/brute-attack.mp3"
+   ]
+  },
+  "warchief-death": {
+   "kind": "effect",
+   "group": "audio-boss-dungeon",
+   "files": [
+    "audio/warchief-death.mp3"
+   ]
+  },
+  "warchief-roar": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/warchief-roar.mp3"
+   ]
+  },
+  "warchief-slam": {
+   "kind": "effect",
+   "group": "audio-boss-dungeon",
+   "files": [
+    "audio/warchief-slam.mp3"
+   ]
+  },
+  "wisp-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/wisp-alert.mp3"
+   ]
+  },
+  "wisp-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/wisp-attack.mp3"
+   ]
+  },
+  "wisp-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/wisp-death.mp3"
+   ]
+  },
+  "wobbles-giggle": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/wobbles-giggle.mp3"
+   ]
+  },
+  "wrath": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/wrath.mp3"
+   ]
+  },
+  "zombie-alert": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/zombie-alert.mp3"
+   ]
+  },
+  "zombie-attack": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/zombie-attack.mp3"
+   ]
+  },
+  "zombie-death": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/zombie-death.mp3"
+   ]
+  },
+  "sigil-firestorm": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-firestorm.mp3"
+   ]
+  },
+  "sigil-identify": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-identify.mp3"
+   ]
+  },
+  "sigil-levitate": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-levitate.mp3"
+   ]
+  },
+  "sigil-stoneskin": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-stoneskin.mp3"
+   ]
+  },
+  "sigil-heal": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-heal.mp3"
+   ]
+  },
+  "sigil-vanish": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-vanish.mp3"
+   ]
+  },
+  "sigil-haste": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-haste.mp3"
+   ]
+  },
+  "sigil-cinder": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-cinder.mp3"
+   ]
+  },
+  "sigil-magma": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-magma.mp3"
+   ]
+  },
+  "sigil-sunburst": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-sunburst.mp3"
+   ]
+  },
+  "sigil-smoke": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-smoke.mp3"
+   ]
+  },
+  "sigil-storm": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-storm.mp3"
+   ]
+  },
+  "sigil-mire": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-mire.mp3"
+   ]
+  },
+  "sigil-purify": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-purify.mp3"
+   ]
+  },
+  "sigil-mana": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-mana.mp3"
+   ]
+  },
+  "sigil-recall": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-recall.mp3"
+   ]
+  },
+  "sigil-blink": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-blink.mp3"
+   ]
+  },
+  "sigil-mapping": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-mapping.mp3"
+   ]
+  },
+  "sigil-rot": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-rot.mp3"
+   ]
+  },
+  "sigil-aegis": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-aegis.mp3"
+   ]
+  },
+  "sigil-naturesbounty": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-naturesbounty.mp3"
+   ]
+  },
+  "sigil-ascension": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-ascension.mp3"
+   ]
+  },
+  "sigil-transmutation": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-transmutation.mp3"
+   ]
+  },
+  "sigil-wisdom": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/sigil-wisdom.mp3"
+   ]
+  },
+  "spell-missile-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-missile-cast.mp3"
+   ]
+  },
+  "spell-missile-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-missile-hit.mp3"
+   ]
+  },
+  "spell-firebolt-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-firebolt-cast.mp3"
+   ]
+  },
+  "spell-firebolt-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-firebolt-hit.mp3"
+   ]
+  },
+  "spell-frostshard-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-frostshard-cast.mp3"
+   ]
+  },
+  "spell-frostshard-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-frostshard-hit.mp3"
+   ]
+  },
+  "spell-spark-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-spark-cast.mp3"
+   ]
+  },
+  "spell-spark-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-spark-hit.mp3"
+   ]
+  },
+  "spell-root-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-root-cast.mp3"
+   ]
+  },
+  "spell-root-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-root-hit.mp3"
+   ]
+  },
+  "spell-smite-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-smite-cast.mp3"
+   ]
+  },
+  "spell-smite-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-smite-hit.mp3"
+   ]
+  },
+  "spell-shadowbolt-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-shadowbolt-hit.mp3"
+   ]
+  },
+  "spell-fireball-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-fireball-cast.mp3"
+   ]
+  },
+  "spell-fireball-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-fireball-hit.mp3"
+   ]
+  },
+  "spell-frostcone-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-frostcone-cast.mp3"
+   ]
+  },
+  "spell-frostcone-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-frostcone-hit.mp3"
+   ]
+  },
+  "spell-chainbolt-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-chainbolt-cast.mp3"
+   ]
+  },
+  "spell-chainbolt-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-chainbolt-hit.mp3"
+   ]
+  },
+  "spell-earthquake-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-earthquake-cast.mp3"
+   ]
+  },
+  "spell-radiantbeam-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-radiantbeam-cast.mp3"
+   ]
+  },
+  "spell-radiantbeam-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-radiantbeam-hit.mp3"
+   ]
+  },
+  "spell-shadowswarm-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-shadowswarm-cast.mp3"
+   ]
+  },
+  "spell-livingflame-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-livingflame-cast.mp3"
+   ]
+  },
+  "spell-glacialtomb-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-glacialtomb-cast.mp3"
+   ]
+  },
+  "spell-glacialtomb-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-glacialtomb-hit.mp3"
+   ]
+  },
+  "spell-stormform-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-stormform-cast.mp3"
+   ]
+  },
+  "spell-upheaval-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-upheaval-cast.mp3"
+   ]
+  },
+  "spell-upheaval-hit": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-upheaval-hit.mp3"
+   ]
+  },
+  "spell-dawn-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-dawn-cast.mp3"
+   ]
+  },
+  "spell-umbral-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-umbral-cast.mp3"
+   ]
+  },
+  "spell-shadowbolt-cast": {
+   "kind": "effect",
+   "group": "audio-play",
+   "files": [
+    "audio/spell-shadowbolt-cast.mp3"
+   ]
+  }
+ },
+ "licences": [
+  "audio/Kenney-Impact-License.txt",
+  "audio/Kenney-RPG-License.txt",
+  "audio/SFX-Credits.txt",
+  "fonts/OFL-grenze-gotisch.txt",
+  "fonts/OFL-spectral.txt",
+  "audio/approved.json",
+  "audio/approved2.json",
+  "audio/approved3.json",
+  "audio/approved4.json",
+  "fonts/OFL-ibm-plex-mono.txt"
+ ]
+}

@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "rows": {
+    "buckler": {
+      "kind": "offhand",
+      "name": "Buckler",
+      "icon": "item-buckler",
+      "text": "item.offhand.buckler",
+      "family": "shield",
+      "block": {"tiers": [8, 10, 14, 18], "perPlus": 2},
+      "values": {"deflectPct": {"tiers": [5, 10, 15, 20], "perPlus": 2, "gearBonus": true, "cursed": "zero", "min": 0}},
+      "effects": [{"verb": "hit-rule", "deflectPct": {"from-source": "deflectPct"}}],
+      "pool": "warrior",
+      "drops": true,
+      "src": "js/content/data.js:69; js/equipment/tiers.js:31-35; js/combat/combat.js:547"
+    },
+    "kite": {
+      "kind": "offhand",
+      "name": "Kite Shield",
+      "icon": "item-kite",
+      "text": "item.offhand.kite",
+      "family": "shield",
+      "block": {"tiers": [15, 20, 25, 30], "perPlus": 2},
+      "evasion": -5,
+      "effects": [],
+      "pool": "warrior",
+      "drops": true,
+      "src": "js/content/data.js:70; js/equipment/tiers.js:31, :128"
+    },
+    "orb": {
+      "kind": "offhand",
+      "name": "Orb",
+      "icon": "item-orb",
+      "text": "item.offhand.orb",
+      "family": "orb",
+      "values": {"critPct": {"tiers": [6, 8, 12, 16], "perPlus": 3, "gearBonus": true, "cursed": "zero"}, "accuracy": {"tiers": [5, 5, 8, 10], "perPlus": 2, "gearBonus": true, "cursed": "zero", "round": true}, "cursedSpellPct": {"tiers": [-8, -10, -15, -20], "perPlus": 4, "plus": "absolute", "cursed": "only"}},
+      "effects": [{"verb": "modify-stat", "stat": "crit", "add": {"from-source": "critPct"}}, {"verb": "modify-stat", "stat": "accuracy", "add": {"from-source": "accuracy"}}, {"verb": "modify-stat", "stat": "spell-power", "pct": {"from-source": "cursedSpellPct"}}],
+      "pool": "mage",
+      "drops": true,
+      "src": "js/content/data.js:71; js/equipment/tiers.js:42, :44-45; js/engine/stats.js:27, :105-107"
+    },
+    "tome": {
+      "kind": "offhand",
+      "name": "Tome",
+      "icon": "item-tome",
+      "text": "item.offhand.tome",
+      "family": "tome",
+      "values": {"manaPct": {"tiers": [10, 10, 15, 20], "perPlus": 5, "gearBonus": true, "min": 0}},
+      "effects": [{"verb": "modify-stat", "stat": "max-mp", "pct": {"from-source": "manaPct"}}],
+      "pool": "mage",
+      "drops": true,
+      "src": "js/content/data.js:72; js/equipment/tiers.js:37, :129; js/engine/stats.js:102"
+    },
+    "holy": {
+      "kind": "offhand",
+      "name": "Holy Symbol",
+      "icon": "item-holy",
+      "text": "item.offhand.holy",
+      "family": "holy",
+      "block": {"tiers": [4, 5, 7, 9], "perPlus": 2},
+      "values": {"divinePct": {"tiers": [10, 15, 20, 25], "perPlus": 4, "gearBonus": true, "cursed": "zero", "min": 0}, "buffDurationPct": {"tiers": [10, 15, 20, 25], "perPlus": 3, "gearBonus": true, "cursed": "zero", "min": 0}},
+      "effects": [{"verb": "modify-stat", "stat": "divine", "pct": {"from-source": "divinePct"}}, {"verb": "modify-duration", "scope": "self-buffs", "pct": {"from-source": "buffDurationPct"}, "min": 1, "except": ["snuffed", "resolve", "tomb", "wizardhunter", "stillness"], "src": "js/faith/holy.js:11-55; faith.md F57"}],
+      "pool": "cleric",
+      "drops": true,
+      "enchantSlot": "holy",
+      "ruled": "2026-10-15",
+      "src": "js/content/data.js:73; js/equipment/tiers.js:31, :38, :128-129; js/engine/stats.js:42"
+    },
+    "camera": {
+      "kind": "offhand",
+      "name": "Camera",
+      "icon": "item-camera",
+      "text": "item.offhand.camera",
+      "family": "none",
+      "effects": [],
+      "keepsake": true,
+      "drops": false,
+      "src": "js/content/data.js:77; js/engine/gear.js:17"
+    }
+  }
+}

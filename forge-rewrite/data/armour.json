@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "rows": {
+    "robe": {
+      "kind": "armour",
+      "name": "Cloth Robe",
+      "icon": "item-robe",
+      "text": "item.armour.robe",
+      "weight": "cloth",
+      "armour": {"tiers": [0, 1, 2, 3]},
+      "evasion": 5,
+      "values": {"spellPct": {"tiers": [5, 5, 10, 15], "perPlus": 3, "plus": "effective", "gearBonus": true, "cursed": "zero"}, "manaPct": {"tiers": [5, 5, 10, 10], "gearBonus": true}},
+      "effects": [{"verb": "modify-stat", "stat": "spell-power", "pct": {"from-source": "spellPct"}}, {"verb": "modify-stat", "stat": "max-mp", "pct": {"from-source": "manaPct"}}],
+      "drops": true,
+      "src": "js/content/data.js:62; js/equipment/tiers.js:26, :30, :189; js/engine/stats.js:37-40, :135"
+    },
+    "shirt": {
+      "kind": "armour",
+      "name": "Hawaiian Shirt",
+      "icon": "item-hawaiian-shirt",
+      "text": "item.armour.shirt",
+      "weight": "cloth",
+      "armour": {"tiers": [0, 0, 0, 0]},
+      "evasion": 0,
+      "effects": [],
+      "keepsake": true,
+      "drops": false,
+      "src": "js/content/data.js:63; js/equipment/tiers.js:26; js/engine/gear.js:17"
+    },
+    "leather": {
+      "kind": "armour",
+      "name": "Leather Armor",
+      "icon": "item-leather",
+      "text": "item.armour.leather",
+      "weight": "light",
+      "armour": {"tiers": [1, 3, 5, 7]},
+      "evasion": {"tiers": [5, 5, 5, 5], "perPlus": 2},
+      "effects": [],
+      "drops": true,
+      "src": "js/content/data.js:64; js/equipment/tiers.js:26, :126; js/engine/stats.js:103"
+    },
+    "chain": {
+      "kind": "armour",
+      "name": "Chain Shirt",
+      "icon": "item-chain",
+      "text": "item.armour.chain",
+      "weight": "medium",
+      "armour": {"tiers": [2, 5, 8, 11]},
+      "evasion": 0,
+      "stealthPct": -10,
+      "values": {"resistPct": {"tiers": [-2, -3, -5, -7], "perPlus": -1, "plus": "effective", "gearBonus": true, "cursed": "zero"}},
+      "effects": [{"verb": "resist", "type": "elemental", "add": {"from-source": "resistPct"}}],
+      "drops": true,
+      "src": "js/content/data.js:65; js/equipment/tiers.js:26-29, :188; js/engine/geometry.js:131; js/engine/actions-adapter.js:74"
+    },
+    "plate": {
+      "kind": "armour",
+      "name": "Plate Armor",
+      "icon": "item-plate",
+      "text": "item.armour.plate",
+      "weight": "heavy",
+      "armour": {"tiers": [3, 7, 11, 15]},
+      "evasion": -10,
+      "stealthPct": -25,
+      "effects": [],
+      "drops": true,
+      "src": "js/content/data.js:66; js/equipment/tiers.js:26, :126; js/engine/geometry.js:131; js/engine/stats.js:104"
+    }
+  }
+}

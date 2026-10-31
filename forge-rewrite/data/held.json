@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "rows": {
+    "items": {
+      "about": "How each held picture (assets/sheets/map-held.json, frame held-<key>) is carried. len: length as a share of the figure's standing height (meta.stand). hand: the hand that holds it. grip: where the fist closes, as a share of the picture's height from its top (tip) end. two: two-handed. carry: handled (through the fist), strapped (on the forearm), book (in the hand by its top edge), palm (an orb held in the hand). style: the rest carry of a handled item (spec/held-items.md H5). offIdle: the style when carried in the off hand at rest. keepWorn: keeps its painted colours when Worn (tier 0).",
+      "sword":     { "len": 0.46, "hand": "r", "grip": 0.86, "carry": "handled", "style": "guard" },
+      "longsword": { "len": 0.64, "hand": "r", "grip": 0.80, "carry": "handled", "style": "upright", "two": true },
+      "axe":       { "len": 0.58, "hand": "r", "grip": 0.84, "carry": "handled", "style": "across", "two": true },
+      "mace":      { "len": 0.40, "hand": "r", "grip": 0.86, "carry": "handled", "style": "upright" },
+      "dagger":    { "len": 0.28, "hand": "r", "grip": 0.82, "carry": "handled", "style": "guard", "offIdle": "blade" },
+      "censer":    { "len": 0.28, "hand": "r", "grip": 0.85, "carry": "handled", "style": "guard", "offIdle": "blade" },
+      "wand":      { "len": 0.30, "hand": "r", "grip": 0.85, "carry": "handled", "style": "blade", "keepWorn": true },
+      "spear":     { "len": 0.86, "hand": "r", "grip": 0.62, "carry": "handled", "style": "upright", "two": true },
+      "staff":     { "len": 0.80, "hand": "r", "grip": 0.62, "carry": "handled", "style": "upright", "two": true, "keepWorn": true },
+      "bow":       { "len": 0.58, "hand": "l", "grip": 0.50, "carry": "handled", "style": "upright", "two": true },
+      "buckler":   { "len": 0.30, "hand": "l", "carry": "strapped" },
+      "kite":      { "len": 0.42, "hand": "l", "carry": "strapped" },
+      "holy":      { "len": 0.28, "hand": "l", "carry": "strapped", "keepWorn": true },
+      "tome":      { "len": 0.22, "hand": "l", "carry": "book", "keepWorn": true },
+      "orb":       { "len": 0.17, "hand": "l", "carry": "palm", "keepWorn": true },
+      "src": "js/equipment/equip.js:12-34, :77-78, :395-398 @3c8b312"
+    },
+    "grip": {
+      "about": "Shares of the cell (128 px) unless named otherwise.",
+      "pull": 0.5,
+      "bladeBendDeg": 6,
+      "guardLean": 0.45,
+      "shieldOnForearm": 0.30,
+      "bookInHand": 0.30,
+      "bookUp": 0.45,
+      "shieldUp": 0.5,
+      "orbInHand": 0.55,
+      "orbOnHand": 0.8,
+      "fingers": 0.018,
+      "flat": 0.55,
+      "thick": 0.3,
+      "hand": 0.02,
+      "handReach": 0.045,
+      "fallRestFloorShare": 0.7,
+      "fallFloorClear": 0.06,
+      "src": "js/equipment/equip.js:81-84, :102-105, :209-222, :454-460 @3c8b312"
+    },
+    "hand-scan": {
+      "about": "How the painted hand is found over an orb or tome (spec H17). Distances are shares of the cell; colour distance is in 0-255 RGB.",
+      "skinNear": 0.025,
+      "skinTopShare": 0.62,
+      "alphaMin": 200,
+      "colourDistance": 70,
+      "lightShare": 0.5,
+      "seedShare": 0.3333,
+      "src": "js/equipment/equip.js:526-578 @3c8b312"
+    },
+    "two-hand": {
+      "near": 0.04,
+      "far": 0.18,
+      "offDeg": 60,
+      "poleNear": 0.125,
+      "poleFar": 0.8,
+      "poleHead": 0.25,
+      "bowLeanDeg": 25,
+      "src": "js/equipment/equip.js:131, :168 @3c8b312"
+    },
+    "row-swing": {
+      "about": "Tip angle on each of the nine steps of an added melee row, degrees (0 at the target, -90 up); null keeps the holding rule. heavyl is the heavy row drawn with the left hand uppermost.",
+      "thrust": { "spear": [null, 0, 0, 0, 0, 0, 0, 0, null], "staff": [null, 0, 0, 0, 0, 0, 0, 0, null] },
+      "heavy": { "longsword": [null, -100, -120, -88, -70, -38, -22, -72, null], "axe": [null, -100, -120, -88, -70, -38, -22, -72, null] },
+      "heavyl": { "longsword": [null, -60, -106, -87, -34, 31, 44, -15, null], "axe": [null, -60, -106, -87, -34, 31, 44, -15, null] },
+      "strike": {
+        "sword": [null, -95, -125, -140, -50, 18, 55, -40, null],
+        "dagger": [null, -75, -110, -130, -40, 5, 35, -30, null],
+        "censer": [null, -75, -110, -130, -40, 5, 35, -30, null],
+        "mace": [null, 160, -130, -140, -45, 22, 60, 80, null],
+        "wand": [null, 160, -130, -140, -45, 22, 60, 80, null]
+      },
+      "src": "js/equipment/equip.js:161-167 @3c8b312"
+    },
+    "worn-tint": {
+      "about": "Worn (tier 0) gear is dulled: saturation pulled toward grey by desaturate, then darkened by dim. Other tiers draw as painted.",
+      "desaturate": 0.85,
+      "dim": 0.18,
+      "src": "js/equipment/equip.js:388-413 @3c8b312"
+    },
+    "enchant-glow": {
+      "about": "An enchanted handled item glows in its element's colour; blur as a share of the standing height, at least minPx screen px. Not drawn until items carry an enchantment.",
+      "blur": 0.04,
+      "minPx": 3,
+      "src": "js/equipment/equip.js:495, :518-520 @3c8b312"
+    },
+    "clip-rows": {
+      "about": "The sheet row each action plays. melee and walk by what the main hand holds (fist: bare hands or no held picture); a sheet without the row plays the action's own row. An underwear (-unclad) look always uses fist; a tourist's melee with no held picture uses fist.",
+      "melee": { "fist": "punch", "bow": "punch", "spear": "thrust", "staff": "thrust", "longsword": "heavy", "axe": "heavy", "sword": "strike", "mace": "strike", "dagger": "strike", "censer": "strike", "wand": "strike" },
+      "walk": { "fist": "run2", "bow": "run2", "sword": "run2", "mace": "run2", "dagger": "run2", "censer": "run2", "wand": "run2", "longsword": "run", "axe": "run", "spear": "run", "staff": "run" },
+      "ranged": "shoot",
+      "cast": "cast2",
+      "hurt": "flinch",
+      "idle": "idle2",
+      "death": "death2",
+      "src": "js/presentation/render/render.js:833-846 @3c8b312"
+    },
+    "clip-holds": {
+      "about": "How long each of the nine steps shows, in 99ths of the clip (the clip's length is clipMs x the action row's frame count, data/ui.json). Rows not named take their action's list; a row with no list plays one frame per clipMs. melee (Justin 2026-10-19, a slight pause after the wind-up and the swing for emphasis): the top of the wind-up holds 95 ms and the strike 150 ms, the launch still at 170 ms (1.7 was 11, 13, 10, 7, 7, 24, 9, 9, 9).",
+      "melee": [7, 8, 19, 7, 7, 30, 8, 7, 6],
+      "death": [11, 11, 11, 11, 11, 11, 11, 11, 11],
+      "cast": [9, 11, 11, 11, 13, 13, 10, 10, 11],
+      "ranged": [8, 8, 8, 8, 9, 14, 14, 15, 15],
+      "shootMs": [50, 60, 60, 60, 68, 72, 80, 70, 65],
+      "cast2Ms": [45, 60, 65, 65, 100, 70, 60, 55, 65],
+      "rowMsOf": 585,
+      "paintMs": 34,
+      "src": "js/presentation/render/render.js:727-729, :836-837, :852-858 @3c8b312"
+    },
+    "clip-steps": {
+      "about": "The frame each step shows where it is not the step's own number. off: the off-hand jab of a dual wield (on the punch row).",
+      "off": [0, 1, 1, 2, 2, 2, 1, 1, 0],
+      "flinch": [1, 2, 2, 3, 4],
+      "heavy": [0, 2, 2, 3, 4, 5, 6, 7, 8],
+      "death2": [1, 1, 2, 3, 4, 5, 6, 7, 8],
+      "launch": { "melee": 3, "ranged": 5, "cast": 4 },
+      "src": "js/presentation/render/render.js:836 @3c8b312"
+    },
+    "old-death": {
+      "about": "A look with no death2 row plays its own death row by this frame list (the death holds above): the fall starts on the look's first falling frame.",
+      "human-m": [4, 4, 5, 6, 7, 8, 8, 8, 8], "human-f": [4, 4, 5, 6, 7, 8, 8, 8, 8],
+      "elf-m": [4, 4, 5, 6, 7, 8, 8, 8, 8], "elf-f": [3, 3, 4, 5, 6, 7, 8, 8, 8],
+      "dwarf-m": [4, 4, 5, 6, 7, 8, 8, 8, 8], "dwarf-f": [4, 4, 5, 6, 7, 8, 8, 8, 8],
+      "gloomling-m": [2, 2, 3, 4, 5, 6, 7, 8, 8], "gloomling-f": [2, 2, 3, 4, 5, 6, 7, 8, 8],
+      "fae-air-m": [4, 4, 5, 6, 7, 8, 8, 8, 8], "fae-air-f": [4, 4, 5, 6, 7, 8, 8, 8, 8],
+      "fae-earth-m": [4, 4, 5, 6, 7, 8, 8, 8, 8], "fae-earth-f": [4, 4, 5, 6, 7, 8, 8, 8, 8],
+      "fae-fire-m": [4, 4, 5, 6, 7, 8, 8, 8, 8], "fae-fire-f": [4, 4, 5, 6, 7, 8, 8, 8, 8],
+      "fae-water-m": [4, 4, 5, 6, 7, 8, 8, 8, 8], "fae-water-f": [4, 4, 5, 6, 7, 8, 8, 8, 8],
+      "src": "js/presentation/render/render.js:764, :767-782 @3c8b312"
+    },
+    "walk": {
+      "about": "The run row is nine frames to two steps: framesPerStep frames a step, never faster than minFrameMs a frame. A step that starts within one step's time of the last one's end carries on the stride from the next whole frame.",
+      "framesPerStep": 4.5,
+      "minFrameMs": 35,
+      "src": "js/runtime/game.js:226-233, :243-248 @3c8b312"
+    }
+  }
+}

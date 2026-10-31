@@ -1,0 +1,586 @@
+{
+  "version": 1,
+  "rows": {
+    "burn": {
+      "family": "status", "name": "Burning", "on": ["player", "creature"],
+      "tags": ["harmful", "damage-over-time", "burn"], "element": "fire", "tickOrder": 1,
+      "turns": 3, "refresh": "longer",
+      "magnitude": {"scaled": {"base": 2, "per": {"affinity:fire": 1}, "mult": ["number-scale", "lethality"], "round": true, "min": 1}},
+      "cannotApplyIf": ["in-water-not-airborne"],
+      "each": [
+        {"verb": "damage", "type": "fire", "amount": {"from-status": "magnitude"}, "premitigated": true, "bypassShields": true, "resist": true, "tags": ["periodic", "burn"]},
+        {"verb": "field", "field": "fire", "shape": {"selector": "tile"}, "if": {"standing-on": "grass"}}
+      ],
+      "icon": "st-burn", "sfx": {"apply": "status-burn"}, "float": "tick number, fire colour", "log": {},
+      "text": "status.burn",
+      "src": "js/engine/effects.js:9; js/engine/effect-adapter.js:131-136; js/combat/combat.js:176"
+    },
+    "poison": {
+      "family": "status", "name": "Poisoned", "on": ["player", "creature"],
+      "tags": ["harmful", "damage-over-time", "poison"], "element": "earth", "tickOrder": 2,
+      "turns": 3, "refresh": "longer",
+      "each": [
+        {"verb": "damage", "type": "poison", "amount": {"from-status": "tickDamage", "fallback": {"scaled": {"base": {"pct-of": {"stat": "max-hp", "pct": 10, "bossPct": 5}}, "mult": ["status-scale"], "round": true, "min": 1}}}, "premitigated": true, "bypassShields": true, "resist": true, "tags": ["periodic", "poison"]}
+      ],
+      "while": [{"verb": "modify-stat", "stat": "hp-regen", "pct": -100}],
+      "icon": "st-poison", "sfx": {"apply": "status-poison"}, "float": "tick number, poison colour", "log": {"applyPlayer": "You: Poisoned."},
+      "text": "status.poison",
+      "src": "js/engine/effects.js:10; js/engine/effect-adapter.js:137-145; js/engine/turns.js:52, :58"
+    },
+    "bleed": {
+      "family": "status", "name": "Bleeding", "on": ["player", "creature"],
+      "tags": ["harmful", "damage-over-time", "bleed"], "tickOrder": 0,
+      "turns": 4, "refresh": "longer", "magnitude": 2,
+      "each": [
+        {"verb": "damage", "type": "phys", "amount": {"from-status": "magnitude"}, "premitigated": true, "bypassShields": true, "tags": ["periodic", "bleed"]},
+        {"verb": "terrain", "set": "blood", "pct": 35}
+      ],
+      "while": [
+        {"verb": "on-event", "trigger": "on-heal", "filters": {"natural": false}, "effects": [{"verb": "remove-status", "statuses": ["bleed"], "reason": "stanched"}]}
+      ],
+      "icon": "st-bleed", "sfx": {"apply": "status-bleed"}, "applyFloat": {"words": "bleeding", "tone": "blood"}, "float": "'bleeding' on apply; tick number, blood colour; a blood decal on 35% of ticks", "log": {"applyPlayer": "<b>Bleeding.</b> Heal to stop it.", "end": "The bleeding stops."},
+      "text": "status.bleed",
+      "src": "js/engine/effects.js:11; js/engine/effect-adapter.js:127-130; js/world/biomes/underdark/deepmobs.js:66, :160-181"
+    },
+    "slow": {
+      "family": "status", "name": "Slowed", "on": ["player", "creature"],
+      "tags": ["harmful", "movement-control", "slow"],
+      "turns": 2, "refresh": "longer", "magnitude": 0.5,
+      "while": [
+        {"verb": "cost-mod", "cost": "action-time", "for": "all"},
+        {"verb": "cost-mod", "cost": "move-time", "for": "all"}
+      ],
+      "icon": "st-slow", "sfx": {"apply": "status-slow"}, "float": "slowed",
+      "text": "status.slow",
+      "src": "js/engine/effects.js:12; js/engine/costs.js:22, :32; js/engine/costs-adapter.js:3-5"
+    },
+    "chill": {
+      "family": "status", "name": "Chilled", "on": ["player", "creature"],
+      "tags": ["harmful", "movement-control", "slow", "chill"], "element": "water",
+      "turns": 4, "refresh": "replace",
+      "stacks": {"thresholdPlayer": 3, "thresholdSourceWater6": 3, "thresholdOther": 4, "becomes": "frozen", "becomesTurns": 2,
+        "then": [{"verb": "grant-immunity", "status": "frozen", "turns": 5, "only": "creatures"}], "ironConstitutionTurns": 2},
+      "cannotApplyIf": ["entombed"],
+      "while": [
+        {"verb": "modify-stat", "stat": "speed", "pct": {"tuning": "chill"}, "own": "costs.js chillSlow (the stacked slow)"},
+        {"verb": "resist", "type": "ice", "add": 25}
+      ],
+      "icon": "st-chill", "sfx": {"becomes": "status-freeze"}, "float": "'frozen' when it becomes Frozen",
+      "text": "status.chill",
+      "src": "js/engine/effects.js:13, :137-152; js/runtime/balance-rulings.js:3; js/engine/actions.js:31"
+    },
+    "frozen": {
+      "family": "status", "name": "Frozen", "aliases": ["freeze"], "on": ["player", "creature"],
+      "tags": ["harmful", "movement-control", "slow", "hard-control", "frozen"], "element": "water", "bossControl": true,
+      "turns": 2, "refresh": "longer",
+      "blocks": ["act", "move", "melee", "evasion"],
+      "blocksPlayer": ["move", "melee", "evasion"],
+      "while": [
+        {"verb": "damage-mod", "direction": "taken", "if": {"damage-type": "phys"}, "mult": 2},
+        {"verb": "on-event", "trigger": "on-damaged", "if": {"damage-type": "phys"}, "own": "damage.js (shatter, thaw)", "effects": [
+          {"verb": "remove-status", "statuses": ["frozen"], "reason": "shattered"},
+          {"verb": "grant-immunity", "status": "frozen", "turns": 3, "only": "creatures"}]},
+        {"verb": "on-event", "trigger": "on-damaged", "if": {"not": {"damage-type": "phys"}}, "own": "damage.js (thaw)", "effects": [
+          {"verb": "remove-status", "statuses": ["frozen"], "reason": "damaged"},
+          {"verb": "grant-immunity", "status": "frozen", "turns": 3, "only": "creatures"}]}
+      ],
+      "icon": "st-frozen", "sfx": {"apply": "status-freeze"}, "float": "'frozen' on apply; 'shatter' when shattered", "log": {"blockedPlayer": "You are frozen solid."},
+      "text": "status.frozen",
+      "src": "js/engine/effects.js:14, :143-146; js/engine/damage-adapter.js:142-145; js/engine/effect-adapter.js:104; js/combat/systems.js:24"
+    },
+    "web": {
+      "family": "status", "name": "Webbed", "aliases": ["webbed"], "on": ["player", "creature"],
+      "tags": ["harmful", "movement-control", "root", "hard-control"], "bossControl": true,
+      "turns": 1, "refresh": "longer",
+      "blocks": ["move", "evasion"], "cannotApplyIf": ["airborne", "spider-vs-web"],
+      "onExpire": [
+        {"verb": "apply-status", "status": "slow", "turns": 3, "magnitude": 0.5}
+      ],
+      "icon": "st-web", "sfx": {"apply": "status-root"}, "log": {"applyPlayer": "Webs! You are stuck."}, "text": "status.web",
+      "src": "js/faith/sylla.js:31-45; js/engine/effects.js:101-104, :153-158 @3c8b312; Justin 2026-10-15, rulings on packets A and E (07dfb35): Root 1, then Slow x0.5 for 3 once the root lets go; Justin 2026-10-18 (item 167): \"bleed from sylas proc should happen when the proc triggers not after web wears off\", so the web never bleeds: Sylla's web lays its own Bleed with the root (gods.json web-on-hit, prayers.json the-brood bite)"
+    },
+    "into-the-dark": {
+      "family": "buff", "name": "Into the Dark", "on": ["player", "creature"], "tags": ["helpful"],
+      "turns": 3, "refresh": "replace", "endsOn": ["attack", "cast"],
+      "while": [{"verb": "damage-mod", "direction": "dealt", "if": {"all": [{"has-status": "hidden"}, {"hit-was": "single-target"}]}}],
+      "icon": "ic-into-the-dark", "text": "buff.into-the-dark",
+      "src": "js/engine/actions-adapter.js:99-100, :177-178; js/faith/sylla.js:40-41 @3c8b312; Justin 2026-10-15, rulings on packets A and E (07dfb35): while Hidden, the next weapon hit or single-target spell x (1 + magnitude%); ends with Hidden"
+    },
+    "root": {
+      "family": "status", "name": "Rooted", "aliases": ["rooted"], "on": ["player", "creature"],
+      "tags": ["harmful", "movement-control", "root", "hard-control"], "element": "earth", "bossControl": true,
+      "turns": 2, "refresh": "longer",
+      "blocks": ["move", "evasion"],
+      "cannotApplyIf": ["airborne", "spider-vs-web"],
+      "icon": "ic-earth-root", "sfx": {"apply": "status-root"}, "log": {"blockedPlayer": "You are rooted in place."},
+      "text": "status.root",
+      "src": "js/engine/effects.js:15, :101-104, :153-158; js/combat/systems.js:36, :625"
+    },
+    "stun": {
+      "family": "status", "name": "Stunned", "aliases": ["stunned"], "on": ["player", "creature"],
+      "tags": ["harmful", "hard-control", "stun"], "element": "air", "bossControl": true,
+      "turns": 1, "refresh": "longer",
+      "blocks": ["act", "move", "melee", "evasion"],
+      "blocksPlayer": ["move", "melee", "evasion"],
+      "icon": "st-stun", "sfx": {"apply": "status-stun"}, "log": {"blockedPlayer": "You are stunned."},
+      "text": "status.stun",
+      "src": "js/engine/effects.js:16; js/engine/actor-ai.js:245, :275; js/combat/systems.js:25"
+    },
+    "dazed": {
+      "family": "status", "name": "Dazed", "on": ["creature"], "barWord": "DAZED",
+      "tags": ["harmful"],
+      "turns": 2, "refresh": "longer",
+      "blocks": ["act", "move"],
+      "while": [{"verb": "damage-mod", "direction": "taken", "mult": 1.5, "stage": "after-defences"}],
+      "icon": "st-stun", "float": "dazed",
+      "text": "status.dazed",
+      "src": "js/combat/combat.js:423, :447; js/engine/damage-adapter.js:170 (Justin 2026-10-16, monsters.md answer 12)"
+    },
+    "knockback": {
+      "family": "status", "name": "Knockback", "on": ["player", "creature"],
+      "tags": ["movement-control", "hard-control", "knockback"], "bossControl": true,
+      "stored": false,
+      "icon": null, "sfx": {"stopped": "knock-thud"},
+      "src": "js/engine/effects.js:17, :75; js/runtime/world-time.js:54-63"
+    },
+    "fear": {
+      "family": "status", "name": "Afraid", "on": ["player", "creature"],
+      "tags": ["harmful", "fear"], "element": "shadow", "bossControl": true,
+      "turns": 2, "refresh": "longer",
+      "onExpire": [{"verb": "grant-immunity", "status": "fear", "turns": 5, "only": "creatures"}],
+      "icon": "st-fear", "sfx": {"apply": "status-fear"}, "applyFloat": {"words": "afraid", "tone": "dark", "fromFoe": true}, "log": {"retreat": "Fear: retreat.", "trapped": "Fear: trapped.", "applyPlayer": "You: Afraid."},
+      "text": "status.fear",
+      "src": "js/engine/effects.js:18, :105; js/engine/actor-ai.js:249-253; js/engine/effect-adapter.js:67, :166-186"
+    },
+    "blind": {
+      "family": "status", "name": "Blind", "on": ["player", "creature"], "card": {"text": "status.blind.hero", "hero": true},
+      "tags": ["harmful", "blind"], "element": "light",
+      "turns": 2, "refresh": "longer",
+      "blocks": ["see-player"],
+      "while": [
+        {"verb": "hit-rule", "mult": 0.6},
+        {"verb": "light-radius", "set": 1, "only": "player"}
+      ],
+      "icon": "st-blind", "sfx": {"apply": "status-blind"},
+      "text": "status.blind",
+      "src": "js/engine/effects.js:19; js/engine/actions-adapter.js:259; js/engine/actor-ai.js:4; js/combat/combat.js:259; js/engine/effect-adapter.js:63, :153"
+    },
+    "wet": {
+      "family": "status", "name": "Wet", "on": ["player", "creature"],
+      "tags": ["harmful", "wet"],
+      "turns": 3, "refresh": "replace",
+      "while": [{"verb": "resist", "type": "lightning", "add": 50}, {"verb": "resist", "type": "fire", "add": -25}],
+      "icon": "ic-tidal-surge",
+      "text": "status.wet",
+      "src": "js/engine/effects.js:20; js/engine/actions.js:30; js/engine/effect-adapter.js:113-116"
+    },
+    "corrupt": {
+      "family": "status", "name": "Corrupted", "on": ["creature"],
+      "tags": ["harmful", "corrupt"],
+      "turns": 3, "refresh": "longer",
+      "while": [
+        {"verb": "resist", "type": "dark", "mult": 1.25},
+        {"verb": "on-event", "trigger": "on-death", "if": {"all": [{"kill-side": "player"}, {"not": {"creature-flag": "boss"}}, {"not": {"creature-flag": "elite"}}]},
+          "effects": [{"verb": "summon", "side": "ally", "copyOf": "victim", "ratio": 0.5, "cap": 2, "noLoot": true, "noXp": true}]}
+      ],
+      "icon": "ic-shadow-swarm", "log": {"shade": "Shade summoned."},
+      "text": "status.corrupt",
+      "src": "js/engine/effects.js:21; js/engine/damage.js:23; js/engine/death-adapter.js:95; js/combat/combat.js:178-189"
+    },
+    "hollow": {
+      "family": "status", "name": "Hollowed", "on": ["creature"],
+      "tags": ["harmful", "hollow"],
+      "turns": 5, "refresh": "replace", "stacks": {"max": 5},
+      "while": [
+        {"verb": "damage-mod", "direction": "taken", "mult": {"scaled": {"base": 1, "per": {"stacks": 0.05}}}},
+        {"verb": "modify-stat", "stat": "armour", "add": {"scaled": {"base": 0, "per": {"stacks": -1}}}}
+      ],
+      "icon": "ic-shadow-bolt",
+      "text": "status.hollow",
+      "src": "js/engine/effects.js:22; js/combat/combat.js:113, :156-165; js/engine/damage-adapter.js:109"
+    },
+    "rot": {
+      "family": "status", "name": "Rot", "on": ["player", "creature"],
+      "tags": ["harmful", "rot"],
+      "turns": 30, "refresh": "longer",
+      "while": [
+        {"verb": "heal-mod", "heals": "regen", "mult": 0},
+        {"verb": "heal-mod", "heals": "not-regen", "mult": 0.5}
+      ],
+      "icon": "st-rot",
+      "text": "status.rot",
+      "src": "js/engine/effects.js:23; js/engine/damage.js:40-47; js/engine/damage-adapter.js:276, :523-527"
+    },
+    "stone-skin": {
+      "family": "status", "name": "Stone skin", "legacyId": "stone", "on": ["player"],
+      "tags": ["stone"],
+      "turns": 15, "refresh": "longer",
+      "onApply": [{"verb": "remove-status", "statuses": ["poison", "stun"], "reason": "cleansed"}],
+      "while": [
+        {"verb": "damage-mod", "direction": "taken", "if": {"damage-type": "phys"}, "flat": 3},
+        {"verb": "grant-immunity", "status": "poison"},
+        {"verb": "grant-immunity", "status": "stun"},
+        {"verb": "grant-immunity", "damageType": "poison"}
+      ],
+      "icon": "st-stone", "log": {"apply": "Stone Skin; Poison and Stun cleared."},
+      "text": "status.stone-skin",
+      "src": "js/engine/effects.js:24, :81, :129; js/engine/actors.js:11-12; js/engine/damage.js:14; js/engine/damage-adapter.js:378"
+    },
+    "petrified": {
+      "family": "status", "name": "Petrified", "legacyId": "stone", "on": ["creature"],
+      "tags": ["stone"],
+      "turns": 2, "refresh": "replace",
+      "blocks": ["act", "move", "melee", "evasion"],
+      "icon": "st-stone", "log": {"apply": "{name}: Petrified."}, "float": "stone", "sfx": {"apply": "earth-cast"},
+      "text": "status.petrified",
+      "src": "js/engine/effects.js:24; js/engine/actors.js:5; js/engine/effect-adapter.js:70-72"
+    },
+    "aura": {
+      "family": "status", "name": "Unholy Aura", "on": ["player"],
+      "tags": ["beneficial", "aura"], "tickOrder": 3,
+      "turns": 8, "magnitude": {"scaled": {"base": 0, "per": {"rank": 4}, "mult": ["divine"], "round": true}}, 
+      "each": [
+        {"verb": "damage", "type": "dark", "amount": {"from-status": "magnitude"},
+          "target": {"selector": "radius", "centre": "self", "n": 2, "side": "foes"},
+          "then": [{"verb": "heal", "amount": 1, "target": {"selector": "self"}}]}
+      ],
+      "icon": "pr-unholyaura", "log": {"apply": "Unholy Aura active."},
+      "text": "status.aura",
+      "src": "js/engine/effects.js:25; js/engine/effect-adapter.js:146-147; js/engine/casting-adapter.js:49"
+    },
+    "wardshield": {
+      "family": "status", "name": "Blood Ward", "on": ["creature"],
+      "tags": ["beneficial", "shield"],
+      "turns": 3,
+      "while": [{"verb": "shield", "pool": "blood-ward", "amount": {"from-status": "magnitude"}}],
+      "icon": "ic-arcane-ward", "float": "-N, magic colour", "log": {"broken": "{name}: Blood Ward broken."},
+      "text": "status.wardshield",
+      "src": "js/engine/effects.js:26; js/engine/damage-adapter.js:38-43; js/world/biomes/underdark/deepmobs.js:182, :281"
+    },
+    "livingmountain": {
+      "family": "status", "name": "Living Mountain", "on": ["player"], "showStacks": true,
+      "tags": ["beneficial", "stacking"],
+      "turns": 6, "refresh": "replace", "stacks": {"max": 10},
+      "while": [
+        {"verb": "modify-stat", "stat": "crit", "add": {"scaled": {"base": 0, "per": {"stacks": 2}}}},
+        {"verb": "modify-stat", "stat": "accuracy", "pct": {"scaled": {"base": 0, "per": {"stacks": 2}}}},
+        {"verb": "modify-stat", "stat": "damage", "add": {"scaled": {"base": 0, "per": {"stacks": 2}}}}
+      ],
+      "icon": "ic-iron-body",
+      "text": "status.livingmountain",
+      "src": "js/engine/effects.js:27; js/runtime/recovery.js:13-23; js/engine/stats.js:155-161"
+    },
+    "discipline": {
+      "family": "status", "name": "Warrior's Discipline", "on": ["player"], "showStacks": true, "card": {"text": "status.discipline.hero", "hero": true},
+      "tags": ["beneficial", "stacking"],
+      "turns": 8, "refresh": "replace", "stacks": {"max": 5},
+      "while": [
+        {"verb": "modify-stat", "stat": "damage", "add": {"scaled": {"base": 0, "per": {"stacks": 1}, "mult": ["divine"]}}},
+        {"verb": "modify-stat", "stat": "crit", "add": {"scaled": {"base": 0, "per": {"stacks": 2}, "mult": ["divine"]}}},
+        {"verb": "modify-stat", "stat": "armour", "add": {"scaled": {"base": 0, "per": {"stacks": 1}, "mult": ["divine"]}}}
+      ],
+      "icon": "ic-charge", "log": {"apply": "Warrior's Discipline: {n} stacks."},
+      "text": "status.discipline",
+      "src": "js/engine/effects.js:28; js/engine/stats.js:91, :163-166; js/faith/gods.js:384-391"
+    },
+    "goblinrage": {
+      "family": "status", "name": "Goblin Rage", "on": ["creature"],
+      "tags": ["beneficial", "haste"],
+      "turns": 4,
+      "while": [{"verb": "modify-stat", "stat": "speed", "pct": 30}],
+      "icon": "pr-rampage",
+      "text": "status.goblinrage",
+      "src": "js/engine/effects.js:29; js/engine/costs-adapter.js:4; js/enemies/enemy-teamwork.js:52"
+    },
+    "sporecoat": {
+      "family": "status", "name": "Sporecoat", "on": ["creature"],
+      "tags": ["beneficial", "shield"],
+      "turns": 3,
+      "while": [{"verb": "shield", "pool": "sporecoat", "amount": {"from-status": "magnitude"}}],
+      "icon": "st-stone", "log": {"broken": "{name}: Sporecoat broken."},
+      "text": "status.sporecoat",
+      "src": "js/engine/effects.js:30; js/enemies/sporecaller.js:53, :125-130"
+    },
+    "chaoslens": {
+      "family": "status", "name": "Lens Shield", "on": ["creature"],
+      "tags": ["beneficial", "shield"],
+      "turns": 4, "refresh": "replace",
+      "while": [{"verb": "shield", "pool": "lens", "amount": {"from-status": "magnitude"}}],
+      "icon": "ic-arcane-ward", "float": "-N", "absorbTone": "light",
+      "text": "status.chaoslens",
+      "src": "js/world/chaos/chaos-enemies.js:63, :160, :368-369"
+    },
+    "chaosbrace": {
+      "family": "status", "name": "Iron Brace", "on": ["creature"],
+      "tags": ["beneficial"],
+      "turns": 2,
+      "blocks": ["move"],
+      "while": [{"verb": "damage-mod", "direction": "taken", "reducePct": 45}],
+      "icon": "ic-arcane-ward", "float": "braced", "applyFloat": {"words": "braced", "tone": "phys"},
+      "text": "status.chaosbrace",
+      "src": "js/world/chaos/chaos-enemies.js:64, :314, :328, :367"
+    },
+    "boneward": {
+      "family": "status", "name": "Bone Ward", "on": ["creature"],
+      "tags": ["beneficial", "shield"],
+      "turns": null,
+      "while": [{"verb": "shield", "pool": "bone-ward"}],
+      "icon": "ic-arcane-ward", "float": "ward", "log": {"broken": "{name}: Bone Ward broken."},
+      "text": "status.boneward",
+      "src": "js/presentation/ui/statusicons.js:26; js/engine/damage-adapter.js:81; js/enemies/enemy-teamwork.js:62"
+    },
+    "challenged": {
+      "family": "legacy", "name": "Challenged", "on": [], "tags": ["harmful", "challenge"], "icon": "st-challenged",
+      "src": "js/engine/effects.js:31; js/presentation/ui/statusicons.js:30"
+    },
+    "coward": {
+      "family": "legacy", "name": "Coward's Mark", "on": [], "tags": ["harmful", "challenge"], "icon": "st-coward",
+      "src": "js/engine/effects.js:32; js/presentation/ui/statusicons.js:31"
+    },
+    "immunity": {
+      "family": "hidden", "name": "Immunity", "on": ["creature"],
+      "tags": ["immunity"], "icon": null,
+      "src": "js/engine/effects.js:42, :105, :145; js/presentation/ui/statusicons.js:95"
+    },
+
+    "rampage": {
+      "family": "buff", "name": "Rampage", "on": ["player"], "turns": 10,
+      "while": [
+        {"verb": "modify-stat", "stat": "damage-pct", "if": {"hit-was": "melee"}, "pct": {"scaled": {"base": 20, "per": {"rank": 4}, "mult": ["divine"]}}},
+        {"verb": "cost-mod", "cost": "action-time", "for": "melee", "speedUpPct": {"scaled": {"base": 10, "per": {"rank": 2}, "mult": ["divine"]}}}
+      ],
+      "icon": "pr-rampage", "text": "buff.rampage",
+      "src": "js/faith/gods.js:151, :561; js/engine/actions-adapter.js:305; js/engine/costs.js:13"
+    },
+    "ironhide": {
+      "family": "buff", "name": "Iron Hide", "on": ["player"], "turns": 12,
+      "while": [{"verb": "modify-stat", "stat": "armour", "add": {"scaled": {"base": 5, "mult": ["divine"], "round": true}}}, {"verb": "shield", "pool": "hide"}],
+      "icon": "pr-ironhide", "text": "buff.ironhide",
+      "src": "js/faith/gods.js:555, :697; js/engine/stats.js:113"
+    },
+    "ironbody": {
+      "family": "buff", "name": "Iron Body", "on": ["player"], "turns": 12,
+      "while": [
+        {"verb": "modify-stat", "stat": "armour", "add": {"scaled": {"base": 4, "mult": ["divine"], "round": true}}},
+        {"verb": "on-event", "trigger": "on-hit", "if": {"wielding": "unarmed"}, "chance": {"scaled": {"base": 30, "mult": ["divine"]}}, "effects": [{"verb": "apply-status", "status": "stun", "turns": 1}]}
+      ],
+      "icon": "ic-iron-body", "text": "buff.ironbody",
+      "src": "js/engine/casting-adapter.js:3; js/engine/stats.js:113; js/engine/actions-adapter.js:383"
+    },
+    "temper": {
+      "family": "buff", "name": "Temper", "on": ["player"], "turns": 12,
+      "while": [
+        {"verb": "modify-stat", "stat": "damage", "add": {"scaled": {"base": 2, "mult": ["divine"], "round": true}}},
+        {"verb": "modify-stat", "stat": "armour", "add": {"scaled": {"base": 4, "mult": ["divine"], "round": true}}}
+      ],
+      "icon": "ic-temper", "text": "buff.temper",
+      "src": "js/engine/casting-adapter.js:35; js/engine/stats.js:108, :171"
+    },
+    "trollblood": {
+      "family": "buff", "name": "Troll Blood", "on": ["player"], "turns": 6,
+      "each": [{"verb": "heal", "regen": true, "amount": {"pct-of": {"stat": "max-hp", "pct": {"scaled": {"base": 0, "per": {"rank": 0.5}, "mult": ["divine"]}}}}}],
+      "icon": "pr-trollblood", "text": "buff.trollblood",
+      "src": "js/engine/damage.js:67; js/engine/turns.js:77"
+    },
+    "laststand": {
+      "family": "buff", "name": "Last Stand", "on": ["player"], "turns": 5, "card": {"text": "buff.laststand.hero", "hero": true},
+      "while": [{"verb": "damage-mod", "direction": "taken", "reducePct": {"scaled": {"base": 0, "per": {"rank": 4}, "mult": ["divine"], "max": 50}}}],
+      "each": [{"verb": "heal", "regen": true, "amount": {"pct-of": {"stat": "max-hp", "pct": {"scaled": {"base": 0, "per": {"rank": 1}, "mult": ["divine"], "max": 10}}}}}],
+      "icon": "pr-laststand", "text": "buff.laststand",
+      "src": "js/engine/damage.js:68; js/engine/damage-adapter.js:148; js/engine/turns.js:78"
+    },
+    "manaward": {
+      "family": "buff", "name": "Mana Ward", "on": ["player"], "turns": 8, "card": {"text": "buff.manaward.card"},
+      "while": [{"verb": "shield", "pool": "mana-ward", "onAbsorb": [{"verb": "mana", "amount": {"scaled": {"base": {"pct-of": {"stat": "absorbed", "pct": 100}}, "mult": ["status-scale"]}}}]}],
+      "icon": "ic-arcane-ward", "float": "+N mp", "log": {"broken": "Mana Ward broken"}, "text": "buff.manaward",
+      "src": "js/faith/gods.js:554; js/engine/damage-adapter.js:160-164; js/engine/costs.js:35-37"
+    },
+    "luckystreak": {
+      "family": "buff", "name": "Lucky Streak", "on": ["player"], "turns": 8,
+      "while": [{"verb": "action-economy", "reroll": 1}],
+      "icon": "pr-luckystreak", "log": {"reroll": "Lucky Streak: reroll succeeded."}, "text": "buff.luckystreak",
+      "src": "js/runtime/balance-rulings.js:5-16; js/faith/gods.js:562"
+    },
+    "rally": {
+      "family": "buff", "name": "Rally", "on": ["player"], "turns": 10,
+      "while": [{"verb": "modify-stat", "stat": "damage-pct", "pct": 10}, {"verb": "modify-stat", "stat": "spell-power", "pct": 10}],
+      "icon": "pr-rally", "text": "buff.rally",
+      "src": "js/faith/gods.js:217, :570; js/engine/actions-adapter.js:307"
+    },
+    "arcaneward": {
+      "family": "buff", "name": "Ward", "on": ["player"], "turns": 10,
+      "while": [{"verb": "shield", "pool": "ward"}],
+      "icon": "ic-arcane-ward", "log": {"broken": "ward broken"}, "text": "buff.arcaneward",
+      "src": "js/elements/sigils.js:102; js/engine/damage-adapter.js:153, :165"
+    },
+    "thorns": {
+      "family": "buff", "name": "Thorns", "on": ["player"], "turns": 5,
+      "while": [{"verb": "on-event", "trigger": "on-melee-hit-taken", "effects": [{"verb": "damage-from-packet", "packet": "taken-with-shields", "ratio": 0.5, "type": "phys", "to": "source", "tags": ["reflected"]}]}],
+      "icon": "ic-earth-root", "text": "buff.thorns",
+      "src": "js/equipment/amulets.js:103-104; js/engine/actions-adapter.js:95-96, :150-151"
+    },
+    "haste": {
+      "family": "buff", "name": "Haste", "on": ["player"], "turns": 20,
+      "while": [{"verb": "modify-stat", "stat": "speed", "pct": 30, "if": {"not": {"has-status": "cinder"}}}],
+      "icon": "ic-flame-step", "text": "buff.haste",
+      "src": "js/engine/stats.js:143; js/equipment/foods.js:14"
+    },
+    "cinder": {
+      "family": "buff", "name": "Cinder Stride", "on": ["player"], "turns": 10,
+      "while": [
+        {"verb": "modify-stat", "stat": "speed", "pct": 50},
+        {"verb": "on-event", "trigger": "on-move", "effects": [{"verb": "field", "field": "fire", "shape": {"selector": "tile"}}]}
+      ],
+      "icon": "ic-flame-step", "text": "buff.cinder",
+      "src": "js/engine/sigil-adapter.js:155; js/engine/stats.js:143; js/elements/sigils.js:236"
+    },
+    "moltenring": {
+      "family": "buff", "name": "Molten Ring", "on": ["player"], "turns": 5,
+      "while": [{"verb": "on-event", "trigger": "on-hit", "if": {"hit-was": "single-target"}, "effects": [{"verb": "damage", "type": "fire", "amount": 5, "tags": ["proc", "molten-ring"]}]}],
+      "icon": "ic-firebolt", "text": "buff.moltenring",
+      "src": "js/engine/sigil-adapter.js:160; js/engine/actions-adapter.js:235-237"
+    },
+    "manaflow": {
+      "family": "buff", "name": "Mana Flow", "on": ["player"], "turns": 60,
+      "while": [{"verb": "modify-stat", "stat": "mp-regen", "add": 0.9}],
+      "icon": "pr-manatide", "text": "buff.manaflow",
+      "src": "js/engine/turns.js:59; js/equipment/foods.js:13"
+    },
+    "afterglow": {
+      "family": "buff", "name": "Afterglow", "on": ["player"], "turns": 15,
+      "each": [{"verb": "heal", "amount": {"pct-of": {"stat": "max-hp", "pct": 5, "min": 1}}}],
+      "icon": "ic-heal", "text": "buff.afterglow",
+      "src": "js/engine/turns.js:79; js/engine/sigil-adapter.js:79"
+    },
+    "sapped": {
+      "family": "status", "name": "Sapped", "on": ["creature"], "tags": ["harmful"], "permanent": true,
+      "while": [{"verb": "grant-immunity", "status": "stun"}],
+      "rules": ["the hero's crit chance against a Sapped body is 1 (combat.md C32)", "the first damage it takes ends the Sap stun it came with"],
+      "icon": "st-stun", "text": "status.sapped",
+      "note": "Sap's mark (magic.md answer 6, 2026-10-16): a status row in place of an endless grant-immunity.",
+      "src": "js/elements/abilities.js (Sap); js/engine/stats.js crit vs sapped"
+    },
+    "dawn": {
+      "family": "buff", "name": "Dawn", "on": ["player"], "turns": 20,
+      "while": [{"verb": "reveal", "what": "creatures", "where": "floor"}],
+      "icon": "ic-dawn", "text": "buff.dawn",
+      "note": "Dawn's reveal: every foe on the floor shown for 20 game turns (magic.md answer 11, 2026-10-16).",
+      "src": "js/engine/casting-adapter.js:185"
+    },
+    "forge-heat": {
+      "family": "buff", "name": "Forge Heat", "on": ["player"], "turns": 3, "refresh": "replace", "stacks": {"max": 5}, "card": {"text": "buff.forge-heat.card"},
+      "while": [{"verb": "modify-stat", "stat": "damage", "add": {"scaled": {"base": 0, "per": {"stacks": 2}}}}, {"verb": "modify-stat", "stat": "armour", "add": {"scaled": {"base": 0, "per": {"stacks": 2}}}}],
+      "endLog": "The forge heat fades.", "maxLog": "The forge heat is white-hot. +10 damage and armor.", "icon": "ic-forge", "text": "buff.forge-heat",
+      "note": "Earth + Fire combo (packet D): each landed weapon or single-target spell hit adds a stack and resets the count. 1.7 ends it 3 paid actions after the last hit; here 3 game turns (S1, turns.md TO1-TO2 ruled 2026-10-15).",
+      "src": "js/elements/combos.js:75-106 @3c8b312"
+    },
+    "regeneration": {
+      "family": "buff", "name": "Regeneration", "on": ["player"], "turns": 60,
+      "while": [{"verb": "modify-stat", "stat": "hp-regen", "add": 1, "min": 1, "clock": "action"}],
+      "icon": "ic-heal", "text": "buff.regeneration",
+      "src": "js/equipment/foods.js:12, :43-46, :56-57"
+    },
+    "might": {
+      "family": "buff", "name": "Might", "on": ["player"], "turns": 30,
+      "while": [{"verb": "modify-stat", "stat": "damage-pct", "pct": 20}],
+      "icon": "pr-rampage", "text": "buff.might",
+      "src": "js/engine/stats.js:170; js/equipment/foods.js:15, :58"
+    },
+    "poisonward": {
+      "family": "buff", "name": "Poison Ward", "on": ["player"], "turns": 60,
+      "while": [{"verb": "resist", "type": "poison", "immune": true}],
+      "icon": "st-poison", "text": "buff.poisonward",
+      "src": "js/engine/actions.js:36; js/engine/damage-adapter.js:99; js/engine/effect-adapter.js:141; js/equipment/foods.js:17, :59"
+    },
+    "shadeward": {
+      "family": "buff", "name": "Shade Ward", "on": ["player"], "turns": 60,
+      "while": [{"verb": "resist", "type": "dark", "mult": 0.5}],
+      "icon": "ic-shadow-bolt", "text": "buff.shadeward",
+      "src": "js/engine/actions.js:37; js/equipment/foods.js:18, :60"
+    },
+    "stormward": {
+      "family": "buff", "name": "Glowcap", "on": ["player"], "turns": 60,
+      "while": [{"verb": "resist", "type": "lightning", "mult": 0.5}, {"verb": "light-radius", "add": 1}],
+      "icon": "ic-chain-lightning", "text": "buff.stormward",
+      "src": "js/engine/actions.js:37; js/equipment/foods.js:19, :61"
+    },
+    "fireward": {
+      "family": "buff", "name": "Fire Ward", "on": ["player"], "turns": 60,
+      "while": [{"verb": "resist", "type": "fire", "mult": 0.5}],
+      "icon": "ic-firebolt", "text": "buff.fireward",
+      "src": "js/engine/actions.js:37; js/equipment/foods.js:20, :62"
+    },
+    "starward": {
+      "family": "buff", "name": "Starfruit", "on": ["player"], "turns": 60,
+      "while": [{"verb": "resist", "type": "elemental", "mult": 0.8}],
+      "icon": "ic-arcane-ward", "text": "buff.starward",
+      "src": "js/engine/actions.js:38; js/equipment/foods.js:21, :63"
+    },
+
+    "hidden": {
+      "family": "timer", "name": "Hidden", "on": ["player"], "counts": "game-turn",
+      "endsOn": ["attack", "cast"],
+      "blocks": ["be-seen"],
+      "icon": "st-hidden", "text": "timer.hidden",
+      "src": "js/engine/turns.js:81; js/presentation/ui/statusicons.js:59"
+    },
+    "levitate": {
+      "family": "timer", "name": "Floating", "on": ["player"], "counts": "game-turn",
+      "while": [{"verb": "movement-mode", "mode": "levitate"}],
+      "onExpire": [{"verb": "fall", "if": {"standing-on": "chasm"}}],
+      "icon": "st-floating", "text": "timer.levitate",
+      "src": "js/engine/turns.js:84-89"
+    },
+    "stillness": {
+      "family": "timer", "name": "Stillness", "on": ["player"], "counts": "step",
+      "endsOn": ["any-non-move"],
+      "while": [{"verb": "movement-mode", "mode": "stillness"}],
+      "log": {"end": "Time lurches back into motion.", "broken": "Your action breaks the stillness."},
+      "icon": "item-amulet-tear", "text": "timer.stillness",
+      "src": "js/engine/turns.js:10-13; js/equipment/amulets.js:90"
+    },
+    "snuffed": {
+      "family": "timer", "name": "Light Snuffed", "on": ["player"], "counts": "action-on-planes", "turns": 5,
+      "while": [{"verb": "light-radius", "set": 2}],
+      "log": {"end": "Your light steadies."},
+      "icon": "st-blind", "text": "timer.snuffed",
+      "src": "js/engine/damage-adapter.js:277; js/world/planes/portals.js:316-318"
+    },
+    "resolve": {
+      "family": "timer", "name": "Resolve", "on": ["player"], "counts": "clock",
+      "while": [{"verb": "grant-immunity", "tag": "hard-control"}],
+      "icon": "st-stone", "text": "timer.resolve",
+      "src": "js/engine/effects.js:83, :130; js/runtime/world-time.js:60, :67"
+    },
+    "stormform": {
+      "family": "timer", "name": "Storm Form", "on": ["player"], "counts": "clock", "turns": 6,
+      "while": [
+        {"verb": "cost-mod", "cost": "action-time", "mult": 0.5, "min": 20},
+        {"verb": "cost-mod", "cost": "move-time", "mult": 0.5},
+        {"verb": "action-economy", "instant": "spells"}
+      ],
+      "icon": "ic-storm-form", "text": "timer.stormform",
+      "src": "js/engine/casting-adapter.js:159; js/engine/costs.js:20, :31"
+    },
+    "wizardhunter": {
+      "family": "timer", "name": "Wizard Hunter", "on": ["player"], "counts": "clock", "turns": 3,
+      "while": [
+        {"verb": "cost-mod", "cost": "action-time", "speedUpPct": {"scaled": {"base": 0, "per": {"rank": 5}, "mult": ["divine"]}}},
+        {"verb": "cost-mod", "cost": "move-time", "speedUpPct": {"scaled": {"base": 0, "per": {"rank": 5}, "mult": ["divine"]}}}
+      ],
+      "icon": "ic-charge", "text": "timer.wizardhunter",
+      "src": "js/engine/damage-adapter.js:281; js/engine/costs.js:14, :29"
+    },
+    "tomb": {
+      "family": "timer", "name": "Entombed", "on": ["player", "creature"], "counts": "game-turn",
+      "turnsByBearer": {"player": 3, "creature": 10, "elite": 6, "boss": 2},
+      "blocks": ["act", "move", "melee", "evasion"],
+      "while": [{"verb": "untargetable", "state": "entombed"}],
+      "onExpire": [{"verb": "heal", "amount": {"pct-of": {"stat": "max-hp", "pct": 25}}, "only": "player"}, {"verb": "mana", "amount": {"pct-of": {"stat": "max-mp", "pct": 25}}, "only": "player"}],
+      "note": "On the hero: 3 game turns like every status, and ending it heals 25% of max HP and restores 25% of max mana (magic.md answer 8, 2026-10-16; 1.7 counted 3 of the hero's actions, DO11).",
+      "log": {"end": "The ice around {name} shatters.", "expire": "The ice around {name} shatters.", "expirePlayer": "Glacial Tomb ends."}, "sfx": {"end": "ice-melt"},
+      "icon": null,
+      "src": "js/elements/elements.js:392-430; js/engine/turns.js:66; js/engine/damage-adapter.js:98"
+    }
+  }
+}

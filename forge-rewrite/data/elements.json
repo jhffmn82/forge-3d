@@ -1,0 +1,790 @@
+{
+  "version": 1,
+  "rows": {
+    "affinity-rules": {
+      "kind": "rule",
+      "does": "Affinity is permanent, gained one point per mote fused at the Forge (forge.json fuse). At most two elements, never opposites; the first element gained is primary and the second can never exceed it; 6 is the most in one element; the total is limited by the affinity cap (progression.json affinity-cap: 1 + boss cores claimed + race bonus).",
+      "maxElements": 2,
+      "maxPerElement": 6,
+      "primary": "the first element gained (or the race or court element)",
+      "src": "js/engine/forge-adapter.js:66-93; js/elements/cores.js:12-15",
+      "immunities": "The rank 3 and rank 6 immunities live on these rows only; statuses.md S11 points here (ruled 2026-10-16 Q5)"
+    },
+    "motes": {
+      "kind": "rule",
+      "does": "Motes are the six element materials. Gained: the run plan places them on floors (world.md W4-W5), chests, broken props and kills (loot.json), puzzle and boss rewards, the merchant (100 essence each), Wobbles gifts, the crystal-resonance room. Spent at the Forge only: fuse 1, enchant 1, carve per recipe (sigils.json). Old Anvil rank 3 may hand spent motes back (faith.md, Second Heat).",
+      "kinds": [
+        "fire",
+        "water",
+        "air",
+        "earth",
+        "light",
+        "shadow"
+      ],
+      "src": "js/engine/forge-adapter.js:23, :42, :82; js/faith/religion.js:99-105"
+    },
+    "spell-ground": {
+      "kind": "rule",
+      "does": "At rank 6 of Fire, Water, Earth or Light, that element's spells mark every tile they strike for 3 game turns: fire (not on water), icy ground (foes standing on it gain a Chill stack each game turn unless airborne), grasping roots (a foe that moves onto it is Rooted 1 unless airborne), holy ground (light; power = spell power). Every struck tile also hits props with the spell's type.",
+      "turns": 3,
+      "src": "js/elements/elements.js:65-76, :135-143; js/engine/actor-ai.js:218"
+    },
+    "fire": {
+      "kind": "element",
+      "name": "Fire",
+      "opposite": "water",
+      "damageType": "fire", "trail": "fire",
+      "colour": "#E2622B",
+      "abilities": {
+        "2": "firebolt",
+        "4": "fireball",
+        "5": "livingflame"
+      },
+      "perPoint": {
+        "name": "Fire",
+        "effects": [
+          {
+            "verb": "on-event",
+            "trigger": "on-damage-dealt",
+            "filters": {},
+            "if": {
+              "all": [
+                {
+                  "has-tag": [
+                    "spell",
+                    "attack"
+                  ]
+                },
+                {
+                  "not": {
+                    "has-tag": [
+                      "proc",
+                      "periodic",
+                      "arc"
+                    ]
+                  }
+                },
+                {
+                  "creature-flag": "foe"
+                }
+              ]
+            },
+            "effects": [
+              {
+                "verb": "damage",
+                "type": "fire",
+                "tags": [
+                  "proc",
+                  "fire-affinity"
+                ],
+                "amount": {
+                  "scaled": {
+                    "base": 0,
+                    "per": {
+                      "affinity:fire": 1
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "also": "One rule (ruled 2026-10-16 Q25): +1 fire per point on every damaging spell or weapon packet, area included. Burn magnitude 2 + Fire (statuses.json burn)",
+        "src": "js/engine/actions-adapter.js:224-225; js/elements/elements.js:169"
+      },
+      "rank3": {
+        "name": "Searing",
+        "effects": [
+          {
+            "verb": "damage-mod",
+            "direction": "dealt",
+            "mult": {
+              "scaled": {
+                "base": 1,
+                "per": {
+                  "affinity:fire": 0.05
+                }
+              }
+            },
+            "if": {
+              "has-status": "burn"
+            }
+          },
+          {
+            "verb": "grant-immunity",
+            "status": "burn"
+          }
+        ],
+        "src": "js/engine/damage-adapter.js:108; js/elements/elements.js:25"
+      },
+      "rank6": {
+        "name": "Wildfire",
+        "effects": [
+          {
+            "verb": "on-event",
+            "trigger": "on-kill",
+            "filters": {
+              "victimStatus": "burn"
+            },
+            "effects": [
+              {
+                "verb": "apply-status",
+                "status": "burn",
+                "turns": 3,
+                "bolt": "fire",
+                "target": {
+                  "selector": "nearest",
+                  "side": "foes",
+                  "n": 1,
+                  "range": 3,
+                  "of": "victim"
+                }
+              }
+            ]
+          },
+          {
+            "verb": "resist",
+            "type": "fire",
+            "immune": true
+          }
+        ],
+        "ground": "fire",
+        "src": "js/engine/death-adapter.js:140-144; js/elements/elements.js:31, :71"
+      }
+    },
+    "water": {
+      "kind": "element",
+      "name": "Water",
+      "opposite": "fire",
+      "damageType": "ice", "trail": "ice",
+      "colour": "#62A8D8",
+      "abilities": {
+        "2": "frostshard",
+        "4": "frostcone",
+        "5": "glacialtomb"
+      },
+      "perPoint": {
+        "name": "Ice Armor",
+        "effects": [
+          {
+            "verb": "shield",
+            "pool": "ice-armor",
+            "cap": {
+              "scaled": {
+                "base": 0,
+                "per": {
+                  "affinity:water": 3
+                }
+              }
+            }
+          },
+          {
+            "verb": "resist",
+            "type": "ice",
+            "add": {
+              "scaled": {
+                "base": 0,
+                "per": {
+                  "affinity:water": -5
+                }
+              }
+            }
+          }
+        ],
+        "also": "refill: progression.json (combat.md C61)",
+        "src": "js/engine/stats.js:118; js/equipment/forge.js:16"
+      },
+      "rank3": {
+        "name": "Deep Chill",
+        "effects": [
+          {
+            "verb": "grant-immunity",
+            "status": "slow"
+          },
+          {
+            "verb": "grant-immunity",
+            "status": "chill"
+          },
+          {
+            "verb": "grant-immunity",
+            "status": "frozen"
+          }
+        ],
+        "also": "your Chill slows 33% + 3% per Water point, at most 50% (statuses.json chill)",
+        "src": "js/elements/elements.js:26"
+      },
+      "rank6": {
+        "name": "Deep Freeze",
+        "effects": [
+          {
+            "verb": "resist",
+            "type": "ice",
+            "immune": true
+          }
+        ],
+        "also": "Chill from you freezes at 3 stacks (statuses.json chill thresholdSourceWater6)",
+        "ground": "ice",
+        "src": "js/engine/effects.js:141; js/elements/elements.js:32, :72"
+      }
+    },
+    "air": {
+      "kind": "element",
+      "name": "Air",
+      "opposite": "earth",
+      "damageType": "lightning", "trail": "lightning",
+      "colour": "#E8D27A",
+      "abilities": {
+        "2": "spark",
+        "4": "chainbolt",
+        "5": "stormform"
+      },
+      "perPoint": {
+        "name": "Swift",
+        "effects": [
+          {
+            "verb": "cost-mod",
+            "cost": "move-time",
+            "speedUpPct": {
+              "scaled": {
+                "base": 0,
+                "per": {
+                  "affinity:air": 10
+                }
+              }
+            }
+          }
+        ],
+        "src": "js/engine/costs.js:26"
+      },
+      "rank3": {
+        "name": "Arc",
+        "effects": [
+          {
+            "verb": "on-event",
+            "trigger": "on-hit",
+            "filters": {},
+            "if": {
+              "not": {
+                "has-tag": [
+                  "arc",
+                  "proc"
+                ]
+              }
+            },
+            "chance": {
+              "scaled": {
+                "base": 0,
+                "per": {
+                  "affinity:air": 10
+                },
+                "max": 100
+              }
+            },
+            "effects": [
+              {
+                "verb": "damage-from-packet",
+                "packet": "dealt",
+                "ratio": 0.5,
+                "type": "lightning",
+                "tags": [
+                  "arc",
+                  "proc"
+                ],
+                "to": {
+                  "selector": "nearest",
+                  "side": "foes",
+                  "n": 2,
+                  "range": 4,
+                  "of": "target",
+                  "notTarget": true,
+                  "visibleOnly": true
+                }
+              }
+            ]
+          },
+          {
+            "verb": "grant-immunity",
+            "status": "stun"
+          }
+        ],
+        "src": "js/engine/damage.js:50-53; js/engine/damage-adapter.js:213-230, :243-245; js/world/puzzles.js:533"
+      },
+      "rank6": {
+        "name": "Lightning Reflexes",
+        "effects": [
+          {
+            "verb": "action-economy",
+            "free": 15,
+            "if": {
+              "action-was": [
+                "attack",
+                "cast",
+                "noisy"
+              ]
+            }
+          },
+          {
+            "verb": "on-event",
+            "trigger": "on-damage-dealt",
+            "filters": {},
+            "if": {
+              "damage-type": "lightning"
+            },
+            "chance": 15,
+            "effects": [
+              {
+                "verb": "apply-status",
+                "status": "stun",
+                "turns": 1
+              }
+            ]
+          },
+          {
+            "verb": "resist",
+            "type": "lightning",
+            "immune": true
+          }
+        ],
+        "src": "js/engine/turns.js:14; js/engine/damage-adapter.js:242"
+      }
+    },
+    "earth": {
+      "kind": "element",
+      "name": "Earth",
+      "opposite": "air",
+      "damageType": "poison", "trail": "earth",
+      "colour": "#7FA05A",
+      "abilities": {
+        "2": "root",
+        "4": "earthquake",
+        "5": "upheaval"
+      },
+      "perPoint": {
+        "name": "Stone Skin",
+        "effects": [],
+        "ruleIn": "combat.md C44: the flat armour reduction adds 1 per Earth point",
+        "src": "js/engine/damage-adapter.js:140"
+      },
+      "rank3": {
+        "name": "Venom",
+        "effects": [
+          {
+            "verb": "on-event",
+            "trigger": "on-status-applied",
+            "filters": { "applied": "root" },
+            "if": {
+              "all": [
+                {
+                  "has-status": "root"
+                },
+                {
+                  "not": {
+                    "has-status": "poison"
+                  }
+                },
+                {
+                  "creature-flag": "foe"
+                }
+              ]
+            },
+            "effects": [
+              {
+                "verb": "apply-status",
+                "status": "poison",
+                "turns": {
+                  "scaled": {
+                    "base": -2,
+                    "per": {
+                      "affinity:earth": 1
+                    },
+                    "min": 1,
+                    "max": 3
+                  }
+                },
+                "refresh": "replace",
+                "durationModifiers": false
+              }
+            ]
+          },
+          {
+            "verb": "grant-immunity",
+            "status": "root"
+          },
+          {
+            "verb": "grant-immunity",
+            "status": "web"
+          }
+        ],
+        "src": "js/engine/effect-adapter.js:74-77; js/elements/elements.js:110-119"
+      },
+      "rank6": {
+        "name": "Petrify",
+        "effects": [
+          {
+            "verb": "on-event",
+            "trigger": "on-status-applied",
+            "filters": { "applied": "root" },
+            "if": {
+              "all": [
+                {
+                  "has-status": {
+                    "status": "root",
+                    "beforeThisHit": true
+                  }
+                },
+                {
+                  "not": {
+                    "has-status": {
+                      "immuneTo": "petrified"
+                    }
+                  }
+                }
+              ]
+            },
+            "effects": [
+              {
+                "verb": "apply-status",
+                "status": "petrified",
+                "turns": 2,
+                "refresh": "replace",
+                "durationModifiers": false
+              },
+              {
+                "verb": "grant-immunity",
+                "status": "petrified",
+                "turns": 4
+              }
+            ]
+          },
+          {
+            "verb": "grant-immunity",
+            "status": "poison"
+          }
+        ],
+        "ground": "root",
+        "src": "js/engine/effect-adapter.js:69-73"
+      }
+    },
+    "light": {
+      "kind": "element",
+      "name": "Light",
+      "opposite": "shadow",
+      "damageType": "light", "trail": "light",
+      "colour": "#F6E7B0",
+      "abilities": {
+        "2": "smite",
+        "4": "radiantbeam",
+        "5": "dawn"
+      },
+      "perPoint": {
+        "name": "Smite",
+        "effects": [
+          {
+            "verb": "on-event",
+            "trigger": "on-hit",
+            "filters": {},
+            "if": {
+              "all": [
+                {
+                  "creature-flag": "foe"
+                },
+                {
+                  "not": {
+                    "rank-at-least": {
+                      "god": "glimmer",
+                      "n": 3
+                    }
+                  }
+                }
+              ]
+            },
+            "chance": {
+              "scaled": {
+                "base": 0,
+                "per": {
+                  "affinity:light": 10
+                }
+              }
+            },
+            "effects": [
+              {
+                "verb": "damage",
+                "type": "light",
+                "tags": [
+                  "proc",
+                  "smite"
+                ],
+                "amount": {
+                  "scaled": {
+                    "base": {
+                      "roll": [
+                        3,
+                        6
+                      ]
+                    },
+                    "per": {
+                      "affinity:light": 1
+                    }
+                  }
+                }
+              },
+              {
+                "verb": "apply-status",
+                "status": "blind",
+                "turns": 2,
+                "chance": {
+                  "scaled": {
+                    "base": 0,
+                    "per": {
+                      "affinity:light": 10
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "verb": "on-event",
+            "trigger": "on-hit",
+            "filters": {},
+            "if": {
+              "all": [
+                {
+                  "creature-flag": "foe"
+                },
+                {
+                  "rank-at-least": {
+                    "god": "glimmer",
+                    "n": 3
+                  }
+                }
+              ]
+            },
+            "chance": {
+              "scaled": {
+                "base": 0,
+                "per": {
+                  "affinity:light": 10,
+                  "rank": 5
+                }
+              }
+            },
+            "effects": [
+              {
+                "verb": "damage",
+                "type": "light",
+                "tags": [
+                  "proc",
+                  "smite"
+                ],
+                "amount": {
+                  "scaled": {
+                    "base": {
+                      "roll": [
+                        3,
+                        6
+                      ]
+                    },
+                    "per": {
+                      "affinity:light": 1
+                    }
+                  }
+                }
+              },
+              {
+                "verb": "apply-status",
+                "status": "blind",
+                "turns": 2,
+                "chance": {
+                  "scaled": {
+                    "base": 0,
+                    "per": {
+                      "affinity:light": 10
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "also": "Guiding Light (Glimmer rank 3+): Smite chance +5% per Glimmer rank (ruled 2026-10-16 Q1). At Light 6 a Smite marks holy ground",
+        "src": "js/engine/actions-adapter.js:226-233; js/combat/combat.js:150"
+      },
+      "rank3": {
+        "name": "Radiance",
+        "effects": [
+          {
+            "verb": "on-event",
+            "trigger": "on-damage-dealt",
+            "filters": {},
+            "if": {
+              "damage-type": "light"
+            },
+            "effects": [
+              {
+                "verb": "heal",
+                "amount": {
+                  "scaled": {
+                    "base": 0,
+                    "per": {
+                      "affinity:light": 1
+                    }
+                  }
+                },
+                "target": {
+                  "selector": "self"
+                }
+              }
+            ]
+          },
+          {
+            "verb": "grant-immunity",
+            "status": "blind"
+          }
+        ],
+        "src": "js/engine/damage-adapter.js:239"
+      },
+      "rank6": {
+        "name": "Holy Ground",
+        "effects": [
+          {
+            "verb": "resist",
+            "type": "light",
+            "immune": true
+          }
+        ],
+        "ground": "holy",
+        "holyGround": {
+          "heal": "2% of max HP x power per game turn to the player and allies",
+          "foes": "light sDMG(3 + Light) x power per game turn, x2 undead and shadowy",
+          "resist": "combat.md C53"
+        },
+        "src": "js/runtime/balance-rulings.js:61-74; js/engine/actions-adapter.js:230"
+      }
+    },
+    "shadow": {
+      "kind": "element",
+      "name": "Shadow",
+      "opposite": "light",
+      "damageType": "dark", "trail": "dark",
+      "colour": "#8A6FB0",
+      "abilities": {
+        "2": "shadowbolt",
+        "4": "shadowswarm",
+        "5": "umbral"
+      },
+      "perPoint": {
+        "name": "Life Drain",
+        "effects": [
+          {
+            "verb": "on-event",
+            "trigger": "on-hit",
+            "filters": {},
+            "chance": {
+              "scaled": {
+                "base": 0,
+                "per": {
+                  "affinity:shadow": 10
+                }
+              }
+            },
+            "effects": [
+              {
+                "verb": "damage",
+                "type": "dark",
+                "tags": [
+                  "proc",
+                  "life-drain"
+                ],
+                "amount": {
+                  "roll": [
+                    6,
+                    9
+                  ]
+                },
+                "then": [
+                  {
+                    "verb": "drain",
+                    "ratio": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "verb": "on-event",
+            "trigger": "on-hit",
+            "filters": {},
+            "effects": [
+              {
+                "verb": "add-stack",
+                "status": "hollow",
+                "n": 0
+              }
+            ]
+          }
+        ],
+        "also": "Murk's boon replaces the drain roll with one combined roll (faith.md, ruled 2026-10-15 Q23)",
+        "src": "js/engine/actions.js:46-49; js/faith/gods.js:643-649; js/engine/actions-adapter.js:234"
+      },
+      "rank3": {
+        "name": "Fade",
+        "effects": [
+          {
+            "verb": "on-event",
+            "trigger": "on-quiet",
+            "filters": {},
+            "n": {
+              "scaled": {
+                "base": 16,
+                "per": {
+                  "affinity:shadow": -2
+                },
+                "min": 4
+              }
+            },
+            "effects": [
+              {
+                "verb": "hide",
+                "turns": 2
+              }
+            ]
+          },
+          {
+            "verb": "grant-immunity",
+            "status": "fear"
+          }
+        ],
+        "src": "js/elements/elements.js:149-152"
+      },
+      "rank6": {
+        "name": "Hollowing",
+        "effects": [
+          {
+            "verb": "on-event",
+            "trigger": "on-damage-dealt",
+            "filters": {},
+            "if": {
+              "damage-type": "dark"
+            },
+            "effects": [
+              {
+                "verb": "add-stack",
+                "status": "hollow",
+                "n": 1,
+                "cap": 5,
+                "turns": 5
+              }
+            ]
+          },
+          {
+            "verb": "resist",
+            "type": "dark",
+            "immune": true
+          }
+        ],
+        "src": "js/engine/damage-adapter.js:238; js/elements/spellench.js:34"
+      }
+    }
+  }
+}

@@ -1,0 +1,498 @@
+{
+  "version": 1,
+  "rows": {
+    "dart": {
+      "name": "Dart",
+      "sprite": "trap-dart",
+      "minFloor": 1,
+      "once": false,
+      "sfx": "trap-dart",
+      "on": {
+        "trigger": "on-enter-tile"
+      },
+      "effects": [
+        {
+          "verb": "damage",
+          "amount": {
+            "scaled": {
+              "base": {
+                "roll": [
+                  4,
+                  8
+                ]
+              },
+              "per": {
+                "floor": 1
+              }
+            }
+          },
+          "type": "phys",
+          "tags": [
+            "environment"
+          ],
+          "capPctMaxHp": 25,
+          "minOnPlayer": 2
+        },
+        {
+          "verb": "apply-status",
+          "status": "poison",
+          "turns": 4,
+          "magnitude": 2,
+          "chance": 50
+        }
+      ],
+      "log": {
+        "player": "You trigger a dart trap: N damage.",
+        "seen": "<Name> triggers a dart trap: N damage."
+      },
+      "src": "js/content/data.js:885; js/combat/systems.js:610"
+    },
+    "web": {
+      "name": "Web",
+      "sprite": "trap-web",
+      "minFloor": 1,
+      "once": true,
+      "sfx": "trap-web",
+      "on": {
+        "trigger": "on-enter-tile"
+      },
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "web",
+          "turns": 3
+        }
+      ],
+      "log": {
+        "player": "Webs! You are stuck.",
+        "seen": "Webs! <Name> is stuck.",
+        "note": "logged only when the status actually applied"
+      },
+      "src": "js/content/data.js:886; js/combat/systems.js:620"
+    },
+    "alarm": {
+      "name": "Alarm",
+      "sprite": "trap-alarm",
+      "minFloor": 1,
+      "once": true,
+      "sfx": "trap-alarm",
+      "on": {
+        "trigger": "on-enter-tile"
+      },
+      "effects": [
+        {
+          "verb": "alert",
+          "radius": 16,
+          "who": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 16,
+            "side": "foes"
+          },
+          "toward": "source",
+          "skipHunting": true
+        }
+      ],
+      "log": {
+        "player": "An alarm bell clangs! Everything nearby comes running.",
+        "seen": "<Name> sets off an alarm bell! Everything nearby comes running.",
+        "heard": "You hear an alarm bell ring <direction>."
+      },
+      "src": "js/content/data.js:887; js/combat/systems.js:624"
+    },
+    "fire": {
+      "name": "Fire vent",
+      "sprite": "trap-fire",
+      "minFloor": 2,
+      "once": false,
+      "sfx": "trap-fire",
+      "on": {
+        "trigger": "on-enter-tile"
+      },
+      "effects": [
+        {
+          "verb": "damage",
+          "amount": {
+            "scaled": {
+              "base": {
+                "roll": [
+                  4,
+                  7
+                ]
+              },
+              "per": {
+                "floor": 1
+              }
+            }
+          },
+          "type": "fire",
+          "tags": [
+            "environment"
+          ]
+        },
+        {
+          "verb": "apply-status",
+          "status": "burn",
+          "turns": 3,
+          "magnitude": {
+            "scaled": {
+              "base": 2,
+              "mult": [
+                "number-scale",
+                "lethality"
+              ],
+              "round": true,
+              "min": 1
+            }
+          }
+        },
+        {
+          "verb": "field",
+          "field": "fire",
+          "shape": {
+            "selector": "tile"
+          },
+          "turns": 3,
+          "clock": "game-turn",
+          "only": "flammable"
+        }
+      ],
+      "log": {
+        "player": "A fire vent erupts: N fire damage and Burning.",
+        "seen": "A fire vent erupts under <name>: N fire damage and Burning."
+      },
+      "src": "js/content/data.js:888; js/combat/systems.js:612"
+    },
+    "frost": {
+      "name": "Frost jet",
+      "sprite": "trap-frost",
+      "minFloor": 2,
+      "once": false,
+      "sfx": "trap-frost",
+      "on": {
+        "trigger": "on-enter-tile"
+      },
+      "effects": [
+        {
+          "verb": "damage",
+          "amount": {
+            "scaled": {
+              "base": {
+                "roll": [
+                  3,
+                  6
+                ]
+              },
+              "per": {
+                "floor": 1
+              }
+            }
+          },
+          "type": "ice",
+          "tags": [
+            "environment"
+          ]
+        },
+        {
+          "verb": "add-stack",
+          "status": "chill",
+          "n": 1
+        },
+        {
+          "verb": "add-stack",
+          "status": "chill",
+          "n": 1
+        }
+      ],
+      "log": {
+        "player": "A frost jet blasts you: N frost damage and Chill.",
+        "seen": "A frost jet blasts <name>: N frost damage and Chill."
+      },
+      "src": "js/content/data.js:889; js/combat/systems.js:614"
+    },
+    "spark": {
+      "name": "Spark plate",
+      "sprite": "trap-spark",
+      "minFloor": 3,
+      "once": false,
+      "sfx": "trap-spark",
+      "on": {
+        "trigger": "on-enter-tile"
+      },
+      "effects": [
+        {
+          "verb": "damage",
+          "amount": {
+            "scaled": {
+              "base": {
+                "roll": [
+                  4,
+                  8
+                ]
+              },
+              "per": {
+                "floor": 1
+              }
+            }
+          },
+          "type": "lightning",
+          "tags": [
+            "environment"
+          ],
+          "capPctMaxHp": 25,
+          "minOnPlayer": 2
+        },
+        {
+          "verb": "apply-status",
+          "status": "stun",
+          "turns": 1,
+          "chance": 50
+        }
+      ],
+      "log": {
+        "player": "A spark plate discharges: N lightning damage.",
+        "seen": "A spark plate discharges into <name>: N lightning damage."
+      },
+      "src": "js/content/data.js:890; js/combat/systems.js:616"
+    },
+    "teleport": {
+      "name": "Teleport rune",
+      "sprite": "trap-teleport",
+      "minFloor": 3,
+      "once": false,
+      "sfx": "trap-teleport",
+      "on": {
+        "trigger": "on-enter-tile"
+      },
+      "effects": [
+        {
+          "verb": "teleport",
+          "who": {
+            "selector": "target"
+          },
+          "to": "random-safe",
+          "rules": [
+            "walkable",
+            "empty",
+            "ordinary-room"
+          ]
+        }
+      ],
+      "log": {
+        "player": "You are whisked away by a teleport rune!",
+        "seen": "<Name> is whisked away by a teleport rune!"
+      },
+      "note": "the sound plays before the move",
+      "src": "js/content/data.js:891; js/combat/systems.js:631"
+    },
+    "gas": {
+      "name": "Gas vent",
+      "sprite": "trap-gas",
+      "minFloor": 3,
+      "once": false,
+      "sfx": "trap-gas",
+      "on": {
+        "trigger": "on-enter-tile"
+      },
+      "effects": [
+        {
+          "verb": "apply-status",
+          "status": "poison",
+          "turns": 4,
+          "magnitude": 2,
+          "target": {
+            "selector": "square",
+            "n": 3,
+            "centre": "self",
+            "side": "any"
+          }
+        }
+      ],
+      "log": {
+        "player": "Poison gas hisses from a vent.",
+        "seen": "Poison gas hisses from a vent under <name>."
+      },
+      "src": "js/content/data.js:892; js/combat/systems.js:618"
+    },
+    "pit": {
+      "name": "Pit",
+      "sprite": "trap-pit",
+      "minFloor": 4,
+      "once": true,
+      "sfx": "trap-pit",
+      "on": {
+        "trigger": "on-enter-tile"
+      },
+      "effects": [
+        {
+          "verb": "fall",
+          "pctMaxHp": 5,
+          "only": "player"
+        },
+        {
+          "verb": "fall",
+          "pctMaxHp": 0,
+          "only": "creatures",
+          "carry": true
+        }
+      ],
+      "log": {
+        "player": [
+          "The floor gives way!",
+          "The fall deals N damage."
+        ],
+        "seen": "<Name> falls to the next floor."
+      },
+      "note": "player damage is direct (no defences), at least 1; then descend to the next floor as a fall",
+      "src": "js/content/data.js:893; js/combat/systems.js:635"
+    },
+    "spikes": {
+      "name": "Spike",
+      "sprite": null,
+      "minFloor": null,
+      "once": false,
+      "sfx": "trap-dart",
+      "on": {
+        "trigger": "on-enter-tile"
+      },
+      "immuneIf": {
+        "any": [
+          {
+            "has-status": "levitate"
+          },
+          {
+            "has-status": "stone-skin"
+          },
+          {
+            "affinity-at-least": {
+              "earth": 3
+            }
+          }
+        ]
+      },
+      "effects": [
+        {
+          "verb": "damage",
+          "amount": {
+            "scaled": {
+              "base": {
+                "roll": [
+                  4,
+                  7
+                ]
+              },
+              "per": {
+                "floor": 1
+              }
+            }
+          },
+          "type": "phys",
+          "tags": [
+            "environment"
+          ],
+          "armourPierce": 100
+        }
+      ],
+      "log": {
+        "player": "Spikes drive up through your boots: N damage.",
+        "seen": "Spikes drive up into <name>: N damage."
+      },
+      "note": "a body it spares springs nothing and leaves it unfound; Stone Skin and Earth 3 spare any body (ruled 2026-10-15)",
+      "src": "js/combat/systems.js:600; js/world/puzzles.js:342"
+    },
+    "rule-heavy": {
+      "kind": "rule",
+      "does": "A heavy trap (Lightless room) runs its normal effect, then if the victim still lives deals a second hit.",
+      "effects": [
+        {
+          "verb": "damage",
+          "amount": {
+            "scaled": {
+              "base": {
+                "roll": [
+                  3,
+                  6
+                ]
+              },
+              "per": {
+                "floor": 1
+              }
+            }
+          },
+          "type": "phys",
+          "tags": [
+            "environment"
+          ]
+        }
+      ],
+      "log": {
+        "player": "The trap bites deep: N more."
+      },
+      "src": "js/combat/systems.js:658"
+    },
+    "rule-common": {
+      "kind": "rule",
+      "rules": [
+        "Stepping onto a trap tile triggers it: the player (unless levitating) and every non-flying creature that steps there (1.7 stepEnt). Known traps are not avoided by creatures; travel and auto-explore avoid known traps unless the trap is the goal.",
+        "Triggering marks the trap found (except spikes). Web, Alarm and Pit are removed after one trigger; the rest stay armed.",
+        "A creature killed by a trap out of your sight dies unnamed.",
+        "Another creature springing a trap: logged by name if you can see the trap tile; else \"You hear a trap spring <direction>.\" (alarm: \"You hear an alarm bell ring <direction>.\") within earshot (12 tiles of sound falloff), else nothing. Directions are 8-way compass, screen up is north.",
+        "There is no disarm action in 1.7. Ways to clear traps: Tide amulet trips every trap in the room (empty tiles: marked found and removed; alarms wake sleepers within 10), Seeking amulet reveals all within 16, Keen Eyes ring, Search, the Lightless room solution.",
+        "Cursed amulet backfire triggers a random one of dart, fire, frost, spark, gas, web, alarm at the wearer, without placing a trap."
+      ],
+      "src": "js/combat/systems.js:142; js/engine/actor-ai.js:61; js/combat/systems.js:587; js/world/travel.js:104; js/equipment/amulets.js:210; js/equipment/amulets.js:53",
+      "ruling": "ruled 2026-10-15: every trap is found when it fires; levitating or flying bodies never trigger floor traps; Stone Skin and Earth 3 ignore spikes for any body"
+    },
+    "rule-player-damage-cap": {
+      "kind": "rule",
+      "does": "Dart and spark damage to the player: at least 2 and at most 25% of max HP (rounded). Fire, frost, spikes, heavy bite are not capped.",
+      "src": "js/combat/systems.js:574"
+    },
+    "rule-placement": {
+      "kind": "rule",
+      "boneGauntlet": "15 hidden spikes (see rooms.json bone-gauntlet)",
+      "src": "js/world/world.js:413; js/world/world.js:1176; js/world/world.js:1286; js/world/world.js:252; js/world/floors.js:14; js/world/biomes/underdark/deep.js:701; js/world/biomes/crypt/cryptset.js:591",
+      "ruling": "ruled 2026-10-15: never in pocket rooms; placed until the target count or no legal cell"
+    },
+    "rule-spotting": {
+      "kind": "rule",
+      "phase": "A4 Explore (per paid action)",
+      "passive": {
+        "range": "visible and within 3 (Chebyshev)",
+        "chancePct": "8 + 3 x max(0, Agility - 10) + 12 if Scoundrel + min(0, Keen Eyes value), never below 0; x 0.2 for traps placed on purpose (trap room, bone gauntlet, goblin mine, puzzle)",
+        "limit": "at most one trap found per action; traps are checked in placement order",
+        "log": "You spot a(n) <b>X trap</b>.",
+        "sfx": "trap-spot",
+        "ruling": "2026-09-29 doubled to 8% + 3% per Agility"
+      },
+      "keenEyes": {
+        "phase": "A6",
+        "chancePct": "the ring value as a percent, per visible unfound trap, every action, no range limit, no cap per action",
+        "log": "Your ring tingles: a(n) <b>X trap</b>.",
+        "secretDoors": "half the ring chance per visible hidden door: \"Your ring tingles: a <b>hidden door</b>.\" sfx door-secret"
+      },
+      "src": "js/combat/systems.js:661; js/equipment/upgrade.js:39",
+      "ruling": "ruled 2026-10-15: one passive roll per visible unfound trap per game turn, base + Agility + Scoundrel + trap-spot stat (Keen Eyes adds), sight range, x0.2 for placed traps, no cap"
+    },
+    "rule-search": {
+      "kind": "rule",
+      "key": "F (or the Search button)",
+      "cost": "one action",
+      "radius": 2,
+      "chancePct": "(40 + 2 x max(0, Agility - 10) + Keen Eyes value + 20 x earlier searches from this same tile) x 0.5 while resting",
+      "hint": "a hidden door adjacent (8-way) to an uneven-stone tell, when the searcher also stands next to a tell, is always found",
+      "each": "every hidden door and unfound trap within 2 (Chebyshev) rolls separately",
+      "logs": {
+        "door": "You find a <b>hidden door</b>!",
+        "trap": "You find a(n) <b>X trap</b>.",
+        "none": "You search carefully[ again] and find nothing new."
+      },
+      "sfx": {
+        "door": "door-secret",
+        "trap": "trap-spot"
+      },
+      "bumpSecret": "walking into a hidden door: found if a tell is orthogonally beside it, else 25%; costs an action only when found (\"You find a hidden door!\")",
+      "src": "js/world/puzzles.js:449; js/combat/systems.js:253"
+    }
+  }
+}

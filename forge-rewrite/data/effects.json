@@ -1,0 +1,1784 @@
+{
+  "version": 1,
+  "rows": {
+    "damage": {
+      "kind": "verb",
+      "group": "direct",
+      "does": "Deal typed damage through the one damage pipeline (combat.md C63).",
+      "fields": {
+        "amount": "amount form (required)",
+        "type": "phys | fire | ice | lightning | poison | dark | light | magic (default phys) | cycle (the next type of the owner cycleTypes list each time)",
+        "tags": "list of damage tags: attack, spell, proc, area, single-target, ranged, melee, periodic, environment, ground, reflected, arc",
+        "premitigated": "true skips creature rules, outgoing rules and defences (periodic ticks)",
+        "bypassShields": "true skips the player's absorb pools",
+        "noReactions": "true skips the after-damage reactions",
+        "resistanceApplied": "true when the amount already carries the resistance multiplier",
+        "capPctMaxHp": "on the player, never more than this % of max HP in one packet",
+        "resist": "true multiplies a pre-mitigated amount by the receiver's resistance to the type (status ticks)",
+        "then": "list of effects run once for each body this damage landed on",
+        "minOnPlayer": "on the player, at least this much after capPctMaxHp (1.7 trapDmg: max(2, min(raw, 25% max HP)))",
+        "armourPierce": "percent of the receiver's armour this packet ignores, 0-100 (spikes: 100)",
+        "cycleTypes": "with type cycle: the list of types in order"
+      },
+      "visible": "float the number in the type colour; hurt clip; player-hurt sound on the player; rider packets log 'Name → Target: N.'",
+      "examples": [
+        "Firebolt js/combat/combat.js:611",
+        "Fireball blast js/elements/elements.js:313-317",
+        "dart trap capped 25% js/combat/systems.js:574, :615",
+        "Bone Nova capped 35% js/world/biomes/crypt/crypt.js:300-302",
+        "Consecrate (undead only) js/faith/gods.js:564"
+      ],
+      "src": "js/engine/damage.js:92-118"
+    },
+    "weapon-attack": {
+      "kind": "verb",
+      "group": "direct",
+      "does": "Make a full weapon strike with to-hit, crit, surprise, block and every on-hit rider (combat.md order of rolls).",
+      "fields": {
+        "multiplier": "decimal, default 1",
+        "label": "player-facing label for the log (Cleave, Riposte, Gust, Charge)",
+        "weapon": "main | offhand | ranged | the actor's own",
+        "sureHit": "true sets the hit chance to 1",
+        "projected": "true draws a projectile instead of a lunge",
+        "then": "list of effects run on each body the strike hits, as for damage (Lunge stun, Anvil's Toll push and stun)",
+        "splitTo": "selector: a second body struck for splitMult when it exists; the main strike is then also x splitMult (Prism Scarab)",
+        "splitMult": "decimal"
+      },
+      "visible": "lunge or arrow, swing or bow-shot sound, hit sound by armour, log 'Label: You hit Name: N.'",
+      "examples": [
+        "Double Strike js/engine/casting-adapter.js:247-248",
+        "Lunge js/character/classes.js:121",
+        "Charge (sure hit) js/character/classes.js:190",
+        "Cleave, Gust, Riposte js/engine/actions-adapter.js:284, :436, :439",
+        "Perfect Counter js/engine/actions-adapter.js:17-26"
+      ],
+      "src": "js/engine/actions-adapter.js:106-119"
+    },
+    "spell-strike": {
+      "kind": "verb",
+      "group": "direct",
+      "does": "A spell hit on one body: crit, surprise and Numbing Dark rules, spell on-hit riders, grouped spell log.",
+      "fields": {
+        "amount": "amount form",
+        "type": "damage type",
+        "bolt": "true for a single-target bolt (surprise before crit, rolls to hit)",
+        "piercing": "true: a bolt that is not single-target for riders",
+        "sureHit": "true: it never misses (Magic Missile; magic.md answer 3, 2026-10-16)"
+      },
+      "visible": "cast clip, element cast sound, bolt or burst, log 'Spell: Name N (crit); Burning.'",
+      "examples": [
+        "castBoltTarget js/combat/combat.js:580-643",
+        "Quake js/engine/casting-adapter.js:147",
+        "Dawn js/engine/casting-adapter.js:185",
+        "Venom Burst js/faith/sylla.js:164",
+        "Bone Spear js/runtime/recovery.js:78"
+      ],
+      "src": "js/engine/actions-adapter.js:168-215"
+    },
+    "damage-from-packet": {
+      "kind": "verb",
+      "group": "direct",
+      "does": "Deal damage equal to a ratio of another packet: the one just dealt, taken, blocked or stored.",
+      "fields": {
+        "packet": "dealt | taken | taken-with-shields | blocked | stored | raw (the blow before armour, resistance and shields: Fire and Shadow weapon enchants)",
+        "ratio": "decimal",
+        "flat": "a fixed amount instead of a ratio (Sentinel reflect)",
+        "type": "damage type, or 'same'",
+        "to": "selector for the receiver (default: the other party of the packet)",
+        "tags": "damage tags, as for damage",
+        "capPctMaxHp": "on the player, never more than this % of max HP in one packet"
+      },
+      "visible": "rider log and float as damage",
+      "examples": [
+        "Clear Waters 25% js/engine/damage-adapter.js:337",
+        "Venom Strike 25% js/engine/damage-adapter.js:367",
+        "Arc 50% js/engine/damage-adapter.js:222",
+        "Thorns 50% js/engine/actions-adapter.js:150-151",
+        "fire shield js/equipment/shieldench.js:19",
+        "Sentinel reflect js/engine/damage-adapter.js:68-76"
+      ],
+      "src": "js/engine/damage-adapter.js:337"
+    },
+    "heal": {
+      "kind": "verb",
+      "group": "direct",
+      "does": "Restore HP through the one heal channel (Rot, Glimmer, Sanctuary apply; overflow is reported).",
+      "fields": {
+        "amount": "amount form, or 'full'",
+        "natural": "true for regeneration-like heals (does not stanch Bleed)",
+        "regen": "true: counts as regeneration (stopped entirely by Rot)",
+        "overflow": "what the overflow becomes: none | ice-armor"
+      },
+      "visible": "float '+N' in heal colour (not for regeneration or a concealed body); merged into the action's log as '+N HP'",
+      "examples": [
+        "Heal invoke js/engine/casting-adapter.js:21-25",
+        "Light sigil 35% js/engine/sigil-adapter.js:79",
+        "Greater Light full js/engine/sigil-adapter.js:144",
+        "Hallowed Edge js/elements/spellench.js:6",
+        "heart pickup js/elements/capstones.js:32"
+      ],
+      "src": "js/engine/damage.js:75-91; js/engine/damage-adapter.js:503-514"
+    },
+    "heal-mod": {
+      "kind": "verb",
+      "group": "direct",
+      "does": "Multiply healing a body receives when a condition holds (Rot, Glimmer, Sanctuary).",
+      "fields": {
+        "mult": "amount: healing x this",
+        "heals": "regen | not-regen | all"
+      },
+      "visible": "smaller or larger heal numbers",
+      "examples": [
+        "Rot: regeneration x 0, other heals x 0.5 js/engine/damage.js:40-47",
+        "Glimmer +10% per rank js/engine/damage.js:44",
+        "Sanctuary +25% per power js/engine/damage.js:45"
+      ],
+      "src": "js/engine/damage.js:40-47"
+    },
+    "drain": {
+      "kind": "verb",
+      "group": "direct",
+      "does": "Heal the source by a ratio of the damage it dealt.",
+      "fields": {
+        "ratio": "decimal",
+        "flat": "fixed heal per hit instead of a ratio"
+      },
+      "visible": "a wisp off the struck body; heal float on the source",
+      "examples": [
+        "Murk Life Drain js/faith/gods.js:643-658",
+        "servant lifesteal 30% js/engine/actions-adapter.js:407-410",
+        "Unholy Aura +1 per foe js/engine/effect-adapter.js:147",
+        "Blood Tithe js/world/biomes/underdark/deepmobs.js:529"
+      ],
+      "src": "js/engine/actions-adapter.js:407"
+    },
+    "mana": {
+      "kind": "verb",
+      "group": "direct",
+      "does": "Restore or drain mana; a drain may convert the drained mana into HP or damage.",
+      "fields": {
+        "amount": "amount form (negative drains)",
+        "convertTo": "none | heal-source | damage-target",
+        "ratio": "with convertTo heal-source: HP the source heals per mana drained",
+        "damagePct": "percent of the mana drained that also lands on the target as damage",
+        "damageType": "type of that damage"
+      },
+      "visible": "float '+N mp' or '-N mp'",
+      "examples": [
+        "Deep Well 50% js/engine/sigil-adapter.js:63",
+        "mana globe js/elements/capstones.js:33",
+        "Shade drain 4 js/engine/damage-adapter.js:275",
+        "Thought Eater js/world/biomes/underdark/deepmobs.js:326-331"
+      ],
+      "src": "js/engine/damage-adapter.js:275"
+    },
+    "pay-hp": {
+      "kind": "verb",
+      "group": "direct",
+      "does": "Spend the actor's own HP as a cost; never a damage packet.",
+      "fields": {
+        "amount": "amount form",
+        "nonLethal": "true keeps at least 1 HP"
+      },
+      "visible": "float in phys colour",
+      "examples": [
+        "Bone Spear 5 HP js/faith/gods.js:371",
+        "sacrifice altar 15% js/combat/systems.js:497-502"
+      ],
+      "src": "js/faith/gods.js:371"
+    },
+    "set-hp": {
+      "kind": "verb",
+      "group": "direct",
+      "does": "Set HP outright: a value, a fraction of max, or a non-lethal floor.",
+      "fields": {
+        "value": "whole number",
+        "pctMaxHp": "whole percent",
+        "atLeast": "minimum HP after"
+      },
+      "visible": "as the content says",
+      "examples": [
+        "Last Laugh hp 1 js/runtime/balance-rulings.js:30",
+        "Tempt Fate half js/faith/religion.js:124",
+        "Lich return 50% js/runtime/recovery.js:45",
+        "Morty return 60% js/world/biomes/crypt/crypt.js:364"
+      ],
+      "src": "js/runtime/balance-rulings.js:30"
+    },
+    "shield": {
+      "kind": "verb",
+      "group": "direct",
+      "does": "Add to a named absorb pool that soaks damage before HP.",
+      "fields": {
+        "pool": "ward | mana-ward | ice-armor | hide | tome-ward | guard | blood-ward | sporecoat | lens | bone-ward (one whole hit)",
+        "amount": "amount form",
+        "cap": "amount form for the pool's maximum",
+        "turns": "game turns the pool lasts (the buff that keeps it)",
+        "onAbsorb": "list of effects run with the absorbed amount (Mana Ward restores mana)",
+        "atLeast": "amount form: raise the pool to at least this, never lowering it (Thorns)"
+      },
+      "visible": "float '-N' in the pool's colour when it absorbs; 'Name broken.' when it empties",
+      "examples": [
+        "Iron Hide js/faith/gods.js:555",
+        "Mana Ward js/faith/gods.js:554",
+        "Aegis 50% js/engine/sigil-adapter.js:206",
+        "Blood Ward js/world/biomes/underdark/deepmobs.js:281",
+        "Bone Ward js/enemies/enemy-teamwork.js:62"
+      ],
+      "src": "js/engine/damage-adapter.js:152-167"
+    },
+    "apply-status": {
+      "kind": "verb",
+      "group": "status",
+      "does": "Apply a status from data/statuses.json under the status rules (statuses.md S1-S21).",
+      "fields": {
+        "status": "status id (required)",
+        "turns": "whole game turns (required)",
+        "magnitude": "amount form stored on the status (Burn damage, Slow multiplier)",
+        "refresh": "longer (default) | replace",
+        "bolt": "looks only: a shot of this TRAIL type flies from the victim (on-kill) to the body it lands on (Wildfire js/engine/death-adapter.js:144)",
+        "durationModifiers": "false turns off Iron Constitution and Sylla",
+        "bossControl": "true keeps the boss 1-turn cap even with modifiers off",
+        "scale": "decimal stored on this status instance as its status-scale (default 1): 1.7 damageScale, e.g. Sporecaller poison 0.25 js/enemies/sporecaller.js:96, chaos patch poison 1.5 js/world/chaos/chaos-enemies.js:383, Venom Strike 1 js/engine/damage-adapter.js:372"
+      },
+      "visible": "the status's own sound; the status name appended to the hit's log line",
+      "examples": [
+        "Sap stun js/combat/combat.js:626",
+        "fire enchant Burn js/engine/actions-adapter.js:367",
+        "Coward's Mark js/engine/damage-adapter.js:257-258",
+        "spark trap stun 50% js/combat/systems.js:621",
+        "Rot 30 js/engine/damage-adapter.js:276"
+      ],
+      "src": "js/engine/effects.js:108-136"
+    },
+    "add-stack": {
+      "kind": "verb",
+      "group": "status",
+      "does": "Add stacks to a stacking status; at a threshold it may turn into another status.",
+      "fields": {
+        "status": "status id",
+        "n": "stacks to add (0 only refreshes an existing stack)",
+        "cap": "maximum stacks",
+        "turns": "duration of the stacking status",
+        "threshold": "stacks that trigger the change",
+        "becomes": "status id it turns into",
+        "becomesTurns": "duration of the new status"
+      },
+      "visible": "the status icon's stack number; the new status's sound and float",
+      "examples": [
+        "Chill to Frozen js/engine/effects.js:137-152",
+        "Hollow cap 5 js/combat/combat.js:160-165",
+        "Living Mountain cap 10 js/runtime/recovery.js:14",
+        "Discipline cap 5 js/faith/gods.js:384"
+      ],
+      "src": "js/engine/effects.js:137-152"
+    },
+    "remove-status": {
+      "kind": "verb",
+      "group": "status",
+      "does": "End statuses by id, by tag, or by a named list (a cleanse).",
+      "fields": {
+        "statuses": "list of status ids",
+        "tag": "a status tag (harmful, hard-control, ...)",
+        "reason": "expired | cleansed | extinguished | shattered | stanched"
+      },
+      "visible": "as the content says ('hiss', 'The bleeding stops.')",
+      "examples": [
+        "cleanseAll js/elements/sigils.js:101",
+        "clearBad js/faith/gods.js:176-177",
+        "Levitate clears roots js/engine/sigil-adapter.js:69",
+        "water ends Burn js/engine/effect-adapter.js:114"
+      ],
+      "src": "js/engine/effects.js:97-107, :189-191"
+    },
+    "grant-immunity": {
+      "kind": "verb",
+      "group": "status",
+      "does": "Make a body immune to a status, a status tag or a damage type, for a time or while a condition holds.",
+      "fields": {
+        "status": "status id",
+        "tag": "status tag",
+        "damageType": "damage type",
+        "turns": "game turns; absent means while the source lasts"
+      },
+      "visible": "float 'immune' when it stops something; 'Resisted Name.' for Unstoppable",
+      "examples": [
+        "fear immunity 5 js/engine/effects.js:105",
+        "freeze immunity js/engine/effects.js:145",
+        "Resolve js/engine/effects.js:130",
+        "Sap stun immunity js/combat/combat.js:636",
+        "Unstoppable js/engine/effects.js:82"
+      ],
+      "src": "js/engine/effects.js:72-95"
+    },
+    "modify-duration": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/derive.js", "src/rules/passives.js"],
+      "group": "status",
+      "does": "A standing rule on how long statuses or buffs last for a bearer.",
+      "fields": {
+        "scope": "self-statuses | foe-statuses | self-buffs",
+        "add": "whole turns",
+        "mult": "decimal",
+        "min": "whole turns",
+        "pct": "self-buffs: each buff gained is lengthened once by this percent, at least min turns",
+        "statuses": "limit to these ids or tags",
+        "except": "self-buffs: ids never lengthened"
+      },
+      "visible": "none",
+      "examples": [
+        "Iron Constitution half js/engine/effects.js:54",
+        "boss control 1 js/engine/effects.js:56",
+        "Sylla rank 5 +1 js/engine/effect-adapter.js:54",
+        "holy symbol js/faith/holy.js:45-55",
+        "Sustenance doubles food buffs js/equipment/gear.js:156"
+      ],
+      "src": "js/engine/effects.js:50-58"
+    },
+    "teleport": {
+      "kind": "verb",
+      "group": "movement",
+      "does": "Move a body instantly to a chosen tile.",
+      "fields": {
+        "who": "selector",
+        "to": "target-tile | random-safe | distance-band | explored | landmark | beside-target",
+        "min": "minimum distance",
+        "max": "maximum distance",
+        "rules": "list: visible, empty, walkable, no-adjacent-foe, same-region, not-in-boss-arena, ordinary-room (inside a room with no special: never a vault, toll room, hidden pocket or puzzle room; with to random-safe the whole floor is searched)",
+        "from": "the body distance-band is measured from (default the owner)",
+        "fallback": "a second to rule when the first finds no tile",
+        "landmark": "with to landmark: the landmark id (ritual-circle-farthest-from-player)"
+      },
+      "visible": "blink effect at both ends; sight recomputed",
+      "examples": [
+        "Arcane Blink js/faith/gods.js:589-609",
+        "Umbral Passage js/elements/elements.js:467-482",
+        "Blinking sigil js/engine/sigil-adapter.js:101, :231-232",
+        "Homeward Wind js/engine/sigil-adapter.js:199",
+        "teleport trap js/combat/systems.js:634"
+      ],
+      "src": "js/runtime/balance-rulings.js:19-24"
+    },
+    "knockback": {
+      "kind": "verb",
+      "group": "movement",
+      "does": "Push a body away from the source; stops at walls and bodies.",
+      "fields": {
+        "tiles": "whole number",
+        "from": "source | point",
+        "direction": "away | given | wave (the direction of the wave-band selector that marked the tile) | random-8 (a uniform one of the 8 neighbours)"
+      },
+      "visible": "knock-thud when the push is stopped; the player gets Resolve 200 units",
+      "examples": [
+        "knockback js/runtime/world-time.js:54-63",
+        "Repelling Force js/faith/gods.js:303",
+        "air shield js/equipment/shieldench.js:31",
+        "brute shoulder check js/enemies/enemy-teamwork.js:112",
+        "Frost Cone js/elements/elements.js:327"
+      ],
+      "src": "js/runtime/world-time.js:54-63"
+    },
+    "pull": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/planes.js", "src/rules/chaos-ai.js", "src/rules/gear-use.js"],
+      "group": "movement",
+      "does": "Move a body toward the source.",
+      "fields": {
+        "tiles": "whole number, or 'adjacent'"
+      },
+      "visible": "drag line",
+      "examples": [
+        "Hook js/equipment/amulets.js:144",
+        "Djinn pull 3 js/world/planes/planesfwa.js:522",
+        "chaos harpoon js/world/chaos/chaos-enemies.js:196"
+      ],
+      "src": "js/equipment/amulets.js:144"
+    },
+    "dash": {
+      "kind": "verb",
+      "group": "movement",
+      "does": "Travel a clear straight line, then run effects at the end (charge, lunge, leap, hook to a wall).",
+      "fields": {
+        "range": "tiles",
+        "until": "beside-target | wall | range",
+        "then": "list of effects at the end",
+        "onMiss": "effects run on the owner when the run reaches no one"
+      },
+      "visible": "the move tween; telegraphed lanes for creatures",
+      "examples": [
+        "Charge js/character/classes.js:172-194",
+        "Lunge js/character/classes.js:107-129",
+        "Bone Rush js/enemies/skeleton-charge.js:4-25",
+        "Grukk charge js/combat/combat.js:436-447",
+        "Hook to a wall js/equipment/amulets.js:149-171"
+      ],
+      "src": "js/character/classes.js:172-194"
+    },
+    "swap": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/gear-use.js"],
+      "group": "movement",
+      "does": "Swap places with a body.",
+      "fields": {
+        "range": "tiles",
+        "notBoss": "true"
+      },
+      "visible": "both bodies tween",
+      "examples": [
+        "Amulet of Exchange js/equipment/amulets.js:173-193",
+        "walking into an ally js/combat/systems.js:38"
+      ],
+      "src": "js/equipment/amulets.js:173-193"
+    },
+    "flee-step": {
+      "kind": "verb",
+      "group": "movement",
+      "does": "Spend the body's action stepping away from a threat (or waste it if trapped).",
+      "fields": {
+        "from": "source | last-seen | nearest-foe"
+      },
+      "visible": "'Fear: retreat.' / 'Fear: trapped.' for the player",
+      "examples": [
+        "player Fear js/engine/effect-adapter.js:168-186",
+        "creature Fear js/engine/actor-ai.js:249-252",
+        "kiter js/combat/combat.js:353"
+      ],
+      "src": "js/engine/actor-ai.js:188-192"
+    },
+    "fall": {
+      "kind": "verb",
+      "group": "movement",
+      "does": "Drop a body to the next floor (or out of the fight), with damage.",
+      "fields": {
+        "pctMaxHp": "damage as whole percent",
+        "carry": "true: a falling creature arrives on the next floor and waits there; without it the creature leaves the run. The player always lands on the next floor (world.md W49)"
+      },
+      "visible": "fall animation, floor transition",
+      "examples": [
+        "pit trap js/combat/systems.js:638-655",
+        "Levitate ends over a chasm js/engine/turns.js:87"
+      ],
+      "src": "js/combat/systems.js:638-655"
+    },
+    "untargetable": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/planes.js"],
+      "group": "movement",
+      "does": "Put a body in a state where it cannot be damaged (entombed, submerged, burrowed, buried) until it ends.",
+      "fields": {
+        "state": "entombed | submerged | burrowed | buried",
+        "turns": "game turns"
+      },
+      "visible": "the state's art; float 'immune' on a hit",
+      "examples": [
+        "Glacial Tomb js/elements/elements.js:392-430",
+        "Leviathan dive js/world/planes/planesfwa.js:505",
+        "Maw underground js/world/biomes/caverns/cavernmobs.js:494",
+        "Ghoul buried js/enemies/ghoul.js:10"
+      ],
+      "src": "js/engine/damage-adapter.js:28, :64, :98"
+    },
+    "movement-mode": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/crypt.js", "src/rules/gear-use.js"],
+      "group": "movement",
+      "does": "Change how a body moves for a time: float over chasms and water, ignore roots and floor traps, pass thin walls, free steps.",
+      "fields": {
+        "mode": "levitate | phase | stillness",
+        "turns": "game turns (stillness: steps)"
+      },
+      "visible": "the matching icon",
+      "examples": [
+        "Floating sigil js/engine/sigil-adapter.js:69",
+        "Shade passes walls js/world/biomes/crypt/crypt.js:220-233",
+        "Stillness amulet js/equipment/amulets.js:90"
+      ],
+      "src": "js/engine/turns.js:84-89"
+    },
+    "summon": {
+      "kind": "verb",
+      "group": "spawn",
+      "does": "Create one or more creatures on the player's side or the enemy's.",
+      "fields": {
+        "side": "ally | hostile",
+        "creature": "monster id or pool id",
+        "count": "amount form",
+        "placement": "near-source | near-target | room | unseen-far | field-tiles (the tiles of the field this effect belongs to) | thrown-near-target (free tiles of the target 3x3 the owner has a line to) | last-crypt-death-spots | beside-random-mound",
+        "stats": "hp and damage amount forms (spell power, divine, rank)",
+        "life": "game turns before it expires",
+        "cap": "maximum alive from this source",
+        "noLoot": "true",
+        "noXp": "true",
+        "copyOf": "victim: a copy of the creature that just died (Shades)",
+        "ratio": "share of the copied creature's HP and damage",
+        "floorCap": "maximum alive of this creature on the floor",
+        "within": "tiles from the placement centre",
+        "noRevive": "true: the summoned body cannot rise again (risen)"
+      },
+      "visible": "sparkle at each spawn; 'N Name summoned.'",
+      "examples": [
+        "Raise Dead js/engine/progression-adapter.js:146-174",
+        "Shadow Swarm js/elements/elements.js:368-378",
+        "The Brood js/faith/sylla.js:122-161",
+        "priestess spiderlings js/world/biomes/underdark/deepmobs.js:287-299",
+        "Grukk reinforcements js/combat/combat.js:453"
+      ],
+      "src": "js/engine/progression-adapter.js:146-174"
+    },
+    "clone-self": {
+      "kind": "verb",
+      "group": "spawn",
+      "does": "Create an allied copy of the player from a snapshot of their stats.",
+      "fields": {
+        "life": "game turns",
+        "ratio": "share of the player's numbers"
+      },
+      "visible": "the echo's own art",
+      "examples": [
+        "Umbral echo js/combat/shadow-clone.js:24-86"
+      ],
+      "src": "js/combat/shadow-clone.js:24-86"
+    },
+    "transform": {
+      "kind": "verb",
+      "group": "spawn",
+      "does": "Replace a creature with another kind, keeping its place.",
+      "fields": {
+        "to": "monster id",
+        "notBoss": "true"
+      },
+      "visible": "burst; 'Name becomes a Rat.'",
+      "examples": [
+        "Wobbles rat js/faith/gods.js:154",
+        "Unmaker forms js/world/chaos/unmaker-encounter.js:73-86"
+      ],
+      "src": "js/faith/gods.js:154"
+    },
+    "split": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/ai.js"],
+      "group": "spawn",
+      "does": "When hurt past a threshold, a creature halves its HP into a new copy beside it.",
+      "fields": {
+        "belowPctMaxHp": "whole percent",
+        "child": "monster id, or self (a copy of the same kind)",
+        "once": "true",
+        "whenHitAtFullHp": "true: splits when a direct hit with a source lands on it at full HP (1.7 slimes); belowPctMaxHp is then not used",
+        "minHp": "the hit must leave at least this much HP",
+        "noLoot": "true: the copy drops nothing",
+        "noXp": "true: the copy gives no XP"
+      },
+      "visible": "'Slime splits.' and slime-split",
+      "examples": [
+        "slime split js/combat/combat.js:120-135",
+        "green slime js/enemies/green-slime.js:28-46"
+      ],
+      "src": "js/combat/combat.js:120-135"
+    },
+    "revive": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/crypt.js", "src/rules/morty.js"],
+      "group": "spawn",
+      "does": "Bring a dead body back after a delay unless something stops it.",
+      "fields": {
+        "delay": "count",
+        "clock": "action | game-turn",
+        "pctMaxHp": "whole percent",
+        "stoppedBy": "list: fire, light, holy-ground, phylactery-broken",
+        "with": "effects when it rises",
+        "once": "true: a body that rose cannot rise again",
+        "at": "corpse (default) | beside-landmark id",
+        "warning": "string id logged when the body falls",
+        "log": "string id logged when it rises"
+      },
+      "visible": "warning log ('Shambler reviving: smash or burn its corpse!'); rise log",
+      "examples": [
+        "Shambler js/engine/death-adapter.js:44-48",
+        "Morty js/engine/death-adapter.js:51-54",
+        "Lich js/engine/death-adapter.js:152, :161"
+      ],
+      "src": "js/engine/death-adapter.js:44-54"
+    },
+    "field": {
+      "kind": "verb",
+      "group": "spawn",
+      "does": "Lay a timed or permanent ground or air effect on tiles that runs effects on whoever stands in it.",
+      "fields": {
+        "field": "fire | ice | root | holy | web | gas | spores | static | poison-trail | chaos-hazard | darkness | smoke (sight 1 tile both ways, counts as dark, surprise on foes that lost the hero; one per floor; magic.md answer 21)",
+        "shape": "selector for the tiles",
+        "turns": "duration; absent only with permanent",
+        "clock": "game-turn | action",
+        "each": "list of effects on each body inside, per tick",
+        "side": "foes | allies | all",
+        "clearedBy": "list: water, fire",
+        "permanent": "true: no duration; the field stays until cleared (grave ooze)",
+        "cap": "at most this many live fields of this row on the floor; the oldest is dropped",
+        "perSource": "at most this many live fields from one source; a new one replaces the oldest",
+        "overlap": "each (default: every field covering the tile ticks, world.md answer 2) | strongest (only the strongest deals damage; a status it applies uses the longest turns among the covering fields)",
+        "only": "flammable: only tiles that can burn (tall grass, short grass, web ground, a burnable prop) get the field; fire on tall grass burns 5 game turns, every other burnable tile 3, whatever turns says (1.7 ignite); fire never lands on water",
+        "shapeLimit": "same-region: shape tiles outside the source's region (a chaos island) are dropped, as are chasm and portal tiles",
+        "eachOnce": "list of effects run once on each body, the first tick it stands inside"
+      },
+      "visible": "the field's ground art; its tick logs ('Gas: N.', 'Static field: N.')",
+      "examples": [
+        "fire ground js/combat/systems.js:517",
+        "holy ground js/runtime/balance-rulings.js:47-74",
+        "gas cloud js/world/biomes/crypt/crypt.js:82-92",
+        "spore field js/enemies/sporecaller.js:32",
+        "web ground js/enemies/enemy-fields.js:15"
+      ],
+      "src": "js/elements/elements.js:50-73"
+    },
+    "terrain": {
+      "kind": "verb",
+      "group": "spawn",
+      "does": "Change map tiles or place blocking props, for a time or for good.",
+      "fields": {
+        "set": "water | ice | wall-rock | pillar | open-door | ash | scorch | chasm | fire (sets the tile burning, combat fire rules) | mushrooms (spore growth: trampling it deals 2 poison) | extinguish (puts out burning tiles; Knowledge sigils, magic.md answer 19)",
+        "where": "selector",
+        "turns": "duration, absent for permanent",
+        "clock": "action | game-turn",
+        "perTile": "true: the effect chance rolls once per tile"
+      },
+      "visible": "burst at each tile; sight recomputed",
+      "examples": [
+        "Pillar js/equipment/amulets.js:239",
+        "Upheaval js/elements/elements.js:445",
+        "Tide js/equipment/amulets.js:200",
+        "ice bolt freezes water js/combat/combat.js:601",
+        "fire opens ice doors js/combat/systems.js:541-542"
+      ],
+      "src": "js/equipment/amulets.js:239-249"
+    },
+    "telegraph": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/boss.js", "src/rules/morty.js", "src/rules/maw.js", "src/rules/matron.js", "src/rules/planes.js", "src/rules/unmaker.js", "src/rules/caverns.js"],
+      "group": "spawn",
+      "does": "Mark tiles now and run effects on them after a delay, unless interrupted.",
+      "fields": {
+        "tiles": "selector",
+        "delay": "count",
+        "clock": "action | game-turn | actor-action",
+        "then": "list of effects on the marked tiles",
+        "interruptedBy": "list: damage-taken N, damage-taken-pct N (percent of the owner max HP), control, fear, target-leaves, owner-moves, owner-dead, owner-not-hunting",
+        "warning": "string id of the warning log",
+        "gaps": "pattern id: safe cells left out of the marked tiles (the pattern is packet F's; the Unmaker's safe pattern)",
+        "minPlayerTurns": "it lands only once at least this many paid player turns have passed since it was marked, as well as the delay",
+        "onInterrupted": "effects run on the owner when an interruptedBy case ends it",
+        "landsIfOwnerControlled": "true: lands even if the owner is stunned, frozen or afraid meanwhile",
+        "stores": "damage-taken-from-player: the telegraph sums what the player deals the owner while it is pending; then-effects read it as packet stored"
+      },
+      "visible": "marked tiles on the map; a warning log with priority; shake when it lands",
+      "examples": [
+        "Grukk slam js/combat/combat.js:460-466",
+        "Morty grasp js/world/biomes/crypt/crypt.js:327",
+        "Matron venom js/world/biomes/underdark/deepmobs.js:575",
+        "Pebble Slam js/combat/combat.js:281-284",
+        "pylon beams js/world/chaos/unmaker-encounter.js:226"
+      ],
+      "src": "js/combat/combat.js:420-450"
+    },
+    "rotation": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/boss.js", "src/rules/morty.js", "src/rules/matron.js", "src/rules/planes.js", "src/rules/unmaker.js"],
+      "group": "spawn",
+      "does": "Give a creature a fixed, repeating order of moves; each move has a condition and an effect list; a move whose condition fails is skipped or waits, as its row says; a phase change restarts the order.",
+      "fields": {
+        "moves": "list of {if, effects, onFail: skip | wait}",
+        "restartOn": "trigger that starts the order again (on-hp-threshold)",
+        "order": "list of move ids: the order tried on each action when the moves are not a cycle",
+        "orderByPhase": "object phase id to a list of move ids: the cycle for that phase"
+      },
+      "visible": "the moves' own telegraphs and logs",
+      "examples": [
+        "Grukk js/combat/combat.js:389, :457-484",
+        "Grukk phases js/combat/combat.js:451-456"
+      ],
+      "src": "js/combat/combat.js:389-485"
+    },
+    "choose": {
+      "kind": "verb",
+      "group": "spawn",
+      "does": "Pick one of several effect lists: by weight (one draw), or by the player from a picker window.",
+      "fields": {
+        "options": "list of {weight, effects}, or {label, effects} for a picker; any option may carry if and else: when its if fails, its else effects run instead (keeps 1.7 odds for Wobbles)",
+        "by": "weight | player | move-kind (the option whose label is the current move kind)"
+      },
+      "visible": "the picker window, or the chosen outcome's own feedback",
+      "examples": [
+        "Wobbles whims js/faith/gods.js:95-170",
+        "Tempt Fate js/faith/religion.js:112-128",
+        "Last Laugh js/runtime/balance-rulings.js:99-102",
+        "picker sigils js/elements/sigils.js:124-346"
+      ],
+      "src": "js/faith/gods.js:95-170"
+    },
+    "create-item": {
+      "kind": "verb",
+      "group": "spawn",
+      "does": "Put an item on the floor.",
+      "fields": {
+        "item": "item kind or loot table id",
+        "count": "amount form",
+        "spot": "here | near | room",
+        "life": "actions before it vanishes",
+        "cursed": "false: never cursed",
+        "plusAdd": "whole number added to the item's rolled plus",
+        "plusCap": "the plus never goes above this",
+        "enchant": "enchant id, or plane (the plane's element, weapons and armour only)"
+      },
+      "visible": "drop sparkle; 'It drops ...' log",
+      "examples": [
+        "heart and mana globe js/engine/death-adapter.js:138",
+        "Nature's Bounty js/engine/sigil-adapter.js:106",
+        "Amulet of Plenty js/equipment/amulets.js:99",
+        "Wobbles gift js/faith/gods.js:65"
+      ],
+      "src": "js/engine/death-adapter.js:138"
+    },
+    "modify-stat": {
+      "kind": "verb",
+      "group": "modifier",
+      "readBy": {"armour-pierce": "src/rules/attack.js", "spell-range": "src/rules/abilities.js", "range": "src/rules/abilities.js", "trap-spot": "src/rules/traps.js", "search": "src/rules/traps.js", "hunger-rate": "src/rules/upkeep.js", "piety-gain": "src/rules/faith.js", "hp-regen": "src/rules/derive.js", "mp-regen": "src/rules/derive.js"},
+      "readByNote": "item 288 (passives-read.test.mjs): the stats read outside the hero's derived numbers, and the module that reads each: armour-pierce per blow, spell-range and range for spells, trap-spot and search by the traps' phases, hunger-rate by upkeep, piety-gain by faith's devotion, hp-regen and mp-regen by regenGear",
+      "does": "Change a derived stat by a flat amount or a percent while the source lasts.",
+      "fields": {
+        "stat": "armour | evasion | accuracy | crit | crit-mult | damage | damage-pct | max-hp | max-mp | speed | spell-power | divine | block | parry | stealth | range | light | hp-regen | mp-regen | hunger-rate | piety-gain | xp-gain | luck | armour-pierce | spell-range | trap-spot | search | gear-bonus | enchant-strength | upgrade-cap",
+        "add": "amount added (hp-regen and mp-regen: percent of max per game turn)",
+        "pct": "amount, whole percent change",
+        "min": "floor on the per-tick amount of a regen stat",
+        "statNotes": "armour-pierce: armour ignored by the owner's weapon hits (Mace); spell-range: tiles added to spell range (Staff); trap-spot: percent chance per paid action to spot each unfound trap in sight (Keen Eyes, passive spotting); search: added to searching (Keen Eyes). Source: spec/items.md decided question 1; gear-bonus, enchant-strength, upgrade-cap: Vellum rank 5 and Anvil ranks 1 and 5 (rulings on packets A and E)"
+      },
+      "visible": "character sheet numbers",
+      "examples": [
+        "ring table js/equipment/gear.js:10-23",
+        "stat passives js/combat/combat.js:24-44",
+        "Temper js/engine/stats.js:108, :171",
+        "Might js/engine/stats.js:170",
+        "elf range js/engine/stats.js:114"
+      ],
+      "src": "js/engine/stats.js:95-174"
+    },
+    "resist": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/passives.js", "src/rules/derive.js", "src/rules/damage.js"],
+      "group": "modifier",
+      "does": "Change the multiplier for a damage type on a body.",
+      "fields": {
+        "type": "damage type, or 'elemental'",
+        "add": "percent points (negative resists)",
+        "mult": "decimal applied after the sum",
+        "immune": "true sets it to 0",
+        "absorb": "ratio: damage of this type heals the body by ratio x the amount instead of hurting it (combat.md C56)"
+      },
+      "visible": "character sheet resistances",
+      "examples": [
+        "armour enchant js/engine/actions-adapter.js:74",
+        "Gloomling light js/engine/actions.js:22",
+        "food wards js/engine/actions.js:36-38",
+        "Warding ring js/engine/actions.js:33"
+      ],
+      "src": "js/engine/actions.js:14-42"
+    },
+    "damage-mod": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/passives.js", "src/rules/derive.js", "src/rules/damage.js"],
+      "group": "modifier",
+      "does": "Multiply or reduce damage dealt or taken when a condition holds.",
+      "fields": {
+        "direction": "dealt | taken",
+        "mult": "amount: damage x this",
+        "reducePct": "amount: damage x (1 - this / 100)",
+        "flat": "number subtracted (taken)",
+        "minimum": "floor after a flat cut",
+        "cooldown": "time units between uses",
+        "morePct": "amount: damage x (1 + this / 100) (Into the Dark)"
+      },
+      "visible": "log note ('Fortitude') where 1.7 has one",
+      "examples": [
+        "Searing js/engine/damage-adapter.js:108",
+        "Last Stand js/engine/damage-adapter.js:148",
+        "Magic Barrier js/engine/damage-adapter.js:136",
+        "Fortitude js/engine/damage-adapter.js:168",
+        "Iron Brace js/world/chaos/chaos-enemies.js:367"
+      ],
+      "src": "js/engine/damage-adapter.js:86-172"
+    },
+    "cost-mod": {
+      "kind": "verb",
+      "group": "modifier",
+      "does": "Change what an action costs in mana, time or essence.",
+      "fields": {
+        "cost": "mana | action-time | move-time | cast-time | upgrade-essence",
+        "mult": "amount: cost x this",
+        "divideBy": "amount: cost / this (Slow)",
+        "speedUpPct": "amount: cost / (1 + this / 100) (Rampage, Wizard Hunter)",
+        "min": "floor on the cost",
+        "for": "spells | divine | tech | melee | unarmed | all"
+      },
+      "visible": "sheet speed and costs",
+      "examples": [
+        "Elf -15% mana js/combat/combat.js:64",
+        "wand thrift js/combat/combat.js:65",
+        "tome air js/engine/costs.js:16",
+        "Dwarf forge js/equipment/upgrade.js:54"
+      ],
+      "src": "js/engine/costs.js:4-34"
+    },
+    "crit-rule": {
+      "kind": "verb",
+      "group": "modifier",
+      "does": "Force a critical hit when a condition holds, or make a body immune to crits.",
+      "fields": {
+        "force": "condition",
+        "immune": "true",
+        "primaryOnly": "true"
+      },
+      "visible": "'(crit)' in the log",
+      "examples": [
+        "Air+Fire on burning js/engine/actions-adapter.js:48-54",
+        "sapped target js/engine/actions-adapter.js:331",
+        "Bulwark js/engine/actions-adapter.js:338"
+      ],
+      "src": "js/engine/actions.js:9-13"
+    },
+    "hit-rule": {
+      "kind": "verb",
+      "group": "modifier",
+      "does": "Change to-hit for an attacker or defender: sure hit, a multiplier, ignored evasion, or a chance to deflect, parry or block.",
+      "fields": {
+        "sureHit": "condition",
+        "mult": "decimal on hit chance",
+        "min": "floor on hit chance",
+        "ignoreEvasionPct": "whole percent",
+        "deflectPct": "whole percent",
+        "parryPct": "whole percent",
+        "blockPct": "whole percent",
+        "surprise": "condition: a hit that meets it counts as a surprise hit (Numbing Dark on Chilled foes; magic.md answer 16, 2026-10-16)"
+      },
+      "visible": "'deflected', 'parry', 'block' floats and sounds",
+      "examples": [
+        "surprise never misses js/engine/actions-adapter.js:263",
+        "Keen Aim js/engine/actions-adapter.js:256",
+        "Blur js/combat/combat.js:152",
+        "deflect js/combat/combat.js:547-552",
+        "parry js/engine/actions-adapter.js:282-286"
+      ],
+      "src": "js/engine/actions-adapter.js:247-293"
+    },
+    "action-economy": {
+      "kind": "verb",
+      "group": "modifier",
+      "does": "Grant free actions, an extra strike, instant casts or a reroll.",
+      "fields": {
+        "free": "chance for the action to cost no time",
+        "instant": "spells | invokes | amulet",
+        "extraStrike": "chance of a second weapon-attack",
+        "reroll": "failed combat rolls rerolled per action"
+      },
+      "visible": "'Lucky Streak: reroll succeeded.' where 1.7 logs it",
+      "examples": [
+        "Air 6 free action js/engine/turns.js:14",
+        "air enchant repeat js/engine/actions-adapter.js:377",
+        "Lucky Streak js/runtime/balance-rulings.js:5-13",
+        "instant invokes js/engine/casting-adapter.js:251"
+      ],
+      "src": "js/engine/turns.js:14"
+    },
+    "on-event": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/passives.js", "src/rules/death.js"],
+      "group": "trigger",
+      "does": "Run a list of effects when a trigger fires on the owner, if the chance and conditions pass.",
+      "fields": {
+        "trigger": "trigger id (kind trigger rows below)",
+        "chance": "whole percent or amount form",
+        "if": "condition",
+        "filters": "object: filters the trigger row lists in its own 'filters' (on-kill: victimStatus, by: spell); a filter the trigger does not list is a load error",
+        "oncePer": "action | turn | floor | run",
+        "effects": "list of effects (required)",
+        "every": "whole number N: on-action and on-world-pulse only; the effects run on every Nth firing, counted per owner from its creation (plane hazard cadences)",
+        "sharedBy": "kind: the oncePer counter is shared by every creature of the owner kind on the floor (Storm Beetle arc)"
+      },
+      "visible": "the inner effects' own feedback",
+      "examples": [
+        "weapon enchants js/engine/actions-adapter.js:358-379",
+        "shield enchants js/equipment/shieldench.js:12-41",
+        "Coward's Mark js/engine/damage-adapter.js:251-263",
+        "Wildfire js/engine/death-adapter.js:141-144",
+        "Last Laugh js/runtime/balance-rulings.js:26-36"
+      ],
+      "src": "js/engine/damage-adapter.js:410"
+    },
+    "gain": {
+      "kind": "verb",
+      "group": "resource",
+      "does": "Add to or take from a non-HP resource.",
+      "fields": {
+        "resource": "piety | favor | amusement | essence | motes | xp | hunger | affinity | affinity-cap | amulet-charge | pummel | level (a whole level, progress kept; Wisdom, magic.md answer 23)",
+        "amount": "amount form (negative takes)",
+        "element": "for motes, affinity and its cap"
+      },
+      "visible": "the resource's float or log ('+N essence')",
+      "examples": [
+        "gainPiety js/engine/progression-adapter.js:73",
+        "Grom punch 0.3 js/engine/actions-adapter.js:153",
+        "gainEssence js/engine/progression-adapter.js:17",
+        "amulet charges js/engine/death-adapter.js:98-109",
+        "core +1 cap js/elements/cores.js:21"
+      ],
+      "src": "js/engine/progression-adapter.js:17-73"
+    },
+    "cooldown": {
+      "kind": "verb",
+      "group": "resource",
+      "does": "Start, shorten or clear an ability or prayer cooldown.",
+      "fields": {
+        "ability": "ability id, or 'all'",
+        "set": "game turns",
+        "reduce": "game turns"
+      },
+      "visible": "hotbar cooldown shading",
+      "examples": [
+        "startDivineCd js/faith/gods.js:381",
+        "Discipline -1 all js/faith/gods.js:389",
+        "Sap 8 js/combat/combat.js:592"
+      ],
+      "src": "js/faith/gods.js:381-389"
+    },
+    "reveal": {
+      "kind": "verb",
+      "group": "vision",
+      "does": "Reveal map, traps, hidden doors, creatures or items in an area.",
+      "fields": {
+        "what": "map | traps | secret-doors | creatures | items",
+        "where": "selector, or 'floor'",
+        "chance": "whole percent per thing"
+      },
+      "visible": "trap spot effect; 'Your ring tingles: ...'; automap fills",
+      "examples": [
+        "Deep Map js/engine/sigil-adapter.js:97",
+        "Seeking js/equipment/amulets.js:222-235",
+        "Keen Eyes js/equipment/upgrade.js:39",
+        "Dawn js/engine/casting-adapter.js:187"
+      ],
+      "src": "js/equipment/amulets.js:222-235"
+    },
+    "identify": {
+      "kind": "verb",
+      "group": "vision",
+      "does": "Identify carried or worn gear.",
+      "fields": {
+        "which": "all | worn | one-chosen | sigils (the kinds of carried sigils) | all-sigils (every sigil kind; magic.md answer 20)"
+      },
+      "visible": "the item's real name; log line",
+      "examples": [
+        "identify sigil js/engine/sigil-adapter.js:89, :117",
+        "use-based js/equipment/gear.js:133-161"
+      ],
+      "src": "js/equipment/gear.js:133"
+    },
+    "hide": {
+      "kind": "verb",
+      "group": "vision",
+      "does": "Make the player Hidden; optionally every hunting creature loses track.",
+      "fields": {
+        "turns": "game turns",
+        "breakPursuit": "true sets hunters to wander"
+      },
+      "visible": "'Smoke: Hidden.' and similar; the hidden look on the hero",
+      "examples": [
+        "Shadowstep js/engine/casting-adapter.js:205-206",
+        "Vanish js/engine/sigil-adapter.js:85",
+        "Fade js/elements/elements.js:152",
+        "Smoke on kill js/engine/death-adapter.js:114-120"
+      ],
+      "src": "js/engine/death-adapter.js:114-120"
+    },
+    "light-radius": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/planes.js"],
+      "group": "vision",
+      "does": "Set or change the player's light radius, for a time or while its condition holds.",
+      "fields": {
+        "set": "tiles",
+        "add": "tiles",
+        "turns": "duration; absent: holds while the effect's if holds (plane sight)",
+        "clock": "action | game-turn"
+      },
+      "visible": "the lit area changes",
+      "examples": [
+        "Glowcap js/equipment/foods.js:50",
+        "Gloom Moth snuff js/engine/damage-adapter.js:277"
+      ],
+      "src": "js/engine/damage-adapter.js:277"
+    },
+    "alert": {
+      "kind": "verb",
+      "group": "control",
+      "does": "Wake creatures and point them at a place (noise, alarm, howl, call for help).",
+      "fields": {
+        "radius": "tiles",
+        "who": "selector",
+        "toward": "source | player",
+        "skipHunting": "true: a creature already hunting keeps its hunt; only the others turn toward the place (alarm trap, ruling 2026-09-28)"
+      },
+      "visible": "alarm sound; 'spots you!' as they turn",
+      "examples": [
+        "alarm trap js/combat/systems.js:630",
+        "call for help js/enemies/enemy-teamwork.js:20",
+        "Reginald js/faith/gods.js:698",
+        "noise of an action js/enemies/enemy-perception.js:160-172"
+      ],
+      "src": "js/combat/systems.js:630"
+    },
+    "lose-track": {
+      "kind": "verb",
+      "group": "control",
+      "does": "Make creatures stop hunting and wander.",
+      "fields": {
+        "who": "selector"
+      },
+      "visible": "none beyond the creatures turning away",
+      "examples": [
+        "Smoke js/elements/sigils.js:271",
+        "Shadowstep js/engine/casting-adapter.js:205-206"
+      ],
+      "src": "js/elements/sigils.js:271"
+    },
+    "taunt": {
+      "kind": "verb",
+      "group": "control",
+      "does": "Make adjacent creatures attack this body first.",
+      "fields": {
+        "while": "the source lasts"
+      },
+      "visible": "none",
+      "examples": [
+        "servant taunt js/combat/combat.js:359-360"
+      ],
+      "src": "js/combat/combat.js:359-360"
+    },
+    "item-change": {
+      "kind": "verb",
+      "group": "item",
+      "does": "Change an item: upgrade, transmute, destroy, recycle into essence, lift a curse.",
+      "fields": {
+        "change": "upgrade | transmute | destroy | recycle | uncurse",
+        "which": "chosen | worn | random",
+        "amount": "levels or essence"
+      },
+      "visible": "the item window confirms; log line",
+      "examples": [
+        "Ascension js/elements/sigils.js:215-231",
+        "Transmutation js/elements/sigils.js:124-203",
+        "Field Smelt js/faith/gods.js:610",
+        "Purity js/engine/sigil-adapter.js:194"
+      ],
+      "src": "js/elements/sigils.js:124-231"
+    },
+    "loot-mod": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/pickup.js"],
+      "group": "item",
+      "does": "Change drop chances or the table a source rolls on.",
+      "fields": {
+        "chancePct": "whole percent added",
+        "table": "loot table id",
+        "chanceMult": "amount form: multiplies the drop chance, applied after chancePct adds (Ring of Luck)"
+      },
+      "visible": "none",
+      "examples": [
+        "Luck ring js/equipment/gear.js:198",
+        "sacrifice tiers js/combat/systems.js:504-508"
+      ],
+      "src": "js/equipment/gear.js:198"
+    },
+    "script": {
+      "kind": "verb",
+      "group": "scripted",
+      "does": "Run one named script. Ruled 2026-10-15: set pieces are verb lists first; this table starts empty and a packet adds a script only with Justin's yes.",
+      "fields": {
+        "script": "script id from the approved table (empty at packet B)"
+      },
+      "visible": "defined by the script's packet",
+      "examples": [
+        "Grukk js/combat/combat.js:389-485",
+        "Deep Maw js/world/biomes/caverns/cavernmobs.js:488-635",
+        "Wobbles js/faith/gods.js:95-170",
+        "picker sigils js/elements/sigils.js:124-346",
+        "self-entomb js/elements/elements.js:393-414"
+      ],
+      "src": "spec/effects.md"
+    },
+    "on-hit": {
+      "kind": "trigger",
+      "does": "The owner's primary weapon or single-target spell hit landed for over 0.",
+      "filters": "weapon | spell | melee | ranged | crit | surprise | single-target",
+      "src": "js/engine/actions-adapter.js:148-167, :220-239"
+    },
+    "on-swing": {
+      "kind": "trigger",
+      "does": "The owner starts a main-hand weapon attack, before it rolls, hit or miss (not the off hand, not a proc).",
+      "src": "js/engine/actions-adapter.js:90-92"
+    },
+    "on-crit": {
+      "kind": "trigger",
+      "does": "The owner's primary hit was a critical.",
+      "src": "js/elements/infusions.js:41-55; js/engine/damage-adapter.js:289-299"
+    },
+    "on-surprise-hit": {
+      "kind": "trigger",
+      "does": "The owner's primary hit was a surprise.",
+      "src": "js/engine/damage-adapter.js:300-375"
+    },
+    "on-damage-dealt": {
+      "kind": "trigger",
+      "does": "Any damage packet from the owner landed (filter by type and tags).",
+      "src": "js/engine/damage-adapter.js:231-246"
+    },
+    "on-damaged": {
+      "kind": "trigger",
+      "does": "The owner took damage over 0 (filter by type, ranged, source side).",
+      "src": "js/engine/damage-adapter.js:247-283"
+    },
+    "on-hit-by": {
+      "kind": "trigger",
+      "does": "A creature's attack hit the owner's target: the attacker's riders on what it hits (poisons, rots, snuffs, bleeds, fangs).",
+      "src": "js/engine/damage-adapter.js:271-280; js/engine/actions-adapter.js:158-163"
+    },
+    "on-attacked": {
+      "kind": "trigger",
+      "does": "A creature attacked the owner, hit or miss, once per attacker per action.",
+      "src": "js/engine/actions-adapter.js:11-26"
+    },
+    "on-block": {
+      "kind": "trigger",
+      "does": "The owner blocked a blow; carries the blocked amount.",
+      "src": "js/equipment/shieldench.js:12"
+    },
+    "on-parry": {
+      "kind": "trigger",
+      "does": "The owner parried a blow.",
+      "src": "js/engine/actions-adapter.js:282-286"
+    },
+    "on-melee-hit-taken": {
+      "kind": "trigger",
+      "does": "An adjacent attacker damaged the owner, measured including shields.",
+      "src": "js/engine/actions-adapter.js:95-96, :150-151"
+    },
+    "on-kill": {
+      "kind": "trigger",
+      "does": "A death credited to the owner's side (filter by the victim's statuses).",
+      "src": "js/engine/death-adapter.js:89-97, :134-146",
+      "filters": {
+        "victimStatus": "status id or tag the victim carried",
+        "by": "spell: the killing packet came from a spell (Shadow tome)"
+      }
+    },
+    "on-death": {
+      "kind": "trigger",
+      "does": "The owner itself dies (death bursts, clouds, shards).",
+      "src": "js/engine/death-adapter.js:5-57"
+    },
+    "on-lethal": {
+      "kind": "trigger",
+      "does": "The owner would die; effects may keep it alive (once per floor).",
+      "src": "js/runtime/balance-rulings.js:26-36"
+    },
+    "on-cast": {
+      "kind": "trigger",
+      "does": "The owner cast a spell, prayer or invoke; the packet's tags carry its kind (spell, invoke, prayer), read with has-tag.",
+      "src": "js/engine/costs-adapter.js:48-68; js/faith/holy.js:69"
+    },
+    "on-pay-mana": {
+      "kind": "trigger",
+      "does": "The owner paid mana; carries the amount.",
+      "src": "js/engine/costs-adapter.js:43-55"
+    },
+    "on-status-applied": {
+      "kind": "trigger",
+      "does": "A status was applied to a body (filter by status id and by who applied it).",
+      "filters": {
+        "applied": "status id: only when this status took (the hero's on a foe; each Chill stack counts)"
+      },
+      "src": "js/engine/effect-adapter.js:61-103"
+    },
+    "on-status-tick": {
+      "kind": "trigger",
+      "does": "A status ticked on its bearer in the world pulse.",
+      "src": "js/engine/effect-adapter.js:125-151"
+    },
+    "on-status-expired": {
+      "kind": "trigger",
+      "does": "A status ran out on its bearer.",
+      "src": "js/engine/effects.js:97-107"
+    },
+    "on-status-blocked": {
+      "kind": "trigger",
+      "does": "A status was refused by an immunity.",
+      "src": "js/engine/effect-adapter.js:55-60"
+    },
+    "on-move": {
+      "kind": "trigger",
+      "does": "The owner moved a tile.",
+      "src": "js/engine/actor-ai.js:210-219; js/elements/sigils.js:236"
+    },
+    "on-enter-tile": {
+      "kind": "trigger",
+      "does": "A body entered a tile (traps, fields, plates).",
+      "src": "js/engine/transition-adapter.js:88-110; js/enemies/enemy-fields.js:16"
+    },
+    "on-world-pulse": {
+      "kind": "trigger",
+      "does": "Once per game turn, in the world pulse.",
+      "src": "js/engine/turns.js:62-96"
+    },
+    "on-action": {
+      "kind": "trigger",
+      "does": "Once per paid player action, after the creatures (the after-world phase).",
+      "src": "js/engine/turns.js:144-151"
+    },
+    "on-quiet": {
+      "kind": "trigger",
+      "does": "The owner has gone N calm actions (no fighting, no noise).",
+      "src": "js/elements/elements.js:149-153; js/character/classes.js:137-145"
+    },
+    "on-heal": {
+      "kind": "trigger",
+      "does": "The owner was healed (any heal; filter natural: false leaves out natural healing such as holy ground's pulse).",
+      "src": "js/engine/damage-adapter.js:402-409",
+      "filters": {
+        "natural": "false: not a natural heal (a bleed is stanched only by a real one)"
+      }
+    },
+    "on-absorb": {
+      "kind": "trigger",
+      "does": "A shield pool of the owner absorbed damage; carries the amount.",
+      "src": "js/engine/damage-adapter.js:158-166"
+    },
+    "on-sight": {
+      "kind": "trigger",
+      "does": "The owner first sees the player or a body comes within a radius.",
+      "src": "js/world/biomes/underdark/deepmobs.js:390; js/world/planes/planesfwa.js:398"
+    },
+    "on-hp-threshold": {
+      "kind": "trigger",
+      "does": "The owner's HP fell below a percent (boss phases).",
+      "src": "js/combat/combat.js:451-456"
+    },
+    "on-floor-enter": {
+      "kind": "trigger",
+      "does": "The player arrived on a new floor.",
+      "src": "js/combat/systems.js:796-803"
+    },
+    "on-level-up": {
+      "kind": "trigger",
+      "does": "The player gained a level.",
+      "src": "js/engine/progression-adapter.js:130-139"
+    },
+    "on-rank-up": {
+      "kind": "trigger",
+      "does": "The player's god rank rose.",
+      "src": "js/engine/progression-adapter.js:27"
+    },
+    "self": {
+      "kind": "selector",
+      "does": "The owner.",
+      "src": "js/engine/casting-adapter.js:2"
+    },
+    "target": {
+      "kind": "selector",
+      "does": "The chosen body or tile, in range, with line of sight or a bolt path.",
+      "src": "js/combat/combat.js:580-591"
+    },
+    "source": {
+      "kind": "selector",
+      "does": "The other party of the triggering event (the attacker, the killer, the applier).",
+      "src": "js/engine/damage-adapter.js:251-283"
+    },
+    "adjacent": {
+      "kind": "selector",
+      "does": "Bodies within 1 tile.",
+      "src": "js/engine/actions-adapter.js:434-437"
+    },
+    "radius": {
+      "kind": "selector",
+      "does": "Tiles within N (square) of a centre.",
+      "fields": "centre: self | target | point; n; of: a selector whose bodies the adjacency is measured from (Storm Beetle arc); through: connected-water (only tiles reached through water from the centre); kind, family, flag filters",
+      "src": "js/elements/elements.js:313-317"
+    },
+    "ring": {
+      "kind": "selector",
+      "does": "Tiles between an inner and an outer distance.",
+      "fields": "min, max",
+      "src": "js/combat/combat.js:390-397"
+    },
+    "square": {
+      "kind": "selector",
+      "does": "An N x N block at a point (3 x 3 most often).",
+      "src": "js/world/biomes/underdark/deepmobs.js:575"
+    },
+    "line": {
+      "kind": "selector",
+      "does": "A straight line of N tiles; piercing passes through bodies. from: self (default) | target | point | a named site (a pylon); toward: target | point; within: a cell rule (arena) that cuts the line before its first cell outside it.",
+      "fields": "n, piercing, from, toward, within",
+      "src": "js/runtime/recovery.js:30"
+    },
+    "beam": {
+      "kind": "selector",
+      "does": "A line 3 tiles wide.",
+      "src": "js/world/biomes/dungeon/beta-world.js:47"
+    },
+    "cone": {
+      "kind": "selector",
+      "does": "A cone from the owner toward the target.",
+      "src": "js/world/biomes/dungeon/beta-world.js:46"
+    },
+    "chain": {
+      "kind": "selector",
+      "does": "Jumps from body to nearest body within a range, N times.",
+      "fields": "jumps, range",
+      "src": "js/engine/damage.js:59"
+    },
+    "nearest": {
+      "kind": "selector",
+      "does": "The N nearest matching bodies within a range.",
+      "fields": "n, range; packet F filters: family, kind, notKind, notSelf, order (nearest | most-hurt | nearest-to-target | player-first), need (hurt | below-65-pct | hurt-or-unraged | hurt-or-uncoated | without-blood-ward | hunting-without-lens | hunting-without-bone-ward), visibleFromOwner",
+      "src": "js/engine/damage-adapter.js:213-230"
+    },
+    "all-visible": {
+      "kind": "selector",
+      "does": "Every matching body the player can see.",
+      "src": "js/engine/casting-adapter.js:185-187"
+    },
+    "wall-across": {
+      "kind": "selector",
+      "does": "A short wall of tiles across the line to the target.",
+      "src": "js/elements/elements.js:445"
+    },
+    "room": {
+      "kind": "selector",
+      "does": "Every tile of the owner's room.",
+      "src": "js/elements/sigils.js:265"
+    },
+    "floor": {
+      "kind": "selector",
+      "does": "The whole floor.",
+      "src": "js/engine/sigil-adapter.js:97"
+    },
+    "tile": {
+      "kind": "selector",
+      "does": "One given tile (traps, plates, fields).",
+      "src": "js/combat/systems.js:600-660"
+    },
+    "fixed": {
+      "kind": "amount",
+      "does": "A number.",
+      "src": "js/engine/damage-adapter.js:73"
+    },
+    "roll": {
+      "kind": "amount",
+      "does": "A uniform whole roll between two numbers (one draw).",
+      "src": "js/runtime/game.js:18"
+    },
+    "pct-of": {
+      "kind": "amount",
+      "does": "A percent of a stat: max-hp, hp, max-mp, mp, damage-dealt, damage-taken, blocked, absorbed, essence, mana-paid (the mana the triggering payment spent: Light tome), overheal (the healing past full of the triggering heal: Holy Water, magic.md answer 17). The pct may itself be an amount form.",
+      "src": "js/engine/effect-adapter.js:139"
+    },
+    "from-status": {
+      "kind": "amount",
+      "does": "The magnitude stored on a status (Burn's d); {\"from-status\": \"turns\"} is its remaining turns (Purging Flame, Radiant Roots; magic.md answer 15).",
+      "src": "js/engine/effect-adapter.js:133"
+    },
+    "scaled": {
+      "kind": "amount",
+      "does": "Any amount form, plus per-unit terms and multipliers from a closed list: spell-power, divine, rank, floor, level, affinity:<element>, attribute:<id> (points over 10), total-affinity, stacks, status-scale, number-scale, lethality. A per term is a number (per unit) or stepped, {\"every\": N, \"add\": A}: A for every whole N units (floor(floor / 3) is {\"floor\": {\"every\": 3, \"add\": 1}}). 1.7's sDMG is number-scale x lethality, rounded, at least 1. Scaling key ability-scale: the owner creature abilityScale (Underdark 1.25; monsters.md M8). Scaling key weapon-damage-sum: the owner's main-hand damage, min + max (Sap; magic.md answer 2).",
+      "src": "js/runtime/game.js:51-52; js/combat/combat.js:611"
+    },
+    "has-status": {
+      "kind": "condition",
+      "does": "The body carries a status by id or tag; {any: true} for any harmful status; {beforeThisHit: true} only counts statuses it had before the triggering hit.",
+      "src": "js/engine/effects.js:69-70"
+    },
+    "action-was": {
+      "kind": "condition",
+      "does": "The action that triggered this was of a kind: attack | cast | noisy | move (Lightning Reflexes; magic.md answer 13, 2026-10-16).",
+      "src": "js/elements/elements.js (Lightning Reflexes)"
+    },
+    "hp-below-pct": {
+      "kind": "condition",
+      "does": "A body's HP (or MP) is below a percent of its max: {pct, body: self | target | source, stat: hp | mp}.",
+      "src": "js/engine/actions-adapter.js:302, :306"
+    },
+    "creature-flag": {
+      "kind": "condition",
+      "does": "The body is undead, shadowy, living, flying, a boss, an elite, an object, a foe, awake, a spellcaster, or elemental; fumes (gas immune: Grave Beetle), ooze (grave ooze immune), sporeproof (spore immune), airborne (flying, or levitating: status levitate or wind-carry), plane-native (a plane's roster kind, its elite, the Heart of the Mountain's limbs and nodes; planes.md answer 2); hunting (state hunt); starter, retired, bone, grounded, darksight, gas-immune, tiny, heavy, spider, aquatic and the other flags of monsters.md",
+      "src": "js/engine/actions-adapter.js:308"
+    },
+    "off-guard": {
+      "kind": "condition",
+      "does": "The body is off guard (combat.md C18).",
+      "src": "js/combat/combat.js:257-262"
+    },
+    "hit-was": {
+      "kind": "condition",
+      "does": "The triggering hit was crit, surprise, melee, ranged, single-target, primary, or spell.",
+      "src": "js/engine/damage-adapter.js:289-375"
+    },
+    "combo": {
+      "kind": "condition",
+      "does": "The owner has two elements at the combo ranks.",
+      "src": "js/elements/combos.js:57"
+    },
+    "affinity-at-least": {
+      "kind": "condition",
+      "does": "The owner's affinity in an element is at least N.",
+      "src": "js/engine/damage-adapter.js:238-242"
+    },
+    "rank-at-least": {
+      "kind": "condition",
+      "does": "The owner's god rank is at least N.",
+      "src": "js/engine/damage-adapter.js:251"
+    },
+    "standing-on": {
+      "kind": "condition",
+      "does": "The body stands in water, in deep water, on a chasm, on lava, on holy ground, in a field, or on a flat prop by id ({\"prop\": \"updraft-vent\"}).",
+      "src": "js/engine/effect-adapter.js:111-123"
+    },
+    "in-combat": {
+      "kind": "condition",
+      "does": "The owner took damage within the last 500 time units (one rule for HP regeneration, Ice Armor and Guard; ruled 2026-10-15, character.md A44).",
+      "src": "js/engine/turns.js:3"
+    },
+    "distance": {
+      "kind": "condition",
+      "does": "Distance between the owner and the other party is within a range.",
+      "src": "js/engine/damage-adapter.js:264"
+    },
+    "wielding": {
+      "kind": "condition",
+      "does": "The owner wields a weapon kind (unarmed, dagger, mace, bow, spear, shield, orb, tome, wand, staff).",
+      "src": "js/engine/damage-adapter.js:78"
+    },
+    "chance": {
+      "kind": "condition",
+      "does": "A roll at a percent; the owner decides how it rolls (player: luck, others: plain).",
+      "src": "js/runtime/balance-rulings.js:5-14"
+    },
+    "from-source": {
+      "kind": "amount",
+      "does": "A named number on the content row that granted this effect (a prayer's mana per HP, a creature's ward size).",
+      "src": "js/engine/costs.js:35-37"
+    },
+    "tuning": {
+      "kind": "amount",
+      "does": "The rule written in a row of data/tuning.json, by row id (Chill's slow).",
+      "src": "data/tuning.json"
+    },
+    "damage-type": {
+      "kind": "condition",
+      "does": "The triggering packet is of a damage type.",
+      "src": "js/engine/damage-adapter.js:137-146"
+    },
+    "kill-side": {
+      "kind": "condition",
+      "does": "The death was credited to: player (the player's side), self (the owner's own blow), own-summon (one of the owner's summons), or any.",
+      "src": "js/engine/death-adapter.js:161"
+    },
+    "all": {
+      "kind": "condition",
+      "does": "Every listed condition holds.",
+      "src": "spec/effects.md"
+    },
+    "any": {
+      "kind": "condition",
+      "does": "At least one listed condition holds.",
+      "src": "spec/effects.md"
+    },
+    "not": {
+      "kind": "condition",
+      "does": "The condition does not hold.",
+      "src": "spec/effects.md"
+    },
+    "heal-kind": {
+      "kind": "condition",
+      "does": "The triggering heal is regeneration, or is not.",
+      "src": "js/engine/damage.js:40-47"
+    },
+    "field-target": {
+      "kind": "common-field",
+      "field": "target",
+      "does": "selector for who or where the effect lands (default: the triggering body, or self)",
+      "src": "spec/effects.md"
+    },
+    "field-if": {
+      "kind": "common-field",
+      "field": "if",
+      "does": "condition that must hold",
+      "src": "spec/effects.md"
+    },
+    "field-chance": {
+      "kind": "common-field",
+      "field": "chance",
+      "does": "whole percent or amount; player-owned chances roll with luck (Lucky Streak may reroll), creature and world chances roll plain (ruled 2026-10-15)",
+      "src": "spec/effects.md"
+    },
+    "field-only": {
+      "kind": "common-field",
+      "field": "only",
+      "does": "player | creatures: the effect applies only to that kind of bearer; on the field verb, flammable limits the tiles (field row)",
+      "src": "spec/effects.md"
+    },
+    "field-clock": {
+      "kind": "common-field",
+      "field": "clock",
+      "does": "game-turn | action: the unit of any count in this effect (game-turn is the default)",
+      "src": "spec/effects.md"
+    },
+    "target-is": {
+      "kind": "condition",
+      "does": "The effect's target is a creature, an anchor (a wall, closed door or solid prop the hero can haul to), the player, or an ally. Used for the Hook's two branches.",
+      "src": "spec/items.md decided question 3 (Justin 2026-10-15)"
+    },
+    "fed": {
+      "kind": "condition",
+      "does": "The owner is not starving: hunger above 0 (Mending regenerates only while fed and not poisoned).",
+      "src": "spec/items.md decided question 3 (Justin 2026-10-15)"
+    },
+    "trigger-traps": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/gear-use.js"],
+      "group": "world",
+      "does": "Set off every trap the selector covers, as if stepped on, credited to the owner.",
+      "fields": {
+        "target": "selector for the area (room, radius)"
+      },
+      "visible": "each trap's own animation, sound and log",
+      "examples": [
+        "Tide amulet trips the room's traps js/equipment/amulets.js"
+      ],
+      "src": "spec/items.md decided question 3 (Justin 2026-10-15)"
+    },
+    "trigger-trap": {
+      "kind": "verb",
+      "group": "world",
+      "does": "Fire one named trap kind at the target's tile, as if stepped on there.",
+      "fields": {
+        "trap": "trap id (packet G traps.json)"
+      },
+      "visible": "that trap's animation, sound and log",
+      "examples": [
+        "cursed amulet, effects.md EO9"
+      ],
+      "src": "spec/items.md decided question 3 (Justin 2026-10-15)"
+    },
+    "repeat-sigil": {
+      "kind": "verb",
+      "codeOwned": ["src/rules/gear-use.js"],
+      "group": "item",
+      "does": "Cast the last sigil used again at no cost.",
+      "fields": {
+        "maxMotes": "only sigils that cost at most this many motes",
+        "never": "list of sigil ids that cannot be repeated"
+      },
+      "visible": "the sigil's own cast",
+      "examples": [
+        "Echoes amulet"
+      ],
+      "src": "spec/items.md decided question 3 (Justin 2026-10-15)"
+    },
+    "amount-fields": {
+      "kind": "common-field",
+      "does": "Any numeric field of any verb (mult, ratio, deflectPct, pct, chancePct, turns, and the rest) takes an amount form, resolved when the effect is created.",
+      "src": "spec/items.md decided question 2 (Justin 2026-10-15)"
+    },
+    "on-craft": {
+      "kind": "trigger",
+      "does": "The owner crafted at the Forge: enchant, upgrade, carve or fuse. Carries the craft kind.",
+      "filters": {
+        "craft": "enchant | upgrade | carve | fuse"
+      },
+      "src": "Justin 2026-10-15, rulings on packets A and E (07dfb35)"
+    },
+    "on-spend": {
+      "kind": "trigger",
+      "does": "The owner spent a resource. Carries the resource and the amount.",
+      "filters": {
+        "resource": "essence | mana | piety | motes"
+      },
+      "src": "Justin 2026-10-15, rulings on packets A and E (07dfb35)"
+    },
+    "craft-was": {
+      "kind": "condition",
+      "does": "The triggering craft was enchant, upgrade, carve or fuse (list allowed).",
+      "src": "Justin 2026-10-15, rulings on packets A and E (07dfb35)"
+    },
+    "own-summons": {
+      "kind": "selector",
+      "does": "Every living ally the owner summoned.",
+      "src": "Justin 2026-10-15, rulings on packets A and E (07dfb35)"
+    },
+    "race-flag": {
+      "kind": "condition",
+      "does": "The hero's race row carries this flag (noHolyRadiance: the Gloomling never takes the Holy Symbol's Light heal).",
+      "src": "js/faith/holy.js:69-72"
+    },
+    "has-tag": {
+      "kind": "condition",
+      "does": "The triggering damage packet carries a tag, or any tag of a list (periodic, burn, poison, spell, ...).",
+      "src": "Justin 2026-10-15, rulings on packets A and E (07dfb35)"
+    },
+    "foes-in-sight": {
+      "kind": "condition",
+      "does": "At least {min} foes are in the owner's sight; notBoss: true leaves bosses out of the count.",
+      "src": "Justin 2026-10-15, rulings on packets A and E (07dfb35)"
+    },
+    "shop": {
+      "kind": "verb",
+      "group": "item",
+      "does": "Open a vendor's stock window: items for essence, bought while within reach of the vendor or its stall.",
+      "fields": {
+        "stock": "loot table id (required)",
+        "reach": "tiles from the vendor or its stall (1)",
+        "vendor": "the resident who sells"
+      },
+      "visible": "the stock window; 'You need N essence.' when short (pickup-item sound on a sale)",
+      "examples": [
+        "Myconid Merchant js/combat/systems.js:287-322"
+      ],
+      "src": "js/combat/systems.js:287-322"
+    },
+    "escort": {
+      "kind": "verb",
+      "group": "control",
+      "does": "Make a freed body an ally that walks to a goal while the player is near, follows otherwise, and pays a reward on arrival.",
+      "fields": {
+        "who": "selector (default the body just freed or summoned)",
+        "to": "upstairs (else the exit) | exit",
+        "playerWithin": "tiles: it walks to the goal only while the player is this close (3)",
+        "arriveWithin": "tiles from the goal that count as arrived (1)",
+        "reward": "loot table id dropped on arrival",
+        "stats": "{hpPct, armourPct, evasionPct}: share of its normal numbers",
+        "name": "display name pattern ('Escaping X')",
+        "onArrive": "list of effects when it arrives"
+      },
+      "visible": "the escort log on start; 'The escapee thanks you, leaves a reward and escapes.' on arrival",
+      "examples": [
+        "prison escapee js/combat/systems.js:350-392",
+        "silk survivor js/world/world.js:1085"
+      ],
+      "src": "js/combat/systems.js:350-392"
+    },
+    "prop-break": {
+      "kind": "verb",
+      "group": "spawn",
+      "does": "Break props on tiles: each runs its own onBreak, or turns to ash.",
+      "fields": {
+        "where": "selector for the tiles",
+        "props": "filter: explosive | fluid | breakable | burnable, or a list of prop ids",
+        "result": "break (default: the prop's own onBreak runs) | ash (the prop is removed and leaves ash ground)"
+      },
+      "visible": "the prop's break art and sound; a chained break lands 180 ms after the one that caused it",
+      "examples": [
+        "explosive barrel chain js/combat/systems.js:540-560"
+      ],
+      "src": "js/content/data.js:898"
+    },
+    "travel": {
+      "kind": "verb",
+      "group": "movement",
+      "does": "Move the hero (and what follows) to another floor or plane: the host floor is stashed and the destination built.",
+      "fields": {
+        "to": "plane | return (back to the host floor) | next-floor",
+        "plane": "plane element id, or portal (the element of the portal used)",
+        "arrival": "entry cell rule of the destination"
+      },
+      "visible": "the destination's arrival log, sound and shake",
+      "examples": [
+        "portal entry js/engine/transition-adapter.js:58-70",
+        "return portal js/engine/transition-adapter.js:71-86"
+      ],
+      "src": "js/engine/transition-adapter.js:58-86"
+    },
+    "on-interact": {
+      "kind": "trigger",
+      "does": "The player used the owner prop (bump or the use key): cages, altars, bells, levers, crystals. Costs the player's action.",
+      "src": "Justin 2026-10-15, world.md answer 3 (packet G)"
+    },
+    "on-chest-open": {
+      "kind": "trigger",
+      "does": "A chest of the owner room is being opened; the effects run first and the chest opens after them only if the opener is still beside it.",
+      "filters": {
+        "nth": "which chest of the room this is: 1 the first opened, 2 the second"
+      },
+      "src": "Justin 2026-10-15, world.md answer 3 (packet G)"
+    },
+    "on-prop-broken": {
+      "kind": "trigger",
+      "does": "The owner prop was broken (a blow, a blast or fire). Carries the breaker.",
+      "src": "Justin 2026-10-15, world.md answer 3 (packet G)"
+    },
+    "adjacent-terrain": {
+      "kind": "condition",
+      "does": "A tile beside the body (or the tested tile) is that terrain, or holds a prop whose id contains one of the given words: {terrain: lava | water | chasm | ..., prop: [words], ways: 4 | 8}.",
+      "src": "Justin 2026-10-15, world.md answer 3 (packet G)"
+    },
+    "lit-by": {
+      "kind": "condition",
+      "does": "The body (or tile) is within N tiles (Chebyshev, fractional light positions) of a light of that kind: {light: plane | any, within: N}.",
+      "src": "Justin 2026-10-15, world.md answer 3 (packet G)"
+    },
+    "burned-within": {
+      "kind": "condition",
+      "does": "The body took fire damage or carried Burn within the last N game turns: {turns: N}.",
+      "src": "Justin 2026-10-15, world.md answer 3 (packet G)"
+    },
+    "clear-path": {
+      "kind": "condition",
+      "does": "Every cell of the straight path from a point to the body passes a cell rule: {from: source | point | a named site, cells: arena | walkable}.",
+      "src": "Justin 2026-10-15, world.md answer 3 (packet G)"
+    },
+    "blotch": {
+      "kind": "selector",
+      "does": "K rectangles near a centre, each at the centre plus a uniform jitter, each cell kept by chance; duplicates drop out.",
+      "fields": "count, centre, jitter [dx, dy], size [w, h], cellPct, ownCellPct (the centre's own tile), exclude (a cell condition), walkable",
+      "src": "js/world/planes/portals.js:291-299; js/world/planes/planesfwa.js:356-370"
+    },
+    "wave-band": {
+      "kind": "selector",
+      "does": "A band across a uniform one of 4 directions through a centre, offset by a uniform step; its direction is the wave direction for knockback.",
+      "fields": "centre, halfLength, depth, offset [min, max]",
+      "src": "js/world/planes/planesfwa.js:356-370"
+    },
+    "on-item-dropped": {
+      "kind": "trigger",
+      "does": "The player dropped an item in the owner room (or beside the owner).",
+      "filters": {
+        "item": "item kind or id (ration)",
+        "room": "the owner room only (true)"
+      },
+      "src": "Justin 2026-10-16, effects.md G1-G6 (\"all a\")"
+    },
+    "near-feature": {
+      "kind": "condition",
+      "does": "The body (or tested tile) is within N of a map feature: {features: [stairs, upstairs, exit, portal, forge, shrine], within: N}.",
+      "src": "Justin 2026-10-16, effects.md G1-G6 (\"all a\")"
+    },
+    "room-aisle": {
+      "kind": "condition",
+      "does": "The tested tile is on a storage room's aisle (its lanes and hub, world.md S2).",
+      "src": "Justin 2026-10-16, effects.md G1-G6 (\"all a\")"
+    },
+    "field-cooldown": {"kind":"common-field","field":"cooldown","does":"game turns before this effect can run again for the same owner (Goblin Brute shoulder check 4, Grave Beetle fumes 2)","src":"Justin 2026-10-16, monsters.md answer 12 (packet F)"},
+    "field-uses": {"kind":"common-field","field":"uses","does":"how many times this effect may run in the owner life (Stalker ambush 1, Tide Crab shell 3)","src":"Justin 2026-10-16, monsters.md answer 12 (packet F)"},
+    "has-mana": {"kind":"condition","does":"The body has at least {atLeast} mana: {body: self | target, atLeast: N}.","src":"Justin 2026-10-16, monsters.md answer 12 (packet F); js/world/biomes/underdark/deepmobs.js:324-336"},
+    "sees": {"kind":"condition","does":"The owner sees the other party now (monsters.md M11): line of sight, not Hidden, not Blind.","src":"Justin 2026-10-16, monsters.md answer 12 (packet F); js/engine/actor-ai.js:3-10"},
+    "in-state": {"kind":"condition","does":"The body is in a state: {state: asleep | wander | hunt | throne | dormant | submerged | burrowed | entombed | buried}.","src":"Justin 2026-10-16, monsters.md answer 12 (packet F)"},
+    "every-nth-action": {"kind":"condition","does":"The owner action counter since waking is a multiple of n plus remainder: {n, remainder (default 0)}.","src":"Justin 2026-10-16, monsters.md answer 12 (packet F); js/world/biomes/crypt/crypt.js:292, :312-327"},
+    "boss-alive": {"kind":"condition","does":"The set piece boss is alive or returning: {set: id}.","src":"Justin 2026-10-16, monsters.md answer 12 (packet F); js/world/biomes/crypt/crypt.js:348-357"},
+    "linked-alive": {"kind":"condition","does":"At least one body linked to the owner lives: {link: heart-nodes | own-summons}.","src":"Justin 2026-10-16, monsters.md answer 12 (packet F); js/engine/damage-adapter.js:58-62"},
+    "dismiss": {"kind":"verb","group":"spawn","does":"Remove bodies from the map with no death: no death log, no drops, no XP, no kill credit, no death effects; each leaves with a small burst.","fields":{"who":"selector for the bodies (own-summons most often)","alsoClears":"list: their fields and hazards, warnings, pylons","keep":"bodies the selector would take that stay (the player's Shades)"},"visible":"a small burst where each body was","examples":["the Maw's brood sinks into the burrows js/engine/death-adapter.js:30-34","the Unmaker's demons vanish js/world/chaos/unmaker-encounter.js:267-276","a summon's life runs out js/engine/turns.js:66-71"],"src":"Justin 2026-10-16 (\"A\"), monsters.md question 14"}
+  }
+}

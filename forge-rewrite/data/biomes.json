@@ -1,0 +1,1321 @@
+{
+  "version": 1,
+  "rows": {
+    "chaos": {
+      "name": "Realm of Chaos",
+      "entry": "chaos-treasure-room",
+      "palettes": {
+        "prism-archives": "prism",
+        "rot-hollows": "rot",
+        "cinder-bastion": "cinder",
+        "violet-warrens": "violet"
+      },
+      "rockPalettes": {
+        "rot": {"floor":[159,137,99],"floorLav":[128,103,67],"joint":0.3,"grain":0.03,"occ":[74,58,34],"mineralCool":[139,137,91],"pearl":[197,176,128],"band":[173,151,105],"top":[217,198,155],"topHi":[253,239,203],"topLo":[158,135,94],"topLav":[193,177,129],"edge":[95,77,48],"face":[214,186,134],"faceLo":[130,105,67],"faceH":0.8,"lip":[255,238,189],"void":[116,98,66],"voidEdge":[139,115,76],"vein":[108,150,44],"veinHot":[208,233,104],"inlay":[158,132,82],"inlayJoint":[91,72,46],"polish":[190,168,115],"pool":[33,103,76],"poolEdge":[87,180,114],"poolShallow":[148,210,91],"poolRim":[214,238,140],"poolShelf":[129,111,73],"poolShelfDry":[158,135,86],"poolWet":[84,87,51],"poolLight":"#82EACB","moss":[[75,122,39],[112,151,59],[44,76,28],[145,170,81]],"rockHi":"#F3DFB4","rockLo":"#947D53","motif":"none","jag":0.65,"organicRock":true,"faceCrystals":false},
+        "violet": {"floor":[165,143,185],"floorLav":[134,111,164],"joint":0.27,"grain":0.02,"occ":[78,61,99],"mineralCool":[142,132,174],"pearl":[217,199,231],"band":[182,158,198],"top":[171,148,192],"topHi":[231,216,244],"topLo":[104,80,133],"topLav":[184,164,212],"edge":[77,57,103],"face":[177,144,198],"faceLo":[89,65,120],"faceH":0.8,"lip":[239,226,247],"void":[97,76,129],"voidEdge":[124,98,148],"vein":[181,144,213],"veinHot":[241,222,254],"inlay":[184,163,206],"inlayJoint":[105,86,128],"polish":[219,200,232],"pool":[96,54,138],"poolEdge":[160,122,212],"poolShallow":[176,138,218],"poolRim":[240,222,252],"poolShelf":[139,120,164],"poolShelfDry":[168,145,190],"poolWet":[106,86,143],"poolLight":"#D6C6FF","crystal":["#F6E8FF","#D7B2EF","#A679CE","#A8C8F2"],"crystalLight":"#E2BCFF","moss":[[105,74,137],[162,117,182],[68,53,96],[203,162,218]],"rockHi":"#E7D9F2","rockLo":"#8B6BAA","motif":"none","jag":0.65,"organicRock":true,"faceCrystals":false}
+      },
+      "voidLog": "The void cannot be crossed. Use a bridge or portal.",
+      "shrines": false,
+      "drops": {
+        "chance": 22,
+        "table": {
+          "essence": 12,
+          "gear": 3,
+          "food": 2
+        }
+      },
+      "src": "js/world/chaos/chaos-preview.js:131-155; js/world/world.js:67; js/engine/progression.js:9; js/world/chaos/chaos-enemies.js:57"
+    },
+    "crypt": {
+      "name": "Crypt",
+      "size": [
+        56,
+        34
+      ],
+      "layout": "bsp",
+      "stairs": {
+        "kind": "dead-end-passage",
+        "length": [
+          3,
+          5
+        ],
+        "sides": "any",
+        "tries": 120,
+        "fallback": "nearest other room, then goal centre"
+      },
+      "water": "every water tile outside puzzle rooms becomes floor with grave ooze",
+      "oozeFallback": {
+        "blobs": 2,
+        "size": [
+          3,
+          7
+        ],
+        "roomMinArea": 16,
+        "notRoles": [
+          "start",
+          "boss"
+        ]
+      },
+      "roomDressing": {
+        "crumbledTomb": {
+          "chancePct": 45,
+          "kinds": [
+            [
+              "tomb-crumbled-v",
+              1,
+              2
+            ],
+            [
+              "tomb-crumbled-h",
+              2,
+              1
+            ],
+            [
+              "tomb-open-h",
+              2,
+              1
+            ]
+          ],
+          "tries": 12,
+          "bones": [
+            1,
+            2
+          ],
+          "oozeLeakPct": 45
+        },
+        "secondTomb": {
+          "minArea": 36,
+          "chancePct": 30
+        },
+        "mushroomPatch": {
+          "chancePct": 40,
+          "blob": [
+            6,
+            14
+          ],
+          "from": "edge cell"
+        },
+        "mossPatch": {
+          "chancePct": 60,
+          "blob": [
+            3,
+            8
+          ],
+          "from": "edge cell"
+        },
+        "candles": {
+          "chancePct": 45,
+          "kinds": "candles-1..4",
+          "spot": "scatter spot on an edge"
+        },
+        "mossStreak": {
+          "chancePct": 50,
+          "length": [
+            3,
+            4
+          ],
+          "starts": 6,
+          "piece": "grave-flowers-moss-1..4"
+        },
+        "cobweb": {
+          "chancePct": 35,
+          "where": "wall above a top corner"
+        },
+        "plaqueOrNiche": {
+          "chancePct": 25,
+          "minW": 4,
+          "plaquePct": 55,
+          "tries": 5
+        },
+        "wallVeg": {
+          "perFloor": [
+            2,
+            4
+          ],
+          "rootsPct": 45,
+          "variants": 3
+        }
+      },
+      "scatterRules": {
+        "kinds": {
+          "urn": [
+            "urn-group"
+          ],
+          "bone": [
+            "bones",
+            "bone-pile"
+          ],
+          "candle": [
+            "candles-N"
+          ],
+          "moss": [
+            "grave-flowers-moss-N"
+          ]
+        },
+        "keptKindsPerFloor": 2, "largeFloor": { "minRoomCells": 590, "keptKinds": 3, "ruled": "Justin 2026-10-16, C9: a third scatter kind on large floors (the top quarter of Crypt floors by room area)" },
+        "moveRadius": 4,
+        "groupsPerRoom": [
+          0,
+          1,
+          1,
+          2
+        ],
+        "minMossStreak": 3,
+        "candleLight": {
+          "col": "#FFC878",
+          "r": 2.2,
+          "s": 0.32
+        }
+      },
+      "furniture": {
+        "brazier-lit": "soul-brazier",
+        "brazier-unlit": "soul-brazier",
+        "torch-stand": "candelabra",
+        "banner-stand": "grave-pillar",
+        "statue": "sarcophagus",
+        "statue-broken": "sarcophagus-open",
+        "barrel": "urn",
+        "crate": "urn",
+        "crate-supply": "urn",
+        "pot": "urn",
+        "bookshelf": "coffin",
+        "weapon-rack": "coffin",
+        "cart": "sarcophagus-open",
+        "bed-straw": "bone-pile",
+        "alchemy-table": "sarcophagus",
+        "table-candle": "candelabra"
+      },
+      "furnitureRules": {
+        "wispPostPct": 35,
+        "mushroomsToGroundBlob": [
+          4,
+          9
+        ],
+        "twoCellSarc": {
+          "from": [
+            "sarcophagus",
+            "sarcophagus-open",
+            "coffin (50%)"
+          ],
+          "crackedPct": 30
+        },
+        "candelabraVioletPct": 60
+      },
+      "lights": {
+        "gasCloud": {
+          "col": "#8CFF6A",
+          "r": 2.2,
+          "s": 0.35
+        },
+        "mushroom": {
+          "col": "#B070FF",
+          "r": 2.4,
+          "s": 0.5,
+          "hashMax": 0.4
+        },
+        "ooze": {
+          "col": "#80C65A",
+          "r": 3.2,
+          "s": 0.28,
+          "spacing": 2.5
+        },
+        "recess": {
+          "col": "#7CFFA0",
+          "r": 2.6,
+          "s": 0.5
+        },
+        "plaque": {
+          "col": "#7CFFA0",
+          "r": 1.8,
+          "s": 0.22
+        }
+      },
+      "monsters": {
+        "perFloor": "scaled: 12 + 3 x in-biome floor + 2 (17, 20, 23, 26)",
+        "bossFloor": 9
+      },
+      "hazards": [
+        "hazard-gas-cloud",
+        "hazard-grave-ooze"
+      ],
+      "src": "js/world/biomes/crypt/crypt.js:40-78; js/world/biomes/crypt/cryptset.js:393-612; js/world/biomes/crypt/cryptpack.js:290-441; js/engine/content-adapter.js:93-106; js/world/world.js:376-379"
+    },
+    "crypt-urn-chamber": {
+      "name": "Crypt urn chamber (storage in the Crypt)",
+      "kind": "room-rebuild",
+      "recess": {
+        "piece": "crypt-recess",
+        "at": "top-centre wall",
+        "needs": "3 wall cells above top-centre, the row below not wall",
+        "slab": {
+          "piece": "grave-slab",
+          "size": [
+            1,
+            2
+          ],
+          "walkable": true
+        }
+      },
+      "vessels": {
+        "spots": "top row |x-cx|>=2, then side walls from y+2 to y+h-2",
+        "cap": "max(3, round((w+h)/3))",
+        "run": "1, or 2 when hash2(x,y,5)<0.35",
+        "skipPct": 45,
+        "family": [
+          "urn-tall",
+          "urn-squat",
+          "urn",
+          "urn-squat",
+          "urn-tall",
+          "urn-ornate",
+          "urn-shattered"
+        ],
+        "shatteredBonesPct": 60
+      },
+      "burial": {
+        "minArea": 60,
+        "pieces": [
+          "tomb-crumbled-v (side wall, lower half)",
+          "tomb-crumbled-h or tomb-open-h 50/50 (bottom row)"
+        ],
+        "bones": 1,
+        "ooze": 1
+      },
+      "src": "js/world/biomes/crypt/cryptrooms.js:20-74; js/world/biomes/crypt/cryptpack.js:437-441"
+    },
+    "caverns": {
+      "rockPalette": {
+        "floor": [112,103,94],
+        "floorLav": [98,96,102],
+        "occ": [54,50,48],
+        "mineralCool": [92,104,112],
+        "pearl": [132,124,116],
+        "band": [106,99,92],
+        "top": [84,78,74],
+        "topHi": [116,108,100],
+        "topLo": [58,54,54],
+        "topLav": [82,82,96],
+        "edge": [30,27,28],
+        "face": [82,75,68],
+        "faceLo": [48,43,42],
+        "lip": [134,123,112],
+        "void": [6,6,8],
+        "voidEdge": [24,22,24],
+        "vein": [64,186,180],
+        "veinHot": [186,255,242],
+        "pool": [16,64,92],
+        "poolEdge": [36,142,156],
+        "poolShallow": [64,172,176],
+        "poolRim": [168,248,238],
+        "poolShelf": [80,92,96],
+        "poolShelfDry": [104,98,92],
+        "poolWet": [76,72,70],
+        "moss0": [38,92,82],
+        "moss1": [54,120,104],
+        "moss2": [28,66,62],
+        "moss3": [88,186,158]
+      },
+      "name": "Caverns",
+      "size": [
+        56,
+        34
+      ],
+      "layout": "cellular-caves",
+      "layoutTries": 14,
+      "chambers": {
+        "count": [
+          7,
+          9
+        ],
+        "tries": 600,
+        "bigPct": 22,
+        "big": {
+          "rx": [
+            7,
+            9
+          ],
+          "ry": [
+            5,
+            6
+          ]
+        },
+        "small": {
+          "rx": [
+            4,
+            7
+          ],
+          "ry": [
+            3,
+            4
+          ]
+        },
+        "spacing": "ellipse sum + 2",
+        "minPlanned": 5,
+        "reversePct": 50
+      },
+      "automaton": {
+        "noise": {
+          "scale": 0.3,
+          "amp": 0.55
+        },
+        "core": 0.6,
+        "arenaCore": 0.78,
+        "seedOpenPct": 66,
+        "seedBand": 1.2,
+        "rounds": 4,
+        "rockAtLeast": 5,
+        "forceRockAbove": 1.5,
+        "anchorSearch": 3
+      },
+      "tunnels": {
+        "metric": "hypot(dx, 1.3 dy)",
+        "loops": [
+          1,
+          2
+        ],
+        "loopTries": 6,
+        "maxLoopLength": 30,
+        "sidestepPct": 22,
+        "widePct": 30,
+        "maxSteps": 500
+      },
+      "validity": {
+        "minOpenCells": 480,
+        "bossMinOpenCells": 400,
+        "chamberMinCells": 12,
+        "chamberBand": 1.3,
+        "minChambers": 5,
+        "bossMinChambers": 4
+      },
+      "rift": {
+        "chancePct": 85,
+        "minChamberCells": 36,
+        "width": [
+          2,
+          3
+        ],
+        "verticalPct": 75,
+        "minBoxForAxis": 9,
+        "maxRowsEachWay": 16,
+        "wanderPct": 40,
+        "wanderMax": 2,
+        "minRows": 5,
+        "secondBridge": {
+          "minRows": 11,
+          "minGap": 6,
+          "chancePct": 50
+        },
+        "repairBridges": 4,
+        "note": "floor note: strings.json floor-note.rift"
+      },
+      "pit": {
+        "chancePct": 45,
+        "bossChancePct": 50,
+        "minChamberCells": 40,
+        "blob": [
+          4,
+          8
+        ],
+        "minCandidates": 6,
+        "minCells": 3,
+        "minFromCentre": 2
+      },
+      "stairs": {
+        "kind": "chamber-centre"
+      },
+      "wallFeatures": {
+        "waterfallAllowedPct": 50,
+        "waterfallPct": 8,
+        "waterfallPool": [
+          2,
+          4
+        ],
+        "waterfallLight": {
+          "col": "#6FE0F0",
+          "r": 3.4,
+          "s": 0.7
+        },
+        "hashMax": 0.09,
+        "drapery": {
+          "pct": 60,
+          "variants": 3
+        },
+        "glowworm": {
+          "pct": 40,
+          "variants": 2,
+          "lights": [
+            "#7FE8D8",
+            "#FFC870"
+          ],
+          "r": 2.6,
+          "s": 0.45
+        }
+      },
+      "theme": {
+        "tall": {
+          "pick": [
+            2,
+            3
+          ],
+          "weights": {
+            "stalagmite-tall": 3,
+            "giant-mushroom": 2.2,
+            "pylon": 1,
+            "stalagmite-group": 1.2,
+            "geode": 0.9,
+            "mushroom-pair": 1,
+            "mine-cart": 0.6,
+            "mine-support": 0.4
+          },
+          "variants": {
+            "stalagmite-tall": 3,
+            "giant-mushroom": 3,
+            "pylon": 2,
+            "stalagmite-group": 2,
+            "geode": 2,
+            "mushroom-pair": 2,
+            "mine-cart": 1,
+            "mine-support": 1
+          }
+        },
+        "clusters": {
+          "pick": 2,
+          "weights": {
+            "small-mushrooms": 3,
+            "crystal-shards": 2,
+            "rubble": 3,
+            "cave-pearls": 1.2
+          }
+        },
+        "minerPct": 30
+      },
+      "clusters": {
+        "perChamber": "min(2, floor(cells/40) + (40% ? 1 : 0)); arena 1-2",
+        "weights": {
+          "small-mushrooms": 3,
+          "crystal-shards": 2,
+          "rubble": 3,
+          "cave-pearls": 0.6,
+          "lost-miner": 0.5
+        },
+        "minerMax": 1,
+        "wallHuggers": [
+          "crystal-shards",
+          "rubble",
+          "small-mushrooms"
+        ],
+        "otherEdgePct": 75,
+        "size": {
+          "1": 30,
+          "2": 52.5,
+          "3": 17.5
+        },
+        "glowMoss": {
+          "chamberPct": 35,
+          "length": [
+            3,
+            6
+          ]
+        }
+      },
+      "chamberDressing": {
+        "tallPct": 40,
+        "secondTall": {
+          "minCells": 50,
+          "pct": 20
+        },
+        "koboldCamp": {
+          "minCells": 30,
+          "pct": 15,
+          "perFloor": 1,
+          "minFreeNeighbours": 5,
+          "extra": "kobold-crate 50% or kobold-pickaxe"
+        }
+      },
+      "furniture": {
+        "torch-stand": [
+          "giant-mushroom-1",
+          "giant-mushroom-2",
+          "giant-mushroom-3",
+          "pylon-1",
+          "pylon-2"
+        ],
+        "brazier-lit": [
+          "kobold-campfire"
+        ],
+        "brazier-unlit": [
+          "kobold-campfire"
+        ],
+        "table-candle": [
+          "cl-crystal-shards-1",
+          "cl-crystal-shards-3"
+        ],
+        "barrel": [
+          "kobold-crate"
+        ],
+        "crate": [
+          "kobold-crate"
+        ],
+        "crate-supply": [
+          "kobold-crate"
+        ],
+        "pot": [
+          "kobold-crate"
+        ],
+        "bookshelf": [
+          "stalagmite-tall-1",
+          "stalagmite-tall-2",
+          "stalagmite-tall-3"
+        ],
+        "statue": [
+          "stalagmite-tall-1",
+          "stalagmite-tall-2",
+          "stalagmite-tall-3"
+        ],
+        "statue-broken": [
+          "stalagmite-tall-3"
+        ],
+        "banner-stand": [
+          "stalagmite-tall-2"
+        ],
+        "weapon-rack": [
+          "mine-cart"
+        ],
+        "cart": [
+          "mine-cart"
+        ],
+        "alchemy-table": [
+          "mine-cart"
+        ],
+        "bed-straw": [
+          "cl-rubble-1",
+          "cl-rubble-2"
+        ],
+        "rubble": [
+          "cl-rubble-1",
+          "cl-rubble-2",
+          "cl-rubble-3",
+          "cl-rubble-4"
+        ],
+        "bones": [
+          "cl-lost-miner-1",
+          "cl-lost-miner-2",
+          "cl-lost-miner-3",
+          "cl-rubble-2"
+        ],
+        "chains": [
+          "cl-rubble-3",
+          "cl-rubble-4"
+        ],
+        "mushrooms": [
+          "cl-small-mushrooms-1",
+          "cl-small-mushrooms-2",
+          "cl-small-mushrooms-3",
+          "cl-small-mushrooms-4"
+        ],
+        "vines": [
+          "cl-glow-moss-1",
+          "cl-glow-moss-2",
+          "cl-glow-moss-3",
+          "cl-glow-moss-4"
+        ]
+      },
+      "lights": {
+        "waterBody": {
+          "col": "#5FE0E0",
+          "r": "min(5, 2.6 + 0.25 x cells)",
+          "s": 0.75
+        }
+      },
+      "eels": {
+        "floors": [
+          11,
+          14
+        ],
+        "minBody": 8,
+        "bodyPct": 75,
+        "maxPerFloor": 3,
+        "minDistance": 8,
+        "asleepPct": 50,
+        "creature": "shockeel"
+      },
+      "monsters": {
+        "perFloor": "scaled: 12 + 3 x in-biome floor + 4 (19, 22, 25, 28)",
+        "bossFloor": 9
+      },
+      "bossArena": "caverns-maw-arena",
+      "hazards": [
+        "hazard-static-field",
+        "hazard-cave-spores",
+        "hazard-gas-cloud"
+      ],
+      "src": "js/world/biomes/caverns/caverns.js:18-603; js/world/biomes/caverns/cavefixes.js:43-201; js/world/biomes/caverns/cavernmobs.js:88-89, :439-459; js/world/world.js:365-370"
+    },
+    "underdark": {
+      "rockPalettes": {
+        "1": {"topHi":[118,110,138],"top":[86,80,102],"topLo":[52,48,66],"edge":[26,24,34],"lip":[158,150,178],"face":[70,64,86],"faceLo":[30,27,38],"seam":[186,180,200],"seamOn":"face","soft":1},
+        "2": {"topHi":[138,116,104],"top":[96,80,74],"topLo":[52,42,40],"edge":[26,18,17],"lip":[164,128,104],"face":[74,60,56],"faceLo":[34,25,24],"seam":[255,86,24],"seamHot":[255,224,150],"seamOn":"both","soft":0}
+      },
+      "name": "Underdark",
+      "size": [
+        56,
+        34
+      ],
+      "layout": "regions",
+      "layoutTries": 16,
+      "regions": {
+        "ids": {
+          "0": "temple",
+          "1": "underdark",
+          "2": "volcanic"
+        },
+        "shapes": {
+          "0": "rect",
+          "1": "smooth",
+          "2": "jag"
+        },
+        "weights": {
+          "temple": 1,
+          "underdark": "1.3 - 0.1 x in-biome floor",
+          "volcanic": "0.45 + 0.25 x in-biome floor"
+        },
+        "voronoi": {
+          "tries": 12,
+          "minSharePct": 18
+        },
+        "bossFloor": "temple only"
+      },
+      "rooms": {
+        "count": [
+          7,
+          9
+        ],
+        "tries": 900,
+        "temple": {
+          "bigPct": 20,
+          "big": [
+            [
+              9,
+              12
+            ],
+            [
+              6,
+              8
+            ]
+          ],
+          "small": [
+            [
+              5,
+              8
+            ],
+            [
+              4,
+              6
+            ]
+          ]
+        },
+        "cave": {
+          "bigPct": {
+            "underdark": 22,
+            "volcanic": 40
+          },
+          "big": {
+            "rx": [
+              5,
+              7
+            ],
+            "ry": [
+              4,
+              5
+            ]
+          },
+          "small": {
+            "rx": [
+              3,
+              5
+            ],
+            "ry": [
+              3,
+              4
+            ]
+          }
+        },
+        "margin": 2,
+        "templeMargin": 3,
+        "minRooms": 5,
+        "reversePct": 50
+      },
+      "caveCarve": {
+        "smooth": {
+          "noise": 0.22,
+          "amp": 0.45,
+          "rounds": 4
+        },
+        "jag": {
+          "noise": 0.38,
+          "amp": 0.8,
+          "ridge": {
+            "scale": 0.95,
+            "amp": 0.5
+          },
+          "rounds": 1
+        },
+        "open": 0.8,
+        "band": 1.12,
+        "bandOpenPct": 55,
+        "forceOpen": 0.62
+      },
+      "connections": {
+        "metric": "hypot(dx, 1.3 dy)",
+        "loops": [
+          1,
+          2
+        ],
+        "loopTries": 8,
+        "maxLoopLength": 28,
+        "tunnel": {
+          "sidestepPct": 24,
+          "maxSteps": 600,
+          "widePct": 25
+        }
+      },
+      "validity": {
+        "minOpenCells": 340,
+        "bossMinOpenCells": 330,
+        "caveMinCells": 12
+      },
+      "doors": {
+        "chancePct": 70,
+        "where": "door spots around temple rooms"
+      },
+      "lava": {
+        "enabled": false,
+        "note": "1.7 never carves lava; designed rule kept in lava-design",
+        "design": {
+          "regions": [
+            "volcanic"
+          ],
+          "minCells": 22,
+          "channelPct": 60,
+          "swellPct": 30,
+          "wanderPct": 45,
+          "poolBlob": [
+            4,
+            8
+          ],
+          "fordTries": 4,
+          "heartClear": 3,
+          "heartScoreMin": 90
+        }
+      },
+      "stairs": {
+        "kind": "north-passage",
+        "length": [
+          2,
+          4
+        ],
+        "fallback": "rect passage 3-5 for temple rooms, nearest rooms, room centre"
+      },
+      "themes": {
+        "temple": [
+          {
+            "theme": "altar",
+            "below": 0.16,
+            "pieces": "drow-altar or drow-altar-blood 50/50; spider-idol 60% or candelabra-tall at x-1 and x+2"
+          },
+          {
+            "theme": "pillars",
+            "below": 0.34,
+            "needs": "rect room w>=7, h>=5"
+          },
+          {
+            "theme": "ritual",
+            "below": 0.44,
+            "needs": "30+ cells",
+            "piece": "ritual-circle"
+          },
+          {
+            "theme": "font",
+            "below": 0.54,
+            "piece": "blood-font"
+          },
+          {
+            "theme": "obelisks",
+            "below": 0.64,
+            "needs": "w>=6",
+            "mirrored": "rect rooms"
+          }
+        ],
+        "underdark": [
+          {
+            "theme": "nursery",
+            "below": 0.38,
+            "maxPerFloor": 2,
+            "cocoons": "2 to (3, or 4 at 30+ cells)"
+          },
+          {
+            "theme": "ruin",
+            "below": 0.52,
+            "piece": "drow-pillar-broken"
+          }
+        ],
+        "volcanic": [
+          {
+            "theme": "forge",
+            "below": 0.24,
+            "piece": "lava-forge"
+          },
+          {
+            "theme": "obelisks",
+            "below": 0.36,
+            "piece": "drow-obelisk"
+          }
+        ]
+      },
+      "dressing": {
+        "temple": {
+          "streak": [
+            2,
+            3
+          ]
+        },
+        "underdark": {
+          
+        },
+        "volcanic": {
+          
+        },
+        "streakStarts": 12
+      },
+      "curtains": {
+        "perFloor": [
+          1,
+          3
+        ],
+        "region": "underdark",
+        "where": "1-wide straight corridor cell",
+        "spacing": 6
+      },
+      "vegetation": {
+        "moodPct": {
+          "bare": 30,
+          "some": 42,
+          "lush": 28
+        },
+        "wallTerm": {
+          "3+": 0.36,
+          "1+": 0.24
+        },
+        "noiseAmp": 0.6,
+        "lushBonus": 0.16,
+        "grassAbove": 0.62,
+        "trampledAbove": 0.34,
+        "fungus": {
+          "above": 0.3,
+          "hashMax": 0.2,
+          "light": {
+            "col": "#A77CFF",
+            "r": 2.2,
+            "s": 0.22
+          }
+        },
+        "plantLights": {
+          "note": "1.7 today (deeprender.js DEEP_PLANT_LIGHTS, deepPlantLighting, 2026-10-12 Justin: 'maybe these plants give some light... spider caves have no light sources'): one light a plant spot or tall-grass tile of its region, planted spots first then grass, each in hash order, none nearer than 'apart' to one already taken; replaces the older sampled fungus light above (deepSavedFungusLight strips it)",
+          "fungus": { "region": 1, "col": "#A77CFF", "r": 3.1, "s": 0.52, "apart": 3 },
+          "ashweed": { "region": 2, "col": "#FF493C", "r": 2.4, "s": 0.42, "apart": 3 },
+          "gloomgrass": { "region": 1, "col": "#9468F2", "r": 2.8, "s": 0.36, "apart": 5 },
+          "saltPlus": 1873,
+          "src": "js/presentation/render/deeprender.js:368-417 @3c8b312"
+        },
+        "tunnelTufts": {
+          "noiseAbove": 0.7,
+          "hashMax": 0.6
+        },
+        "ashweed": {
+          "roomPct": 45,
+          "stand": [
+            3,
+            4
+          ]
+        }
+      },
+      "furniture": {
+        "temple": {
+          "torch-stand": "candelabra-tall",
+          "brazier-lit": "candelabra-tall",
+          "brazier-unlit": "drow-pillar-broken",
+          "banner-stand": null,
+          "statue": [
+            "spider-idol",
+            "drow-obelisk"
+          ],
+          "table-candle": [
+            "candles-scarlet-1",
+            "candles-scarlet-2",
+            "candles-scarlet-3",
+            "candles-scarlet-4"
+          ],
+          "mushrooms": null,
+          "vines": null,
+          "bookshelf": "drow-obelisk"
+        },
+        "underdark": {
+          "torch-stand": null,
+          "brazier-lit": null,
+          "brazier-unlit": null,
+          "banner-stand": null,
+          "statue": "drow-pillar-broken",
+          "statue-broken": "drow-pillar-broken",
+          "table-candle": null,
+          "mushrooms": null,
+          "vines": null,
+          "bookshelf": "drow-pillar-broken"
+        },
+        "volcanic": {
+          "torch-stand": "brazier-lit",
+          "banner-stand": null,
+          "statue": "drow-obelisk",
+          "table-candle": [
+            "basalt-embers-1",
+            "basalt-embers-2",
+            "basalt-embers-3",
+            "basalt-embers-4"
+          ],
+          "mushrooms": null,
+          "vines": null,
+          "bookshelf": "drow-obelisk"
+        }
+      },
+      "monsters": {
+        "perFloor": "scaled: 12 + 3 x in-biome floor + 6 (21, 24, 27, 30)",
+        "bossFloor": 9
+      },
+      "bossApproach": "underdark-boss-approach",
+      "hazards": [
+        "hazard-underdark-lava"
+      ],
+      "src": "js/world/biomes/underdark/deep.js:37-743; js/world/biomes/underdark/deepmobs.js:97-150, :426-458; js/world/world.js:371-379"
+    },
+    "hazard-gas-cloud": {
+      "kind": "hazard",
+      "phase": "A15",
+      "effects": [
+        {
+          "verb": "field",
+          "field": "gas",
+          "shape": {
+            "selector": "radius",
+            "centre": "point",
+            "n": 1
+          },
+          "turns": {
+            "from-source": "turns"
+          },
+          "clock": "game-turn",
+          "side": "all",
+          "each": [
+            {
+              "verb": "damage",
+              "type": "poison",
+              "amount": {
+                "from-source": "damage"
+              },
+              "tags": [
+                "environment",
+                "area",
+                "ground"
+              ],
+              "if": {
+                "not": {
+                  "any": [
+                    {
+                      "creature-flag": "undead"
+                    },
+                    {
+                      "creature-flag": "object"
+                    },
+                    {
+                      "creature-flag": "fumes"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "overlap": "each"
+        }
+      ],
+      "sources": {
+        "grave-beetle": {
+          "trigger": "player melee hit, not within 1 action of its last cloud",
+          "turns": 6,
+          "damage": "monsters.json gravebeetle on-melee-hit-taken field amount",
+          "log": "<b>Grave Beetle:</b> poison cloud!",
+          "sfx": "trap-gas",
+          "src": "js/engine/actions-adapter.js:155; js/world/biomes/crypt/crypt.js:83"
+        },
+        "grave-bloat": {
+          "trigger": "on death",
+          "turns": 6,
+          "damage": "monsters.json gravebloat on-death field amount",
+          "log": "<b>Grave Bloat:</b> Poison cloud!",
+          "sfx": "trap-gas",
+          "src": "js/engine/death-adapter.js:49; js/world/biomes/crypt/crypt.js:83"
+        },
+        "myconid": {
+          "trigger": "spore lob onto the player tile (F)",
+          "turns": 5,
+          "damage": "monsters.json myconid spore-lob field amount",
+          "log": "<b>Myconid:</b> leave the spores!",
+          "sfx": "trap-gas",
+          "src": "js/world/biomes/caverns/cavernmobs.js:335-337"
+        }
+      },
+      "light": {
+        "col": "#8CFF6A",
+        "r": 2.2,
+        "s": 0.35
+      },
+      "log": "Gas: {n}.",
+      "src": "js/world/biomes/crypt/crypt.js:82-102"
+    },
+    "hazard-grave-ooze": {
+      "kind": "hazard",
+      "phase": "A18",
+      "permanent": true,
+      "effects": [
+        {
+          "verb": "field",
+          "field": "poison-trail",
+          "shape": {
+            "selector": "tile"
+          },
+          "clock": "game-turn",
+          "side": "all",
+          "each": [
+            {
+              "verb": "damage",
+              "type": "poison",
+              "amount": 1,
+              "premitigated": true,
+              "bypassShields": true,
+              "tags": [
+                "environment",
+                "ground",
+                "periodic"
+              ],
+              "if": {
+                "not": {
+                  "any": [
+                    {
+                      "creature-flag": "undead"
+                    },
+                    {
+                      "creature-flag": "object"
+                    },
+                    {
+                      "creature-flag": "flying"
+                    },
+                    {
+                      "creature-flag": "airborne"
+                    },
+                    {
+                      "creature-flag": "ooze"
+                    },
+                    {
+                      "creature-flag": "sporeproof"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "permanent": true
+        }
+      ],
+      "log": "Grave ooze: {n}.",
+      "src": "js/world/biomes/crypt/cryptset.js:350-363"
+    },
+    "hazard-static-field": {
+      "kind": "hazard",
+      "phase": "A21",
+      "placedBy": "Storm Beetle at the end of its charge, if alive",
+      "effects": [
+        {
+          "verb": "field",
+          "field": "static",
+          "shape": {
+            "selector": "radius",
+            "centre": "self",
+            "n": 1
+          },
+          "turns": 3,
+          "clock": "game-turn",
+          "side": "foes",
+          "each": [
+            {
+              "verb": "damage",
+              "type": "lightning",
+              "amount": {
+                "scaled": {
+                  "base": {
+                    "roll": [
+                      6,
+                      10
+                    ]
+                  },
+                  "mult": [
+                    "number-scale",
+                    "lethality"
+                  ],
+                  "round": true,
+                  "min": 1
+                }
+              },
+              "tags": [
+                "environment",
+                "area"
+              ]
+            },
+            {
+              "verb": "apply-status",
+              "status": "stun",
+              "turns": 1,
+              "chance": 25,
+              "if": {
+                "not": {
+                  "has-status": "stun"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "placeLog": "<b>Storm Beetle:</b> static field!",
+      "log": "Static field: {n}.",
+      "src": "js/world/biomes/caverns/cavernmobs.js:249-254, :281-290"
+    },
+    "hazard-cave-spores": {
+      "kind": "hazard",
+      "phase": "A22",
+      "fieldSource": "myconid gas cloud (source spores)",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-action",
+          "effects": [
+            {
+              "verb": "apply-status",
+              "status": "slow",
+              "turns": 2,
+              "magnitude": 0.8,
+              "only": "player",
+              "if": {
+                "all": [
+                  {
+                    "standing-on": "spores"
+                  },
+                  {
+                    "not": {
+                      "any": [
+                        {
+                          "has-status": "slow"
+                        },
+                        {
+                          "has-status": "frozen"
+                        },
+                        {
+                          "affinity-at-least": {
+                            "element": "earth",
+                            "rank": 6
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "float": "slowed",
+      "src": "js/world/biomes/caverns/cavernmobs.js:352-361"
+    },
+    "hazard-underdark-lava": {
+      "kind": "hazard",
+      "phase": "B4 and A27",
+      "effects": [
+        {
+          "verb": "on-event",
+          "trigger": "on-world-pulse",
+          "effects": [
+            {
+              "verb": "damage",
+              "type": "fire",
+              "amount": 6,
+              "tags": [
+                "environment"
+              ],
+              "target": {
+                "selector": "floor",
+                "side": "any",
+                "if": {
+                  "adjacent-terrain": {
+                    "terrain": "lava",
+                    "ways": 4
+                  }
+                }
+              },
+              "if": {
+                "not": {
+                  "has-status": "levitate"
+                }
+              }
+            },
+            {
+              "verb": "field",
+              "field": "fire",
+              "only": "flammable",
+              "shape": {
+                "selector": "floor",
+                "if": {
+                  "adjacent-terrain": {
+                    "terrain": "lava",
+                    "ways": 4
+                  }
+                }
+              },
+              "turns": 3,
+              "clock": "game-turn"
+            }
+          ]
+        }
+      ],
+      "log": "Lava: {n}. Move away! (first time on a floor)",
+      "moveBlockLog": "Molten rock. You cannot cross it.",
+      "src": "js/engine/turns.js:42; js/world/biomes/underdark/deep.js:619-643, :719-726",
+      "enabled": true,
+      "ruling": "ruled 2026-10-15: lava is on (volcanic caves of 22+ cells, channel 60% or pool, with a ford)",
+      "clock": "game-turn"
+    },
+    "dungeon": {
+      "name": "Dungeon",
+      "size": [
+        56,
+        34
+      ],
+      "layout": "bsp",
+      "stairs": {
+        "kind": "goal-room-centre"
+      },
+      "bossRoom": "boss-dungeon",
+      "palette": {
+        "wall": "#6F6559",
+        "floor": "#201C19",
+        "floor2": "#262220"
+      },
+      "src": "js/runtime/game.js:23-27; js/world/world.js:67, :277, :343; js/world/floors.js:107-118"
+    }
+  }
+}

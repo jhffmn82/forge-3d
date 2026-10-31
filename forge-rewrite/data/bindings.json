@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "keys": {
+    "move-n": [
+      "w",
+      "ArrowUp",
+      "8"
+    ],
+    "move-s": [
+      "s",
+      "ArrowDown",
+      "2"
+    ],
+    "move-w": [
+      "a",
+      "ArrowLeft",
+      "4"
+    ],
+    "move-e": [
+      "d",
+      "ArrowRight",
+      "6"
+    ],
+    "move-nw": [
+      "q",
+      "7",
+      "Home"
+    ],
+    "move-ne": [
+      "e",
+      "9",
+      "PageUp"
+    ],
+    "move-sw": [
+      "z",
+      "1",
+      "End"
+    ],
+    "move-se": [
+      "c",
+      "3",
+      "PageDown"
+    ],
+    "wait": [
+      ".",
+      " ",
+      "5"
+    ],
+    "search": [
+      "f"
+    ],
+    "explore": [
+      "o"
+    ],
+    "rest": [
+      "r"
+    ],
+    "mute": [
+      "v"
+    ],
+    "music": [
+      "n"
+    ],
+    "pickup": [
+      "g"
+    ],
+    "close-door": [
+      "C"
+    ],
+    "confirm": [
+      "Enter",
+      "NumpadEnter"
+    ],
+    "descend": [
+      ">"
+    ],
+    "ascend": [
+      "<"
+    ],
+    "character": [
+      "Tab"
+    ],
+    "inventory": [
+      "i"
+    ],
+    "faith": [
+      "p"
+    ],
+    "map": [
+      "m"
+    ],
+    "close": [
+      "Escape"
+    ],
+    "hotbar-1": [
+      "Digit1"
+    ],
+    "hotbar-2": [
+      "Digit2"
+    ],
+    "hotbar-3": [
+      "Digit3"
+    ],
+    "hotbar-4": [
+      "Digit4"
+    ],
+    "hotbar-5": [
+      "Digit5"
+    ],
+    "hotbar-6": [
+      "Digit6"
+    ],
+    "hotbar-7": [
+      "Digit7"
+    ],
+    "hotbar-8": [
+      "Digit8"
+    ]
+  },
+  "gamepad": {
+    "move-n": "dpad-up",
+    "move-s": "dpad-down",
+    "move-w": "dpad-left",
+    "move-e": "dpad-right",
+    "wait": "a",
+    "close": "b",
+    "character": "start",
+    "map": "select"
+  },
+  "note": "Number keys 1 to 8 are matched by code (Digit1...) for the hotbar; numpad digits move. Enter confirms in windows; pad A sends wait, which windows take as confirm."
+}
